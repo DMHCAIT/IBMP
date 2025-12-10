@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
-import { Award, Shield, Globe, ArrowRight, PlayCircle, CheckCircle2 } from 'lucide-react';
+import { Award, Globe, ArrowRight, PlayCircle } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Hero() {

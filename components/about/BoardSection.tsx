@@ -40,7 +40,7 @@ export default function BoardSection() {
             Our board ensures that IBMP maintains the highest standards of integrity, innovation, and excellence in medical education and accreditation.
           </p>
           <p className="text-lg text-gray-600 leading-relaxed">
-            With diverse expertise spanning clinical practice, medical education, research, and healthcare policy, our Board of Directors provides strategic oversight and guidance to advance IBMP's mission of elevating global medical education standards.
+            With diverse expertise spanning clinical practice, medical education, research, and healthcare policy, our Board of Directors provides strategic oversight and guidance to advance IBMP&apos;s mission of elevating global medical education standards.
           </p>
         </motion.div>
 
