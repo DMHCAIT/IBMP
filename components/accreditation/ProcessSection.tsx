@@ -2,43 +2,12 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useSectionContent } from '@/lib/content-context';
 
 export default function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Submit Application',
-      description: 'Complete our comprehensive application form with program details and documentation.',
-      icon: '📝',
-    },
-    {
-      number: '02',
-      title: 'Document Review',
-      description: 'Our expert team reviews your submission against international standards.',
-      icon: '🔍',
-    },
-    {
-      number: '03',
-      title: 'Evaluation Process',
-      description: 'Thorough assessment of curriculum, faculty qualifications, and facilities.',
-      icon: '⚖️',
-    },
-    {
-      number: '04',
-      title: 'Site Visit (if required)',
-      description: 'On-site evaluation by our accreditation committee for comprehensive review.',
-      icon: '🏥',
-    },
-    {
-      number: '05',
-      title: 'Decision & Certification',
-      description: 'Accreditation decision communicated with official certification documents.',
-      icon: '🏆',
-    },
-  ];
+  const content = useSectionContent('process');
 
   return (
     <section ref={ref} className="py-24 bg-white">
@@ -50,18 +19,18 @@ export default function ProcessSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-block px-4 py-2 bg-secondary-50 text-secondary font-semibold text-sm rounded-full mb-4">
-            How It Works
+            {content.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Accreditation Process
+            {content.title}
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
-            A streamlined, transparent pathway to international recognition
+            {content.subtitle}
           </p>
         </motion.div>
 
         <div className="space-y-6">
-          {steps.map((step, index) => (
+          {content.steps.map((step, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -30 }}

@@ -3,43 +3,20 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Target, Telescope, Sparkles } from 'lucide-react';
+import { useSectionContent } from '@/lib/content-context';
+
+const iconMap: { [key: string]: any } = {
+  Target,
+  Telescope,
+  Sparkles,
+};
+
+const iconKeys = ['Target', 'Telescope', 'Sparkles'];
 
 export default function MissionVisionSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const content = [
-    {
-      id: 'mission',
-      Icon: Target,
-      title: 'Mission',
-      tagline: 'Elevating Healthcare Through Recognition',
-      description:
-        'Our mission is to elevate the future of healthcare by recognizing and accrediting transformative medical education. We are committed to supporting medical professionals on their journey of lifelong learning, fostering innovation, and promoting global standards that lead to better patient outcomes.',
-      color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-50',
-    },
-    {
-      id: 'vision',
-      Icon: Telescope,
-      title: 'Vision',
-      tagline: 'A Future of Universal Medical Excellence',
-      description:
-        'We envision a future where every medical professional has access to high-quality, internationally recognized training that empowers them to advance medical science, embrace innovation, and transform healthcare outcomes worldwide.',
-      color: 'from-secondary to-secondary-600',
-      bgColor: 'bg-secondary-50',
-    },
-    {
-      id: 'tagline',
-      Icon: Sparkles,
-      title: 'Commitment',
-      tagline: 'Accrediting Excellence in Global Medical Education',
-      description:
-        'Our commitment is to maintain the highest standards of integrity, innovation, and excellence in medical education and accreditation, ensuring healthcare professionals worldwide receive recognition that matters.',
-      color: 'from-accent to-accent-600',
-      bgColor: 'bg-accent-50',
-    },
-  ];
+  const content = useSectionContent('missionVision');
 
   return (
     <section id="mission" ref={ref} className="relative py-32 overflow-hidden">
@@ -62,13 +39,13 @@ export default function MissionVisionSection() {
             className="flex items-center justify-center gap-3 mb-6"
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-secondary to-transparent" />
-            <span className="text-secondary font-bold uppercase tracking-wider text-sm">Our Foundation</span>
+            <span className="text-secondary font-bold uppercase tracking-wider text-sm">{content.sectionTag}</span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-secondary to-transparent" />
           </motion.div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary mb-6 tracking-tight">
-            Mission, Vision &{' '}
+            {content.title}{' '}
             <span className="bg-gradient-to-r from-secondary to-secondary-600 bg-clip-text text-transparent">
-              Commitment
+              {content.subtitle}
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
@@ -78,46 +55,49 @@ export default function MissionVisionSection() {
 
         {/* Content Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {content.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden"
-            >
-              {/* Gradient Background on Hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Icon */}
-              <motion.div 
-                className={`relative w-20 h-20 bg-gradient-to-br ${item.color} rounded-3xl flex items-center justify-center mb-8 shadow-xl`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.3 }}
+          {content.items.map((item, index) => {
+            const IconComponent = iconMap[iconKeys[index]] || Target;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-white/20 rounded-3xl" />
-                <item.Icon className="w-10 h-10 text-white relative z-10" />
-              </motion.div>
+                {/* Gradient Background on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Icon */}
+                <motion.div 
+                  className={`relative w-20 h-20 bg-gradient-to-br ${item.color} rounded-3xl flex items-center justify-center mb-8 shadow-xl`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="absolute inset-0 bg-white/20 rounded-3xl" />
+                  <IconComponent className="w-10 h-10 text-white relative z-10" />
+                </motion.div>
 
-              {/* Content */}
-              <div className="relative space-y-4">
-                <div>
-                  <h3 className="text-3xl font-black text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <div className={`h-1 w-16 bg-gradient-to-r ${item.color} rounded-full`} />
+                {/* Content */}
+                <div className="relative space-y-4">
+                  <div>
+                    <h3 className="text-3xl font-black text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <div className={`h-1 w-16 bg-gradient-to-r ${item.color} rounded-full`} />
+                  </div>
+                  <p className="text-sm font-bold text-secondary uppercase tracking-wide">{item.tagline}</p>
+                  <p className="text-gray-600 leading-relaxed text-lg">{item.description}</p>
                 </div>
-                <p className="text-sm font-bold text-secondary uppercase tracking-wide">{item.tagline}</p>
-                <p className="text-gray-600 leading-relaxed text-lg">{item.description}</p>
-              </div>
 
-              {/* Decorative Bottom Line */}
-              <motion.div 
-                className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${item.color} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}
-              />
-            </motion.div>
-          ))}
+                {/* Decorative Bottom Line */}
+                <motion.div 
+                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${item.color} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

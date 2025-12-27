@@ -3,18 +3,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSectionContent } from '@/lib/content-context';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Accreditation', href: '/accreditation' },
-    { name: 'Programs', href: '/programs' },
-    { name: 'Verification', href: '/verification' },
-    { name: 'Contact', href: '/contact' },
-  ];
+  const content = useSectionContent('header');
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-2xl border-b border-gray-200/50 shadow-sm">
@@ -28,14 +21,14 @@ export default function Header() {
               <span className="text-white font-black text-2xl relative z-10">IB</span>
             </div>
             <div className="hidden md:block">
-              <div className="text-primary font-black text-xl leading-tight tracking-tight">IBMP</div>
-              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wider">International Medical Board</div>
+              <div className="text-primary font-black text-xl leading-tight tracking-tight">{content.logoText}</div>
+              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wider">{content.logoSubtext}</div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2">
-            {navigation.map((item) => (
+            {content.navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -50,11 +43,11 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="/accreditation"
+              href={content.ctaHref}
               className="group relative px-8 py-3.5 bg-primary text-white rounded-2xl overflow-hidden font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10">Apply Now</span>
+              <span className="relative z-10">{content.ctaText}</span>
             </Link>
           </div>
 
@@ -84,7 +77,7 @@ export default function Header() {
             className="lg:hidden border-t border-gray-200 bg-white"
           >
             <div className="container-custom py-4 space-y-2">
-              {navigation.map((item) => (
+              {content.navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -95,11 +88,11 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="/accreditation"
+                href={content.ctaHref}
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-3 bg-primary text-white text-center rounded-lg hover:bg-primary-600 transition-all font-semibold mt-4"
               >
-                Apply Now
+                {content.ctaText}
               </Link>
             </div>
           </motion.div>

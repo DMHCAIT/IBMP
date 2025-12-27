@@ -2,10 +2,12 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useSectionContent } from '@/lib/content-context';
 
 export default function AboutHero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const content = useSectionContent('aboutHero');
 
   return (
     <section ref={ref} className="relative py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
@@ -21,7 +23,7 @@ export default function AboutHero() {
             transition={{ duration: 0.5 }}
             className="inline-block px-4 py-2 bg-secondary-50 text-secondary font-semibold text-sm rounded-full mb-6"
           >
-            About IBMP
+            {content.badge}
           </motion.div>
 
           <motion.h1
@@ -30,7 +32,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6"
           >
-            International Board of Medical Practitioners
+            {content.title}
           </motion.h1>
 
           <motion.p
@@ -39,7 +41,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl text-gray-600 leading-relaxed mb-8"
           >
-            The International Board of Medical Practitioners (IBMP) is dedicated to providing high-quality accreditation services for medical education providers and medical learning programs. We support the professional development of medical doctors and healthcare practitioners by accrediting programs across medical specialties, super-specialties, and integrated clinical skill areas.
+            {content.description}
           </motion.p>
 
           <motion.p
@@ -48,7 +50,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg text-gray-600 leading-relaxed"
           >
-            Our accreditations are globally recognized, ensuring excellence, credibility, and international standards in medical education.
+            {content.subDescription}
           </motion.p>
         </div>
       </div>

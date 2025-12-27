@@ -5,10 +5,12 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { Award, Globe, ArrowRight, PlayCircle } from 'lucide-react';
 import Image from 'next/image';
+import { useSectionContent } from '@/lib/content-context';
 
 export default function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const content = useSectionContent('hero');
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-white">
@@ -39,15 +41,15 @@ export default function Hero() {
               className="flex items-center gap-4 text-sm"
             >
               <div className="h-px w-12 bg-gradient-to-r from-secondary to-transparent" />
-              <span className="text-secondary font-semibold">ISO 9001:2015 Certified • Established 2000</span>
+              <span className="text-secondary font-semibold">{content.certificationLine}</span>
             </motion.div>
 
             {/* Heading */}
             <div className="space-y-6">
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-primary leading-[0.95] tracking-tight">
-                International<br />
+                {content.heading?.line1 || 'International'}<br />
                 <span className="relative inline-block">
-                  <span className="relative z-10">Board of</span>
+                  <span className="relative z-10">{content.heading?.line2 || 'Board of'}</span>
                   <motion.div
                     initial={{ scaleX: 0 }}
                     animate={isInView ? { scaleX: 1 } : {}}
@@ -57,11 +59,11 @@ export default function Hero() {
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-secondary via-secondary-600 to-secondary-700 bg-clip-text text-transparent">
-                  Medical Practitioners
+                  {content.heading?.line3 || 'Medical Practitioners'}
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl">
-                Advancing global healthcare through <span className="font-bold text-primary">high-quality accreditation, certification, and fellowship programs</span> for medical doctors and healthcare practitioners <span className="font-bold bg-gradient-to-r from-secondary to-secondary-600 bg-clip-text text-transparent">worldwide</span>.
+                {content.description}
               </p>
             </div>
 
@@ -73,24 +75,24 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-5"
             >
               <Link 
-                href="/accreditation"
+                href={content.ctaButtons?.primary?.href || '/accreditation'}
                 className="group relative px-10 py-5 bg-primary text-white font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative flex items-center gap-3">
-                  Apply for Accreditation
+                  {content.ctaButtons?.primary?.text || 'Apply for Accreditation'}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
               </Link>
 
               <Link 
-                href="#overview"
+                href={content.ctaButtons?.secondary?.href || '#overview'}
                 className="group relative px-10 py-5 bg-white border-2 border-gray-300 text-primary font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:border-secondary hover:shadow-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative flex items-center gap-3">
                   <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  Watch Overview
+                  {content.ctaButtons?.secondary?.text || 'Watch Overview'}
                 </span>
               </Link>
             </motion.div>

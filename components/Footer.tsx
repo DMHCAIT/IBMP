@@ -1,28 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useSectionContent } from '@/lib/content-context';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    organization: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Mission & Vision', href: '/about#mission' },
-      { name: 'Board of Directors', href: '/about#board' },
-      { name: 'Values', href: '/about#values' },
-    ],
-    services: [
-      { name: 'Accreditation', href: '/accreditation' },
-      { name: 'Programs', href: '/programs' },
-      { name: 'Verification', href: '/verification' },
-      { name: 'Contact', href: '/contact' },
-    ],
-    resources: [
-      { name: 'Guidelines', href: '/#' },
-      { name: 'Standards', href: '/#' },
-      { name: 'Documentation', href: '/#' },
-      { name: 'Support', href: '/contact' },
-    ],
-  };
+  const content = useSectionContent('footer');
 
   return (
     <footer className="bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
@@ -40,7 +23,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Establishing global excellence in medical education, accreditation, and professional certification for healthcare practitioners worldwide.
+              {content.brandDescription}
             </p>
           </div>
 
@@ -48,7 +31,7 @@ export default function Footer() {
           <div>
             <h3 className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Organization</h3>
             <ul className="space-y-3">
-              {footerLinks.organization.map((link) => (
+              {content.organization.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-600 hover:text-secondary transition-colors text-sm">
                     {link.name}
@@ -61,7 +44,7 @@ export default function Footer() {
           <div>
             <h3 className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Services</h3>
             <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
+              {content.services.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-600 hover:text-secondary transition-colors text-sm">
                     {link.name}
@@ -74,7 +57,7 @@ export default function Footer() {
           <div>
             <h3 className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Resources</h3>
             <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
+              {content.resources.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-600 hover:text-secondary transition-colors text-sm">
                     {link.name}

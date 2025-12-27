@@ -3,39 +3,18 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Award, GraduationCap, Users, CheckCircle } from 'lucide-react';
+import { useSectionContent } from '@/lib/content-context';
+
+const iconMap: { [key: string]: any } = {
+  Award,
+  GraduationCap,
+  Users,
+};
 
 export default function WhatWeDoSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const services = [
-    {
-      icon: Award,
-      title: 'International Accreditation',
-      description: 'For medical education providers and institutions worldwide',
-      color: 'from-blue-500 to-blue-700',
-    },
-    {
-      icon: GraduationCap,
-      title: 'Certification Programs',
-      description: 'For specialized medical competencies and advanced practice',
-      color: 'from-secondary to-secondary-700',
-    },
-    {
-      icon: Users,
-      title: 'Fellowship Pathways',
-      description: 'For advanced clinical mastery and professional excellence',
-      color: 'from-accent to-accent-700',
-    },
-  ];
-
-  const whyChoose = [
-    'Globally recognized accreditation',
-    'Evidence-based quality standards',
-    'Transparent and reliable verification',
-    'Strong global network of medical institutions',
-    'Commitment to lifelong learning and professional growth',
-  ];
+  const content = useSectionContent('whatWeDo');
 
   return (
     <section ref={ref} className="relative py-32 overflow-hidden bg-white">
@@ -51,33 +30,36 @@ export default function WhatWeDoSection() {
           className="text-center max-w-4xl mx-auto mb-20"
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary mb-6 tracking-tight">
-            Who We Are &{' '}
+            {content.title}{' '}
             <span className="bg-gradient-to-r from-secondary to-secondary-600 bg-clip-text text-transparent">
-              What We Do
+              {content.subtitle}
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-            IBMP is a global authority dedicated to setting and upholding excellence in medical education. We accredit institutions, certify professionals, and support advanced learning pathways that elevate healthcare practice globally.
+            {content.description}
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 + index * 0.15 }}
-              className="group relative bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-3xl p-10 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500"
-            >
-              <div className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-3xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300`}>
-                <service.icon className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-black text-primary mb-3">{service.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">{service.description}</p>
-            </motion.div>
-          ))}
+          {content.services.map((service, index) => {
+            const IconComponent = iconMap[service.icon] || Award;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.2 + index * 0.15 }}
+                className="group relative bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-3xl p-10 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500"
+              >
+                <div className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-3xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300`}>
+                  <IconComponent className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-black text-primary mb-3">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-lg">{service.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Why Choose IBMP */}
@@ -94,7 +76,7 @@ export default function WhatWeDoSection() {
             </span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {whyChoose.map((item, index) => (
+            {content.whyChoose.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
@@ -122,7 +104,7 @@ export default function WhatWeDoSection() {
             <span className="text-secondary font-bold uppercase tracking-wider text-sm">Our Commitment</span>
           </div>
           <p className="text-2xl md:text-3xl font-bold text-primary leading-relaxed">
-            We work to improve healthcare outcomes by strengthening the quality, credibility, and accessibility of medical education across the world.
+            {content.commitment}
           </p>
         </motion.div>
       </div>
