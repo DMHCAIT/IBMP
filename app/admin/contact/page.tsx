@@ -109,7 +109,7 @@ export default function ContactEditorPage() {
               />
               <InputField
                 label="Link (optional, e.g., email address)"
-                value={item.link || ''}
+                value={(item as { icon: string; title: string; description: string; link?: string }).link || ''}
                 onChange={(value) => updateItem({ ...item, link: value })}
               />
             </div>
@@ -118,6 +118,7 @@ export default function ContactEditorPage() {
             icon: '📞',
             title: 'New Contact',
             description: 'Contact description',
+            link: '',
           })}
           addButtonText="Add Contact Card"
         />
