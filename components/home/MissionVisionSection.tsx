@@ -4,8 +4,9 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Target, Telescope, Sparkles } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
+import { LucideIcon } from 'lucide-react';
 
-const iconMap: { [key: string]: any } = {
+const iconMap: { [key: string]: LucideIcon } = {
   Target,
   Telescope,
   Sparkles,

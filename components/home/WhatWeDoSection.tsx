@@ -4,8 +4,9 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Award, GraduationCap, Users, CheckCircle } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
+import { LucideIcon } from 'lucide-react';
 
-const iconMap: { [key: string]: any } = {
+const iconMap: { [key: string]: LucideIcon } = {
   Award,
   GraduationCap,
   Users,

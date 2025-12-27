@@ -45,7 +45,7 @@ const validSections = [
 type SectionKey = keyof SiteContent;
 
 function isValidSection(section: string): section is SectionKey {
-  return validSections.includes(section as any);
+  return validSections.includes(section as typeof validSections[number]);
 }
 
 // GET - Retrieve specific section content

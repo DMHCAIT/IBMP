@@ -5,8 +5,9 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { Award, CheckCircle, Shield } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
+import { LucideIcon } from 'lucide-react';
 
-const iconMap: { [key: string]: any } = {
+const iconMap: { [key: string]: LucideIcon } = {
   CheckCircle,
   Shield,
   Award,

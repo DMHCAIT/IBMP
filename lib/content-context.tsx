@@ -5,7 +5,7 @@ import { SiteContent, defaultContent } from './content-data';
 
 interface ContentContextType {
   content: SiteContent;
-  updateContent: (section: keyof SiteContent, data: any) => void;
+  updateContent: (section: keyof SiteContent, data: SiteContent[keyof SiteContent]) => void;
   saveContent: () => Promise<void>;
   resetContent: () => void;
   resetSection: (section: keyof SiteContent) => Promise<void>;
@@ -59,7 +59,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     loadContent();
   }, []);
 
-  const updateContent = (section: keyof SiteContent, data: any) => {
+  const updateContent = (section: keyof SiteContent, data: SiteContent[keyof SiteContent]) => {
     setContent((prev) => ({
       ...prev,
       [section]: data,
