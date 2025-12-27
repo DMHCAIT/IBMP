@@ -140,7 +140,7 @@ export async function DELETE(
 
     const content = await readContentFromFile();
     // TypeScript can't infer that section matches on both sides, so we use type assertion
-    (content as Record<string, unknown>)[section] = defaultContent[section];
+    (content as unknown as Record<string, unknown>)[section] = defaultContent[section];
     await writeContentToFile(content);
 
     return NextResponse.json({ 
