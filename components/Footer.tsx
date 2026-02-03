@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSectionContent } from '@/lib/content-context';
 
 export default function Footer() {
@@ -13,13 +14,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-xl">IBMP</span>
-              </div>
-              <div>
-                <div className="text-primary font-bold text-lg leading-tight">IBMP</div>
-                <div className="text-gray-600 text-xs">Medical Accreditation</div>
+            <div className="mb-6">
+              <div className="relative w-32 h-16 overflow-hidden">
+                <Image
+                  src="/ibmp-01.png"
+                  alt="IBMP Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">

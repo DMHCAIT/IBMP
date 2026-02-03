@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSectionContent } from '@/lib/content-context';
@@ -14,15 +15,15 @@ export default function Header() {
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-4 group">
-            <div className="relative w-16 h-16 bg-gradient-to-br from-primary via-primary-600 to-secondary rounded-3xl flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl" />
-              <div className="absolute inset-0 bg-white/10 rounded-3xl" />
-              <span className="text-white font-black text-2xl relative z-10">IB</span>
-            </div>
-            <div className="hidden md:block">
-              <div className="text-primary font-black text-xl leading-tight tracking-tight">{content.logoText}</div>
-              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wider">{content.logoSubtext}</div>
+          <Link href="/" className="flex items-center">
+            <div className="relative w-48 h-20 overflow-hidden">
+              <Image
+                src="/ibmp-01.png"
+                alt="IBMP Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </Link>
 
