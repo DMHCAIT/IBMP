@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, getSupabaseServiceClient } from '@/lib/supabase';
 
+// CRITICAL: Force dynamic rendering so this route is never statically cached
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function getAdminClient() {
   try {
     return getSupabaseServiceClient();
