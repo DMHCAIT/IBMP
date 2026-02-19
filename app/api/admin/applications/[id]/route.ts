@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, getSupabaseServiceClient } from '@/lib/supabase';
+
+function getAdminClient() {
+  try {
+    return getSupabaseServiceClient();
+  } catch {
+    return supabase;
+  }
+}
 
 // Map Supabase snake_case columns to camelCase for frontend
 function mapApplicationToFrontend(app: Record<string, unknown>) {
@@ -82,7 +90,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const { data: application, error } = await supabase
+    const db = getAdminClient();
+    const { data: application, error } = await db
       .from('applications')
       .select('*')
       .eq('application_number', params.id)
@@ -123,7 +132,8 @@ export async function PATCH(
       }, { status: 400 });
     }
 
-    const { error } = await supabase
+    const db = getAdminClient();
+    const { error } = await db
       .from('applications')
       .update({ status, updated_at: new Date().toISOString() })
       .eq('application_number', params.id);

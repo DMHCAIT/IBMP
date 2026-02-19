@@ -8,11 +8,13 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // For server-side operations with service role (admin operations)
-// Make sure to use process.env.SUPABASE_SERVICE_ROLE_KEY for admin operations
+// Bypasses Row Level Security (RLS) — use for admin API routes
 export const getSupabaseServiceClient = () => {
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-  if (!serviceRoleKey) {
-    console.warn('SUPABASE_SERVICE_ROLE_KEY not set. Admin operations may not work.');
+  if (!serviceRoleKey || serviceRoleKey === 'REPLACE_WITH_YOUR_ACTUAL_SERVICE_ROLE_KEY') {
+    // No valid service role key — fall back to anon client
+    console.warn('SUPABASE_SERVICE_ROLE_KEY not set. Using anon key (may be blocked by RLS).');
+    return supabase;
   }
   return createClient(supabaseUrl, serviceRoleKey);
 };

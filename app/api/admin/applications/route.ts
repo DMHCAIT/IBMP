@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, getSupabaseServiceClient } from '@/lib/supabase';
+
+function getAdminClient() {
+  try {
+    return getSupabaseServiceClient();
+  } catch {
+    return supabase;
+  }
+}
 
 export async function GET() {
   try {
-    const { data: applications, error } = await supabase
+    const db = getAdminClient();
+    const { data: applications, error } = await db
       .from('applications')
       .select('application_number, full_name, email, course_name, status, created_at')
       .order('created_at', { ascending: false });

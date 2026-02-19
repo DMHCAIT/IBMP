@@ -24,6 +24,14 @@ interface Application {
   correspondenceAddress: string;
 }
 
+// Safely format a date string, returning fallback if invalid
+function formatDate(dateStr: string | undefined | null, fallback = 'N/A'): string {
+  if (!dateStr) return fallback;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return fallback;
+  return d.toLocaleDateString();
+}
+
 export default function ViewInvoicePage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [invoice, setInvoice] = useState<Invoice | null>(null);
@@ -111,8 +119,8 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
               <div className="text-right">
                 <div className="text-2xl font-bold text-blue-600">{invoice.invoiceNumber}</div>
                 <div className="text-sm text-gray-600 mt-2">
-                  <div>Date: {new Date(invoice.invoiceDate).toLocaleDateString()}</div>
-                  <div>Due Date: {new Date(invoice.dueDate).toLocaleDateString()}</div>
+                  <div>Date: {formatDate(invoice.invoiceDate)}</div>
+                  <div>Due Date: {formatDate(invoice.dueDate)}</div>
                 </div>
               </div>
             </div>

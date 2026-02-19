@@ -113,7 +113,7 @@ export default function InvoicesListPage() {
                         {invoice.studentName || '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {new Date(invoice.invoiceDate).toLocaleDateString()}
+                        {invoice.invoiceDate ? new Date(invoice.invoiceDate).toLocaleDateString() : 'N/A'}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600 max-w-[200px] truncate">
                         {invoice.courseName}
