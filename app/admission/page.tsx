@@ -89,6 +89,99 @@ export default function AdmissionPage() {
 
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submittedAppNumber, setSubmittedAppNumber] = useState('');
+
+  const generatePDF = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups to download the PDF receipt.');
+      return;
+    }
+
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>IBMP Application Receipt - ${submittedAppNumber}</title>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; padding: 40px; background: white; }
+          .receipt { max-width: 700px; margin: 0 auto; border: 2px solid #1e3a5f; padding: 40px; }
+          .header { text-align: center; border-bottom: 3px solid #1e3a5f; padding-bottom: 20px; margin-bottom: 25px; }
+          .header h1 { color: #1e3a5f; font-size: 22px; margin-bottom: 4px; }
+          .header p { color: #555; font-size: 12px; }
+          .badge { display: inline-block; background: #d4edda; color: #155724; padding: 6px 18px; border-radius: 20px; font-weight: 600; font-size: 14px; margin: 15px 0; }
+          .app-number { text-align: center; background: #f0f4ff; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 20px; font-weight: 700; color: #1e3a5f; letter-spacing: 1px; }
+          .section { margin-bottom: 20px; }
+          .section h3 { color: #1e3a5f; font-size: 14px; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 10px; }
+          .row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; }
+          .row .label { color: #666; }
+          .row .value { font-weight: 600; }
+          .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #1e3a5f; font-size: 11px; color: #888; }
+          .note { background: #fff3cd; padding: 12px; border-radius: 6px; font-size: 12px; color: #856404; margin-top: 20px; }
+          @media print { body { padding: 20px; } .receipt { border: 1px solid #999; } }
+        </style>
+      </head>
+      <body>
+        <div class="receipt">
+          <div class="header">
+            <h1>INTERNATIONAL BOARD OF MEDICAL PRACTITIONERS</h1>
+            <p>600 N Broad Street Suite 5 #3695, Middletown, DE 19709, USA</p>
+            <p>Email: info@ibmpractitioner.us | Phone: +1 302 600 2718</p>
+            <div class="badge">✓ APPLICATION RECEIVED</div>
+          </div>
+
+          <div class="app-number">${submittedAppNumber}</div>
+
+          <div class="section">
+            <h3>Applicant Information</h3>
+            <div class="row"><span class="label">Full Name</span><span class="value">${formData.fullName}</span></div>
+            <div class="row"><span class="label">Email</span><span class="value">${formData.emailId}</span></div>
+            <div class="row"><span class="label">Mobile</span><span class="value">${formData.mobileNumber}</span></div>
+            <div class="row"><span class="label">Gender</span><span class="value">${formData.gender}</span></div>
+            <div class="row"><span class="label">Nationality</span><span class="value">${formData.nationality}</span></div>
+          </div>
+
+          <div class="section">
+            <h3>Course Details</h3>
+            <div class="row"><span class="label">Course Type</span><span class="value">${formData.courseType}</span></div>
+            <div class="row"><span class="label">Course Name</span><span class="value">${formData.courseName}</span></div>
+            ${formData.sessionYear ? `<div class="row"><span class="label">Session</span><span class="value">${formData.sessionYear}</span></div>` : ''}
+            ${formData.studyMode ? `<div class="row"><span class="label">Mode</span><span class="value">${formData.studyMode}</span></div>` : ''}
+          </div>
+
+          <div class="section">
+            <h3>Submission Details</h3>
+            <div class="row"><span class="label">Date</span><span class="value">${dateStr}</span></div>
+            <div class="row"><span class="label">Time</span><span class="value">${timeStr}</span></div>
+            <div class="row"><span class="label">Status</span><span class="value">Pending Review</span></div>
+            <div class="row"><span class="label">Payment Method</span><span class="value">${formData.paymentOption || 'N/A'}</span></div>
+          </div>
+
+          <div class="note">
+            <strong>Important:</strong> Please save this receipt for your records. Your application number <strong>${submittedAppNumber}</strong> is required for all future correspondence. You will receive a confirmation email within 2-3 business days.
+          </div>
+
+          <div class="footer">
+            <p>This is a computer-generated receipt and does not require a signature.</p>
+            <p style="margin-top: 5px;">© ${now.getFullYear()} International Board of Medical Practitioners. All rights reserved.</p>
+          </div>
+        </div>
+
+        <script>
+          window.onload = function() {
+            window.print();
+          };
+        </script>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -150,10 +243,8 @@ export default function AdmissionPage() {
       const result = await response.json();
 
       if (result.success) {
+        setSubmittedAppNumber(result.applicationNumber || 'IBMP-' + new Date().getFullYear());
         setShowSuccess(true);
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 3000);
       } else {
         alert(result.message || 'Error submitting application. Please try again.');
       }
@@ -646,10 +737,31 @@ export default function AdmissionPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
             <div className="text-green-500 text-6xl mb-4">✓</div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Application Submitted Successfully!</h3>
-            <p className="text-gray-600">
-              Thank you for your application. We will review your submission and contact you within 2-3 business days.
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted Successfully!</h3>
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-600 mb-1">Your Application Number</p>
+              <p className="text-xl font-bold text-blue-800 tracking-wider">{submittedAppNumber}</p>
+            </div>
+            
+            <p className="text-gray-600 text-sm mb-6">
+              Please save your application number for future reference. We will review your submission and contact you within 2-3 business days.
             </p>
+            
+            <div className="space-y-3">
+              <button
+                onClick={generatePDF}
+                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold flex items-center justify-center gap-2"
+              >
+                📄 Download Receipt (PDF)
+              </button>
+              <button
+                onClick={() => { window.location.href = '/'; }}
+                className="w-full bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 font-semibold"
+              >
+                Go to Home
+              </button>
+            </div>
           </div>
         </div>
       )}

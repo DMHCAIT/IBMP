@@ -1,12 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+// Map Supabase snake_case to camelCase for the frontend invoice page
+function mapInvoiceToFrontend(inv: Record<string, unknown>) {
+  return {
+    invoiceNumber: inv.invoice_number,
+    invoiceDate: inv.created_at ? (inv.created_at as string).split('T')[0] : '',
+    dueDate: '', // Not stored in DB, frontend can compute
+    courseName: inv.course_name,
+    courseAmount: Number(inv.admission_fee) || 0,
+    discount: Number(inv.discount) || 0,
+    taxRate: Number(inv.tax) || 0,
+    paidAmount: 0, // Calculate from status
+    dueAmount: Number(inv.total_amount) || 0,
+    notes: inv.notes || '',
+    studentName: inv.student_name,
+    status: inv.status,
+    applicationNumber: inv.application_number,
+  };
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    // Try to find by application_number (since admin panel passes application ID)
     const { data: invoice, error } = await supabase
       .from('invoices')
       .select('*')
@@ -14,7 +32,6 @@ export async function GET(
       .single();
 
     if (error || !invoice) {
-      // Invoice doesn't exist yet for this application
       return NextResponse.json({
         success: false,
         message: 'Invoice not found',
@@ -23,7 +40,7 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      invoice,
+      invoice: mapInvoiceToFrontend(invoice),
     });
   } catch (error) {
     console.error('Error fetching invoice:', error);
@@ -39,11 +56,30 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const invoiceData = await request.json();
+    const data = await request.json();
     
-    const invoiceNumber = `INV-${new Date().getFullYear()}-${Date.now()}`;
+    const invoiceNumber = data.invoiceNumber || `INV-${new Date().getFullYear()}-${Date.now()}`;
+    
+    // Map frontend camelCase fields to Supabase snake_case
+    const dbData = {
+      invoice_number: invoiceNumber,
+      application_number: params.id,
+      student_name: data.studentName || '',
+      course_name: data.courseName || null,
+      admission_fee: parseFloat(data.courseAmount) || 0,
+      tuition_fee: 0,
+      registration_fee: 0,
+      other_fees: 0,
+      discount: parseFloat(data.discount) || 0,
+      tax: parseFloat(data.taxRate) || 0,
+      total_amount: parseFloat(data.dueAmount) || 0,
+      status: 'pending',
+      payment_method: null,
+      transaction_id: null,
+      notes: data.notes || null,
+    };
 
-    // First, check if an invoice already exists for this application
+    // Check if an invoice already exists for this application
     const { data: existing } = await supabase
       .from('invoices')
       .select('id')
@@ -51,72 +87,35 @@ export async function POST(
       .single();
 
     if (existing) {
-      // Update existing invoice
       const { error } = await supabase
         .from('invoices')
-        .update({
-          student_name: invoiceData.studentName || invoiceData.student_name || '',
-          course_name: invoiceData.courseName || invoiceData.course_name || null,
-          admission_fee: parseFloat(invoiceData.admissionFee || invoiceData.admission_fee || invoiceData.courseAmount) || 0,
-          tuition_fee: parseFloat(invoiceData.tuitionFee || invoiceData.tuition_fee) || 0,
-          registration_fee: parseFloat(invoiceData.registrationFee || invoiceData.registration_fee) || 0,
-          other_fees: parseFloat(invoiceData.otherFees || invoiceData.other_fees) || 0,
-          discount: parseFloat(invoiceData.discount) || 0,
-          tax: parseFloat(invoiceData.tax || invoiceData.taxRate) || 0,
-          total_amount: parseFloat(invoiceData.totalAmount || invoiceData.total_amount) || 0,
-          status: invoiceData.status || 'pending',
-          payment_method: invoiceData.paymentMethod || invoiceData.payment_method || null,
-          transaction_id: invoiceData.transactionId || invoiceData.transaction_id || null,
-          notes: invoiceData.notes || null,
-          updated_at: new Date().toISOString(),
-        })
+        .update({ ...dbData, updated_at: new Date().toISOString() })
         .eq('application_number', params.id);
 
       if (error) {
         console.error('Supabase update error:', error);
-        return NextResponse.json({
-          success: false,
-          message: 'Error updating invoice',
-        }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Error updating invoice' }, { status: 500 });
       }
     } else {
-      // Create new invoice
-      const { error } = await supabase.from('invoices').insert({
-        invoice_number: invoiceData.invoiceNumber || invoiceNumber,
-        application_number: params.id,
-        student_name: invoiceData.studentName || invoiceData.student_name || '',
-        course_name: invoiceData.courseName || invoiceData.course_name || null,
-        admission_fee: parseFloat(invoiceData.admissionFee || invoiceData.admission_fee || invoiceData.courseAmount) || 0,
-        tuition_fee: parseFloat(invoiceData.tuitionFee || invoiceData.tuition_fee) || 0,
-        registration_fee: parseFloat(invoiceData.registrationFee || invoiceData.registration_fee) || 0,
-        other_fees: parseFloat(invoiceData.otherFees || invoiceData.other_fees) || 0,
-        discount: parseFloat(invoiceData.discount) || 0,
-        tax: parseFloat(invoiceData.tax || invoiceData.taxRate) || 0,
-        total_amount: parseFloat(invoiceData.totalAmount || invoiceData.total_amount) || 0,
-        status: invoiceData.status || 'pending',
-        payment_method: invoiceData.paymentMethod || invoiceData.payment_method || null,
-        transaction_id: invoiceData.transactionId || invoiceData.transaction_id || null,
-        notes: invoiceData.notes || null,
-      });
+      const { error } = await supabase.from('invoices').insert(dbData);
 
       if (error) {
         console.error('Supabase insert error:', error);
-        return NextResponse.json({
-          success: false,
-          message: 'Error creating invoice',
-        }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Error creating invoice' }, { status: 500 });
       }
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Invoice saved successfully',
-    });
+    return NextResponse.json({ success: true, message: 'Invoice saved successfully' });
   } catch (error) {
     console.error('Error saving invoice:', error);
-    return NextResponse.json({
-      success: false,
-      message: 'Error saving invoice',
-    }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Error saving invoice' }, { status: 500 });
   }
+}
+
+// Also handle PUT for updates from the invoice editor
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  return POST(request, { params });
 }

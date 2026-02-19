@@ -1,6 +1,82 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+// Map Supabase snake_case columns to camelCase for frontend
+function mapApplicationToFrontend(app: Record<string, unknown>) {
+  return {
+    applicationNumber: app.application_number,
+    fullName: app.full_name,
+    emailId: app.email,
+    mobileNumber: app.phone,
+    phoneNumber: app.alternate_phone,
+    dateOfBirth: app.dob,
+    gender: app.gender,
+    nationality: app.nationality,
+    referralSource: app.referral_source,
+    otherReferralSource: app.referral_details,
+    
+    // Addresses
+    permanentAddress: app.permanent_address,
+    permanentCity: app.permanent_city,
+    permanentState: app.permanent_state,
+    permanentPincode: app.permanent_pincode,
+    correspondenceAddress: app.communication_address,
+    communicationCity: app.communication_city,
+    communicationState: app.communication_state,
+    communicationPincode: app.communication_pincode,
+    
+    // Family
+    parentName: app.father_name,
+    parentOccupation: app.father_occupation,
+    motherName: app.mother_name,
+    motherOccupation: app.mother_occupation,
+    spouseName: app.spouse_name,
+    spouseOccupation: app.spouse_occupation,
+    
+    // Course
+    courseType: app.course_type,
+    courseName: app.course_name,
+    specialization: app.specialization,
+    
+    // 10th
+    school10th: app.tenth_school,
+    year10th: app.tenth_year,
+    percentage10th: app.tenth_percentage,
+    tenthBoard: app.tenth_board,
+    
+    // 12th
+    school12th: app.twelfth_school,
+    year12th: app.twelfth_year,
+    percentage12th: app.twelfth_percentage,
+    twelfthBoard: app.twelfth_board,
+    
+    // UG
+    collegeUG: app.ug_college,
+    yearUG: app.ug_year,
+    percentageUG: app.ug_percentage,
+    ugDegree: app.ug_degree,
+    ugUniversity: app.ug_university,
+    
+    // PG
+    collegePG: app.pg_college,
+    yearPG: app.pg_year,
+    percentagePG: app.pg_percentage,
+    pgDegree: app.pg_degree,
+    pgUniversity: app.pg_university,
+    
+    // Payment
+    paymentOption: app.payment_method,
+    transactionId: app.transaction_id,
+    
+    // Documents & status
+    files: app.documents,
+    declaration: app.declaration,
+    status: app.status,
+    submittedAt: app.created_at,
+    updatedAt: app.updated_at,
+  };
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -21,7 +97,7 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      application,
+      application: mapApplicationToFrontend(application),
     });
   } catch (error) {
     console.error('Error fetching application:', error);
@@ -39,7 +115,6 @@ export async function PATCH(
   try {
     const body = await request.json();
     
-    // Only allow updating the status field
     const status = body.status;
     if (!status || !['pending', 'approved', 'rejected'].includes(status)) {
       return NextResponse.json({
