@@ -278,6 +278,7 @@ export default function AdmissionPage() {
     "Fellowship in Gynae Oncology",
     "Fellowship in Gynae Laparoscopy",
     "Fellowship in Laparoscopy & Hysteroscopy",
+    "Fellowship in Interventional Radiology",
   ];
 
   return (

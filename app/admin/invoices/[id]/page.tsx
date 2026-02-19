@@ -63,6 +63,7 @@ export default function InvoiceGeneratorPage({ params }: { params: { id: string 
     'Fellowship in Obstetrics & Gynecology': 2700,
     'Fellowship in Reproductive Medicine': 3200,
     'Fellowship in Neonatology': 2900,
+    'Fellowship in Interventional Radiology': 2800,
   };
 
   useEffect(() => {
