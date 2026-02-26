@@ -113,8 +113,8 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">INVOICE</h1>
                 <p className="text-gray-600">International Board of Medical Practitioners</p>
-                <p className="text-sm text-gray-500">600 N Broad Street Suite 5 #3695</p>
-                <p className="text-sm text-gray-500">Middletown, DE 19709, USA</p>
+                <p className="text-sm text-gray-500">800 N King Street, Suite 304</p>
+                <p className="text-sm text-gray-500">Wilmington, Delaware 19801, United States</p>
               </div>
               <div className="text-right">
                 <div className="text-2xl font-bold text-blue-600">{invoice.invoiceNumber}</div>

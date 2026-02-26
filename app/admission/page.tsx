@@ -130,7 +130,7 @@ export default function AdmissionPage() {
         <div class="receipt">
           <div class="header">
             <h1>INTERNATIONAL BOARD OF MEDICAL PRACTITIONERS</h1>
-            <p>600 N Broad Street Suite 5 #3695, Middletown, DE 19709, USA</p>
+            <p>800 N King Street, Suite 304, Wilmington, Delaware 19801, United States</p>
             <p>Email: info@ibmpractitioner.us | Phone: +1 302 600 2718</p>
             <div class="badge">✓ APPLICATION RECEIVED</div>
           </div>

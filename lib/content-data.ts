@@ -257,7 +257,7 @@ export const defaultContent: SiteContent = {
     trustStats: [
       { value: "50K+", label: "Professionals" },
       { value: "120+", label: "Countries" },
-      { value: "25+", label: "Years" },
+      { value: "5+", label: "Years" },
     ],
   },
   whatWeDo: {
@@ -331,7 +331,7 @@ export const defaultContent: SiteContent = {
       { value: "50,000+", label: "Certified Professionals", icon: "Users", color: "from-blue-500 to-blue-600" },
       { value: "120+", label: "Countries Worldwide", icon: "Globe", color: "from-secondary to-secondary-600" },
       { value: "500+", label: "Accredited Programs", icon: "BookOpen", color: "from-purple-500 to-purple-600" },
-      { value: "25+", label: "Years of Excellence", icon: "Award", color: "from-accent to-accent-600" },
+      { value: "5+", label: "Years of Excellence", icon: "Award", color: "from-accent to-accent-600" },
     ],
   },
   cta: {
@@ -453,10 +453,7 @@ export const defaultContent: SiteContent = {
       { name: "About", href: "/about" },
       { name: "Accreditation", href: "/accreditation" },
       { name: "Programs", href: "/programs" },
-      { name: "Guidelines", href: "/guidelines" },
       { name: "Verification", href: "/verification" },
-      { name: "Support", href: "/support" },
-      { name: "Contact", href: "/contact" },
     ],
     ctaText: "Apply Now",
     ctaHref: "/accreditation",

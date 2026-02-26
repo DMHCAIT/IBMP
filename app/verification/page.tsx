@@ -60,7 +60,7 @@ export default function VerificationPage() {
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
                   <h3 className="font-bold text-primary mb-3">Accreditation Verification Results May Display:</h3>
                   <ul className="space-y-2 text-sm text-gray-700">
-                    <li>• Full Name of Practitioner</li>
+                    <li>• Name of Organization</li>
                     <li>• Accreditation Title / Category</li>
                     <li>• IBMP Accreditation Number</li>
                     <li>• Date of Accreditation</li>

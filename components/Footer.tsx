@@ -96,6 +96,9 @@ export default function Footer() {
               © {currentYear} International Board of Medical Practitioners. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
+              <Link href="/disclaimer" className="text-gray-600 hover:text-secondary transition-colors text-sm">
+                Disclaimer
+              </Link>
               <Link href="/#" className="text-gray-600 hover:text-secondary transition-colors text-sm">
                 Privacy Policy
               </Link>

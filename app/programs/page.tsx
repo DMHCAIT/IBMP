@@ -16,9 +16,9 @@ export default function ProgramsPage() {
     <div className="min-h-screen bg-white">
       <Header />
       <main>
+        <FellowshipCategories />
         <ProgramsHero />
         <CertificationSection />
-        <FellowshipCategories />
         <EligibilityProcess />
         <ProgramsCTA />
       </main>

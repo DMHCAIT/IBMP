@@ -191,7 +191,7 @@ export default function Hero() {
                   {[
                     { value: '50,000+', label: 'Certified Professionals', icon: Users2 },
                     { value: '120+', label: 'Countries Worldwide', icon: Globe },
-                    { value: '25+', label: 'Years of Excellence', icon: TrendingUp },
+                    { value: '5+', label: 'Years of Excellence', icon: TrendingUp },
                   ].map((stat, index) => (
                     <div key={index} className="text-left group cursor-pointer">
                       <stat.icon className="w-6 h-6 text-secondary mb-2 group-hover:scale-110 transition-transform" />
