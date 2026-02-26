@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
 
                 <h2 className="text-2xl font-bold text-primary mt-8 mb-4">Educational and Professional Role</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  By engaging with IBMP programs, services, or appointments, individuals acknowledge that IBMP's role is <strong>educational and professional—not regulatory</strong>.
+                  By engaging with IBMP programs, services, or appointments, individuals acknowledge that IBMP&apos;s role is <strong>educational and professional—not regulatory</strong>.
                 </p>
 
                 {/* Key Points Box */}
@@ -69,7 +69,7 @@ export default function DisclaimerPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-amber-600 mt-1">•</span>
-                      <span>IBMP's role is educational and professional, not regulatory</span>
+                      <span>IBMP&apos;s role is educational and professional, not regulatory</span>
                     </li>
                   </ul>
                 </div>
