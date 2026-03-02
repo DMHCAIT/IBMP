@@ -459,7 +459,13 @@ export default function ApplicationsPage() {
                           };
                           
                           const fileName = typeof value === 'string' ? value : String((value as Record<string, unknown>).name || 'Unknown file');
-                          const fileSize = typeof value === 'object' && 'size' in value ? (value as Record<string, unknown>).size : null;
+                          const fileSize = (() => {
+                            if (typeof value === 'object' && 'size' in value) {
+                              const size = (value as Record<string, unknown>).size;
+                              return typeof size === 'number' ? size : null;
+                            }
+                            return null;
+                          })();
                           const hasContent = typeof value === 'object' && 'data' in value;
                           
                           return (
