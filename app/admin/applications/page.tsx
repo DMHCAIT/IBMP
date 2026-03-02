@@ -396,9 +396,11 @@ export default function ApplicationsPage() {
                     <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
                     <div className="space-y-3">
                       {/* Regular documents */}
-                      {(selectedApp.files || selectedApp.documents) && (
-                        <>
-                          {Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]) => {
+                      {(() => {
+                        const documents = selectedApp.files || selectedApp.documents;
+                        if (!documents) return null;
+                        
+                        return Object.entries(documents).map(([key, value]) => {
                         if (key === 'additionalDocuments' && value && typeof value === 'object' && !('name' in value)) {
                           // Handle additional documents
                           return (
@@ -490,9 +492,8 @@ export default function ApplicationsPage() {
                           );
                         }
                         return null;
-                      })}
-                        </>
-                      )}
+                      });
+                      })()}
                     </div>
                   </div>
                 ) : (
