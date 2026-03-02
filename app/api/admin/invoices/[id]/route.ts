@@ -23,6 +23,7 @@ function mapInvoiceToFrontend(inv: Record<string, unknown>) {
   const subtotal = admissionFee - discount;
   const taxAmount = (subtotal * tax) / 100;
   const totalAmount = subtotal + taxAmount;
+  // Handle missing paid_amount column gracefully
   const paidAmount = Number(inv.paid_amount) || 0;
 
   // Invoice date — use stored invoice_date, or fall back to created_at
@@ -119,6 +120,10 @@ export async function POST(
       discount: discount,
       tax: taxRate,
       total_amount: totalAmount,
+      // Note: paid_amount column may not exist in current schema
+      // If you get an error, you'll need to add this column to your database:
+      // ALTER TABLE invoices ADD COLUMN paid_amount numeric DEFAULT 0;
+      ...(paidAmount !== undefined && { paid_amount: paidAmount }),
       status: paidAmount >= totalAmount && totalAmount > 0 ? 'paid' : 'pending',
       payment_method: null,
       transaction_id: null,
@@ -171,6 +176,8 @@ export async function POST(
             discount: discount,
             tax: taxRate,
             total_amount: totalAmount,
+            // Only include paid_amount if the column exists
+            ...(paidAmount !== undefined && { paid_amount: paidAmount }),
             status: 'pending',
             notes: data.notes || null,
           };

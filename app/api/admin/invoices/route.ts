@@ -38,6 +38,7 @@ export async function GET() {
       const subtotal = admissionFee - discount;
       const taxAmount = (subtotal * tax) / 100;
       const totalAmount = subtotal + taxAmount;
+      // Handle missing paid_amount column gracefully
       const paidAmount = Number(inv.paid_amount) || 0;
 
       return {

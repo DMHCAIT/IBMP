@@ -122,6 +122,38 @@ export default function ApplicationsPage() {
     }
   };
 
+  const downloadFile = async (applicationNumber: string, fileKey: string) => {
+    try {
+      const response = await fetch(`/api/admin/applications/${applicationNumber}/download/${fileKey}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to download file');
+      }
+      
+      // Get the file name from the response headers or use a default
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileNameMatch = contentDisposition?.match(/filename="(.+)"/);
+      const fileName = fileNameMatch ? fileNameMatch[1] : `${fileKey}_${applicationNumber}`;
+      
+      // Create a blob from the response
+      const blob = await response.blob();
+      
+      // Create a temporary URL and trigger download
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Error downloading file. Please try again.');
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -358,22 +390,115 @@ export default function ApplicationsPage() {
                   </div>
                 </div>
 
-                {/* Uploaded Files */}
-                {selectedApp.files && Object.keys(selectedApp.files).length > 0 && (
+                {/* Uploaded Documents */}
+                {(selectedApp.files && Object.keys(selectedApp.files).length > 0) || (selectedApp.documents && Object.keys(selectedApp.documents).length > 0) ? (
                   <div>
                     <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
-                    <div className="space-y-2">
-                      {Object.entries(selectedApp.files).map(([key, url]: [string, string]) => (
-                        <a
-                          key={key}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block text-sm text-blue-600 hover:underline"
-                        >
-                          📎 {key.replace(/([A-Z])/g, ' $1').trim()}
-                        </a>
-                      ))}
+                    <div className="space-y-3">
+                      {/* Regular documents */}
+                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, any]) => {
+                        if (key === 'additionalDocuments' && value && typeof value === 'object') {
+                          // Handle additional documents
+                          return (
+                            <div key={key} className="bg-gray-50 rounded-lg p-3">
+                              <h4 className="font-medium text-gray-800 mb-2">Additional Documents</h4>
+                              <div className="space-y-2">
+                                {Object.entries(value).map(([docKey, docData]: [string, any]) => (
+                                  <div key={docKey} className="flex items-center justify-between bg-white border rounded-lg p-2">
+                                    <div className="flex items-center space-x-2">
+                                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                      </svg>
+                                      <div>
+                                        <p className="text-sm font-medium text-gray-900">
+                                          {typeof docData === 'object' && docData.name ? docData.name : 'Document'}
+                                        </p>
+                                        <p className="text-xs text-gray-500">
+                                          {docKey.replace('additionalDoc_', 'Additional Document ')}
+                                          {typeof docData === 'object' && docData.size && ` • ${(docData.size / 1024).toFixed(1)} KB`}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <button
+                                      onClick={() => downloadFile(selectedApp.applicationNumber, docKey)}
+                                      className="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-600 hover:text-blue-800 hover:bg-blue-50"
+                                    >
+                                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                      </svg>
+                                      Download
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        } else if (value && (typeof value === 'string' || (typeof value === 'object' && value.name))) {
+                          // Handle regular document files (both old format with just names and new format with full data)
+                          const documentLabels: Record<string, string> = {
+                            cv: 'Curriculum Vitae (CV)',
+                            educationalCertificates: 'Educational Certificates',
+                            marksheets: 'Academic Marksheets',
+                            identityProof: 'Identity Proof',
+                            medicalDegree: 'Medical Degree',
+                            experienceCertificate: 'Experience Certificate',
+                            passportPhoto: 'Passport Photo',
+                            digitalSignature: 'Digital Signature'
+                          };
+                          
+                          const fileName = typeof value === 'string' ? value : value.name;
+                          const fileSize = typeof value === 'object' && value.size ? value.size : null;
+                          const hasContent = typeof value === 'object' && value.content;
+                          
+                          return (
+                            <div key={key} className="flex items-center justify-between bg-white border rounded-lg p-3">
+                              <div className="flex items-center space-x-3">
+                                <div className="flex-shrink-0">
+                                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                  </svg>
+                                </div>
+                                <div>
+                                  <p className="font-medium text-gray-900">{documentLabels[key] || key.replace(/([A-Z])/g, ' $1').trim()}</p>
+                                  <div className="flex items-center space-x-2">
+                                    <p className="text-sm text-gray-500">{fileName}</p>
+                                    {fileSize && (
+                                      <span className="text-xs text-gray-400">• {(fileSize / 1024).toFixed(1)} KB</span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                  ✓ Uploaded
+                                </span>
+                                {hasContent && (
+                                  <button
+                                    onClick={() => downloadFile(selectedApp.applicationNumber, key)}
+                                    className="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-600 hover:text-blue-800 hover:bg-blue-50"
+                                  >
+                                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Download
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
+                    <div className="text-center py-6 text-gray-500 bg-gray-50 rounded-lg">
+                      <svg className="w-12 h-12 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      <p className="text-sm">No documents uploaded</p>
                     </div>
                   </div>
                 )}

@@ -68,11 +68,16 @@ export default function AdmissionPage() {
     percentagePG: '',
     cgpaPG: '',
     
-    // Documents
-    cv: null as File | null,
-    educationalCertificates: null as File | null,
-    marksheets: null as File | null,
-    identityProof: null as File | null,
+    // Required Documents
+    requiredDocuments: {
+      cv: null as File | null,
+      educationalCertificates: null as File | null,
+      marksheets: null as File | null,
+      identityProof: null as File | null,
+      medicalDegree: null as File | null,
+      experienceCertificate: null as File | null,
+      additionalDocuments: [] as File[]
+    },
     
     // Payment
     paymentOption: '',
@@ -205,6 +210,66 @@ export default function AdmissionPage() {
     setFormData(prev => ({ ...prev, [fieldName]: file }));
   };
 
+  const handleDocumentChange = (e: React.ChangeEvent<HTMLInputElement>, documentType: string) => {
+    const file = e.target.files?.[0] || null;
+    // Validate file size (max 5MB per file)
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert(`File "${file.name}" is too large. Maximum size is 5MB per file.`);
+      e.target.value = '';
+      return;
+    }
+    setFormData(prev => ({
+      ...prev,
+      requiredDocuments: {
+        ...prev.requiredDocuments,
+        [documentType]: file
+      }
+    }));
+  };
+
+  const addAdditionalDocument = () => {
+    setFormData(prev => ({
+      ...prev,
+      requiredDocuments: {
+        ...prev.requiredDocuments,
+        additionalDocuments: [...prev.requiredDocuments.additionalDocuments, null as any]
+      }
+    }));
+  };
+
+  const removeAdditionalDocument = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      requiredDocuments: {
+        ...prev.requiredDocuments,
+        additionalDocuments: prev.requiredDocuments.additionalDocuments.filter((_, i) => i !== index)
+      }
+    }));
+  };
+
+  const handleAdditionalDocumentChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const file = e.target.files?.[0] || null;
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert(`File "${file.name}" is too large. Maximum size is 5MB per file.`);
+      e.target.value = '';
+      return;
+    }
+    
+    setFormData(prev => {
+      const newAdditionalDocuments = [...prev.requiredDocuments.additionalDocuments];
+      if (file) {
+        newAdditionalDocuments[index] = file;
+      }
+      return {
+        ...prev,
+        requiredDocuments: {
+          ...prev.requiredDocuments,
+          additionalDocuments: newAdditionalDocuments
+        }
+      };
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -214,11 +279,29 @@ export default function AdmissionPage() {
       
       // Append all text fields
       Object.entries(formData).forEach(([key, value]) => {
-        if (value instanceof File) {
+        if (key === 'requiredDocuments') {
+          // Handle document files separately
+          const docs = value as typeof formData.requiredDocuments;
+          
+          // Append single document files
+          Object.entries(docs).forEach(([docKey, docValue]) => {
+            if (docKey === 'additionalDocuments') {
+              // Handle additional documents array
+              (docValue as File[]).forEach((file, index) => {
+                if (file) {
+                  formDataToSend.append(`additionalDoc_${index}`, file);
+                }
+              });
+            } else if (docValue instanceof File) {
+              // Handle single document files
+              formDataToSend.append(docKey, docValue);
+            }
+          });
+        } else if (value instanceof File) {
           formDataToSend.append(key, value);
         } else if (typeof value === 'boolean') {
           formDataToSend.append(key, value ? '1' : '0');
-        } else if (value !== null) {
+        } else if (value !== null && typeof value !== 'object') {
           formDataToSend.append(key, String(value));
         }
       });
@@ -620,6 +703,186 @@ export default function AdmissionPage() {
                     placeholder="e.g., 2025-2026"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
+                </div>
+              </div>
+            </fieldset>
+
+            {/* Required Documents */}
+            <fieldset className="border border-gray-200 rounded-lg p-6">
+              <legend className="text-xl font-semibold text-gray-900 px-3">Required Documents</legend>
+              
+              <div className="space-y-6 mt-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0">
+                      <svg className="w-5 h-5 text-blue-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1">Document Upload Guidelines</h4>
+                      <ul className="text-sm text-blue-800 space-y-1">
+                        <li>• Accepted formats: PDF, JPG, PNG, DOCX</li>
+                        <li>• Maximum file size: 5MB per document</li>
+                        <li>• Documents should be clear and readable</li>
+                        <li>• All required documents marked with (*) are mandatory</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Curriculum Vitae (CV) *
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'cv')}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Upload your latest CV/Resume</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Educational Certificates *
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'educationalCertificates')}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Degree/Diploma certificates</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Academic Marksheets *
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'marksheets')}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">All academic transcripts</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Identity Proof *
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'identityProof')}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Passport, Driver's License, or National ID</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Medical Degree
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'medicalDegree')}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Medical degree certificate (if applicable)</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Experience Certificate
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,.docx"
+                      onChange={(e) => handleDocumentChange(e, 'experienceCertificate')}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Work experience certificates</p>
+                  </div>
+                </div>
+
+                {/* Additional Documents */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Additional Documents
+                    </label>
+                    <button
+                      type="button"
+                      onClick={addAdditionalDocument}
+                      className="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Add Document
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {formData.requiredDocuments.additionalDocuments.map((_, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <input
+                          type="file"
+                          accept=".pdf,.jpg,.jpeg,.png,.docx"
+                          onChange={(e) => handleAdditionalDocumentChange(e, index)}
+                          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeAdditionalDocument(index)}
+                          className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                    
+                    {formData.requiredDocuments.additionalDocuments.length === 0 && (
+                      <p className="text-sm text-gray-500 italic">No additional documents added. Click "Add Document" to upload supporting documents.</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Upload Progress/Status */}
+                <div className="mt-4">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Upload Status</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                      <div className={`flex items-center space-x-2 ${formData.requiredDocuments.cv ? 'text-green-600' : 'text-gray-400'}`}>
+                        <span className={`w-2 h-2 rounded-full ${formData.requiredDocuments.cv ? 'bg-green-500' : 'bg-gray-300'}`}></span>
+                        <span>CV</span>
+                      </div>
+                      <div className={`flex items-center space-x-2 ${formData.requiredDocuments.educationalCertificates ? 'text-green-600' : 'text-gray-400'}`}>
+                        <span className={`w-2 h-2 rounded-full ${formData.requiredDocuments.educationalCertificates ? 'bg-green-500' : 'bg-gray-300'}`}></span>
+                        <span>Certificates</span>
+                      </div>
+                      <div className={`flex items-center space-x-2 ${formData.requiredDocuments.marksheets ? 'text-green-600' : 'text-gray-400'}`}>
+                        <span className={`w-2 h-2 rounded-full ${formData.requiredDocuments.marksheets ? 'bg-green-500' : 'bg-gray-300'}`}></span>
+                        <span>Marksheets</span>
+                      </div>
+                      <div className={`flex items-center space-x-2 ${formData.requiredDocuments.identityProof ? 'text-green-600' : 'text-gray-400'}`}>
+                        <span className={`w-2 h-2 rounded-full ${formData.requiredDocuments.identityProof ? 'bg-green-500' : 'bg-gray-300'}`}></span>
+                        <span>Identity</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </fieldset>

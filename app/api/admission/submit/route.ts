@@ -9,17 +9,50 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     
-    // Extract form fields
+    // Extract form fields and files
     const data: Record<string, string> = {};
-    const files: Record<string, string> = {};
+    const files: Record<string, { name: string; content: string; type: string; size: number }> = {};
+    const additionalDocuments: Record<string, { name: string; content: string; type: string; size: number }> = {};
     
-    formData.forEach((value, key) => {
+    // Process form data
+    for (const [key, value] of formData.entries()) {
       if (value instanceof File && value.size > 0) {
-        files[key] = value.name;
+        try {
+          // Convert file to base64
+          const buffer = await value.arrayBuffer();
+          const base64Content = Buffer.from(buffer).toString('base64');
+          
+          const fileData = {
+            name: value.name,
+            content: base64Content,
+            type: value.type,
+            size: value.size
+          };
+          
+          if (key.startsWith('additionalDoc_')) {
+            // Handle additional documents
+            additionalDocuments[key] = fileData;
+          } else {
+            // Handle regular files
+            files[key] = fileData;
+          }
+        } catch (fileError) {
+          console.error(`Error processing file ${key}:`, fileError);
+          return NextResponse.json({
+            success: false,
+            message: `Error processing file ${value.name}. Please try again.`,
+          }, { status: 400 });
+        }
       } else if (typeof value === 'string') {
         data[key] = value;
       }
-    });
+    }
+
+    // Combine all documents
+    const allDocuments = {
+      ...files,
+      ...(Object.keys(additionalDocuments).length > 0 && { additionalDocuments })
+    };
 
     // Validate required fields
     const requiredFields = ['fullName', 'emailId', 'mobileNumber', 'courseName', 'courseType'];
@@ -44,14 +77,14 @@ export async function POST(request: NextRequest) {
     // Generate application number
     const applicationNumber = `IBMP-${new Date().getFullYear()}-${Date.now()}`;
 
-    // Insert directly into Supabase — using actual snake_case column names
+    // Insert directly into Supabase — using actual snake_case column names from schema
     const { error } = await supabase.from('applications').insert({
       application_number: applicationNumber,
       status: 'pending',
       
       // Personal Information
       full_name: data.fullName || '',
-      dob: data.dob || null,
+      dob: data.dateOfBirth ? new Date(data.dateOfBirth).toISOString() : null,
       gender: data.gender || null,
       nationality: data.nationality || null,
       
@@ -62,7 +95,7 @@ export async function POST(request: NextRequest) {
       // Contact Information
       email: data.emailId || data.email || '',
       phone: data.mobileNumber || data.phone || '',
-      alternate_phone: data.alternatePhone || data.phoneNumber || null,
+      alternate_phone: data.phoneNumber || data.alternatePhone || null,
       
       // Permanent Address
       permanent_address: data.permanentAddress || null,
@@ -120,10 +153,10 @@ export async function POST(request: NextRequest) {
       transaction_id: data.transactionId || null,
       
       // Documents (stored as JSONB)
-      documents: Object.keys(files).length > 0 ? files : null,
+      documents: Object.keys(allDocuments).length > 0 ? allDocuments : null,
       
       // Declaration
-      declaration: data.declaration === '1' || data.declaration === 'true',
+      declaration: data.declarationAccepted === '1' || data.declarationAccepted === 'true' || data.declaration === '1' || data.declaration === 'true',
     });
 
     if (error) {
