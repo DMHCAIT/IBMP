@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Define interface for document data structure
@@ -404,8 +404,8 @@ export default function ApplicationsPage() {
                     <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
                     <div className="space-y-3">
                       {/* Regular documents */}
-                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, string | DocumentData | { [key: string]: DocumentData }]) => {
-                        if (key === 'additionalDocuments' && value && typeof value === 'object') {
+                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, string | DocumentData | { [key: string]: DocumentData }]): React.ReactNode => {
+                        if (key === 'additionalDocuments' && value && typeof value === 'object' && !('name' in value)) {
                           // Handle additional documents
                           return (
                             <div key={key} className="bg-gray-50 rounded-lg p-3">
@@ -441,7 +441,7 @@ export default function ApplicationsPage() {
                               </div>
                             </div>
                           );
-                        } else if (value && (typeof value === 'string' || (typeof value === 'object' && value.name))) {
+                        } else if (value && (typeof value === 'string' || (typeof value === 'object' && 'name' in value))) {
                           // Handle regular document files (both old format with just names and new format with full data)
                           const documentLabels: Record<string, string> = {
                             cv: 'Curriculum Vitae (CV)',
@@ -454,9 +454,9 @@ export default function ApplicationsPage() {
                             digitalSignature: 'Digital Signature'
                           };
                           
-                          const fileName = typeof value === 'string' ? value : value.name;
-                          const fileSize = typeof value === 'object' && value.size ? value.size : null;
-                          const hasContent = typeof value === 'object' && value.content;
+                          const fileName = typeof value === 'string' ? value : (value as DocumentData).name || 'Unknown file';
+                          const fileSize = typeof value === 'object' && 'size' in value ? (value as DocumentData).size : null;
+                          const hasContent = typeof value === 'object' && 'data' in value;
                           
                           return (
                             <div key={key} className="flex items-center justify-between bg-white border rounded-lg p-3">
