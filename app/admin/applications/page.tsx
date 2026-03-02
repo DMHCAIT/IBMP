@@ -415,7 +415,7 @@ export default function ApplicationsPage() {
                                       </svg>
                                       <div>
                                         <p className="text-sm font-medium text-gray-900">
-                                          {typeof docData === 'object' && docData && (docData as Record<string, unknown>).name ? (docData as Record<string, unknown>).name : 'Document'}
+                                          {typeof docData === 'object' && docData && (docData as Record<string, unknown>).name ? String((docData as Record<string, unknown>).name) : 'Document'}
                                         </p>
                                         <p className="text-xs text-gray-500">
                                           {docKey.replace('additionalDoc_', 'Additional Document ')}
@@ -450,7 +450,7 @@ export default function ApplicationsPage() {
                             digitalSignature: 'Digital Signature'
                           };
                           
-                          const fileName = typeof value === 'string' ? value : (value as Record<string, unknown>).name || 'Unknown file';
+                          const fileName = typeof value === 'string' ? value : String((value as Record<string, unknown>).name || 'Unknown file');
                           const fileSize = typeof value === 'object' && 'size' in value ? (value as Record<string, unknown>).size : null;
                           const hasContent = typeof value === 'object' && 'data' in value;
                           
