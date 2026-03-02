@@ -397,14 +397,15 @@ export default function ApplicationsPage() {
                     <div className="space-y-3">
                       {/* Regular documents */}
                       {(selectedApp.files || selectedApp.documents) && (
-                        (Object.entries(selectedApp.files || selectedApp.documents) as [string, unknown][]).map(([key, value]) => {
+                        <>
+                          {Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]) => {
                         if (key === 'additionalDocuments' && value && typeof value === 'object' && !('name' in value)) {
                           // Handle additional documents
                           return (
                             <div key={key} className="bg-gray-50 rounded-lg p-3">
                               <h4 className="font-medium text-gray-800 mb-2">Additional Documents</h4>
                               <div className="space-y-2">
-                                {(Object.entries(value) as [string, unknown][]).map(([docKey, docData]) => (
+                                {Object.entries(value).map(([docKey, docData]) => (
                                   <div key={docKey} className="flex items-center justify-between bg-white border rounded-lg p-2">
                                     <div className="flex items-center space-x-2">
                                       <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -489,7 +490,8 @@ export default function ApplicationsPage() {
                           );
                         }
                         return null;
-                      }) as React.ReactNode[]
+                      })}
+                        </>
                       )}
                     </div>
                   </div>
