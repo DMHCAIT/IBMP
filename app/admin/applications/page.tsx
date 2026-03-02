@@ -3,16 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-// Define interfaces for document structures
+// Define interface for document data structure
 interface DocumentData {
   name?: string;
   size?: number;
   type?: string;
   data?: string;
-}
-
-interface DocumentsCollection {
-  [key: string]: string | DocumentData | { [key: string]: DocumentData };
 }
 
 interface Application {
