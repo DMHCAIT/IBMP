@@ -76,7 +76,7 @@ export default function AdmissionPage() {
       identityProof: null as File | null,
       medicalDegree: null as File | null,
       experienceCertificate: null as File | null,
-      additionalDocuments: [] as File[]
+      additionalDocuments: [] as (File | null)[]
     },
     
     // Payment
