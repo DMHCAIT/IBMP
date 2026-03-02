@@ -35,7 +35,7 @@ export async function GET(
       }, { status: 404 });
     }
 
-    const documents = application.documents as Record<string, any>;
+    const documents = application.documents as Record<string, unknown>;
     if (!documents) {
       return NextResponse.json({
         success: false,

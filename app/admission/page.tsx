@@ -232,7 +232,7 @@ export default function AdmissionPage() {
       ...prev,
       requiredDocuments: {
         ...prev.requiredDocuments,
-        additionalDocuments: [...prev.requiredDocuments.additionalDocuments, null as any]
+        additionalDocuments: [...prev.requiredDocuments.additionalDocuments, null as File | null]
       }
     }));
   };
@@ -785,7 +785,7 @@ export default function AdmissionPage() {
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Passport, Driver's License, or National ID</p>
+                    <p className="text-xs text-gray-500 mt-1">Passport, Driver&apos;s License, or National ID</p>
                   </div>
                   
                   <div>
@@ -855,7 +855,7 @@ export default function AdmissionPage() {
                     ))}
                     
                     {formData.requiredDocuments.additionalDocuments.length === 0 && (
-                      <p className="text-sm text-gray-500 italic">No additional documents added. Click "Add Document" to upload supporting documents.</p>
+                      <p className="text-sm text-gray-500 italic">No additional documents added. Click &quot;Add Document&quot; to upload supporting documents.</p>
                     )}
                   </div>
                 </div>

@@ -396,14 +396,14 @@ export default function ApplicationsPage() {
                     <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
                     <div className="space-y-3">
                       {/* Regular documents */}
-                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, any]) => {
+                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, unknown]) => {
                         if (key === 'additionalDocuments' && value && typeof value === 'object') {
                           // Handle additional documents
                           return (
                             <div key={key} className="bg-gray-50 rounded-lg p-3">
                               <h4 className="font-medium text-gray-800 mb-2">Additional Documents</h4>
                               <div className="space-y-2">
-                                {Object.entries(value).map(([docKey, docData]: [string, any]) => (
+                                {Object.entries(value).map(([docKey, docData]: [string, unknown]) => (
                                   <div key={docKey} className="flex items-center justify-between bg-white border rounded-lg p-2">
                                     <div className="flex items-center space-x-2">
                                       <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
