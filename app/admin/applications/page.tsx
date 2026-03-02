@@ -419,7 +419,15 @@ export default function ApplicationsPage() {
                                         </p>
                                         <p className="text-xs text-gray-500">
                                           {docKey.replace('additionalDoc_', 'Additional Document ')}
-                                          {typeof docData === 'object' && docData && (docData as Record<string, unknown>).size && ` • ${(Number((docData as Record<string, unknown>).size) / 1024).toFixed(1)} KB`}
+                                          {(() => {
+                                            if (typeof docData === 'object' && docData) {
+                                              const size = (docData as Record<string, unknown>).size;
+                                              if (size && typeof size === 'number') {
+                                                return ` • ${(size / 1024).toFixed(1)} KB`;
+                                              }
+                                            }
+                                            return '';
+                                          })()}
                                         </p>
                                       </div>
                                     </div>
