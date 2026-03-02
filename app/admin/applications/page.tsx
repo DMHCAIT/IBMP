@@ -404,14 +404,14 @@ export default function ApplicationsPage() {
                     <h3 className="font-semibold text-gray-700 mb-2">Uploaded Documents</h3>
                     <div className="space-y-3">
                       {/* Regular documents */}
-                      {(selectedApp.files || selectedApp.documents) && Object.entries(selectedApp.files || selectedApp.documents).map(([key, value]: [string, string | DocumentData | { [key: string]: DocumentData }]): React.ReactNode => {
+                      {(selectedApp.files || selectedApp.documents) && (Object.entries(selectedApp.files || selectedApp.documents) as Array<[string, any]>).map(([key, value]) => {
                         if (key === 'additionalDocuments' && value && typeof value === 'object' && !('name' in value)) {
                           // Handle additional documents
                           return (
                             <div key={key} className="bg-gray-50 rounded-lg p-3">
                               <h4 className="font-medium text-gray-800 mb-2">Additional Documents</h4>
                               <div className="space-y-2">
-                                {Object.entries(value as { [key: string]: DocumentData }).map(([docKey, docData]: [string, DocumentData]) => (
+                                {(Object.entries(value) as Array<[string, any]>).map(([docKey, docData]) => (
                                   <div key={docKey} className="flex items-center justify-between bg-white border rounded-lg p-2">
                                     <div className="flex items-center space-x-2">
                                       <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -419,11 +419,11 @@ export default function ApplicationsPage() {
                                       </svg>
                                       <div>
                                         <p className="text-sm font-medium text-gray-900">
-                                          {typeof docData === 'object' && docData.name ? docData.name : 'Document'}
+                                          {typeof docData === 'object' && (docData as any).name ? (docData as any).name : 'Document'}
                                         </p>
                                         <p className="text-xs text-gray-500">
                                           {docKey.replace('additionalDoc_', 'Additional Document ')}
-                                          {typeof docData === 'object' && docData.size && ` • ${(docData.size / 1024).toFixed(1)} KB`}
+                                          {typeof docData === 'object' && (docData as any).size && ` • ${((docData as any).size / 1024).toFixed(1)} KB`}
                                         </p>
                                       </div>
                                     </div>
@@ -454,8 +454,8 @@ export default function ApplicationsPage() {
                             digitalSignature: 'Digital Signature'
                           };
                           
-                          const fileName = typeof value === 'string' ? value : (value as DocumentData).name || 'Unknown file';
-                          const fileSize = typeof value === 'object' && 'size' in value ? (value as DocumentData).size : null;
+                          const fileName = typeof value === 'string' ? value : (value as any).name || 'Unknown file';
+                          const fileSize = typeof value === 'object' && 'size' in value ? (value as any).size : null;
                           const hasContent = typeof value === 'object' && 'data' in value;
                           
                           return (
