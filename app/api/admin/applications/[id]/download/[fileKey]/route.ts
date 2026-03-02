@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, getSupabaseServiceClient } from '@/lib/supabase';
 
+// Define interface for document data structure
+interface DocumentData {
+  name?: string;
+  size?: number;
+  type?: string;
+  data?: string;
+}
+
+interface DocumentsCollection {
+  [key: string]: string | DocumentData | { [key: string]: DocumentData };
+}
+
 // CRITICAL: Force dynamic rendering so this route is never statically cached
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -35,7 +47,7 @@ export async function GET(
       }, { status: 404 });
     }
 
-    const documents = application.documents as Record<string, unknown>;
+    const documents = application.documents as DocumentsCollection;
     if (!documents) {
       return NextResponse.json({
         success: false,
