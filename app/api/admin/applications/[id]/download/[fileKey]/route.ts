@@ -6,11 +6,12 @@ interface DocumentData {
   name?: string;
   size?: number;
   type?: string;
-  data?: string;
+  content?: string;
 }
 
 interface DocumentsCollection {
-  [key: string]: string | DocumentData | { [key: string]: DocumentData };
+  additionalDocuments?: { [key: string]: DocumentData };
+  [key: string]: DocumentData | { [key: string]: DocumentData } | undefined;
 }
 
 // CRITICAL: Force dynamic rendering so this route is never statically cached
@@ -55,13 +56,16 @@ export async function GET(
       }, { status: 404 });
     }
 
-    let fileData = null;
+    let fileData: DocumentData | null = null;
     
     // Check if it's an additional document
     if (params.fileKey.startsWith('additionalDoc_') && documents.additionalDocuments) {
-      fileData = documents.additionalDocuments[params.fileKey];
+      fileData = documents.additionalDocuments[params.fileKey] || null;
     } else {
-      fileData = documents[params.fileKey];
+      const directDoc = documents[params.fileKey];
+      if (directDoc && typeof directDoc === 'object' && 'content' in directDoc) {
+        fileData = directDoc as DocumentData;
+      }
     }
 
     if (!fileData || !fileData.content) {
@@ -71,16 +75,17 @@ export async function GET(
       }, { status: 404 });
     }
 
-    // Convert base64 back to buffer
-    const buffer = Buffer.from(fileData.content, 'base64');
+    // Convert base64 back to bytes
+    const binary = atob(fileData.content);
+    const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
     
     // Set appropriate headers
     const headers = new Headers();
     headers.set('Content-Type', fileData.type || 'application/octet-stream');
     headers.set('Content-Disposition', `attachment; filename="${fileData.name}"`);
-    headers.set('Content-Length', buffer.length.toString());
+    headers.set('Content-Length', bytes.length.toString());
 
-    return new NextResponse(buffer, { headers });
+    return new NextResponse(bytes, { headers });
 
   } catch (error) {
     console.error('Error downloading file:', error);
