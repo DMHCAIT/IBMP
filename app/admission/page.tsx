@@ -347,6 +347,7 @@ export default function AdmissionPage() {
     "Fellowship in Critical Care",
     "Fellowship in Internal Medicine",
     "Fellowship in Endocrinology",
+    "Fellowship in Gastroenterology",
     "Fellowship in HIV Medicine",
     "Fellowship in Intensive Care",
     "Fellowship in Geriatric Medicine",
