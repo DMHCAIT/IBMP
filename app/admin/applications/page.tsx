@@ -480,7 +480,6 @@ export default function ApplicationsPage() {
                             }
                             return null;
                           })();
-                          const hasContent = typeof value === 'object' && 'content' in value;
                           
                           return (
                             <div key={key} className="flex items-center justify-between bg-white border rounded-lg p-3">
