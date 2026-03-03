@@ -125,10 +125,13 @@ export default function ApplicationsPage() {
 
   const downloadFile = async (applicationNumber: string, fileKey: string) => {
     try {
+      console.log(`Downloading file: ${fileKey} from application: ${applicationNumber}`);
       const response = await fetch(`/api/admin/applications/${applicationNumber}/download/${fileKey}`);
       
       if (!response.ok) {
-        throw new Error('Failed to download file');
+        const errorData = await response.json().catch(() => null);
+        console.error('Download failed:', response.status, errorData);
+        throw new Error(errorData?.message || `Failed to download file (${response.status})`);
       }
       
       // Get the file name from the response headers or use a default
@@ -136,8 +139,15 @@ export default function ApplicationsPage() {
       const fileNameMatch = contentDisposition?.match(/filename="(.+)"/);
       const fileName = fileNameMatch ? fileNameMatch[1] : `${fileKey}_${applicationNumber}`;
       
+      console.log(`File name from header: ${fileName}`);
+      
       // Create a blob from the response
       const blob = await response.blob();
+      console.log(`Blob size: ${blob.size}, type: ${blob.type}`);
+      
+      if (blob.size === 0) {
+        throw new Error('Downloaded file is empty');
+      }
       
       // Create a temporary URL and trigger download
       const url = window.URL.createObjectURL(blob);
@@ -149,9 +159,12 @@ export default function ApplicationsPage() {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
       
+      console.log(`File downloaded successfully: ${fileName}`);
+      
     } catch (error) {
       console.error('Error downloading file:', error);
-      alert('Error downloading file. Please try again.');
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Error downloading file: ${errorMsg}`);
     }
   };
 
