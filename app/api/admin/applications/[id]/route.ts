@@ -82,6 +82,7 @@ function mapApplicationToFrontend(app: Record<string, unknown>) {
     
     // Documents & status
     files: app.documents,
+    documents: app.documents,
     declaration: app.declaration,
     status: app.status,
     submittedAt: app.created_at,

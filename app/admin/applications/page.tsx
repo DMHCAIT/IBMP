@@ -62,8 +62,9 @@ interface Application {
   declarantName?: string;
   parentNameDeclaration?: string;
   declarationDate?: string;
-  // Files
-  files?: Record<string, string>;
+  // Files & Documents (both old 'files' and new 'documents' format for compatibility)
+  files?: Record<string, unknown>;
+  documents?: Record<string, unknown>;
   [key: string]: unknown;
 }
 
