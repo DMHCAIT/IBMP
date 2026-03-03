@@ -168,6 +168,45 @@ export default function ApplicationsPage() {
     }
   };
 
+  const viewFile = async (applicationNumber: string, fileKey: string) => {
+    try {
+      console.log(`Viewing file: ${fileKey} from application: ${applicationNumber}`);
+      const response = await fetch(`/api/admin/applications/${applicationNumber}/download/${fileKey}`);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        console.error('View failed:', response.status, errorData);
+        throw new Error(errorData?.message || `Failed to view file (${response.status})`);
+      }
+      
+      // Get the file name from the response headers
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileNameMatch = contentDisposition?.match(/filename="(.+)"/);
+      const fileName = fileNameMatch ? fileNameMatch[1] : `${fileKey}_${applicationNumber}`;
+      
+      // Create a blob and open it in a new tab
+      const blob = await response.blob();
+      console.log(`View blob size: ${blob.size}, type: ${blob.type}`);
+      
+      if (blob.size === 0) {
+        throw new Error('File is empty');
+      }
+      
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      
+      // Clean up the URL after a short delay
+      setTimeout(() => window.URL.revokeObjectURL(url), 100);
+      
+      console.log(`File opened in new tab: ${fileName}`);
+      
+    } catch (error) {
+      console.error('Error viewing file:', error);
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Error viewing file: ${errorMsg}`);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -504,8 +543,20 @@ export default function ApplicationsPage() {
                                   ✓ Uploaded
                                 </span>
                                 <button
+                                  onClick={() => viewFile(selectedApp.applicationNumber, key)}
+                                  className="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-green-600 hover:text-green-800 hover:bg-green-50"
+                                  title="View document"
+                                >
+                                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                  </svg>
+                                  View
+                                </button>
+                                <button
                                   onClick={() => downloadFile(selectedApp.applicationNumber, key)}
                                   className="inline-flex items-center px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-600 hover:text-blue-800 hover:bg-blue-50"
+                                  title="Download document"
                                 >
                                   <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
