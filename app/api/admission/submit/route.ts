@@ -153,8 +153,8 @@ export async function POST(request: NextRequest) {
       payment_method: data.paymentMethod || data.paymentOption || null,
       transaction_id: data.transactionId || null,
       
-      // Documents (stored as JSONB)
-      documents: Object.keys(allDocuments).length > 0 ? allDocuments : null,
+      // Documents (stored as JSONB) - ensure it's proper JSON, not an invalid object
+      documents: Object.keys(allDocuments).length > 0 ? JSON.parse(JSON.stringify(allDocuments)) : null,
       
       // Declaration
       declaration: data.declarationAccepted === '1' || data.declarationAccepted === 'true' || data.declaration === '1' || data.declaration === 'true',
