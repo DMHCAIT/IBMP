@@ -206,20 +206,20 @@ export default function InvoiceGeneratorPage({ params }: { params: { id: string 
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Invoice Number *</label>
-                  <input type="text" value={invoice.invoiceNumber} onChange={(e) => setInvoice({ ...invoice, invoiceNumber: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="text" title="Invoice Number" value={invoice.invoiceNumber} onChange={(e) => setInvoice({ ...invoice, invoiceNumber: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Invoice Date *</label>
-                  <input type="date" value={invoice.invoiceDate} onChange={(e) => setInvoice({ ...invoice, invoiceDate: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="date" title="Invoice Date" value={invoice.invoiceDate} onChange={(e) => setInvoice({ ...invoice, invoiceDate: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Due Date *</label>
-                  <input type="date" value={invoice.dueDate} onChange={(e) => setInvoice({ ...invoice, dueDate: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="date" title="Due Date" value={invoice.dueDate} onChange={(e) => setInvoice({ ...invoice, dueDate: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
               </div>
               <div className="mt-6">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Course / Description *</label>
-                <input type="text" value={invoice.courseName} onChange={(e) => setInvoice({ ...invoice, courseName: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                <input type="text" title="Course Description" value={invoice.courseName} onChange={(e) => setInvoice({ ...invoice, courseName: e.target.value })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
               </div>
             </div>
 
@@ -229,19 +229,19 @@ export default function InvoiceGeneratorPage({ params }: { params: { id: string 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Course Amount ($) *</label>
-                  <input type="number" step="0.01" value={invoice.courseAmount} onChange={(e) => setInvoice({ ...invoice, courseAmount: parseFloat(e.target.value) || 0 })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="number" title="Course Amount" step="0.01" value={invoice.courseAmount} onChange={(e) => setInvoice({ ...invoice, courseAmount: parseFloat(e.target.value) || 0 })} required className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Discount ($)</label>
-                  <input type="number" step="0.01" value={invoice.discount} onChange={(e) => setInvoice({ ...invoice, discount: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="number" title="Discount" step="0.01" value={invoice.discount} onChange={(e) => setInvoice({ ...invoice, discount: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Tax Rate (%)</label>
-                  <input type="number" step="0.01" value={invoice.taxRate} onChange={(e) => setInvoice({ ...invoice, taxRate: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="number" title="Tax Rate" step="0.01" value={invoice.taxRate} onChange={(e) => setInvoice({ ...invoice, taxRate: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Paid Amount ($)</label>
-                  <input type="number" step="0.01" value={invoice.paidAmount} onChange={(e) => setInvoice({ ...invoice, paidAmount: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
+                  <input type="number" title="Paid Amount" step="0.01" value={invoice.paidAmount} onChange={(e) => setInvoice({ ...invoice, paidAmount: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" />
                 </div>
               </div>
 

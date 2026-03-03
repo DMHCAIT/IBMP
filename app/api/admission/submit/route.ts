@@ -15,20 +15,21 @@ export async function POST(request: NextRequest) {
     const additionalDocuments: Record<string, { name: string; content: string; type: string; size: number }> = {};
     
     // Process form data
-    for (const [key, value] of formData.entries()) {
+    const entries = Array.from(formData.entries());
+    for (const [key, value] of entries) {
       if (value instanceof File && value.size > 0) {
         try {
           // Convert file to base64
           const buffer = await value.arrayBuffer();
           const base64Content = Buffer.from(buffer).toString('base64');
-          
+
           const fileData = {
             name: value.name,
             content: base64Content,
             type: value.type,
             size: value.size
           };
-          
+
           if (key.startsWith('additionalDoc_')) {
             // Handle additional documents
             additionalDocuments[key] = fileData;

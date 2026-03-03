@@ -403,6 +403,7 @@ export default function AdmissionPage() {
                     type="text"
                     value="IBMP-2025-AUTO-GENERATED"
                     readOnly
+                    title="Form Number"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50"
                   />
                 </div>
@@ -415,6 +416,7 @@ export default function AdmissionPage() {
                     accept=".jpg,.jpeg,.png"
                     onChange={(e) => handleFileChange(e, 'passportPhoto')}
                     required
+                    title="Recent Passport Size Photo"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
                   <p className="text-xs text-gray-500 mt-1">JPG, PNG (Max 2MB)</p>
@@ -434,6 +436,7 @@ export default function AdmissionPage() {
                     value={formData.title}
                     onChange={handleInputChange}
                     required
+                    title="Title"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Title</option>
@@ -463,6 +466,7 @@ export default function AdmissionPage() {
                     value={formData.dateOfBirth}
                     onChange={handleInputChange}
                     required
+                    title="Date of Birth"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
                 </div>
@@ -473,6 +477,7 @@ export default function AdmissionPage() {
                     value={formData.gender}
                     onChange={handleInputChange}
                     required
+                    title="Gender"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Gender</option>
@@ -502,6 +507,7 @@ export default function AdmissionPage() {
                     value={formData.nationality}
                     onChange={handleInputChange}
                     required
+                    title="Nationality"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
                 </div>
@@ -512,6 +518,7 @@ export default function AdmissionPage() {
                     value={formData.maritalStatus}
                     onChange={handleInputChange}
                     required
+                    title="Marital Status"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Status</option>
@@ -549,6 +556,7 @@ export default function AdmissionPage() {
                     value={formData.referralSource}
                     onChange={handleInputChange}
                     required
+                    title="How did you hear about IBMP"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select an option</option>
@@ -658,6 +666,7 @@ export default function AdmissionPage() {
                     value={formData.courseType}
                     onChange={handleInputChange}
                     required
+                    title="Course Type"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Course Type</option>
@@ -671,6 +680,7 @@ export default function AdmissionPage() {
                     value={formData.courseName}
                     onChange={handleInputChange}
                     required
+                    title="Course Name"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Course</option>
@@ -686,6 +696,7 @@ export default function AdmissionPage() {
                     value={formData.studyMode}
                     onChange={handleInputChange}
                     required
+                    title="Study Mode"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   >
                     <option value="">Select Mode</option>
@@ -742,6 +753,7 @@ export default function AdmissionPage() {
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'cv')}
                       required
+                      title="Curriculum Vitae"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">Upload your latest CV/Resume</p>
@@ -756,6 +768,7 @@ export default function AdmissionPage() {
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'educationalCertificates')}
                       required
+                      title="Educational Certificates"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">Degree/Diploma certificates</p>
@@ -770,6 +783,7 @@ export default function AdmissionPage() {
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'marksheets')}
                       required
+                      title="Academic Marksheets"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">All academic transcripts</p>
@@ -784,6 +798,7 @@ export default function AdmissionPage() {
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'identityProof')}
                       required
+                      title="Identity Proof"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">Passport, Driver&apos;s License, or National ID</p>
@@ -797,6 +812,7 @@ export default function AdmissionPage() {
                       type="file"
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'medicalDegree')}
+                      title="Medical Degree"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">Medical degree certificate (if applicable)</p>
@@ -810,6 +826,7 @@ export default function AdmissionPage() {
                       type="file"
                       accept=".pdf,.jpg,.jpeg,.png,.docx"
                       onChange={(e) => handleDocumentChange(e, 'experienceCertificate')}
+                      title="Experience Certificate"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                     <p className="text-xs text-gray-500 mt-1">Work experience certificates</p>
@@ -841,11 +858,14 @@ export default function AdmissionPage() {
                           type="file"
                           accept=".pdf,.jpg,.jpeg,.png,.docx"
                           onChange={(e) => handleAdditionalDocumentChange(e, index)}
+                          title={`Additional Document ${index + 1}`}
                           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
                         />
                         <button
                           type="button"
                           onClick={() => removeAdditionalDocument(index)}
+                          title={`Remove Additional Document ${index + 1}`}
+                          aria-label={`Remove Additional Document ${index + 1}`}
                           className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -900,6 +920,7 @@ export default function AdmissionPage() {
                     checked={formData.termsAccepted}
                     onChange={handleInputChange}
                     required
+                    title="Accept terms and conditions"
                     className="mt-1 h-5 w-5 text-blue-600 rounded"
                   />
                   <label className="text-sm text-gray-700">
@@ -913,6 +934,7 @@ export default function AdmissionPage() {
                     checked={formData.privacyAccepted}
                     onChange={handleInputChange}
                     required
+                    title="Accept privacy policy"
                     className="mt-1 h-5 w-5 text-blue-600 rounded"
                   />
                   <label className="text-sm text-gray-700">
@@ -936,6 +958,7 @@ export default function AdmissionPage() {
                       value={formData.declarationDate}
                       onChange={handleInputChange}
                       required
+                      title="Declaration Date"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                     />
                   </div>
@@ -946,6 +969,7 @@ export default function AdmissionPage() {
                       accept=".png,.jpg,.jpeg"
                       onChange={(e) => handleFileChange(e, 'digitalSignature')}
                       required
+                      title="Digital Signature"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                     />
                     <p className="text-xs text-gray-500 mt-1">PNG, JPG (Max 1MB)</p>
@@ -958,6 +982,7 @@ export default function AdmissionPage() {
                     checked={formData.declarationAccepted}
                     onChange={handleInputChange}
                     required
+                    title="Accept declaration"
                     className="mt-1 h-5 w-5 text-blue-600 rounded"
                   />
                   <label className="text-sm text-gray-700">
