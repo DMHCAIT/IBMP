@@ -136,14 +136,14 @@ export function CounselorContact({ counselor, courseName, className = '', varian
     
     switch (method) {
       case 'phone':
-        window.open(`tel:${settings.phone || settings.globalPhone}`, '_self');
+        window.open(`tel:${settings.phone || globalSettings.globalPhone}`, '_self');
         break;
       case 'email':
         const emailSubject = `Inquiry about IBMP Fellowship${courseText}`;
-        window.open(`mailto:${settings.email || settings.globalEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(message)}`, '_self');
+        window.open(`mailto:${settings.email || globalSettings.globalEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(message)}`, '_self');
         break;
       case 'whatsapp':
-        const whatsappNumber = (settings.whatsapp || settings.globalWhatsapp).replace(/[^0-9]/g, '');
+        const whatsappNumber = (settings.whatsapp || globalSettings.globalWhatsapp).replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
         break;
     }
