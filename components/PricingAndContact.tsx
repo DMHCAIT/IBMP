@@ -189,7 +189,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
             {method === 'phone' && <Phone className="w-4 h-4" />}
             {method === 'email' && <Mail className="w-4 h-4" />}
             {method === 'whatsapp' && <MessageCircle className="w-4 h-4" />}
-            {settings.buttonText || settings.defaultButtonText}
+            {settings.buttonText || globalSettings.defaultButtonText}
           </button>
         ))}
       </div>
@@ -217,7 +217,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
             className="w-full flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
           >
             <Phone className="w-4 h-4" />
-            <span>Call: {settings.phone || settings.globalPhone}</span>
+            <span>Call: {settings.phone || globalSettings.globalPhone}</span>
           </button>
         )}
         
@@ -227,7 +227,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
             className="w-full flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
           >
             <Mail className="w-4 h-4" />
-            <span>Email: {settings.email || settings.globalEmail}</span>
+            <span>Email: {settings.email || globalSettings.globalEmail}</span>
           </button>
         )}
         
@@ -237,7 +237,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
             className="w-full flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
           >
             <MessageCircle className="w-4 h-4" />
-            <span>WhatsApp: {settings.whatsapp || settings.globalWhatsapp}</span>
+            <span>WhatsApp: {settings.whatsapp || globalSettings.globalWhatsapp}</span>
           </button>
         )}
       </div>
