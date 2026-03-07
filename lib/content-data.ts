@@ -1565,6 +1565,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Develop comprehensive rehabilitation plans", "Perform electrodiagnostic studies", "Manage chronic pain", "Lead rehabilitation teams"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Physiatrist", "Rehabilitation Director", "Sports Medicine Physician", "Academic PM&R"],
+        pricing: {
+          amount: 2300,
+          currency: 'USD',
+          displayPrice: '$2,300',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 767 },
+              { months: 6, monthlyAmount: 384 },
+              { months: 12, monthlyAmount: 192 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1586,6 +1606,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Assess workplace health hazards", "Manage occupational diseases", "Conduct fitness evaluations", "Develop workplace health programs"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Project Work"],
         careerOpportunities: ["Occupational Health Physician", "Corporate Medical Director", "Environmental Health Officer", "Academic Occupational Medicine"],
+        pricing: {
+          amount: 2000,
+          currency: 'USD',
+          displayPrice: '$2,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 667 },
+              { months: 6, monthlyAmount: 334 },
+              { months: 12, monthlyAmount: 167 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       }
     ],
@@ -1691,6 +1731,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage complex diabetes cases", "Diagnose and treat thyroid disorders", "Handle endocrine emergencies", "Provide comprehensive metabolic care"],
         assessmentMethods: ["Clinical Competency Exams", "Case Reviews", "Written Exams", "Research Project"],
         careerOpportunities: ["Endocrinologist", "Diabetes Specialist", "Thyroid Specialist", "Academic Endocrinology"],
+        pricing: {
+          amount: 3400,
+          currency: 'USD',
+          displayPrice: '$3,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1134 },
+              { months: 6, monthlyAmount: 567 },
+              { months: 12, monthlyAmount: 284 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1712,6 +1772,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage acute and chronic kidney diseases", "Prescribe and manage dialysis therapy", "Care for kidney transplant patients", "Perform nephrology procedures"],
         assessmentMethods: ["Clinical Competency Exams", "Procedure Assessments", "Case Reviews", "Research Paper"],
         careerOpportunities: ["Nephrologist", "Dialysis Unit Director", "Transplant Nephrologist", "Academic Nephrologist"],
+        pricing: {
+          amount: 3500,
+          currency: 'USD',
+          displayPrice: '$3,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1167 },
+              { months: 6, monthlyAmount: 584 },
+              { months: 12, monthlyAmount: 292 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1733,6 +1813,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform diagnostic and therapeutic bronchoscopy", "Manage complex respiratory conditions", "Interpret pulmonary function tests", "Lead respiratory care teams"],
         assessmentMethods: ["Procedure Competency Tests", "Clinical Exams", "Case Presentations", "Research Project"],
         careerOpportunities: ["Pulmonologist", "ICU Director", "Sleep Medicine Specialist", "Academic Pulmonologist"],
+        pricing: {
+          amount: 3300,
+          currency: 'USD',
+          displayPrice: '$3,300',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1100 },
+              { months: 6, monthlyAmount: 550 },
+              { months: 12, monthlyAmount: 275 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1754,6 +1854,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose complex infectious diseases", "Implement antimicrobial stewardship", "Manage infection control programs", "Handle emerging infections"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Infection Control Projects"],
         careerOpportunities: ["Infectious Disease Consultant", "Hospital Epidemiologist", "Antimicrobial Stewardship Director", "Academic ID"],
+        pricing: {
+          amount: 3200,
+          currency: 'USD',
+          displayPrice: '$3,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1067 },
+              { months: 6, monthlyAmount: 534 },
+              { months: 12, monthlyAmount: 267 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1775,6 +1895,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose rheumatologic conditions accurately", "Manage complex autoimmune diseases", "Administer disease-modifying therapies", "Perform musculoskeletal procedures"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Procedure Logs"],
         careerOpportunities: ["Rheumatologist", "Lupus Specialist", "Academic Rheumatology", "Clinical Researcher"],
+        pricing: {
+          amount: 3400,
+          currency: 'USD',
+          displayPrice: '$3,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1134 },
+              { months: 6, monthlyAmount: 567 },
+              { months: 12, monthlyAmount: 284 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1796,6 +1936,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose and stage malignancies accurately", "Design appropriate treatment protocols", "Manage treatment complications", "Provide compassionate cancer care"],
         assessmentMethods: ["Case Presentations", "Treatment Plan Reviews", "Written Exams", "Research Project"],
         careerOpportunities: ["Medical Oncologist", "Hematologist", "Cancer Center Director", "Clinical Researcher"],
+        pricing: {
+          amount: 4000,
+          currency: 'USD',
+          displayPrice: '$4,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1334 },
+              { months: 6, monthlyAmount: 667 },
+              { months: 12, monthlyAmount: 334 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2220,6 +2380,22 @@ export const defaultContent: SiteContent = {
         learningOutcomes: [],
         assessmentMethods: ["Nomination Review", "Board Evaluation", "Credential Verification"],
         careerOpportunities: ["Advisory Board Member", "Mentorship Roles", "Speaking Engagements", "Leadership Positions"],
+        pricing: {
+          amount: 0,
+          currency: 'USD',
+          displayPrice: 'By Nomination Only',
+          installments: {
+            available: false,
+            plans: []
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Nomination Inquiry'
+        },
         isActive: true
       },
       {
@@ -2243,6 +2419,22 @@ export const defaultContent: SiteContent = {
         learningOutcomes: [],
         assessmentMethods: ["Publication Review", "Research Impact Assessment", "Board Evaluation"],
         careerOpportunities: ["Research Advisory Roles", "Grant Review Committees", "Academic Leadership", "Industry Collaboration"],
+        pricing: {
+          amount: 0,
+          currency: 'USD',
+          displayPrice: 'By Nomination Only',
+          installments: {
+            available: false,
+            plans: []
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Nomination Inquiry'
+        },
         isActive: true
       },
       {
@@ -2266,6 +2458,22 @@ export const defaultContent: SiteContent = {
         learningOutcomes: [],
         assessmentMethods: ["Service Documentation Review", "Impact Assessment", "Board Evaluation"],
         careerOpportunities: ["Global Health Leadership", "NGO Advisory Roles", "Policy Development", "Advocacy Positions"],
+        pricing: {
+          amount: 0,
+          currency: 'USD',
+          displayPrice: 'By Nomination Only',
+          installments: {
+            available: false,
+            plans: []
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Nomination Inquiry'
+        },
         isActive: true
       }
     ]
