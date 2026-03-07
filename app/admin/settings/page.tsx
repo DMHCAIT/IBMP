@@ -283,7 +283,7 @@ export default function GlobalSettingsPage() {
               <label key={method} className="inline-flex items-center">
                 <input
                   type="checkbox"
-                  checked={localContent.counselor.contactMethods.includes(method as any)}
+                  checked={localContent.counselor.contactMethods.includes(method as 'phone' | 'email' | 'whatsapp')}
                   onChange={(e) => {
                     const methods = [...localContent.counselor.contactMethods];
                     if (e.target.checked) {
