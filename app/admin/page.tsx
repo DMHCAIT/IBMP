@@ -90,6 +90,13 @@ const sections = [
     description: 'Navigation, logo, and footer links',
     color: 'from-gray-500 to-gray-600',
   },
+  {
+    name: 'Global Settings',
+    href: '/admin/settings',
+    icon: Settings,
+    description: 'Pricing and counselor contact settings',
+    color: 'from-emerald-500 to-emerald-600',
+  },
 ];
 
 export default function AdminDashboard() {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ContentProvider } from "@/lib/content-context";
+import FloatingCounselor from "@/components/FloatingCounselor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <ContentProvider>
           {children}
+          <FloatingCounselor />
         </ContentProvider>
       </body>
     </html>

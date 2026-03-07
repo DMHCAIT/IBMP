@@ -213,6 +213,22 @@ export interface Course {
   learningOutcomes: string[];
   assessmentMethods: string[];
   careerOpportunities: string[];
+  pricing: {
+    amount: number;
+    currency: string;
+    displayPrice: string;
+    installments?: {
+      available: boolean;
+      plans: { months: number; monthlyAmount: number }[];
+    };
+  };
+  counselorContact: {
+    enabled: boolean;
+    phone?: string;
+    email?: string;
+    whatsapp?: string;
+    buttonText: string;
+  };
   isActive: boolean;
 }
 
@@ -220,6 +236,24 @@ export interface CoursesContent {
   medicalSpecialties: Course[];
   superSpecialties: Course[];
   honoraryFellowship: Course[];
+}
+
+export interface GlobalSettings {
+  pricing: {
+    currency: string;
+    defaultCurrency: string;
+    showPricesGlobally: boolean;
+    priceDisplayFormat: 'full' | 'starting-from' | 'contact-for-price';
+  };
+  counselor: {
+    enabled: boolean;
+    globalPhone: string;
+    globalEmail: string;
+    globalWhatsapp: string;
+    defaultButtonText: string;
+    showOnAllPages: boolean;
+    contactMethods: ('phone' | 'email' | 'whatsapp')[];
+  };
 }
 
 export interface SiteContent {
@@ -240,6 +274,7 @@ export interface SiteContent {
   header: HeaderContent;
   footer: FooterContent;
   courses: CoursesContent;
+  globalSettings: GlobalSettings;
 }
 
 export const defaultContent: SiteContent = {
@@ -505,6 +540,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Master comprehensive diagnostic and therapeutic approaches", "Develop expertise in managing complex medical conditions", "Apply evidence-based medicine principles in clinical practice", "Lead multidisciplinary healthcare teams effectively"],
         assessmentMethods: ["Clinical Case Presentations", "Written Examinations", "Portfolio Assessment", "Research Project"],
         careerOpportunities: ["Hospital Consultant", "Private Practice Specialist", "Academic Medicine", "Healthcare Administrator"],
+        pricing: {
+          amount: 2300,
+          currency: 'USD',
+          displayPrice: '$2,300',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 833 },
+              { months: 6, monthlyAmount: 450 },
+              { months: 12, monthlyAmount: 250 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -526,6 +581,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Provide comprehensive care across all age groups", "Manage acute and chronic conditions effectively", "Implement preventive care strategies", "Build lasting patient-physician relationships"],
         assessmentMethods: ["Clinical Competency Exams", "Patient Encounter Reviews", "Portfolio Assessment", "Community Project"],
         careerOpportunities: ["Family Physician", "Primary Care Clinic Director", "Community Health Leader", "Academic Faculty"],
+        pricing: {
+          amount: 2000,
+          currency: 'USD',
+          displayPrice: '$2,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 667 },
+              { months: 6, monthlyAmount: 334 },
+              { months: 12, monthlyAmount: 167 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1694,5 +1769,22 @@ export const defaultContent: SiteContent = {
         isActive: true
       }
     ]
+  },
+  globalSettings: {
+    pricing: {
+      currency: 'USD',
+      defaultCurrency: '$',
+      showPricesGlobally: true,
+      priceDisplayFormat: 'full',
+    },
+    counselor: {
+      enabled: true,
+      globalPhone: '+1 3023020293',
+      globalEmail: 'info@ibmpractitioner.us',
+      globalWhatsapp: '+1 3023020293',
+      defaultButtonText: 'Talk to Counselor',
+      showOnAllPages: true,
+      contactMethods: ['phone', 'email', 'whatsapp'],
+    },
   },
 };

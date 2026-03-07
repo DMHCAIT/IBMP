@@ -17,6 +17,7 @@ import {
   Star
 } from 'lucide-react';
 import { Course } from '@/lib/content-data';
+import { CoursePricingAndContact } from '@/components/PricingAndContact';
 
 interface CourseDetailProps {
   course: Course;
@@ -323,23 +324,13 @@ export default function CourseDetail({ course }: CourseDetailProps) {
                   </div>
                 </motion.div>
                 
-                {/* Contact CTA */}
+                {/* Pricing and Counselor Contact */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="bg-gray-100 rounded-2xl p-6"
                 >
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Need More Information?</h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Contact our admissions team for detailed program information and guidance.
-                  </p>
-                  <Link 
-                    href="/contact"
-                    className="block w-full py-3 px-4 bg-white text-primary text-center font-semibold rounded-xl border-2 border-primary hover:bg-primary hover:text-white transition-colors"
-                  >
-                    Contact Us
-                  </Link>
+                  <CoursePricingAndContact course={course} />
                 </motion.div>
               </div>
             </div>

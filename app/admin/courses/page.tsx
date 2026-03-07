@@ -87,6 +87,26 @@ export default function CoursesAdminPage() {
       learningOutcomes: [''],
       assessmentMethods: [''],
       careerOpportunities: [''],
+      pricing: {
+        amount: 2000,
+        currency: 'USD',
+        displayPrice: '$2,000',
+        installments: {
+          available: true,
+          plans: [
+            { months: 3, monthlyAmount: 667 },
+            { months: 6, monthlyAmount: 334 },
+            { months: 12, monthlyAmount: 167 }
+          ]
+        }
+      },
+      counselorContact: {
+        enabled: true,
+        phone: '+1 3023020293',
+        email: 'info@ibmpractitioner.us',
+        whatsapp: '+1 3023020293',
+        buttonText: 'Talk to Counselor'
+      },
       isActive: true,
     };
     setEditingCourse(newCourse);
@@ -788,6 +808,229 @@ export default function CoursesAdminPage() {
                       <Plus className="w-4 h-4" />
                       Add Opportunity
                     </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Pricing Section */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('pricing')}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                >
+                  <span className="font-semibold text-gray-900">Pricing & Payment Options</span>
+                  {expandedSection === 'pricing' ? (
+                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
+                {expandedSection === 'pricing' && (
+                  <div className="p-4 space-y-4">
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Price Amount
+                        </label>
+                        <input
+                          type="number"
+                          value={editingCourse.pricing?.amount || 0}
+                          onChange={(e) =>
+                            setEditingCourse({
+                              ...editingCourse,
+                              pricing: {
+                                ...editingCourse.pricing,
+                                amount: Number(e.target.value),
+                                displayPrice: `$${Number(e.target.value).toLocaleString()}`
+                              }
+                            })
+                          }
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                          placeholder="2000"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Currency
+                        </label>
+                        <input
+                          type="text"
+                          value={editingCourse.pricing?.currency || 'USD'}
+                          onChange={(e) =>
+                            setEditingCourse({
+                              ...editingCourse,
+                              pricing: { ...editingCourse.pricing, currency: e.target.value }
+                            })
+                          }
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                          placeholder="USD"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Display Price
+                        </label>
+                        <input
+                          type="text"
+                          value={editingCourse.pricing?.displayPrice || '$2,000'}
+                          onChange={(e) =>
+                            setEditingCourse({
+                              ...editingCourse,
+                              pricing: { ...editingCourse.pricing, displayPrice: e.target.value }
+                            })
+                          }
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                          placeholder="$2,000"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Payment Plans Available
+                      </label>
+                      <div className="flex items-center gap-2 mb-3">
+                        <input
+                          type="checkbox"
+                          checked={editingCourse.pricing?.installments?.available || false}
+                          onChange={(e) =>
+                            setEditingCourse({
+                              ...editingCourse,
+                              pricing: {
+                                ...editingCourse.pricing,
+                                installments: {
+                                  ...editingCourse.pricing?.installments,
+                                  available: e.target.checked
+                                }
+                              }
+                            })
+                          }
+                          className="form-checkbox h-4 w-4 text-primary"
+                        />
+                        <span className="text-sm text-gray-700">Enable installment payment options</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Counselor Contact Section */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('counselor')}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                >
+                  <span className="font-semibold text-gray-900">Counselor Contact Settings</span>
+                  {expandedSection === 'counselor' ? (
+                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
+                {expandedSection === 'counselor' && (
+                  <div className="p-4 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={editingCourse.counselorContact?.enabled || false}
+                        onChange={(e) =>
+                          setEditingCourse({
+                            ...editingCourse,
+                            counselorContact: {
+                              ...editingCourse.counselorContact,
+                              enabled: e.target.checked
+                            }
+                          })
+                        }
+                        className="form-checkbox h-4 w-4 text-primary"
+                      />
+                      <span className="text-sm text-gray-700">Enable counselor contact for this course</span>
+                    </div>
+
+                    {editingCourse.counselorContact?.enabled && (
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Phone Number
+                          </label>
+                          <input
+                            type="text"
+                            value={editingCourse.counselorContact?.phone || ''}
+                            onChange={(e) =>
+                              setEditingCourse({
+                                ...editingCourse,
+                                counselorContact: {
+                                  ...editingCourse.counselorContact,
+                                  phone: e.target.value
+                                }
+                              })
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="+1 3023020293"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Email Address
+                          </label>
+                          <input
+                            type="email"
+                            value={editingCourse.counselorContact?.email || ''}
+                            onChange={(e) =>
+                              setEditingCourse({
+                                ...editingCourse,
+                                counselorContact: {
+                                  ...editingCourse.counselorContact,
+                                  email: e.target.value
+                                }
+                              })
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="info@ibmpractitioner.us"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            WhatsApp Number
+                          </label>
+                          <input
+                            type="text"
+                            value={editingCourse.counselorContact?.whatsapp || ''}
+                            onChange={(e) =>
+                              setEditingCourse({
+                                ...editingCourse,
+                                counselorContact: {
+                                  ...editingCourse.counselorContact,
+                                  whatsapp: e.target.value
+                                }
+                              })
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="+1 3023020293"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Button Text
+                          </label>
+                          <input
+                            type="text"
+                            value={editingCourse.counselorContact?.buttonText || ''}
+                            onChange={(e) =>
+                              setEditingCourse({
+                                ...editingCourse,
+                                counselorContact: {
+                                  ...editingCourse.counselorContact,
+                                  buttonText: e.target.value
+                                }
+                              })
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="Talk to Counselor"
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
