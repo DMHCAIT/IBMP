@@ -622,6 +622,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Assess and manage pediatric conditions across age groups", "Recognize developmental abnormalities early", "Provide family-centered pediatric care", "Implement age-appropriate preventive strategies"],
         assessmentMethods: ["Clinical Examinations", "Case Presentations", "OSCE", "Research Paper"],
         careerOpportunities: ["Pediatric Consultant", "Pediatric Clinic Director", "Child Health Advocate", "Academic Pediatrician"],
+        pricing: {
+          amount: 2200,
+          currency: 'USD',
+          displayPrice: '$2,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 734 },
+              { months: 6, monthlyAmount: 367 },
+              { months: 12, monthlyAmount: 184 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -643,6 +663,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage life-threatening emergencies effectively", "Perform critical emergency procedures", "Lead resuscitation teams", "Make rapid clinical decisions under pressure"],
         assessmentMethods: ["Simulation Exams", "Clinical Competency Tests", "Case Reviews", "Procedure Logs"],
         careerOpportunities: ["Emergency Physician", "Trauma Center Director", "EMS Medical Director", "Critical Care Specialist"],
+        pricing: {
+          amount: 2400,
+          currency: 'USD',
+          displayPrice: '$2,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 800 },
+              { months: 6, monthlyAmount: 400 },
+              { months: 12, monthlyAmount: 200 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -664,6 +704,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Conduct comprehensive psychiatric evaluations", "Develop evidence-based treatment plans", "Manage psychiatric emergencies", "Apply biopsychosocial approach to care"],
         assessmentMethods: ["Clinical Case Exams", "Patient Interviews", "Treatment Plan Reviews", "Research Project"],
         careerOpportunities: ["Consultant Psychiatrist", "Mental Health Clinic Director", "Academic Psychiatrist", "Forensic Expert"],
+        pricing: {
+          amount: 2300,
+          currency: 'USD',
+          displayPrice: '$2,300',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 767 },
+              { months: 6, monthlyAmount: 384 },
+              { months: 12, monthlyAmount: 192 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -685,6 +745,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform comprehensive neurological assessments", "Diagnose and manage neurological disorders", "Interpret neurodiagnostic studies", "Provide continuity care for chronic conditions"],
         assessmentMethods: ["Clinical Examinations", "Case Presentations", "Procedure Competency", "Written Exams"],
         careerOpportunities: ["Consultant Neurologist", "Stroke Center Director", "Academic Neurologist", "Neurorehabilitation Specialist"],
+        pricing: {
+          amount: 2500,
+          currency: 'USD',
+          displayPrice: '$2,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 834 },
+              { months: 6, monthlyAmount: 417 },
+              { months: 12, monthlyAmount: 209 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -706,6 +786,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Interpret imaging studies accurately", "Recommend appropriate imaging protocols", "Perform image-guided procedures", "Communicate findings effectively"],
         assessmentMethods: ["Image Interpretation Exams", "Case Reviews", "Procedure Assessments", "Research Project"],
         careerOpportunities: ["Diagnostic Radiologist", "Radiology Department Head", "Academic Radiologist", "Teleradiology Specialist"],
+        pricing: {
+          amount: 2400,
+          currency: 'USD',
+          displayPrice: '$2,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 800 },
+              { months: 6, monthlyAmount: 400 },
+              { months: 12, monthlyAmount: 200 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -727,6 +827,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Administer safe anesthesia for diverse procedures", "Master airway management techniques", "Manage perioperative complications", "Provide effective pain management"],
         assessmentMethods: ["Clinical Competency Exams", "Simulation Assessments", "Case Logs", "Written Exams"],
         careerOpportunities: ["Consultant Anesthesiologist", "Pain Medicine Specialist", "ICU Director", "Academic Anesthesiologist"],
+        pricing: {
+          amount: 2300,
+          currency: 'USD',
+          displayPrice: '$2,300',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 767 },
+              { months: 6, monthlyAmount: 384 },
+              { months: 12, monthlyAmount: 192 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -748,6 +868,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Interpret histopathological specimens accurately", "Manage clinical laboratory operations", "Apply molecular diagnostic techniques", "Provide clinical consultation"],
         assessmentMethods: ["Slide Examinations", "Laboratory Practicals", "Case Reviews", "Written Exams"],
         careerOpportunities: ["Consultant Pathologist", "Laboratory Director", "Academic Pathologist", "Forensic Pathologist"],
+        pricing: {
+          amount: 2200,
+          currency: 'USD',
+          displayPrice: '$2,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 734 },
+              { months: 6, monthlyAmount: 367 },
+              { months: 12, monthlyAmount: 184 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -769,6 +909,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Design and conduct epidemiological studies", "Develop public health interventions", "Analyze health policy implications", "Lead population health initiatives"],
         assessmentMethods: ["Research Projects", "Policy Analysis", "Case Studies", "Written Exams"],
         careerOpportunities: ["Public Health Officer", "Epidemiologist", "Health Policy Advisor", "Academic Public Health"],
+        pricing: {
+          amount: 1900,
+          currency: 'USD',
+          displayPrice: '$1,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 634 },
+              { months: 6, monthlyAmount: 317 },
+              { months: 12, monthlyAmount: 159 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -790,6 +950,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform major abdominal surgical procedures", "Master laparoscopic surgical techniques", "Manage surgical complications", "Lead surgical teams"],
         assessmentMethods: ["Operative Assessments", "Case Log Review", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["General Surgeon", "Surgical Department Head", "Trauma Surgeon", "Academic Surgeon"],
+        pricing: {
+          amount: 2800,
+          currency: 'USD',
+          displayPrice: '$2,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 934 },
+              { months: 6, monthlyAmount: 467 },
+              { months: 12, monthlyAmount: 234 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -811,6 +991,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage complex musculoskeletal injuries", "Perform joint replacement surgeries", "Apply arthroscopic techniques", "Provide comprehensive orthopedic care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Orthopedic Surgeon", "Sports Medicine Surgeon", "Joint Replacement Specialist", "Academic Orthopedics"],
+        pricing: {
+          amount: 2900,
+          currency: 'USD',
+          displayPrice: '$2,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 967 },
+              { months: 6, monthlyAmount: 484 },
+              { months: 12, monthlyAmount: 242 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -832,6 +1032,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform cardiac surgical procedures", "Manage thoracic surgical conditions", "Handle cardiopulmonary bypass", "Provide comprehensive perioperative care"],
         assessmentMethods: ["Operative Assessments", "Case Log Review", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["Cardiothoracic Surgeon", "Heart Transplant Surgeon", "Academic CT Surgery", "Surgical Director"],
+        pricing: {
+          amount: 3200,
+          currency: 'USD',
+          displayPrice: '$3,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1067 },
+              { months: 6, monthlyAmount: 534 },
+              { months: 12, monthlyAmount: 267 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -853,6 +1073,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform cranial surgical procedures", "Master spinal surgical techniques", "Apply microsurgical skills", "Manage neurosurgical emergencies"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Consultant Neurosurgeon", "Spine Surgeon", "Neuro-oncology Surgeon", "Academic Neurosurgery"],
+        pricing: {
+          amount: 3500,
+          currency: 'USD',
+          displayPrice: '$3,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1167 },
+              { months: 6, monthlyAmount: 584 },
+              { months: 12, monthlyAmount: 292 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -874,6 +1114,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform urological surgical procedures", "Manage urological malignancies", "Apply endourological techniques", "Provide comprehensive urological care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Consultant Urologist", "Uro-oncologist", "Endourologist", "Academic Urology"],
+        pricing: {
+          amount: 2700,
+          currency: 'USD',
+          displayPrice: '$2,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 900 },
+              { months: 6, monthlyAmount: 450 },
+              { months: 12, monthlyAmount: 225 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -895,6 +1155,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform reconstructive surgical procedures", "Master microsurgical techniques", "Apply aesthetic surgery principles", "Manage complex wounds"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Portfolio Review"],
         careerOpportunities: ["Plastic Surgeon", "Hand Surgeon", "Craniofacial Surgeon", "Aesthetic Surgeon"],
+        pricing: {
+          amount: 2800,
+          currency: 'USD',
+          displayPrice: '$2,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 934 },
+              { months: 6, monthlyAmount: 467 },
+              { months: 12, monthlyAmount: 234 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -916,6 +1196,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform ENT surgical procedures", "Manage hearing and balance disorders", "Treat head and neck conditions", "Provide comprehensive ENT care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["ENT Surgeon", "Otologist", "Rhinologist", "Head & Neck Surgeon"],
+        pricing: {
+          amount: 2600,
+          currency: 'USD',
+          displayPrice: '$2,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 867 },
+              { months: 6, monthlyAmount: 434 },
+              { months: 12, monthlyAmount: 217 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -937,6 +1237,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform ophthalmic surgical procedures", "Diagnose and manage eye diseases", "Apply advanced imaging techniques", "Provide comprehensive vision care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Ophthalmologist", "Retina Specialist", "Glaucoma Specialist", "Oculoplastic Surgeon"],
+        pricing: {
+          amount: 2700,
+          currency: 'USD',
+          displayPrice: '$2,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 900 },
+              { months: 6, monthlyAmount: 450 },
+              { months: 12, monthlyAmount: 225 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -958,6 +1278,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform vascular surgical procedures", "Master endovascular techniques", "Manage vascular emergencies", "Provide comprehensive vascular care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["Vascular Surgeon", "Endovascular Specialist", "Vascular Lab Director", "Academic Vascular Surgery"],
+        pricing: {
+          amount: 2900,
+          currency: 'USD',
+          displayPrice: '$2,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 967 },
+              { months: 6, monthlyAmount: 484 },
+              { months: 12, monthlyAmount: 242 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -979,6 +1319,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform colorectal surgical procedures", "Manage colorectal malignancies", "Apply minimally invasive techniques", "Provide comprehensive colorectal care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Colorectal Surgeon", "Surgical Oncologist", "Proctologist", "Academic Colorectal Surgery"],
+        pricing: {
+          amount: 2700,
+          currency: 'USD',
+          displayPrice: '$2,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 900 },
+              { months: 6, monthlyAmount: 450 },
+              { months: 12, monthlyAmount: 225 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1000,6 +1360,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage normal and high-risk pregnancies", "Perform gynecological surgeries", "Provide comprehensive women's health care", "Apply evidence-based obstetric practices"],
         assessmentMethods: ["Clinical Assessments", "Case Logs", "Written Exams", "OSCE"],
         careerOpportunities: ["OB-GYN Consultant", "Maternal-Fetal Medicine Specialist", "Reproductive Endocrinologist", "Academic OB-GYN"],
+        pricing: {
+          amount: 2600,
+          currency: 'USD',
+          displayPrice: '$2,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 867 },
+              { months: 6, monthlyAmount: 434 },
+              { months: 12, monthlyAmount: 217 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1021,6 +1401,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose dermatological conditions accurately", "Perform dermatological procedures", "Manage skin malignancies", "Provide comprehensive dermatological care"],
         assessmentMethods: ["Clinical Assessments", "Case Presentations", "Written Exams", "Procedural Tests"],
         careerOpportunities: ["Consultant Dermatologist", "Dermatopathologist", "Cosmetic Dermatologist", "Academic Dermatology"],
+        pricing: {
+          amount: 2400,
+          currency: 'USD',
+          displayPrice: '$2,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 800 },
+              { months: 6, monthlyAmount: 400 },
+              { months: 12, monthlyAmount: 200 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1042,6 +1442,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose allergic and immunologic disorders", "Administer immunotherapy", "Manage anaphylaxis and allergic emergencies", "Provide comprehensive allergy care"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Practical Tests"],
         careerOpportunities: ["Allergist-Immunologist", "Clinical Immunologist", "Allergy Clinic Director", "Academic Immunology"],
+        pricing: {
+          amount: 2100,
+          currency: 'USD',
+          displayPrice: '$2,100',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 700 },
+              { months: 6, monthlyAmount: 350 },
+              { months: 12, monthlyAmount: 175 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1063,6 +1483,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose genetic disorders accurately", "Interpret genetic testing results", "Provide genetic counseling", "Manage hereditary conditions"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Counseling Evaluations"],
         careerOpportunities: ["Clinical Geneticist", "Cancer Geneticist", "Prenatal Geneticist", "Academic Genetics"],
+        pricing: {
+          amount: 2200,
+          currency: 'USD',
+          displayPrice: '$2,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 734 },
+              { months: 6, monthlyAmount: 367 },
+              { months: 12, monthlyAmount: 184 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1084,6 +1524,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Interpret nuclear medicine studies", "Administer radiopharmaceuticals safely", "Perform therapeutic procedures", "Ensure radiation safety"],
         assessmentMethods: ["Image Interpretation Exams", "Case Reviews", "Written Exams", "Practical Assessments"],
         careerOpportunities: ["Nuclear Medicine Physician", "PET Imaging Specialist", "Theranostics Expert", "Academic Nuclear Medicine"],
+        pricing: {
+          amount: 2500,
+          currency: 'USD',
+          displayPrice: '$2,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 834 },
+              { months: 6, monthlyAmount: 417 },
+              { months: 12, monthlyAmount: 209 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1149,6 +1609,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Interpret advanced cardiac imaging", "Manage complex cardiovascular conditions", "Perform invasive cardiac procedures", "Lead cardiac care teams"],
         assessmentMethods: ["Clinical Competency Exams", "Procedure Logs", "Case Presentations", "Research Project"],
         careerOpportunities: ["Interventional Cardiologist", "Cardiac Imaging Specialist", "Heart Failure Specialist", "Academic Cardiologist"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1170,6 +1650,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform diagnostic and therapeutic endoscopy", "Manage complex hepatobiliary conditions", "Treat inflammatory bowel diseases", "Provide comprehensive GI care"],
         assessmentMethods: ["Endoscopy Competency Tests", "Case Reviews", "Written Exams", "Research Presentation"],
         careerOpportunities: ["Gastroenterologist", "Therapeutic Endoscopist", "Hepatologist", "GI Clinic Director"],
+        pricing: {
+          amount: 3600,
+          currency: 'USD',
+          displayPrice: '$3,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1200 },
+              { months: 6, monthlyAmount: 600 },
+              { months: 12, monthlyAmount: 300 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
