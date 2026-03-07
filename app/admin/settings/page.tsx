@@ -123,7 +123,7 @@ export default function GlobalSettingsPage() {
       onReset={handleReset}
     >
       {/* Pricing Settings */}
-      <SectionCard title="Global Pricing Settings" icon={<DollarSign className="w-5 h-5" />}>
+      <SectionCard title="Global Pricing Settings">
         <div className="grid md:grid-cols-2 gap-6">
           <InputField
             label="Default Currency"
@@ -189,7 +189,7 @@ export default function GlobalSettingsPage() {
       </SectionCard>
 
       {/* Counselor Contact Settings */}
-      <SectionCard title="Global Counselor Contact Settings" icon={<Phone className="w-5 h-5" />}>
+      <SectionCard title="Global Counselor Contact Settings">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Enable Counselor Contact</label>
@@ -311,7 +311,7 @@ export default function GlobalSettingsPage() {
       </SectionCard>
 
       {/* Course Update Actions */}
-      <SectionCard title="Apply Settings to All Courses" icon={<MessageCircle className="w-5 h-5" />}>
+      <SectionCard title="Apply Settings to All Courses">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-blue-900 mb-2">Update All Course Pricing & Contact Info</h3>
           <p className="text-blue-700 mb-4">
