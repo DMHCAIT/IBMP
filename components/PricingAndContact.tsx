@@ -3,6 +3,7 @@
 import { useContent } from '@/lib/content-context';
 import { Phone, Mail, MessageCircle, DollarSign, CreditCard, Clock } from 'lucide-react';
 import { useState } from 'react';
+import { Course } from '@/lib/content-data';
 
 interface PricingDisplayProps {
   price?: {
@@ -14,7 +15,6 @@ interface PricingDisplayProps {
       plans: { months: number; monthlyAmount: number }[];
     };
   };
-  courseName?: string;
   className?: string;
 }
 
@@ -31,7 +31,7 @@ interface CounselorContactProps {
   variant?: 'button' | 'card' | 'floating';
 }
 
-export function PricingDisplay({ price, courseName, className = '' }: PricingDisplayProps) {
+export function PricingDisplay({ price, className = '' }: PricingDisplayProps) {
   const { content } = useContent();
   const [showInstallments, setShowInstallments] = useState(false);
 
@@ -246,10 +246,10 @@ export function CounselorContact({ counselor, courseName, className = '', varian
 }
 
 // Combined component for course pages
-export function CoursePricingAndContact({ course }: { course: any }) {
+export function CoursePricingAndContact({ course }: { course: Course }) {
   return (
     <div className="space-y-6">
-      <PricingDisplay price={course.pricing} courseName={course.name} />
+      <PricingDisplay price={course.pricing} />
       <CounselorContact counselor={course.counselorContact} courseName={course.name} />
     </div>
   );

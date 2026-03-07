@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useContent } from '@/lib/content-context';
 import EditorLayout, { SectionCard, InputField } from '@/components/admin/EditorLayout';
-import { DollarSign, Phone, Mail, MessageCircle } from 'lucide-react';
+import { DollarSign, Phone, MessageCircle } from 'lucide-react';
 
 export default function GlobalSettingsPage() {
   const { content, updateContent } = useContent();
@@ -175,7 +175,7 @@ export default function GlobalSettingsPage() {
               onChange={(e) =>
                 setLocalContent({
                   ...localContent,
-                  pricing: { ...localContent.pricing, priceDisplayFormat: e.target.value as any },
+                  pricing: { ...localContent.pricing, priceDisplayFormat: e.target.value as 'full' | 'starting-from' | 'contact-for-price' },
                 })
               }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
@@ -287,11 +287,11 @@ export default function GlobalSettingsPage() {
                   onChange={(e) => {
                     const methods = [...localContent.counselor.contactMethods];
                     if (e.target.checked) {
-                      if (!methods.includes(method as any)) {
-                        methods.push(method as any);
+                      if (!methods.includes(method as 'phone' | 'email' | 'whatsapp')) {
+                        methods.push(method as 'phone' | 'email' | 'whatsapp');
                       }
                     } else {
-                      const index = methods.indexOf(method as any);
+                      const index = methods.indexOf(method as 'phone' | 'email' | 'whatsapp');
                       if (index > -1) {
                         methods.splice(index, 1);
                       }

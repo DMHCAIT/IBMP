@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CourseDetail from '@/components/programs/CourseDetail';
-import { content } from '@/lib/content-data';
+import { defaultContent } from '@/lib/content-data';
 import { Course } from '@/lib/content-data';
 
 interface CoursePageProps {
@@ -14,19 +14,19 @@ interface CoursePageProps {
 // Function to find course by slug across all categories
 function findCourseBySlug(slug: string): Course | null {
   // Search in medical specialties
-  const medicalSpecialty = content.courses.medicalSpecialties.find(
+  const medicalSpecialty = defaultContent.courses.medicalSpecialties.find(
     course => course.slug === slug && course.isActive
   );
   if (medicalSpecialty) return medicalSpecialty;
 
   // Search in super specialties
-  const superSpecialty = content.courses.superSpecialties.find(
+  const superSpecialty = defaultContent.courses.superSpecialties.find(
     course => course.slug === slug && course.isActive
   );
   if (superSpecialty) return superSpecialty;
 
   // Search in honorary fellowship
-  const honoraryFellowship = content.courses.honoraryFellowship.find(
+  const honoraryFellowship = defaultContent.courses.honoraryFellowship.find(
     course => course.slug === slug && course.isActive
   );
   if (honoraryFellowship) return honoraryFellowship;
@@ -37,9 +37,9 @@ function findCourseBySlug(slug: string): Course | null {
 // Generate static params for all active courses
 export async function generateStaticParams() {
   const allCourses = [
-    ...content.courses.medicalSpecialties,
-    ...content.courses.superSpecialties,
-    ...content.courses.honoraryFellowship
+    ...defaultContent.courses.medicalSpecialties,
+    ...defaultContent.courses.superSpecialties,
+    ...defaultContent.courses.honoraryFellowship
   ];
 
   return allCourses
