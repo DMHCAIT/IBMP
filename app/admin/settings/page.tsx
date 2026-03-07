@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useContent } from '@/lib/content-context';
 import EditorLayout, { SectionCard, InputField } from '@/components/admin/EditorLayout';
-import { DollarSign, Phone, MessageCircle } from 'lucide-react';
 
 export default function GlobalSettingsPage() {
   const { content, updateContent } = useContent();
