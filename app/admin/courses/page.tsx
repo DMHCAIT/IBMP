@@ -899,8 +899,8 @@ export default function CoursesAdminPage() {
                               pricing: {
                                 ...editingCourse.pricing,
                                 installments: {
-                                  ...editingCourse.pricing?.installments,
-                                  available: e.target.checked
+                                  available: e.target.checked,
+                                  plans: editingCourse.pricing?.installments?.plans || []
                                 }
                               }
                             })
