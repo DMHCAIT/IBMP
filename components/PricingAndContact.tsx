@@ -75,7 +75,17 @@ export function PricingDisplay({ price, courseName, className = '' }: PricingDis
           <DollarSign className="w-5 h-5 text-green-600" />
         </div>
         <h3 className="text-xl font-bold text-gray-900">Course Investment</h3>
-      </d/* Pay Now Button */}
+      </div>
+      
+      <div className="space-y-4">
+        <div className="text-center py-4 bg-gray-50 rounded-lg">
+          <div className="text-3xl font-bold text-primary mb-1">{displayPrice}</div>
+          {finalPrice.amount > 0 && (
+            <p className="text-gray-600 text-sm">Complete program fee</p>
+          )}
+        </div>
+
+        {/* Pay Now Button */}
         {finalPrice.amount > 0 && (
           <button
             onClick={handlePayNow}
@@ -85,16 +95,6 @@ export function PricingDisplay({ price, courseName, className = '' }: PricingDis
             Pay Online Now
           </button>
         )}
-
-        {iv>
-      
-      <div className="space-y-4">
-        <div className="text-center py-4 bg-gray-50 rounded-lg">
-          <div className="text-3xl font-bold text-primary mb-1">{displayPrice}</div>
-          {finalPrice.amount > 0 && (
-            <p className="text-gray-600 text-sm">Complete program fee</p>
-          )}
-        </div>
 
         {hasInstallments && (
           <div>
