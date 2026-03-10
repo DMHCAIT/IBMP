@@ -11,23 +11,26 @@ interface CoursePageProps {
   };
 }
 
+// Allow dynamic params in development
+export const dynamicParams = true;
+
 // Function to find course by slug across all categories
 function findCourseBySlug(slug: string): Course | null {
   // Search in medical specialties
   const medicalSpecialty = defaultContent.courses.medicalSpecialties.find(
-    course => course.slug === slug && course.isActive
+    course => course.slug === slug
   );
   if (medicalSpecialty) return medicalSpecialty;
 
   // Search in super specialties
   const superSpecialty = defaultContent.courses.superSpecialties.find(
-    course => course.slug === slug && course.isActive
+    course => course.slug === slug
   );
   if (superSpecialty) return superSpecialty;
 
   // Search in honorary fellowship
   const honoraryFellowship = defaultContent.courses.honoraryFellowship.find(
-    course => course.slug === slug && course.isActive
+    course => course.slug === slug
   );
   if (honoraryFellowship) return honoraryFellowship;
 
@@ -42,11 +45,16 @@ export async function generateStaticParams() {
     ...defaultContent.courses.honoraryFellowship
   ];
 
-  return allCourses
+  const params = allCourses
     .filter(course => course.isActive)
     .map(course => ({
       slug: course.slug,
     }));
+
+  // Log for debugging during build
+  console.log('Generated static params:', params.map(p => p.slug));
+
+  return params;
 }
 
 // Generate metadata for the course
