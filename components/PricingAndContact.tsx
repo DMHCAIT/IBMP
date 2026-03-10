@@ -260,7 +260,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
           >
             <MessageCircle className="w-4 h-4" />
             <span>WhatsApp: {settings.whatsapp || globalSettings.globalWhatsapp}</span>
-          </button>courseName={course.name} 
+          </button>
         )}
       </div>
     </div>
@@ -271,7 +271,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
 export function CoursePricingAndContact({ course }: { course: Course }) {
   return (
     <div className="space-y-6">
-      <PricingDisplay price={course.pricing} />
+      <PricingDisplay price={course.pricing} courseName={course.name} />
       <CounselorContact counselor={course.counselorContact} courseName={course.name} />
     </div>
   );
