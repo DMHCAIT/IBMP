@@ -94,41 +94,6 @@ export default function CourseDetail({ course }: CourseDetailProps) {
                 </div>
               </div>
             </motion.div>
-            
-            {/* Right CTA Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-2xl p-8"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Apply Now</h3>
-              <p className="text-gray-600 mb-6">
-                Ready to advance your career with the {course.credential} credential? Start your application today.
-              </p>
-              
-              <Link 
-                href="/accreditation"
-                className="block w-full py-4 px-6 bg-gradient-to-r from-primary to-secondary text-white text-center font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-              >
-                Start Application
-              </Link>
-              
-              <div className="mt-6 pt-6 border-t border-gray-100">
-                <div className="flex items-center gap-3 text-sm text-gray-600">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Applications open year-round</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-gray-600 mt-2">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Flexible learning options</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-gray-600 mt-2">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>International recognition</span>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -355,14 +320,8 @@ export default function CourseDetail({ course }: CourseDetailProps) {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
-                href="/accreditation"
-                className="px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
-              >
-                Apply Now
-              </Link>
-              <Link 
                 href={categoryLinks[course.category]}
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+                className="px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 View All Courses
               </Link>
