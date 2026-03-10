@@ -929,7 +929,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ms-011",
@@ -1503,7 +1503,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ms-025",
@@ -1585,7 +1585,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ms-027",
@@ -1626,7 +1626,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       }
     ],
     superSpecialties: [
@@ -2202,7 +2202,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ss-015",
@@ -2612,7 +2612,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ss-025",
@@ -2653,7 +2653,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       },
       {
         id: "ss-026",
@@ -2735,7 +2735,7 @@ export const defaultContent: SiteContent = {
           whatsapp: '+1 3023020293',
           buttonText: 'Talk to Counselor'
         },
-        isActive: true
+        isActive: false
       }
     ],
     honoraryFellowship: [
