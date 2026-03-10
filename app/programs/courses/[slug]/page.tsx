@@ -2,8 +2,9 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CourseDetail from '@/components/programs/CourseDetail';
-import { defaultContent } from '@/lib/content-data';
 import { Course } from '@/lib/content-data';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 interface CoursePageProps {
   params: {
@@ -14,23 +15,42 @@ interface CoursePageProps {
 // Allow dynamic params in development
 export const dynamicParams = true;
 
+// Revalidate every hour to get latest content
+export const revalidate = 3600;
+
+// Function to load content from file
+async function loadContent() {
+  try {
+    const contentPath = path.join(process.cwd(), 'data', 'content.json');
+    const fileContent = await fs.readFile(contentPath, 'utf-8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error('Error loading content:', error);
+    // Fallback to default content if file doesn't exist
+    const { defaultContent } = await import('@/lib/content-data');
+    return defaultContent;
+  }
+}
+
 // Function to find course by slug across all categories
-function findCourseBySlug(slug: string): Course | null {
+async function findCourseBySlug(slug: string): Promise<Course | null> {
+  const content = await loadContent();
+  
   // Search in medical specialties
-  const medicalSpecialty = defaultContent.courses.medicalSpecialties.find(
-    course => course.slug === slug
+  const medicalSpecialty = content.courses.medicalSpecialties.find(
+    (course: Course) => course.slug === slug
   );
   if (medicalSpecialty) return medicalSpecialty;
 
   // Search in super specialties
-  const superSpecialty = defaultContent.courses.superSpecialties.find(
-    course => course.slug === slug
+  const superSpecialty = content.courses.superSpecialties.find(
+    (course: Course) => course.slug === slug
   );
   if (superSpecialty) return superSpecialty;
 
   // Search in honorary fellowship
-  const honoraryFellowship = defaultContent.courses.honoraryFellowship.find(
-    course => course.slug === slug
+  const honoraryFellowship = content.courses.honoraryFellowship.find(
+    (course: Course) => course.slug === slug
   );
   if (honoraryFellowship) return honoraryFellowship;
 
@@ -39,15 +59,17 @@ function findCourseBySlug(slug: string): Course | null {
 
 // Generate static params for all active courses
 export async function generateStaticParams() {
+  const content = await loadContent();
+  
   const allCourses = [
-    ...defaultContent.courses.medicalSpecialties,
-    ...defaultContent.courses.superSpecialties,
-    ...defaultContent.courses.honoraryFellowship
+    ...content.courses.medicalSpecialties,
+    ...content.courses.superSpecialties,
+    ...content.courses.honoraryFellowship
   ];
 
   const params = allCourses
-    .filter(course => course.isActive)
-    .map(course => ({
+    .filter((course: Course) => course.isActive)
+    .map((course: Course) => ({
       slug: course.slug,
     }));
 
@@ -59,7 +81,7 @@ export async function generateStaticParams() {
 
 // Generate metadata for the course
 export async function generateMetadata({ params }: CoursePageProps) {
-  const course = findCourseBySlug(params.slug);
+  const course = await findCourseBySlug(params.slug);
   
   if (!course) {
     return {
@@ -73,8 +95,8 @@ export async function generateMetadata({ params }: CoursePageProps) {
   };
 }
 
-export default function CoursePage({ params }: CoursePageProps) {
-  const course = findCourseBySlug(params.slug);
+export default async function CoursePage({ params }: CoursePageProps) {
+  const course = await findCourseBySlug(params.slug);
 
   // If course not found, trigger 404
   if (!course) {
