@@ -1,7 +1,7 @@
 'use client';
 
 import { useContent } from '@/lib/content-context';
-import { Phone, Mail, MessageCircle, DollarSign, CreditCard, Clock } from 'lucide-react';
+import { Phone, Mail, MessageCircle, DollarSign, CreditCard, Clock, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import { Course } from '@/lib/content-data';
 
@@ -15,6 +15,7 @@ interface PricingDisplayProps {
       plans: { months: number; monthlyAmount: number }[];
     };
   };
+  courseName?: string;
   className?: string;
 }
 
@@ -31,12 +32,22 @@ interface CounselorContactProps {
   variant?: 'button' | 'card' | 'floating';
 }
 
-export function PricingDisplay({ price, className = '' }: PricingDisplayProps) {
+export function PricingDisplay({ price, courseName, className = '' }: PricingDisplayProps) {
   const { content } = useContent();
   const [showInstallments, setShowInstallments] = useState(false);
 
   // Use global settings if no specific price provided
   const shouldShowPrices = content.globalSettings.pricing.showPricesGlobally;
+
+  const handlePayNow = () => {
+    // This would redirect to your payment gateway
+    // For now, redirect to admission page with course info
+    const params = new URLSearchParams({
+      course: courseName || 'Fellowship Program',
+      amount: price?.amount.toString() || '0'
+    });
+    window.location.href = `/admission?${params.toString()}`;
+  };
   
   if (!shouldShowPrices && !price) {
     return null;
@@ -64,7 +75,18 @@ export function PricingDisplay({ price, className = '' }: PricingDisplayProps) {
           <DollarSign className="w-5 h-5 text-green-600" />
         </div>
         <h3 className="text-xl font-bold text-gray-900">Course Investment</h3>
-      </div>
+      </d/* Pay Now Button */}
+        {finalPrice.amount > 0 && (
+          <button
+            onClick={handlePayNow}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Pay Online Now
+          </button>
+        )}
+
+        {iv>
       
       <div className="space-y-4">
         <div className="text-center py-4 bg-gray-50 rounded-lg">
@@ -238,7 +260,7 @@ export function CounselorContact({ counselor, courseName, className = '', varian
           >
             <MessageCircle className="w-4 h-4" />
             <span>WhatsApp: {settings.whatsapp || globalSettings.globalWhatsapp}</span>
-          </button>
+          </button>courseName={course.name} 
         )}
       </div>
     </div>
