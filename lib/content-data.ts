@@ -1977,6 +1977,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Conduct comprehensive geriatric assessments", "Manage multiple comorbidities", "Address geriatric syndromes", "Provide patient-centered elderly care"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Care Plan Evaluations"],
         careerOpportunities: ["Geriatrician", "Long-Term Care Director", "Palliative Medicine Specialist", "Academic Geriatrics"],
+        pricing: {
+          amount: 3200,
+          currency: 'USD',
+          displayPrice: '$3,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1067 },
+              { months: 6, monthlyAmount: 534 },
+              { months: 12, monthlyAmount: 267 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -1998,6 +2018,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage critically ill newborns", "Perform neonatal procedures", "Provide developmental care", "Lead NICU teams"],
         assessmentMethods: ["Clinical Assessments", "Procedure Logs", "Case Reviews", "Simulation Tests"],
         careerOpportunities: ["Neonatologist", "NICU Director", "Perinatal Specialist", "Academic Neonatology"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2019,6 +2059,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose congenital heart diseases", "Perform pediatric echocardiography", "Manage pediatric cardiac conditions", "Collaborate with cardiac surgery"],
         assessmentMethods: ["Clinical Assessments", "Echo Competency", "Case Reviews", "Research Project"],
         careerOpportunities: ["Pediatric Cardiologist", "Fetal Cardiologist", "Interventional Peds Cardiology", "Academic Peds Cardiology"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 309 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2040,6 +2100,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose childhood cancers", "Administer chemotherapy protocols", "Manage treatment complications", "Provide family-centered care"],
         assessmentMethods: ["Clinical Assessments", "Treatment Plan Reviews", "Case Presentations", "Research Project"],
         careerOpportunities: ["Pediatric Oncologist", "BMT Specialist", "Pediatric Cancer Center Director", "Academic Peds Oncology"],
+        pricing: {
+          amount: 4200,
+          currency: 'USD',
+          displayPrice: '$4,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1400 },
+              { months: 6, monthlyAmount: 700 },
+              { months: 12, monthlyAmount: 350 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2061,6 +2141,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage critically ill children", "Perform PICU procedures", "Lead resuscitation teams", "Provide family communication"],
         assessmentMethods: ["Clinical Assessments", "Procedure Logs", "Simulation Tests", "Case Reviews"],
         careerOpportunities: ["Pediatric Intensivist", "PICU Director", "Transport Team Director", "Academic PICU"],
+        pricing: {
+          amount: 4100,
+          currency: 'USD',
+          displayPrice: '$4,100',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1367 },
+              { months: 6, monthlyAmount: 684 },
+              { months: 12, monthlyAmount: 342 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2082,6 +2182,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Conduct developmental evaluations", "Diagnose neurodevelopmental disorders", "Develop treatment plans", "Coordinate multidisciplinary care"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Family Interviews"],
         careerOpportunities: ["Developmental Pediatrician", "Autism Specialist", "School Health Consultant", "Academic Developmental Peds"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 309 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2103,6 +2223,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform thoracic surgical procedures", "Master minimally invasive techniques", "Manage thoracic malignancies", "Provide perioperative care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["Thoracic Surgeon", "Lung Cancer Surgeon", "Esophageal Surgeon", "Academic Thoracic Surgery"],
+        pricing: {
+          amount: 4200,
+          currency: 'USD',
+          displayPrice: '$4,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1400 },
+              { months: 6, monthlyAmount: 700 },
+              { months: 12, monthlyAmount: 350 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2124,6 +2264,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform pediatric surgical procedures", "Manage congenital anomalies", "Provide age-appropriate surgical care", "Handle pediatric surgical emergencies"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["Pediatric Surgeon", "Neonatal Surgeon", "Pediatric Surgical Oncologist", "Academic Pediatric Surgery"],
+        pricing: {
+          amount: 4000,
+          currency: 'USD',
+          displayPrice: '$4,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1334 },
+              { months: 6, monthlyAmount: 667 },
+              { months: 12, monthlyAmount: 334 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2145,6 +2305,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage trauma patients comprehensively", "Perform damage control surgery", "Lead trauma resuscitation", "Provide surgical critical care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Simulation Tests", "ATLS Evaluation"],
         careerOpportunities: ["Trauma Surgeon", "Surgical Intensivist", "Trauma Center Director", "Academic Trauma Surgery"],
+        pricing: {
+          amount: 4000,
+          currency: 'USD',
+          displayPrice: '$4,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1334 },
+              { months: 6, monthlyAmount: 667 },
+              { months: 12, monthlyAmount: 334 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2166,6 +2346,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform transplant surgical procedures", "Manage transplant recipients", "Handle transplant complications", "Coordinate organ procurement"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Immunology Tests"],
         careerOpportunities: ["Transplant Surgeon", "Transplant Program Director", "Living Donor Specialist", "Academic Transplant Surgery"],
+        pricing: {
+          amount: 4100,
+          currency: 'USD',
+          displayPrice: '$4,100',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1367 },
+              { months: 6, monthlyAmount: 684 },
+              { months: 12, monthlyAmount: 342 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2187,6 +2387,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform hand surgical procedures", "Manage hand trauma", "Reconstruct complex hand injuries", "Provide comprehensive hand care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Microsurgery Tests"],
         careerOpportunities: ["Hand Surgeon", "Microsurgeon", "Upper Extremity Specialist", "Academic Hand Surgery"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2208,6 +2428,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform oncologic surgical procedures", "Apply oncologic principles", "Participate in tumor boards", "Provide multidisciplinary cancer care"],
         assessmentMethods: ["Operative Assessments", "Case Logs", "Written Exams", "Tumor Board Participation"],
         careerOpportunities: ["Surgical Oncologist", "Breast Surgeon", "GI Oncology Surgeon", "Academic Surgical Oncology"],
+        pricing: {
+          amount: 4000,
+          currency: 'USD',
+          displayPrice: '$4,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1334 },
+              { months: 6, monthlyAmount: 667 },
+              { months: 12, monthlyAmount: 334 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2229,6 +2469,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform IR procedures independently", "Manage IR patients", "Handle procedural complications", "Provide image-guided care"],
         assessmentMethods: ["Procedure Assessments", "Case Logs", "Written Exams", "Simulation Tests"],
         careerOpportunities: ["Interventional Radiologist", "Vascular IR Specialist", "Oncologic IR", "Academic IR"],
+        pricing: {
+          amount: 3900,
+          currency: 'USD',
+          displayPrice: '$3,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1300 },
+              { months: 6, monthlyAmount: 650 },
+              { months: 12, monthlyAmount: 325 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2250,6 +2510,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform pain interventions", "Develop multimodal pain plans", "Manage chronic pain conditions", "Apply addiction medicine principles"],
         assessmentMethods: ["Procedure Assessments", "Case Reviews", "Written Exams", "Patient Management"],
         careerOpportunities: ["Pain Medicine Specialist", "Interventional Pain Physician", "Pain Clinic Director", "Academic Pain Medicine"],
+        pricing: {
+          amount: 3600,
+          currency: 'USD',
+          displayPrice: '$3,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1200 },
+              { months: 6, monthlyAmount: 600 },
+              { months: 12, monthlyAmount: 300 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2271,6 +2551,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Interpret sleep studies", "Diagnose sleep disorders", "Manage sleep apnea comprehensively", "Provide behavioral sleep treatments"],
         assessmentMethods: ["Sleep Study Interpretation", "Case Reviews", "Written Exams", "Clinical Assessments"],
         careerOpportunities: ["Sleep Medicine Specialist", "Sleep Lab Director", "Sleep Center Director", "Academic Sleep Medicine"],
+        pricing: {
+          amount: 3500,
+          currency: 'USD',
+          displayPrice: '$3,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1167 },
+              { months: 6, monthlyAmount: 584 },
+              { months: 12, monthlyAmount: 292 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2292,6 +2592,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose immunologic disorders", "Manage immunodeficiencies", "Apply immunotherapy appropriately", "Interpret immunologic testing"],
         assessmentMethods: ["Clinical Assessments", "Lab Interpretation", "Case Reviews", "Research Project"],
         careerOpportunities: ["Clinical Immunologist", "Transplant Immunologist", "Immunodeficiency Specialist", "Academic Immunology"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 309 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2313,6 +2633,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Perform forensic autopsies", "Determine cause and manner of death", "Provide expert testimony", "Collaborate with legal authorities"],
         assessmentMethods: ["Autopsy Assessments", "Case Reviews", "Written Exams", "Mock Testimony"],
         careerOpportunities: ["Forensic Pathologist", "Medical Examiner", "Coroner", "Academic Forensic Pathology"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2334,6 +2674,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Diagnose sports injuries", "Perform sports medicine procedures", "Manage concussions", "Provide sideline coverage"],
         assessmentMethods: ["Clinical Assessments", "Procedure Logs", "Written Exams", "Event Coverage"],
         careerOpportunities: ["Sports Medicine Physician", "Team Physician", "Concussion Specialist", "Academic Sports Medicine"],
+        pricing: {
+          amount: 3600,
+          currency: 'USD',
+          displayPrice: '$3,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1200 },
+              { months: 6, monthlyAmount: 600 },
+              { months: 12, monthlyAmount: 300 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       },
       {
@@ -2355,6 +2715,26 @@ export const defaultContent: SiteContent = {
         learningOutcomes: ["Manage poisoned patients", "Administer antidotes appropriately", "Provide toxicology consultation", "Lead poison center operations"],
         assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Poison Center Shifts"],
         careerOpportunities: ["Medical Toxicologist", "Poison Center Director", "Occupational Toxicologist", "Academic Toxicology"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 309 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
         isActive: true
       }
     ],
