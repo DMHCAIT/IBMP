@@ -93,21 +93,6 @@ export default function WhatWeDoSection() {
             ))}
           </div>
         </motion.div>
-
-        {/* Commitment Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.9 }}
-          className="text-center max-w-4xl mx-auto mt-20"
-        >
-          <div className="inline-block px-6 py-3 bg-secondary/10 border border-secondary/30 rounded-full mb-6">
-            <span className="text-secondary font-bold uppercase tracking-wider text-sm">Our Commitment</span>
-          </div>
-          <p className="text-2xl md:text-3xl font-bold text-primary leading-relaxed">
-            {content.commitment}
-          </p>
-        </motion.div>
       </div>
     </section>
   );

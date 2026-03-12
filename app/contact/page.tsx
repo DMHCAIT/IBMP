@@ -1,9 +1,13 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export const metadata = {
-  title: 'Contact Us - IBMP',
-  description: 'Get in touch with the International Board of Medical Practitioners for accreditation inquiries and support.',
+export const metadata: Metadata = {
+  title: 'Contact IBMP | Medical Accreditation & Certification Support',
+  description: 'Contact IBMP for inquiries about medical accreditation, certification programs, fellowship pathways, and healthcare education partnerships.',
+  alternates: {
+    canonical: 'https://www.ibmpractitioner.us/contact/',
+  },
 };
 
 export default function ContactPage() {

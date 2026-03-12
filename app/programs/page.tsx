@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsHero from '@/components/programs/ProgramsHero';
@@ -6,9 +7,12 @@ import FellowshipCategories from '@/components/programs/FellowshipCategories';
 import EligibilityProcess from '@/components/programs/EligibilityProcess';
 import ProgramsCTA from '@/components/programs/ProgramsCTA';
 
-export const metadata = {
-  title: 'Certification & Fellowship Programs - IBMP',
-  description: 'Explore IBMP globally recognized Certification and Fellowship programs for medical doctors and healthcare practitioners across specialties and super-specialties.',
+export const metadata: Metadata = {
+  title: 'IBMP Medical Fellowship Program | Advanced Healthcare Training',
+  description: 'IBMP offers a wide range of medical fellowship programs and advanced healthcare training courses designed for doctors and healthcare professionals seeking specialized medical expertise and global recognition.',
+  alternates: {
+    canonical: 'https://www.ibmpractitioner.us/programs',
+  },
 };
 
 export default function ProgramsPage() {
