@@ -364,6 +364,9 @@ export default function AdmissionPage() {
     "Fellowship in Laparoscopy & Hysteroscopy",
     "Fellowship in Interventional Radiology",
     "Fellowship in Abdominal Imaging",
+    "Fellowship in Urology",
+    "Others",
+    
   ];
 
   return (
