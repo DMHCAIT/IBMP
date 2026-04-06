@@ -23,7 +23,6 @@ const medicalSpecialties = [
   { name: 'Radiology / Diagnostic Radiology', description: 'Medical imaging for diagnosis and treatment guidance' },
   { name: 'Anesthesiology / Anaesthesia', description: 'Perioperative care and pain management' },
   { name: 'Pathology', description: 'Laboratory analysis of tissues and bodily fluids' },
-  { name: 'Preventive Medicine / Public Health', description: 'Disease prevention and population health management' },
   { name: 'General Surgery', description: 'Operative procedures on the abdomen and soft tissues' },
   { name: 'Orthopedic Surgery', description: 'Musculoskeletal system disorders and injuries' },
   { name: 'Cardiothoracic Surgery', description: 'Surgical treatment of heart and chest conditions' },
@@ -37,10 +36,7 @@ const medicalSpecialties = [
   { name: 'Obstetrics & Gynecology (OB-GYN)', description: 'Women\'s reproductive health and childbirth' },
   { name: 'Dermatology', description: 'Skin, hair, and nail conditions' },
   { name: 'Allergy & Immunology', description: 'Allergic diseases and immune system disorders' },
-  { name: 'Medical Genetics', description: 'Genetic disorders diagnosis and counseling' },
-  { name: 'Nuclear Medicine', description: 'Radioactive substances for diagnosis and treatment' },
-  { name: 'Physical Medicine & Rehabilitation', description: 'Functional restoration and disability management' },
-  { name: 'Occupational & Environmental Medicine', description: 'Workplace and environmental health conditions' }
+  { name: 'Nuclear Medicine', description: 'Radioactive substances for diagnosis and treatment' }
 ];
 
 export default function MedicalSpecialtiesList() {

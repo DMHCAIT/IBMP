@@ -27,7 +27,6 @@ const superSpecialties = [
   { name: 'Pediatric Cardiology', description: 'Heart conditions in children' },
   { name: 'Pediatric Oncology', description: 'Cancer treatment in children' },
   { name: 'Pediatric Critical Care', description: 'Intensive care for critically ill children' },
-  { name: 'Developmental & Behavioral Pediatrics', description: 'Child development and behavioral disorders' },
   { name: 'Thoracic Surgery', description: 'Surgical treatment of chest diseases' },
   { name: 'Pediatric Surgery', description: 'Surgical care for infants and children' },
   { name: 'Trauma & Critical Care Surgery', description: 'Emergency surgical care for injuries' },
@@ -37,10 +36,7 @@ const superSpecialties = [
   { name: 'Interventional Radiology', description: 'Minimally invasive image-guided procedures' },
   { name: 'Pain Medicine', description: 'Comprehensive pain management and treatment' },
   { name: 'Sleep Medicine', description: 'Sleep disorders diagnosis and treatment' },
-  { name: 'Clinical Immunology', description: 'Immune system disorders and diseases' },
-  { name: 'Forensic Pathology', description: 'Investigation of sudden or unexpected deaths' },
-  { name: 'Sports Medicine', description: 'Athletic injuries and physical fitness' },
-  { name: 'Medical Toxicology', description: 'Poisoning and toxic exposure treatment' }
+  { name: 'Sports Medicine', description: 'Athletic injuries and physical fitness' }
 ];
 
 export default function SuperSpecialtiesList() {

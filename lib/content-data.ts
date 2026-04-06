@@ -891,47 +891,6 @@ export const defaultContent: SiteContent = {
         isActive: true
       },
       {
-        id: "ms-010",
-        slug: "preventive-medicine",
-        name: "Preventive Medicine / Public Health",
-        shortDescription: "Disease prevention and population health management",
-        fullDescription: "The Fellowship in Preventive Medicine focuses on disease prevention, health promotion, and population health management through epidemiological and public health approaches.",
-        category: "medical-specialties",
-        duration: "6-12 Months",
-        credential: "FIBMP (Preventive Medicine)",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "Public health training preferred", "Interest in population health"],
-        curriculum: [
-          { module: "Epidemiology", topics: ["Study Design", "Outbreak Investigation", "Disease Surveillance", "Biostatistics"] },
-          { module: "Health Policy", topics: ["Health Systems", "Healthcare Economics", "Policy Development", "Advocacy"] },
-          { module: "Health Promotion", topics: ["Behavioral Interventions", "Community Programs", "Screening Programs", "Vaccination"] }
-        ],
-        learningOutcomes: ["Design and conduct epidemiological studies", "Develop public health interventions", "Analyze health policy implications", "Lead population health initiatives"],
-        assessmentMethods: ["Research Projects", "Policy Analysis", "Case Studies", "Written Exams"],
-        careerOpportunities: ["Public Health Officer", "Epidemiologist", "Health Policy Advisor", "Academic Public Health"],
-        pricing: {
-          amount: 1900,
-          currency: 'USD',
-          displayPrice: '$1,900',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 634 },
-              { months: 6, monthlyAmount: 317 },
-              { months: 12, monthlyAmount: 159 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
         id: "ms-011",
         slug: "general-surgery",
         name: "General Surgery",
@@ -1465,47 +1424,6 @@ export const defaultContent: SiteContent = {
         isActive: true
       },
       {
-        id: "ms-024",
-        slug: "medical-genetics",
-        name: "Medical Genetics",
-        shortDescription: "Genetic disorders diagnosis and counseling",
-        fullDescription: "The Fellowship in Medical Genetics provides training in the diagnosis, management, and counseling of patients with genetic disorders and hereditary conditions.",
-        category: "medical-specialties",
-        duration: "6-12 Months",
-        credential: "FIBMP (Medical Genetics)",
-        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "Genetics training or background", "Interest in genetic medicine"],
-        curriculum: [
-          { module: "Clinical Genetics", topics: ["Genetic Assessment", "Dysmorphology", "Prenatal Genetics", "Cancer Genetics"] },
-          { module: "Laboratory Genetics", topics: ["Cytogenetics", "Molecular Genetics", "Biochemical Genetics", "Genomic Testing"] },
-          { module: "Genetic Counseling", topics: ["Risk Assessment", "Family Planning", "Psychosocial Support", "Ethical Issues"] }
-        ],
-        learningOutcomes: ["Diagnose genetic disorders accurately", "Interpret genetic testing results", "Provide genetic counseling", "Manage hereditary conditions"],
-        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Counseling Evaluations"],
-        careerOpportunities: ["Clinical Geneticist", "Cancer Geneticist", "Prenatal Geneticist", "Academic Genetics"],
-        pricing: {
-          amount: 2200,
-          currency: 'USD',
-          displayPrice: '$2,200',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 734 },
-              { months: 6, monthlyAmount: 367 },
-              { months: 12, monthlyAmount: 184 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
         id: "ms-025",
         slug: "nuclear-medicine",
         name: "Nuclear Medicine",
@@ -1545,88 +1463,6 @@ export const defaultContent: SiteContent = {
           buttonText: 'Talk to Counselor'
         },
         isActive: true
-      },
-      {
-        id: "ms-026",
-        slug: "physical-medicine-rehabilitation",
-        name: "Physical Medicine & Rehabilitation",
-        shortDescription: "Functional restoration and disability management",
-        fullDescription: "The Fellowship in Physical Medicine & Rehabilitation provides training in functional restoration, disability management, and comprehensive rehabilitation care.",
-        category: "medical-specialties",
-        duration: "6-12 Months",
-        credential: "FIBMP (PM&R)",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "PM&R residency or equivalent", "Interest in rehabilitation medicine"],
-        curriculum: [
-          { module: "Neurorehabilitation", topics: ["Stroke Rehabilitation", "TBI Rehabilitation", "Spinal Cord Injury", "Neurological Disorders"] },
-          { module: "Musculoskeletal Rehabilitation", topics: ["Sports Injuries", "Arthritis Management", "Post-Surgical Rehab", "Pain Management"] },
-          { module: "Electrodiagnostics", topics: ["EMG", "Nerve Conduction Studies", "Interpretation", "Clinical Correlation"] }
-        ],
-        learningOutcomes: ["Develop comprehensive rehabilitation plans", "Perform electrodiagnostic studies", "Manage chronic pain", "Lead rehabilitation teams"],
-        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Practical Tests"],
-        careerOpportunities: ["Physiatrist", "Rehabilitation Director", "Sports Medicine Physician", "Academic PM&R"],
-        pricing: {
-          amount: 2300,
-          currency: 'USD',
-          displayPrice: '$2,300',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 767 },
-              { months: 6, monthlyAmount: 384 },
-              { months: 12, monthlyAmount: 192 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
-        id: "ms-027",
-        slug: "occupational-medicine",
-        name: "Occupational & Environmental Medicine",
-        shortDescription: "Workplace and environmental health conditions",
-        fullDescription: "The Fellowship in Occupational & Environmental Medicine provides training in the prevention and management of work-related and environmental health conditions.",
-        category: "medical-specialties",
-        duration: "6-12 Months",
-        credential: "FIBMP (Occupational Medicine)",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "Public health or preventive medicine background", "Interest in workplace health"],
-        curriculum: [
-          { module: "Occupational Health", topics: ["Workplace Hazards", "Health Surveillance", "Fitness for Work", "Return to Work"] },
-          { module: "Environmental Medicine", topics: ["Toxicology", "Air Quality", "Water Contamination", "Climate Health"] },
-          { module: "Regulatory Medicine", topics: ["Workers Compensation", "Disability Evaluation", "Legal Aspects", "Policy Development"] }
-        ],
-        learningOutcomes: ["Assess workplace health hazards", "Manage occupational diseases", "Conduct fitness evaluations", "Develop workplace health programs"],
-        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Project Work"],
-        careerOpportunities: ["Occupational Health Physician", "Corporate Medical Director", "Environmental Health Officer", "Academic Occupational Medicine"],
-        pricing: {
-          amount: 2000,
-          currency: 'USD',
-          displayPrice: '$2,000',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 667 },
-              { months: 6, monthlyAmount: 334 },
-              { months: 12, monthlyAmount: 167 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
       }
     ],
     superSpecialties: [
@@ -2164,47 +2000,6 @@ export const defaultContent: SiteContent = {
         isActive: true
       },
       {
-        id: "ss-014",
-        slug: "developmental-pediatrics",
-        name: "Developmental & Behavioral Pediatrics",
-        shortDescription: "Developmental disorders in children",
-        fullDescription: "The Fellowship in Developmental & Behavioral Pediatrics provides specialized training in the evaluation and management of developmental and behavioral disorders in children.",
-        category: "super-specialties",
-        duration: "12 Months",
-        credential: "FIBMP (Developmental Pediatrics)",
-        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Pediatrics residency completion", "Valid medical license/registration", "Interest in developmental disorders"],
-        curriculum: [
-          { module: "Developmental Assessment", topics: ["Developmental Screening", "Standardized Testing", "Autism Evaluation", "Learning Disabilities"] },
-          { module: "Behavioral Disorders", topics: ["ADHD", "Anxiety", "Behavioral Management", "Psychopharmacology"] },
-          { module: "Neurodevelopmental", topics: ["Cerebral Palsy", "Genetic Syndromes", "Early Intervention", "School Consultation"] }
-        ],
-        learningOutcomes: ["Conduct developmental evaluations", "Diagnose neurodevelopmental disorders", "Develop treatment plans", "Coordinate multidisciplinary care"],
-        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Family Interviews"],
-        careerOpportunities: ["Developmental Pediatrician", "Autism Specialist", "School Health Consultant", "Academic Developmental Peds"],
-        pricing: {
-          amount: 3700,
-          currency: 'USD',
-          displayPrice: '$3,700',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 1234 },
-              { months: 6, monthlyAmount: 617 },
-              { months: 12, monthlyAmount: 309 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
         id: "ss-015",
         slug: "thoracic-surgery",
         name: "Thoracic Surgery",
@@ -2574,88 +2369,6 @@ export const defaultContent: SiteContent = {
         isActive: true
       },
       {
-        id: "ss-024",
-        slug: "clinical-immunology",
-        name: "Clinical Immunology",
-        shortDescription: "Immune system disorders and immunotherapy",
-        fullDescription: "The Fellowship in Clinical Immunology provides specialized training in immune system disorders, immunodeficiencies, and immunotherapy applications.",
-        category: "super-specialties",
-        duration: "12 Months",
-        credential: "FIBMP (Clinical Immunology)",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Internal Medicine or Allergy residency", "Valid medical license/registration", "Immunology background preferred"],
-        curriculum: [
-          { module: "Immunodeficiency", topics: ["Primary Immunodeficiency", "Secondary Immunodeficiency", "Diagnostic Workup", "IVIG Therapy"] },
-          { module: "Autoimmunity", topics: ["Autoimmune Mechanisms", "Organ-Specific Autoimmunity", "Systemic Autoimmunity", "Immunomodulation"] },
-          { module: "Transplant Immunology", topics: ["HLA Testing", "Rejection Mechanisms", "Immunosuppression", "Tolerance Induction"] }
-        ],
-        learningOutcomes: ["Diagnose immunologic disorders", "Manage immunodeficiencies", "Apply immunotherapy appropriately", "Interpret immunologic testing"],
-        assessmentMethods: ["Clinical Assessments", "Lab Interpretation", "Case Reviews", "Research Project"],
-        careerOpportunities: ["Clinical Immunologist", "Transplant Immunologist", "Immunodeficiency Specialist", "Academic Immunology"],
-        pricing: {
-          amount: 3700,
-          currency: 'USD',
-          displayPrice: '$3,700',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 1234 },
-              { months: 6, monthlyAmount: 617 },
-              { months: 12, monthlyAmount: 309 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
-        id: "ss-025",
-        slug: "forensic-pathology",
-        name: "Forensic Pathology",
-        shortDescription: "Investigation of sudden and unexplained deaths",
-        fullDescription: "The Fellowship in Forensic Pathology provides specialized training in the investigation of sudden, unexplained, and violent deaths for legal proceedings.",
-        category: "super-specialties",
-        duration: "12 Months",
-        credential: "FIBMP (Forensic Pathology)",
-        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Pathology residency completion", "Valid medical license/registration", "Interest in forensic medicine"],
-        curriculum: [
-          { module: "Autopsy Pathology", topics: ["Autopsy Technique", "Gross Examination", "Microscopic Analysis", "Documentation"] },
-          { module: "Forensic Investigation", topics: ["Death Investigation", "Scene Analysis", "Evidence Collection", "Chain of Custody"] },
-          { module: "Legal Medicine", topics: ["Expert Testimony", "Report Writing", "Court Procedures", "Ethics in Forensics"] }
-        ],
-        learningOutcomes: ["Perform forensic autopsies", "Determine cause and manner of death", "Provide expert testimony", "Collaborate with legal authorities"],
-        assessmentMethods: ["Autopsy Assessments", "Case Reviews", "Written Exams", "Mock Testimony"],
-        careerOpportunities: ["Forensic Pathologist", "Medical Examiner", "Coroner", "Academic Forensic Pathology"],
-        pricing: {
-          amount: 3800,
-          currency: 'USD',
-          displayPrice: '$3,800',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 1267 },
-              { months: 6, monthlyAmount: 634 },
-              { months: 12, monthlyAmount: 317 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
-      },
-      {
         id: "ss-026",
         slug: "sports-medicine",
         name: "Sports Medicine",
@@ -2695,47 +2408,6 @@ export const defaultContent: SiteContent = {
           buttonText: 'Talk to Counselor'
         },
         isActive: true
-      },
-      {
-        id: "ss-027",
-        slug: "medical-toxicology",
-        name: "Medical Toxicology",
-        shortDescription: "Poisoning and toxicological emergencies",
-        fullDescription: "The Fellowship in Medical Toxicology provides specialized training in the diagnosis and management of poisonings, drug overdoses, and environmental exposures.",
-        category: "super-specialties",
-        duration: "12 Months",
-        credential: "FIBMP (Medical Toxicology)",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-        eligibility: ["MD/MBBS or equivalent medical degree", "Emergency Medicine or IM residency", "Valid medical license/registration", "Toxicology interest"],
-        curriculum: [
-          { module: "Clinical Toxicology", topics: ["Toxidromes", "Drug Overdose", "Antidotes", "Decontamination"] },
-          { module: "Environmental Toxicology", topics: ["Chemical Exposures", "Heavy Metals", "Envenomation", "Radiation"] },
-          { module: "Poison Center", topics: ["Poison Center Operations", "Risk Communication", "Public Health", "Surveillance"] }
-        ],
-        learningOutcomes: ["Manage poisoned patients", "Administer antidotes appropriately", "Provide toxicology consultation", "Lead poison center operations"],
-        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Poison Center Shifts"],
-        careerOpportunities: ["Medical Toxicologist", "Poison Center Director", "Occupational Toxicologist", "Academic Toxicology"],
-        pricing: {
-          amount: 3700,
-          currency: 'USD',
-          displayPrice: '$3,700',
-          installments: {
-            available: true,
-            plans: [
-              { months: 3, monthlyAmount: 1234 },
-              { months: 6, monthlyAmount: 617 },
-              { months: 12, monthlyAmount: 309 }
-            ]
-          }
-        },
-        counselorContact: {
-          enabled: true,
-          phone: '+1 3023020293',
-          email: 'info@ibmpractitioner.us',
-          whatsapp: '+1 3023020293',
-          buttonText: 'Talk to Counselor'
-        },
-        isActive: false
       }
     ],
     honoraryFellowship: [
