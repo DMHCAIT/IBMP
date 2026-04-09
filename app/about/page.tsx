@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AboutHero from '@/components/about/AboutHero';
+import AcademicLeadershipSection from '@/components/about/AcademicLeadershipSection';
 import BoardSection from '@/components/about/BoardSection';
 import ValuesSection from '@/components/about/ValuesSection';
 
@@ -20,6 +21,7 @@ export default function AboutPage() {
       <main>
         <AboutHero />
         <BoardSection />
+        <AcademicLeadershipSection />
         <ValuesSection />
       </main>
       <Footer />
