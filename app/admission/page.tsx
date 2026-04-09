@@ -344,6 +344,7 @@ export default function AdmissionPage() {
     "Fellowship in Anesthesiology",
     "Fellowship in Arthroscopy and Arthroplasty",
     "Fellowship in Breast Imaging",
+    "Fellowship in Clinical Cardiology",
     "Fellowship in Cosmetic Gynecology",
     "Fellowship in Critical Care",
     "Fellowship in Dermatology",
