@@ -76,15 +76,15 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
                   <div className="text-4xl mb-4">🏛️</div>
-                  <h3 className="text-xl font-bold text-primary mb-2">Get Your Medical Program Accredited</h3>
-                  <p className="text-gray-600 mb-3">Join the ranks of globally recognized medical education providers. Our accreditation ensures your programs meet the highest international standards of quality, credibility, and excellence.</p>
+                  <h3 className="text-xl font-bold text-primary mb-2">Get your Medical Program Accredited</h3>
+                  <p className="text-gray-600 mb-3">Join the ranks of globally recognized medical education providers. Our accreditation ensures your programs meet the highest international standards of quality, credibility, and excellence. </p>
                   <a href="mailto:accreditation@ibmpractitioner.us" className="text-secondary font-semibold hover:underline">
                     accreditation@ibmpractitioner.us
                   </a>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
                   <div className="text-4xl mb-4">🎓</div>
-                  <h3 className="text-xl font-bold text-primary mb-2">Certify Your Practice Globally</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Certified Your Practice Globally</h3>
                   <p className="text-gray-600 mb-3">Join our Fellow Program and achieve international recognition for your medical expertise and professional excellence.</p>
                   <a href="mailto:fellow@ibmpractitioner.us" className="text-secondary font-semibold hover:underline">
                     fellow@ibmpractitioner.us
@@ -92,10 +92,10 @@ export default function ContactPage() {
                 </div>
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
                   <div className="text-4xl mb-4">👨‍🏫</div>
-                  <h3 className="text-xl font-bold text-primary mb-2">Join IBMP as Faculty & International Representative</h3>
-                  <p className="text-gray-600 mb-3">Opportunity to serve as Faculty and International Representative. Share your expertise globally and shape the future of medical education.</p>
+                  <h3 className="text-xl font-bold text-primary mb-2">Join the International Board of Medical Practitioners (IBMP)</h3>
+                  <p className="text-gray-600 mb-3">Opportunity to serve as Faculty and International Representative.</p>
                   <a href="mailto:join@ibmpractitioner.us" className="text-secondary font-semibold hover:underline">
-                    join@ibmpractitioner.us
+                    info@ibmpractitioner.us
                   </a>
                 </div>
               </div>
