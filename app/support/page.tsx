@@ -112,7 +112,7 @@ export default function SupportPage() {
                 How Can We Help?
               </h1>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                We're committed to supporting medical practitioners, institutions, and stakeholders with expert assistance across all aspects of IBMP services.
+                We&apos;re committed to supporting medical practitioners, institutions, and stakeholders with expert assistance across all aspects of IBMP services.
               </p>
             </div>
           </div>

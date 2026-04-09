@@ -508,7 +508,7 @@ export const defaultContent: SiteContent = {
       { name: "Contact", href: "/contact" },
     ],
     resources: [
-      { name: "Guidelines", href: "/#" },
+      { name: "Guidelines", href: "/guidelines" },
       { name: "Standards", href: "/#" },
       { name: "Documentation", href: "/#" },
       { name: "Support", href: "/support" },
