@@ -5,6 +5,11 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 function getAdminClient() {
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  if (!serviceRoleKey || serviceRoleKey === 'REPLACE_WITH_YOUR_ACTUAL_SERVICE_ROLE_KEY') {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY is missing. Configure it in deployment environment variables.');
+  }
+
   try {
     return getSupabaseServiceClient();
   } catch {
