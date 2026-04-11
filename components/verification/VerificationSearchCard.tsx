@@ -1,6 +1,15 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import {
+  Award,
+  BadgeCheck,
+  Building2,
+  CalendarDays,
+  IdCard,
+  ShieldCheck,
+  UserRound,
+} from 'lucide-react';
 
 type VerificationRecord = {
   board: string;
@@ -80,22 +89,71 @@ export default function VerificationSearchCard() {
       )}
 
       {record && (
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-primary mb-4">Verification Result</h3>
-          <div className="space-y-2 text-sm text-gray-800">
-            <p><span className="font-semibold">Board:</span> {record.board || 'FIBMP'}</p>
-            <p><span className="font-semibold">Certification ID:</span> {record.certificationId}</p>
-            <p><span className="font-semibold">Full Name of Fellow:</span> {record.fullName}</p>
-            <p><span className="font-semibold">Fellowship Awarded Title:</span> {record.fellowshipAwardedTitle}</p>
-            <p><span className="font-semibold">Months & Year of Award:</span> {record.monthsYearOfAward}</p>
-            <p>
-              <span className="font-semibold">Current Status:</span>{' '}
-              <span className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold ${record.currentStatus === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'}`}>
+        <section className="relative overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 shadow-sm">
+          <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-emerald-100/60" />
+          <div className="absolute -left-12 -bottom-12 h-36 w-36 rounded-full bg-teal-100/60" />
+
+          <div className="relative p-6 md:p-7">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-emerald-200 pb-4">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-emerald-700" />
+                <h3 className="text-xl font-bold text-primary">Verification Result</h3>
+              </div>
+              <span
+                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold ${
+                  record.currentStatus === 'Active'
+                    ? 'bg-emerald-100 text-emerald-700'
+                    : 'bg-gray-200 text-gray-700'
+                }`}
+              >
+                <BadgeCheck className="h-3.5 w-3.5" />
                 {record.currentStatus}
               </span>
-            </p>
+            </div>
+
+            <dl className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded-xl border border-emerald-100 bg-white/70 p-4">
+                <dt className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <Building2 className="h-4 w-4 text-emerald-700" />
+                  Board
+                </dt>
+                <dd className="text-sm font-semibold text-gray-900">{record.board || 'FIBMP'}</dd>
+              </div>
+
+              <div className="rounded-xl border border-emerald-100 bg-white/70 p-4">
+                <dt className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <IdCard className="h-4 w-4 text-emerald-700" />
+                  Certification ID
+                </dt>
+                <dd className="text-sm font-semibold text-gray-900">{record.certificationId}</dd>
+              </div>
+
+              <div className="rounded-xl border border-emerald-100 bg-white/70 p-4 md:col-span-2">
+                <dt className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <UserRound className="h-4 w-4 text-emerald-700" />
+                  Full Name of Fellow
+                </dt>
+                <dd className="text-base font-bold text-primary">{record.fullName}</dd>
+              </div>
+
+              <div className="rounded-xl border border-emerald-100 bg-white/70 p-4 md:col-span-2">
+                <dt className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <Award className="h-4 w-4 text-emerald-700" />
+                  Fellowship Awarded Title
+                </dt>
+                <dd className="text-sm font-semibold text-gray-900">{record.fellowshipAwardedTitle}</dd>
+              </div>
+
+              <div className="rounded-xl border border-emerald-100 bg-white/70 p-4 md:col-span-2">
+                <dt className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <CalendarDays className="h-4 w-4 text-emerald-700" />
+                  Months and Year of Award
+                </dt>
+                <dd className="text-sm font-semibold text-gray-900">{record.monthsYearOfAward}</dd>
+              </div>
+            </dl>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );
