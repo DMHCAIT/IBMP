@@ -98,10 +98,10 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const incomingRecords = Array.isArray(body?.records)
-      ? body.records
+    const incomingRecords: VerificationPayload[] = Array.isArray(body?.records)
+      ? (body.records as VerificationPayload[])
       : body?.record
-        ? [body.record]
+        ? [body.record as VerificationPayload]
         : [];
 
     if (incomingRecords.length === 0) {
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedRecords = incomingRecords.map((record: VerificationPayload) => normalizeRecord(record));
-    const invalidRecord = normalizedRecords.find((record) => validateRecord(record).length > 0);
+    const invalidRecord = normalizedRecords.find((record: ReturnType<typeof normalizeRecord>) => validateRecord(record).length > 0);
 
     if (invalidRecord) {
       return NextResponse.json(
