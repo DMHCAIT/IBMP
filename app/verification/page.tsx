@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import VerificationSearchCard from '@/components/verification/VerificationSearchCard';
 
 export const metadata = {
   title: 'Verification - IBMP',
@@ -39,21 +40,7 @@ export default function VerificationPage() {
                 <p className="text-gray-600">Enter IBMP Accreditation Number, Fellowship Number, or Full Name to verify status</p>
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Search Credentials
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter accreditation number, fellowship number, or full name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
-                  />
-                </div>
-                <button className="w-full px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-all shadow-md hover:shadow-lg">
-                  Verify Now
-                </button>
-              </div>
+              <VerificationSearchCard />
 
               {/* Info Boxes */}
               <div className="mt-10 grid md:grid-cols-2 gap-6">

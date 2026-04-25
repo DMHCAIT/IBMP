@@ -2408,6 +2408,188 @@ export const defaultContent: SiteContent = {
           buttonText: 'Talk to Counselor'
         },
         isActive: true
+      },
+      {
+        id: "ss-027",
+        slug: "clinical-hematology",
+        name: "Fellowship in Clinical Hematology",
+        shortDescription: "Diagnosis, evaluation, and management of blood and bone marrow disorders",
+        fullDescription: "The Fellowship in Clinical Hematology is a specialized branch of internal medicine focused on the diagnosis, evaluation, and management of disorders of blood and bone marrow. These include anemias, bleeding and clotting disorders, hematologic malignancies, transfusion medicine, and stem cell transplantation. This fellowship program is designed to provide comprehensive clinical training, laboratory exposure, and hands-on procedural skills to enable physicians to independently manage hematological disorders in both outpatient and inpatient settings.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Clinical Hematology)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Internal Medicine residency completion", "Valid medical license/registration", "Minimum 2 years post-residency experience"],
+        curriculum: [
+          { module: "Module 1: Basics of Hematology & Laboratory Principles", topics: ["Hematopoiesis and bone marrow physiology", "Complete blood count (CBC) interpretation", "Peripheral smear examination", "Bone marrow aspiration and biopsy principles", "Hematology laboratory techniques", "Approach to anemia"] },
+          { module: "Module 2: Anemias", topics: ["Iron deficiency anemia", "Megaloblastic anemia", "Hemolytic anemia", "Aplastic anemia", "Anemia of chronic disease", "Transfusion principles"] },
+          { module: "Module 3: Hemoglobinopathies & Red Cell Disorders", topics: ["Thalassemia syndromes", "Sickle cell disease", "G6PD deficiency", "Hereditary spherocytosis", "Iron overload management"] },
+          { module: "Module 4: White Blood Cell Disorders", topics: ["Neutropenia and neutrophilia", "Acute leukemias", "Chronic leukemias", "Myelodysplastic syndromes", "Myeloproliferative neoplasms"] },
+          { module: "Module 5: Lymphomas & Plasma Cell Disorders", topics: ["Hodgkin lymphoma", "Non-Hodgkin lymphoma", "Multiple myeloma", "Monoclonal gammopathy", "Staging and chemotherapy principles"] },
+          { module: "Module 6: Platelet & Coagulation Disorders", topics: ["Thrombocytopenia", "ITP and TTP", "Hemophilia A and B", "Von Willebrand disease", "DIC and thrombophilia", "Anticoagulation therapy"] },
+          { module: "Module 7: Hematologic Malignancies & Targeted Therapy", topics: ["AML and ALL", "CML and CLL", "Molecular diagnostics", "Targeted therapies", "Immunotherapy basics"] },
+          { module: "Module 8: Transfusion Medicine & Stem Cell Transplantation", topics: ["Blood grouping and cross-matching", "Component therapy", "Transfusion reactions", "Apheresis", "Hematopoietic stem cell transplantation overview"] },
+          { module: "Module 9: Pediatric Hematology", topics: ["Pediatric anemia", "Pediatric leukemias", "Congenital bleeding disorders", "Hemoglobinopathies in children"] },
+          { module: "Module 10: Supportive Care & Hematologic Emergencies", topics: ["Febrile neutropenia", "Tumor lysis syndrome", "Hyperleukocytosis", "Infection prophylaxis", "Pain and palliative care"] },
+          { module: "Module 11: Advanced & Complex Hematology", topics: ["Refractory and relapsed malignancies", "Clinical trials overview", "Personalized medicine in hematology", "Long-term follow-up and survivorship"] }
+        ],
+        learningOutcomes: ["Interpret hematological investigations including CBC, peripheral smear, coagulation profile, and bone marrow studies", "Diagnose and manage common and complex anemias", "Evaluate and treat bleeding and thrombotic disorders", "Diagnose and manage leukemias, lymphomas, and plasma cell disorders", "Plan chemotherapy protocols and manage complications", "Understand principles of transfusion medicine and stem cell transplantation", "Manage hematological emergencies effectively", "Apply evidence-based practice and participate in research activities", "Maintain ethical standards and proper clinical documentation"],
+        assessmentMethods: ["Clinical Case Presentations", "Laboratory Competency Assessments", "Written Examinations", "Bone Marrow Biopsy Assessments", "Procedure Logs", "Research Project", "Portfolio Review"],
+        careerOpportunities: ["Hematology Specialist", "Oncohematologist", "Hematology Clinic Director", "Hospital Consultant", "Transfusion Medicine Specialist", "Academic Hematology", "Research Physician"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-028",
+        slug: "reproductive-endocrinology",
+        name: "Fellowship in Reproductive Endocrinology",
+        shortDescription: "Advanced hormonal regulation of reproduction, infertility, and reproductive endocrine disorders",
+        fullDescription: "The Fellowship in Reproductive Endocrinology is an advanced postgraduate training program designed to develop comprehensive expertise in the hormonal regulation of reproduction, infertility, and reproductive health disorders. The fellowship provides in-depth exposure to female reproductive endocrinology, endocrine infertility, menstrual disorders, ovarian dysfunction, and endocrine disorders affecting pregnancy, with integration into assisted reproductive technologies (ART). The program prepares clinicians for independent subspecialty practice in reproductive endocrinology within fertility centers and academic institutions.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Reproductive Endocrinology)",
+        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
+        eligibility: ["MD/MS/DNB/PG Equivalent (Obstetrics & Gynecology)", "Valid medical license/registration", "Prior clinical experience in women\'s health or infertility care preferred"],
+        curriculum: [
+          { module: "Module 1: Foundations of Reproductive Endocrinology", topics: ["Hypothalamic-Pituitary-Gonadal (HPG) Axis", "Puberty and sexual maturation (male and female)", "Menstrual physiology and spermatogenesis", "Hormonal regulation of ovulation and testicular function", "Principles of hormonal assays and endocrine investigations"] },
+          { module: "Module 2: Ovulatory Disorders & Menstrual Dysfunction", topics: ["Anovulation and oligo-ovulation", "Amenorrhea (primary and secondary)", "Abnormal uterine bleeding (endocrine causes)", "Luteal phase defects", "Functional hypothalamic disorders", "Hirsutism: endocrine evaluation and management", "Hyperandrogenic states"] },
+          { module: "Module 3: PCOS, Ovarian Disorders & Ovarian Aging", topics: ["Pathophysiology of PCOS", "Diagnostic criteria and phenotypes", "Metabolic and long-term risks", "Premature ovarian insufficiency", "Ovarian aging and diminished ovarian reserve", "AMH and ovarian reserve testing"] },
+          { module: "Module 4: Endocrine Infertility (Male & Female)", topics: ["Endocrine evaluation of female infertility", "Male infertility: endocrine causes and workup", "Functional hypogonadism in males", "Hypogonadotropic hypogonadism", "Semen analysis interpretation and hormonal correlation", "Ovulation induction protocols", "Monitoring follicular development"] },
+          { module: "Module 5: Endocrine Disorders Across Reproductive Life Stages", topics: ["Hormonal therapy in menopausal transition", "Perimenopause and menopause endocrine changes", "Hormone replacement therapy (HRT): indications and risks", "Endocrine disorders in pregnancy", "Thyroid disorders", "Hyperprolactinemia", "Adrenal disorders", "Diabetes and metabolic disorders", "Hormonal support in early pregnancy"] },
+          { module: "Module 6: ART Interface & Advanced Reproductive Endocrinology", topics: ["Endocrine evaluation before ART", "Hormonal support in ART cycles", "Individualized stimulation protocols", "Prevention and management of OHSS", "Endocrine monitoring in IVF cycles"] },
+          { module: "Module 7: Gender & Specialized Reproductive Endocrinology", topics: ["Transgender endocrinology basics", "Gender-affirming hormone therapy", "Fertility preservation in transgender individuals", "Ethical considerations in gender-affirming care"] },
+          { module: "Module 8: Clinical Practice, Ethics & Research", topics: ["Ethical and legal aspects of fertility care", "Counseling in reproductive endocrinology", "Evidence-based clinical practice", "Case-based discussions", "Project work and clinical training"] }
+        ],
+        learningOutcomes: ["Understand normal and abnormal reproductive endocrinology", "Diagnose and manage ovulatory and menstrual disorders", "Evaluate and treat endocrine causes of female infertility", "Manage polycystic ovary syndrome and ovarian dysfunction", "Interpret and apply hormonal investigations effectively", "Plan and monitor ovulation induction and hormonal therapies", "Manage reproductive endocrine disorders in pregnancy", "Integrate endocrine management with ART protocols", "Counsel patients on fertility, hormonal treatments, and outcomes", "Practice ethical, evidence-based reproductive endocrine care"],
+        assessmentMethods: ["Clinical case presentations", "Objective structured clinical assessment", "Hormonal workup interpretation exercises", "Written examinations", "Portfolio and logbook review", "Project work and viva"],
+        careerOpportunities: ["Reproductive Endocrinology Specialist", "Infertility and ART Consultant", "Fertility Center Consultant", "Academic Faculty in Reproductive Medicine", "Clinical Research Associate in Reproductive Health"],
+        pricing: {
+          amount: 3900,
+          currency: 'USD',
+          displayPrice: '$3,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1300 },
+              { months: 6, monthlyAmount: 650 },
+              { months: 12, monthlyAmount: 325 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-029",
+        slug: "abdominal-imaging",
+        name: "Fellowship in Abdominal Imaging",
+        shortDescription: "Focused multimodality imaging of abdominal organs with protocol optimization and oncologic correlation",
+        fullDescription: "The Fellowship in Abdominal Imaging is a focused postgraduate subspecialty training program designed to develop expertise in imaging of the abdominal organs, including the liver, pancreas, gastrointestinal tract, kidneys, adrenal glands, and retroperitoneum. The fellowship emphasizes multimodality imaging using ultrasound, Doppler, CT, and MRI, with strong focus on protocol optimization, accurate diagnosis, oncologic imaging, and clinical correlation. The program prepares radiologists for independent subspecialty practice in abdominal imaging.",
+        category: "super-specialties",
+        duration: "6 Months",
+        credential: "FIBMP (Abdominal Imaging)",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80",
+        eligibility: ["MD/MS/DNB/PG Equivalent (OBG or Radio-diagnostic)", "Valid medical license/registration", "Basic competency in radiology reporting and imaging workflows"],
+        curriculum: [
+          { module: "Module 1: Foundations of Abdominal Imaging", topics: ["Abdominal anatomy and imaging correlations", "Imaging physics and protocol selection", "Ultrasound and Doppler techniques", "Contrast agents and safety", "Reporting standards"] },
+          { module: "Module 2: Hepatobiliary and Pancreatic Imaging", topics: ["Liver lesions and cirrhosis", "Focal hepatic lesions and LI-RADS overview", "Biliary tree imaging", "Pancreatic inflammatory and neoplastic diseases", "MRCP and multiphasic CT protocols"] },
+          { module: "Module 3: Gastrointestinal Tract Imaging", topics: ["Esophagus, stomach, and small bowel imaging", "Colorectal imaging", "Inflammatory bowel disease", "GI emergencies", "CT enterography overview"] },
+          { module: "Module 4: Genitourinary and Retroperitoneal Imaging", topics: ["Renal and adrenal imaging", "Urothelial tumors", "Retroperitoneal masses", "Vascular anatomy", "Doppler applications"] },
+          { module: "Module 5: Abdominal Oncology and Emergency Imaging", topics: ["Oncologic staging and response assessment", "Abdominal trauma imaging", "Acute abdomen imaging", "Imaging-pathology correlation", "Clinical audit and quality assurance"] },
+          { module: "Module 6: Abdominal Oncology, Project and Clinical Practice", topics: ["Project work", "Medico-legal aspects", "Communication and reporting excellence"] }
+        ],
+        learningOutcomes: ["Perform and interpret abdominal ultrasound, CT, and MRI studies", "Diagnose hepatobiliary, pancreatic, gastrointestinal, renal, and adrenal diseases", "Apply multiphasic CT and MRI protocols effectively", "Interpret abdominal oncologic imaging for staging and follow-up", "Recognize acute abdominal emergencies on imaging", "Produce structured, clinically relevant imaging reports", "Correlate imaging findings with laboratory and clinical data", "Communicate effectively with referring clinicians", "Maintain radiation safety and contrast safety standards", "Practice ethical and evidence-based abdominal imaging"],
+        assessmentMethods: ["Case-based imaging interpretation", "Structured reporting audits", "Protocol planning assessments", "Written examination", "Project submission and viva", "Clinical performance logbook review"],
+        careerOpportunities: ["Abdominal Imaging Specialist", "Consultant Radiologist - GI/Hepatobiliary Imaging", "Oncologic Imaging Consultant", "Academic Faculty in Diagnostic Radiology", "Advanced Imaging Center Consultant"],
+        pricing: {
+          amount: 3200,
+          currency: 'USD',
+          displayPrice: '$3,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1067 },
+              { months: 6, monthlyAmount: 534 },
+              { months: 12, monthlyAmount: 267 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-030",
+        slug: "breast-imaging",
+        name: "Fellowship in Breast Imaging",
+        shortDescription: "Focused training in breast cancer screening, diagnosis, and image-guided breast care",
+        fullDescription: "The Fellowship in Breast Imaging is a focused postgraduate subspecialty training program designed to develop expertise in the screening, diagnosis, and imaging-guided management of breast diseases. The fellowship provides structured training in mammography, breast ultrasound, breast MRI, and image-guided interventions, emphasizing early detection of breast cancer, standardized reporting, quality assurance, and multidisciplinary collaboration. The program prepares clinicians and radiologists for competent independent practice in breast imaging.",
+        category: "super-specialties",
+        duration: "6 Months",
+        credential: "FIBMP (Breast Imaging)",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80",
+        eligibility: ["MD/MS/DNB/PG Equivalent (OBG or Radio-diagnostic)", "Valid medical license/registration", "Basic competency in diagnostic imaging interpretation"],
+        curriculum: [
+          { module: "Module 1: Fundamentals of Breast Imaging", topics: ["Breast anatomy and pathology", "Imaging physics and radiation safety", "Screening principles and protocols", "Breast density and risk assessment", "Reporting standards"] },
+          { module: "Module 2: Mammography", topics: ["Screening and diagnostic mammography", "Digital and tomosynthesis overview", "Microcalcifications and masses", "BI-RADS application"] },
+          { module: "Module 3: Breast Ultrasound and Doppler", topics: ["Indications and techniques", "Characterization of breast lesions", "Axillary evaluation", "Ultrasound-guided procedures", "Correlation with mammography"] },
+          { module: "Module 4: Breast MRI and Interventional Exposure", topics: ["Breast MRI protocols and interpretation", "MRI indications and contraindications", "Pre- and post-treatment imaging", "Image-guided biopsies", "Multidisciplinary tumor board participation"] },
+          { module: "Module 5: Project and Clinical Practice", topics: ["Project work", "Screening program evaluation", "Medico-legal aspects", "Communication and reporting excellence"] }
+        ],
+        learningOutcomes: ["Perform and interpret screening and diagnostic mammography", "Conduct comprehensive breast ultrasound examinations", "Interpret breast MRI studies using standard protocols", "Apply BI-RADS classification accurately and consistently", "Differentiate benign from malignant breast lesions", "Participate in image-guided breast interventions (exposure)", "Correlate imaging findings with clinical and pathological data", "Communicate imaging results effectively in multidisciplinary teams", "Maintain radiation safety and quality assurance standards", "Practice ethical, evidence-based breast imaging"],
+        assessmentMethods: ["Structured image interpretation assessments", "BI-RADS reporting audits", "Case-based discussions", "Written examination", "Project submission and viva", "Clinical logbook review"],
+        careerOpportunities: ["Breast Imaging Specialist", "Consultant Radiologist - Breast Imaging", "Breast Screening Program Consultant", "Oncologic Imaging Team Member", "Academic Faculty in Breast Imaging"],
+        pricing: {
+          amount: 3200,
+          currency: 'USD',
+          displayPrice: '$3,200',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1067 },
+              { months: 6, monthlyAmount: 534 },
+              { months: 12, monthlyAmount: 267 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
       }
     ],
     honoraryFellowship: [
