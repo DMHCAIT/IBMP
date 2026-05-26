@@ -143,7 +143,7 @@ export default function VerificationForm() {
                       <span className="text-gray-900 font-semibold font-mono">{r.certificationId}</span>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 border-b border-gray-100 pb-3">
-                      <span className="text-gray-500 font-medium sm:w-56 flex-shrink-0">Full Name of Fellow</span>
+                      <span className="text-gray-500 font-medium sm:w-56 flex-shrink-0">Full Name</span>
                       <span className="text-gray-900 font-semibold">{r.fullName}</span>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 border-b border-gray-100 pb-3">
@@ -151,7 +151,7 @@ export default function VerificationForm() {
                       <span className="text-gray-900">{r.fellowshipTitle}</span>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 border-b border-gray-100 pb-3">
-                      <span className="text-gray-500 font-medium sm:w-56 flex-shrink-0">Months &amp; Year of Award</span>
+                      <span className="text-gray-500 font-medium sm:w-56 flex-shrink-0">Month &amp; year</span>
                       <span className="text-gray-900">{r.awardMonthYear}</span>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-1">
