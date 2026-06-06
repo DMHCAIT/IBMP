@@ -11,6 +11,7 @@ interface EditorLayoutProps {
   children: ReactNode;
   onSave: () => void;
   onReset: () => void;
+  headerAction?: ReactNode;
 }
 
 export default function EditorLayout({
@@ -19,6 +20,7 @@ export default function EditorLayout({
   children,
   onSave,
   onReset,
+  headerAction,
 }: EditorLayoutProps) {
   const { isSaving } = useContent();
 
@@ -38,7 +40,8 @@ export default function EditorLayout({
             <p className="text-gray-500 text-sm">{description}</p>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
+          {headerAction}
           <button
             onClick={onReset}
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-all"

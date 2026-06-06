@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useContent } from '@/lib/content-context';
 import { defaultContent } from '@/lib/content-data';
 import EditorLayout, { SectionCard, InputField, ArrayEditor } from '@/components/admin/EditorLayout';
+import { Mail } from 'lucide-react';
 
 export default function ContactEditorPage() {
   const { content, updateContent, saveContent } = useContent();
@@ -31,6 +33,15 @@ export default function ContactEditorPage() {
       description="Edit the Contact page content"
       onSave={handleSave}
       onReset={handleReset}
+      headerAction={
+        <Link
+          href="/admin/contact/submissions"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+        >
+          <Mail className="w-4 h-4" />
+          View Submissions
+        </Link>
+      }
     >
       {/* Contact Header */}
       <SectionCard title="Contact Header" description="Top section of the contact page">
