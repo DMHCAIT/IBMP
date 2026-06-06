@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Mail, Phone, Calendar, Trash2, Copy, ExternalLink } from 'lucide-react';
+import { Mail, Calendar, Trash2, Copy } from 'lucide-react';
 
 interface ContactSubmission {
   id: string;
@@ -16,7 +16,6 @@ export default function ContactSubmissionsPage() {
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     fetchSubmissions();
@@ -48,8 +47,6 @@ export default function ContactSubmissionsPage() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const formatDate = (dateString: string) => {

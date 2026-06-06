@@ -5,9 +5,18 @@ import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: NextRequest) {
+interface Submission {
+  id: string;
+  name: string;
+  email: string;
+  subject: string | null;
+  message: string;
+  created_at: string;
+}
+
+export async function GET(_request: NextRequest) {
   try {
-    let submissions: any[] = [];
+    let submissions: Submission[] = [];
 
     // Try to fetch from Supabase first
     try {
