@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getSupabaseServiceClient } from '@/lib/supabase';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -14,7 +14,7 @@ interface Submission {
   created_at: string;
 }
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     let submissions: Submission[] = [];
 
