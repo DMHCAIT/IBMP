@@ -149,7 +149,7 @@ function RightLottie() {
 
   return (
     <div className="w-full h-full bg-transparent rounded-lg overflow-hidden shadow-lg">
-      <Lottie animationData={data} loop={true} />
+      <Lottie animationData={data} loop={true} style={{ width: '100%', height: '100%' }} />
     </div>
   );
 }
