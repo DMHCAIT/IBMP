@@ -163,9 +163,9 @@ export default function Hero() {
                 </div>
 
                 {/* Decorative Elements */}
-                {/* Replace small decorative circle with doctor image/animation (uses placeholder from public) */}
-                <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full overflow-hidden bg-white/80 shadow-md flex items-center justify-center transform transition-all duration-500 hover:scale-105">
-                  <img src="/academic-leadership/image2.png" alt="doctor" className="w-full h-full object-cover" />
+                {/* Replaced small circular portrait with a larger site-related image */}
+                <div className="absolute bottom-6 left-6 w-64 h-44 overflow-hidden rounded-xl shadow-2xl border border-gray-100">
+                  <img src="/academic-leadership/image6.jpeg" alt="IBMP certificate graphic" className="w-full h-full object-cover" />
                 </div>
                 {/* Doctor illustration (replaces small decorative badge) */}
                 <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-white/80 flex items-center justify-center shadow-md transform transition-transform duration-500 hover:scale-105">
