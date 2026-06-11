@@ -163,7 +163,10 @@ export default function Hero() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute bottom-4 left-4 w-6 h-6 bg-primary/10 rounded-full" />
+                {/* Replace small decorative circle with doctor image/animation (uses placeholder from public) */}
+                <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full overflow-hidden bg-white/80 shadow-md flex items-center justify-center transform transition-all duration-500 hover:scale-105">
+                  <img src="/academic-leadership/image2.png" alt="doctor" className="w-full h-full object-cover" />
+                </div>
                 {/* Doctor illustration (replaces small decorative badge) */}
                 <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-white/80 flex items-center justify-center shadow-md transform transition-transform duration-500 hover:scale-105">
                   <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
