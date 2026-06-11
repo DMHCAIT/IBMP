@@ -122,11 +122,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex items-center justify-center"
           >
-            <div className="relative w-[520px] h-[380px] rounded-xl shadow-lg overflow-hidden">
+            <div className="rounded-xl shadow-lg overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1576091160694-112096100251?auto=format&fit=crop&w=2000&q=90"
                 alt="Medical Professional"
-                fill
+                width={520}
+                height={380}
                 className="object-cover"
                 priority
               />
