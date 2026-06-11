@@ -1,11 +1,11 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
-import Lottie from 'lottie-react';
+import Image from 'next/image';
 
 export default function Hero() {
   const ref = useRef(null);
@@ -123,7 +123,7 @@ export default function Hero() {
             className="hidden lg:flex items-center justify-center"
           >
             <div className="w-[520px] h-[380px] bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
-              <img src="/academic-leadership/image6.jpeg" alt="Doctor taking online course" className="w-full h-full object-cover" />
+              <Image src="/academic-leadership/image6.jpeg" alt="Doctor taking online course" fill sizes="(min-width: 1024px) 520px, 100vw" style={{ objectFit: 'cover' }} />
             </div>
           </motion.div>
 
