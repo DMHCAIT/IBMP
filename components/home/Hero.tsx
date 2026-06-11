@@ -3,9 +3,9 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
-// Image import removed — using external background image
 
 export default function Hero() {
   const ref = useRef(null);
@@ -115,21 +115,22 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Content - Lottie animation */}
+          {/* Right Content - Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex items-center justify-center"
           >
-            <div
-              className="w-[520px] h-[380px] rounded-xl shadow-lg overflow-hidden"
-              style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1576091160694-112096100251?auto=format&fit=crop&w=2000&q=90')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
+            <div className="relative w-[520px] h-[380px] rounded-xl shadow-lg overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1576091160694-112096100251?auto=format&fit=crop&w=2000&q=90"
+                alt="Medical Professional"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </motion.div>
 
         </div>
