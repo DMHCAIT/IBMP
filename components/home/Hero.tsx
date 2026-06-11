@@ -134,7 +134,7 @@ export default function Hero() {
 }
 
 function RightLottie() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Record<string, unknown> | null>(null);
 
   useEffect(() => {
     // Demo healthcare Lottie JSON from LottieFiles CDN
