@@ -125,7 +125,7 @@ export default function Hero() {
             <div
               className="w-[520px] h-[380px] bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center"
               style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1580281657521-6b3f3f0a1a1e?auto=format&fit=crop&w=1400&q=80')",
+                backgroundImage: "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80')",
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
