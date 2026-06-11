@@ -23,8 +23,8 @@ export default function Hero() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(11, 30, 59) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
 
-      <div className="container-custom relative z-10 py-2 sm:py-4 md:py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container-custom relative z-10 py-0 sm:py-2 md:py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           
           {/* Left Content */}
           <motion.div
@@ -125,7 +125,7 @@ export default function Hero() {
             <div
               className="w-[520px] h-[380px] bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center"
               style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80')",
+                backgroundImage: "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90')",
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
