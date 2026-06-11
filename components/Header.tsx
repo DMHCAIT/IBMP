@@ -29,16 +29,18 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2">
-            {content.navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="relative px-5 py-2.5 text-gray-700 hover:text-primary font-semibold rounded-xl transition-all duration-300 group overflow-hidden"
-              >
-                <span className="relative z-10">{item.name}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-            ))}
+            {content.navigation
+              .filter((item) => item.name.toLowerCase() !== 'accreditation')
+              .map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative px-5 py-2.5 text-gray-700 hover:text-primary font-semibold rounded-xl transition-all duration-300 group overflow-hidden"
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Link>
+              ))}
           </div>
 
           {/* CTA Button */}
@@ -87,7 +89,9 @@ export default function Header() {
             className="lg:hidden border-t border-gray-200 bg-white"
           >
             <div className="container-custom py-4 space-y-2">
-              {content.navigation.map((item) => (
+              {content.navigation
+                .filter((item) => item.name.toLowerCase() !== 'accreditation')
+                .map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
