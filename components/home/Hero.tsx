@@ -137,8 +137,8 @@ function RightLottie() {
   const [data, setData] = useState<Record<string, unknown> | null>(null);
 
   useEffect(() => {
-    // Demo healthcare Lottie JSON from LottieFiles CDN
-    const url = 'https://assets10.lottiefiles.com/packages/lf20_touohxv0.json';
+    // Doctor/online-course Lottie JSON
+    const url = 'https://assets2.lottiefiles.com/packages/lf20_tutvdkgv.json';
     fetch(url)
       .then((r) => r.json())
       .then((json) => setData(json))
