@@ -163,8 +163,26 @@ export default function Hero() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 w-8 h-8 bg-secondary/10 rounded-full"></div>
-                <div className="absolute bottom-4 left-4 w-6 h-6 bg-primary/10 rounded-full"></div>
+                <div className="absolute bottom-4 left-4 w-6 h-6 bg-primary/10 rounded-full" />
+                {/* Doctor illustration (replaces small decorative badge) */}
+                <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-white/80 flex items-center justify-center shadow-md transform transition-transform duration-500 hover:scale-105">
+                  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
+                    <defs>
+                      <linearGradient id="g1" x1="0%" x2="100%">
+                        <stop offset="0%" stopColor="#0B3A5B" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#0F6B64" stopOpacity="1" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="60" cy="40" r="22" fill="url(#g1)" />
+                    <circle cx="60" cy="40" r="10" fill="#fff" opacity="0.12" />
+                    <rect x="36" y="66" rx="8" ry="8" width="48" height="28" fill="#F3F4F6" />
+                    <path d="M54 74c0-4 12-4 12 0v12H54V74z" fill="#E6E7EA" />
+                    <path d="M48 86c0-3 6-6 12-6s12 3 12 6v4H48v-4z" fill="#D1D5DB" />
+                    <circle cx="46" cy="48" r="3" fill="#fff" />
+                    <circle cx="74" cy="48" r="3" fill="#fff" />
+                    <path d="M58 52c2 2 6 2 8 0" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.85" />
+                  </svg>
+                </div>
               </div>
 
               {/* Glow Effect */}
