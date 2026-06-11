@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
-import Image from 'next/image';
+// Image import removed — using external background image
 
 export default function Hero() {
   const ref = useRef(null);
