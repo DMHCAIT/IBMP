@@ -55,7 +55,7 @@ export default function Header() {
                   className="group relative px-8 py-3.5 bg-primary text-white rounded-2xl overflow-hidden font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="relative z-10">{content.ctaText}</span>
+                  <span className="relative z-10">{isApplyNow ? 'Login' : content.ctaText}</span>
                 </Link>
               );
             })()}
@@ -107,7 +107,7 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-4 py-3 bg-primary text-white text-center rounded-lg hover:bg-primary-600 transition-all font-semibold mt-4"
                   >
-                    {content.ctaText}
+                    {isApplyNow ? 'Login' : content.ctaText}
                   </Link>
                 );
               })()}
