@@ -132,24 +132,3 @@ export default function Hero() {
     </section>
   );
 }
-
-function RightLottie() {
-  const [data, setData] = useState<Record<string, unknown> | null>(null);
-
-  useEffect(() => {
-    // Doctor/online-course Lottie JSON
-    const url = 'https://assets2.lottiefiles.com/packages/lf20_tutvdkgv.json';
-    fetch(url)
-      .then((r) => r.json())
-      .then((json) => setData(json))
-      .catch(() => setData(null));
-  }, []);
-
-  if (!data) return <div className="w-full h-full bg-white/50 rounded-lg shadow-inner" />;
-
-  return (
-    <div className="w-full h-full bg-transparent rounded-lg overflow-hidden shadow-lg">
-      <Lottie animationData={data} loop={true} style={{ width: '100%', height: '100%' }} />
-    </div>
-  );
-}
