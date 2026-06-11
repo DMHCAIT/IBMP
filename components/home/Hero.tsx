@@ -1,10 +1,11 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
+import Lottie from 'lottie-react';
 
 export default function Hero() {
   const ref = useRef(null);
@@ -114,10 +115,41 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Content removed per user request */}
+          {/* Right Content - Lottie animation */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:flex items-center justify-center"
+          >
+            <div className="w-[520px] h-[380px]">
+              <RightLottie />
+            </div>
+          </motion.div>
 
         </div>
       </div>
     </section>
+  );
+}
+
+function RightLottie() {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    // Demo healthcare Lottie JSON from LottieFiles CDN
+    const url = 'https://assets10.lottiefiles.com/packages/lf20_touohxv0.json';
+    fetch(url)
+      .then((r) => r.json())
+      .then((json) => setData(json))
+      .catch(() => setData(null));
+  }, []);
+
+  if (!data) return <div className="w-full h-full bg-white/50 rounded-lg shadow-inner" />;
+
+  return (
+    <div className="w-full h-full bg-transparent rounded-lg overflow-hidden shadow-lg">
+      <Lottie animationData={data} loop={true} />
+    </div>
   );
 }
