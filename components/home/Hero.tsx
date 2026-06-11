@@ -122,8 +122,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex items-center justify-center"
           >
-            <div className="w-[520px] h-[380px]">
-              <RightLottie />
+            <div className="w-[520px] h-[380px] bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
+              <img src="/academic-leadership/image6.jpeg" alt="Doctor taking online course" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
