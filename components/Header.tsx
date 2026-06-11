@@ -43,13 +43,22 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href={content.ctaHref}
-              className="group relative px-8 py-3.5 bg-primary text-white rounded-2xl overflow-hidden font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10">{content.ctaText}</span>
-            </Link>
+            {(() => {
+              const applyNowHref = 'https://lms.ibmpractitioner.com/login';
+              const isApplyNow = (content.ctaText || '').toLowerCase().includes('apply');
+              const href = isApplyNow ? applyNowHref : content.ctaHref;
+              return (
+                <Link
+                  href={href}
+                  target={isApplyNow ? '_self' : undefined}
+                  rel={isApplyNow ? undefined : undefined}
+                  className="group relative px-8 py-3.5 bg-primary text-white rounded-2xl overflow-hidden font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="relative z-10">{content.ctaText}</span>
+                </Link>
+              );
+            })()}
           </div>
 
           {/* Mobile menu button */}
@@ -88,13 +97,20 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href={content.ctaHref}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 bg-primary text-white text-center rounded-lg hover:bg-primary-600 transition-all font-semibold mt-4"
-              >
-                {content.ctaText}
-              </Link>
+              {(() => {
+                const applyNowHref = 'https://lms.ibmpractitioner.com/login';
+                const isApplyNow = (content.ctaText || '').toLowerCase().includes('apply');
+                const href = isApplyNow ? applyNowHref : content.ctaHref;
+                return (
+                  <Link
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 bg-primary text-white text-center rounded-lg hover:bg-primary-600 transition-all font-semibold mt-4"
+                  >
+                    {content.ctaText}
+                  </Link>
+                );
+              })()}
             </div>
           </motion.div>
         )}
