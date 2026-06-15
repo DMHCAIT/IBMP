@@ -12,20 +12,12 @@ CREATE INDEX IF NOT EXISTS idx_site_content_id ON site_content(id);
 -- Enable Row Level Security
 ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
 
--- Policy: Allow authenticated users (service role) to manage content
-CREATE POLICY "Allow service role to manage content"
+-- Policy: Allow all operations (service role bypasses RLS anyway)
+CREATE POLICY "site_content_all_access"
   ON site_content
   FOR ALL
   USING (true)
-  WITH CHECK (true)
-  TO authenticated;
-
--- Policy: Allow anon users to read content (if needed for frontend)
-CREATE POLICY "Allow public to read content"
-  ON site_content
-  FOR SELECT
-  USING (true)
-  TO anon;
+  WITH CHECK (true);
 
 -- Add comment to table
 COMMENT ON TABLE site_content IS 'Stores website content editable via admin panel. Single record (id=main) contains all site content.';
