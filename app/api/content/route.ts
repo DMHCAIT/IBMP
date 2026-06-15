@@ -14,13 +14,16 @@ let memCache: SiteContent | null = null;
 
 function invalidateCache() { memCache = null; }
 
+type JsonPrimitive = string | number | boolean | null;
+type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
+
 // Sanitize content for serialization - removes undefined values
-function sanitizeForJSON(obj: any): any {
+function sanitizeForJSON(obj: unknown): JsonValue {
   if (obj === null || obj === undefined) return null;
-  if (typeof obj !== 'object') return obj;
+  if (typeof obj !== 'object') return obj as JsonPrimitive;
   if (Array.isArray(obj)) return obj.map(sanitizeForJSON);
   
-  const cleaned: any = {};
+  const cleaned: { [key: string]: JsonValue } = {};
   for (const [key, value] of Object.entries(obj)) {
     if (value !== undefined) {
       cleaned[key] = sanitizeForJSON(value);
@@ -33,7 +36,7 @@ function sanitizeForJSON(obj: any): any {
 async function ensureDataDirectory() {
   try { 
     await fs.access(DATA_DIR); 
-  } catch (error) { 
+  } catch { 
     try {
       await fs.mkdir(DATA_DIR, { recursive: true });
       console.log(`Created data directory: ${DATA_DIR}`);
