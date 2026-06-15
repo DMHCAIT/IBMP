@@ -104,7 +104,19 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save to API');
+        let errorDetails = 'Failed to save to API';
+        try {
+          const errorResponse = await response.json();
+          if (errorResponse.details) {
+            errorDetails = `${errorResponse.error}: ${errorResponse.details}`;
+          } else if (errorResponse.error) {
+            errorDetails = errorResponse.error;
+          }
+        } catch {
+          // If response isn't JSON, use the status text
+          errorDetails = `HTTP ${response.status}: ${response.statusText}`;
+        }
+        throw new Error(errorDetails);
       }
 
       // Keep ref and state in sync with what was saved

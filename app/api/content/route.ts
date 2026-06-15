@@ -14,20 +14,47 @@ let memCache: SiteContent | null = null;
 
 function invalidateCache() { memCache = null; }
 
+// Sanitize content for serialization - removes undefined values
+function sanitizeForJSON(obj: any): any {
+  if (obj === null || obj === undefined) return null;
+  if (typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(sanitizeForJSON);
+  
+  const cleaned: any = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (value !== undefined) {
+      cleaned[key] = sanitizeForJSON(value);
+    }
+  }
+  return cleaned;
+}
+
 // Ensure the data directory exists (only needed on writes)
 async function ensureDataDirectory() {
-  try { await fs.access(DATA_DIR); } catch { await fs.mkdir(DATA_DIR, { recursive: true }); }
+  try { 
+    await fs.access(DATA_DIR); 
+  } catch (error) { 
+    try {
+      await fs.mkdir(DATA_DIR, { recursive: true });
+      console.log(`Created data directory: ${DATA_DIR}`);
+    } catch (mkdirError) {
+      console.error('Failed to create data directory:', mkdirError);
+      throw new Error(`Cannot create data directory at ${DATA_DIR}: ${mkdirError}`);
+    }
+  }
 }
 
 // Read content — serve from memory cache if available
 async function readContentFromFile(): Promise<SiteContent> {
   if (memCache) return memCache as SiteContent;
   try {
+    console.log(`Reading content from: ${CONTENT_FILE_PATH}`);
     const data = await fs.readFile(CONTENT_FILE_PATH, 'utf-8');
     const parsed = JSON.parse(data);
     memCache = { ...defaultContent, ...parsed };
     return memCache as SiteContent;
-  } catch {
+  } catch (error) {
+    console.warn(`Failed to read content file: ${error}. Using defaults.`);
     return defaultContent;
   }
 }
@@ -36,8 +63,22 @@ async function readContentFromFile(): Promise<SiteContent> {
 async function writeContentToFile(content: SiteContent): Promise<void> {
   invalidateCache();
   await ensureDataDirectory();
-  await fs.writeFile(CONTENT_FILE_PATH, JSON.stringify(content, null, 2), 'utf-8');
-  memCache = content; // repopulate cache with what was just written
+  
+  try {
+    // Sanitize the content to ensure it's JSON serializable
+    const sanitized = sanitizeForJSON(content);
+    const jsonString = JSON.stringify(sanitized, null, 2);
+    
+    console.log(`Writing content to: ${CONTENT_FILE_PATH}`);
+    console.log(`Content size: ${jsonString.length} bytes`);
+    
+    await fs.writeFile(CONTENT_FILE_PATH, jsonString, 'utf-8');
+    memCache = content; // repopulate cache with what was just written
+    console.log('Content written successfully');
+  } catch (error) {
+    console.error(`Failed to write content file at ${CONTENT_FILE_PATH}:`, error);
+    throw new Error(`Cannot write content file: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 // GET - Retrieve all content (served from memory cache after first load)
@@ -49,9 +90,13 @@ export async function GET() {
       { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' } }
     );
   } catch (error) {
-    console.error('Error reading content:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error reading content:', errorMessage);
+    if (error instanceof Error && error.stack) {
+      console.error('Error stack:', error.stack);
+    }
     return NextResponse.json(
-      { success: false, error: 'Failed to read content' },
+      { success: false, error: 'Failed to read content', details: errorMessage },
       { status: 500 }
     );
   }
@@ -73,6 +118,22 @@ export async function POST(request: NextRequest) {
     const existingContent = await readContentFromFile();
     const mergedContent = { ...existingContent, ...body.content };
     
+    // Validate that content can be serialized to JSON
+    try {
+      const testSerialize = JSON.stringify(mergedContent);
+      console.log(`Serialized content size: ${testSerialize.length} bytes`);
+    } catch (serializeError) {
+      console.error('Content serialization error:', serializeError);
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'Content contains non-serializable data',
+          details: serializeError instanceof Error ? serializeError.message : String(serializeError)
+        },
+        { status: 400 }
+      );
+    }
+    
     await writeContentToFile(mergedContent);
     
     return NextResponse.json({ 
@@ -81,9 +142,17 @@ export async function POST(request: NextRequest) {
       data: mergedContent 
     });
   } catch (error) {
-    console.error('Error saving content:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error saving content:', errorMessage);
+    if (error instanceof Error && error.stack) {
+      console.error('Error stack:', error.stack);
+    }
     return NextResponse.json(
-      { success: false, error: 'Failed to save content' },
+      { 
+        success: false, 
+        error: 'Failed to save content', 
+        details: errorMessage 
+      },
       { status: 500 }
     );
   }
@@ -99,9 +168,13 @@ export async function DELETE() {
       data: defaultContent 
     });
   } catch (error) {
-    console.error('Error resetting content:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error resetting content:', errorMessage);
+    if (error instanceof Error && error.stack) {
+      console.error('Error stack:', error.stack);
+    }
     return NextResponse.json(
-      { success: false, error: 'Failed to reset content' },
+      { success: false, error: 'Failed to reset content', details: errorMessage },
       { status: 500 }
     );
   }
