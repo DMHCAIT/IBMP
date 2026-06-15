@@ -90,24 +90,35 @@ async function writeContentToDatabase(content: SiteContent): Promise<void> {
     console.log(`Writing content to Supabase table: ${TABLE_NAME}`);
     console.log(`Content size: ${JSON.stringify(sanitized).length} bytes`);
 
-    const { error: upsertError } = await supabase
+    const { error: upsertError, data } = await supabase
       .from(TABLE_NAME)
       .upsert(
         { id: RECORD_ID, content: sanitized, updated_at: new Date() },
         { onConflict: 'id' }
-      );
+      )
+      .select();
 
     if (upsertError) {
-      throw upsertError;
+      const errorMsg = upsertError instanceof Error 
+        ? upsertError.message 
+        : typeof upsertError === 'object' && upsertError !== null
+        ? JSON.stringify(upsertError)
+        : String(upsertError);
+      console.error('Supabase upsert error:', errorMsg);
+      throw new Error(`Supabase error: ${errorMsg}`);
     }
 
+    console.log('Content written to Supabase successfully:', data);
     memCache = content;
     lastCacheTime = Date.now();
-    console.log('Content written to Supabase successfully');
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error(`Failed to write content to Supabase:`, error);
-    throw new Error(`Cannot write content to database: ${errorMessage}`);
+    const errorMsg = error instanceof Error 
+      ? error.message 
+      : typeof error === 'object' && error !== null
+      ? JSON.stringify(error)
+      : String(error);
+    console.error(`Failed to write content to Supabase: ${errorMsg}`, error);
+    throw new Error(`Cannot write content to database: ${errorMsg}`);
   }
 }
 
@@ -151,11 +162,12 @@ export async function POST(request: NextRequest) {
       console.log(`Serialized content size: ${testSerialize.length} bytes`);
     } catch (serializeError) {
       console.error('Content serialization error:', serializeError);
+      const errMsg = serializeError instanceof Error ? serializeError.message : String(serializeError);
       return NextResponse.json(
         { 
           success: false, 
           error: 'Content contains non-serializable data',
-          details: serializeError instanceof Error ? serializeError.message : String(serializeError)
+          details: errMsg
         },
         { status: 400 }
       );
@@ -169,13 +181,24 @@ export async function POST(request: NextRequest) {
       data: mergedContent 
     });
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : typeof error === 'object' && error !== null
+      ? JSON.stringify(error)
+      : String(error);
     console.error('Error saving content:', errorMessage);
+    
+    // Check if it's a table not found error
+    const isTableNotFound = errorMessage.includes('relation') && errorMessage.includes('does not exist');
+    
     return NextResponse.json(
       { 
         success: false, 
         error: 'Failed to save content', 
-        details: errorMessage 
+        details: errorMessage,
+        ...(isTableNotFound && {
+          hint: 'The site_content table may not exist. Run the migration: migrations/001_create_site_content_table.sql'
+        })
       },
       { status: 500 }
     );
