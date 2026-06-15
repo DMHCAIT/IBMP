@@ -35,12 +35,55 @@ CREATE POLICY "site_content_all_access"
 COMMENT ON TABLE site_content IS 'Stores website content editable via admin panel. Single record (id=main) contains all site content.';
 ```
 
-Alternatively, you can use the Supabase CLI:
-```bash
-supabase db push
+### 2. Setup Storage Bucket RLS Policies
+
+For image uploads to work, set up storage bucket permissions:
+
+1. Go to https://app.supabase.com/project/[your-project-id]/sql/new
+2. Copy and paste the contents of `migrations/002_setup_storage_bucket_rls.sql`
+3. Click "Run"
+
+**Or use this SQL directly:**
+
+```sql
+-- Enable RLS on storage.objects if not already enabled
+ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
+
+-- Allow authenticated users to upload to public bucket
+CREATE POLICY "Allow authenticated users to upload to public bucket"
+  ON storage.objects
+  FOR INSERT
+  WITH CHECK (
+    bucket_id = 'public' 
+    AND auth.role() = 'authenticated'
+  );
+
+-- Allow authenticated users to update their own uploads in public bucket
+CREATE POLICY "Allow authenticated users to update public bucket files"
+  ON storage.objects
+  FOR UPDATE
+  WITH CHECK (
+    bucket_id = 'public' 
+    AND auth.role() = 'authenticated'
+  );
+
+-- Allow authenticated users to delete their own uploads in public bucket
+CREATE POLICY "Allow authenticated users to delete public bucket files"
+  ON storage.objects
+  FOR DELETE
+  USING (
+    bucket_id = 'public' 
+    AND auth.role() = 'authenticated'
+  );
+
+-- Allow anyone to read from public bucket (public read)
+CREATE POLICY "Allow public read access to public bucket"
+  ON storage.objects
+  FOR SELECT
+  USING (bucket_id = 'public');
 ```
 
-### 2. Verify Environment Variables
+### 3. Verify Environment Variables
 
 Ensure your Vercel environment has these variables set:
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase URL
@@ -60,14 +103,21 @@ After deployment, test by:
 - Reads are cached in-memory for 1 minute to reduce database queries
 - Cache is invalidated on any write operation
 - JSON serialization is sanitized to prevent non-serializable data from breaking saves
+- Images are uploaded to the `public` storage bucket with proper RLS policies
 
 ## Troubleshooting
 
-If you see "ENOENT: no such file or directory":
-- Ensure the migration SQL has been run in Supabase
+### "new row violates row-level security policy" when uploading images
+- Run the storage bucket RLS migration: `migrations/002_setup_storage_bucket_rls.sql`
+- Ensure the `public` bucket exists in Supabase Storage
+- Verify RLS policies are set correctly in Supabase Dashboard → Storage → Policies
+
+### "ENOENT: no such file or directory" error
+- Ensure the `site_content` table migration has been run
 - Check that `SUPABASE_SERVICE_ROLE_KEY` is set in Vercel environment variables
 
-If saves aren't persisting:
+### If saves aren't persisting
 - Check browser console for detailed error messages
+- Visit `/api/content/health` endpoint to see Supabase connectivity status
 - Verify Supabase credentials in Vercel environment settings
 - Check Supabase dashboard for any RLS policy issues
