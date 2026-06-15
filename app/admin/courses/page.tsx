@@ -20,6 +20,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
+// supabase import not used in this admin page (uploads go through /api/upload-file)
 
 type CategoryType = 'medicalSpecialties' | 'superSpecialties' | 'honoraryFellowship';
 
@@ -157,6 +158,111 @@ export default function CoursesAdminPage() {
     await saveContent({ courses: newCoursesData });
     setEditingCourse(null);
     setIsAddingNew(false);
+  };
+
+  const handleUploadImage = async (file: File, courseId?: string) => {
+    if (!file) return null;
+    try {
+      const ext = file.name.split('.').pop();
+      const filename = `${courseId || 'course'}-${Date.now()}.${ext}`;
+      const filePath = `public/${filename}`;
+      
+      console.log('Starting server-side image upload:', { filename, filePath, fileSize: file.size, fileType: file.type });
+      
+      // Convert file to base64 using FileReader (more efficient for large files)
+      const base64String = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result as string;
+          // Extract base64 part from data URL (remove "data:image/jpeg;base64," prefix)
+          const base64 = result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+      });
+
+      console.log('File converted to base64:', { base64Length: base64String.length });
+
+      try {
+        // Retry logic for transient network errors
+        const maxAttempts = 3;
+        let attempt = 0;
+        let uploadResult: unknown = null;
+        let lastErr: unknown = null;
+
+        while (attempt < maxAttempts) {
+          attempt += 1;
+          try {
+            const uploadResponse = await fetch('/api/upload-file', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                fileData: base64String,
+                fileName: filename,
+                mimeType: file.type,
+                filePath: filePath,
+                bucketName: 'public'
+              }),
+            });
+
+            if (!uploadResponse.ok) {
+              const errorData = await uploadResponse.json().catch(() => ({}));
+              throw new Error(errorData.error || `Upload failed with status ${uploadResponse.status}`);
+            }
+
+            uploadResult = await uploadResponse.json();
+            console.log('Upload successful:', uploadResult);
+            if (uploadResult && typeof uploadResult === 'object' && 'url' in uploadResult) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              return (uploadResult as Record<string, any>).url as string;
+            }
+            throw new Error('Invalid upload response: missing url property');
+          } catch (e) {
+            lastErr = e;
+            console.warn(`Upload attempt ${attempt} failed:`, e);
+            if (attempt < maxAttempts) {
+              // exponential backoff
+              await new Promise((res) => setTimeout(res, 500 * Math.pow(2, attempt)));
+            }
+          }
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const lastMsg = (lastErr && typeof lastErr === 'object' && 'message' in (lastErr as Record<string, unknown>)) ? (lastErr as Record<string, any>).message : String(lastErr);
+        throw new Error(lastMsg || 'Upload failed after retries');
+      } catch (uploadErr) {
+        // If we get an RLS error, try creating the bucket first
+        const errorMessage = uploadErr instanceof Error ? uploadErr.message : String(uploadErr);
+        
+        if (errorMessage.includes('row-level security') || errorMessage.includes('Bucket not found')) {
+          console.log('RLS or bucket issue detected, attempting to create bucket...');
+          
+          try {
+            const createResponse = await fetch('/api/create-bucket', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ bucketName: 'public' })
+            });
+            
+            if (createResponse.ok) {
+              console.log('Bucket created, retrying upload...');
+              alert('Storage configured. Please try uploading again.');
+              return null;
+            }
+          } catch (createErr) {
+            console.error('Failed to create bucket:', createErr);
+          }
+        }
+        
+        throw uploadErr;
+      }
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      console.error('Image upload failed:', errorMsg);
+      alert(`Image upload failed: ${errorMsg}`);
+      return null;
+    }
   };
 
   const handleCancelEdit = () => {
@@ -536,19 +642,121 @@ export default function CoursesAdminPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Image URL
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Image URL or Upload
                         </label>
+                        <div className="space-y-2">
+                          <input
+                            type="text"
+                            value={editingCourse.image}
+                            onChange={(e) =>
+                              setEditingCourse({ ...editingCourse, image: e.target.value })
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="Paste image URL or upload below"
+                          />
+                          <label className="inline-flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-50 border-2 border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 font-medium whitespace-nowrap">
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file || !editingCourse) return;
+                                const publicUrl = await handleUploadImage(file, editingCourse.id);
+                                if (publicUrl) setEditingCourse({ ...editingCourse, image: publicUrl });
+                              }}
+                              className="hidden"
+                            />
+                            <span>📤 Upload Image</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Watch Overview Section */}
+              <div className="border border-gray-200 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('watchOverview')}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                >
+                  <span className="font-semibold text-gray-900">Watch Overview (Video)</span>
+                  {expandedSection === 'watchOverview' ? (
+                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
+                {expandedSection === 'watchOverview' && (
+                  <div className="p-4 space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Video URL or Upload
+                      </label>
+                      <div className="space-y-2">
                         <input
                           type="text"
-                          value={editingCourse.image}
+                          value={editingCourse.watchOverview?.videoUrl || ''}
                           onChange={(e) =>
-                            setEditingCourse({ ...editingCourse, image: e.target.value })
+                            setEditingCourse({
+                              ...editingCourse,
+                              watchOverview: {
+                                ...editingCourse.watchOverview,
+                                videoUrl: e.target.value,
+                              },
+                            })
                           }
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                          placeholder="Image URL"
+                          placeholder="Paste YouTube/Vimeo URL or upload video below"
                         />
+                        <label className="inline-flex items-center gap-2 cursor-pointer px-4 py-2 bg-red-50 border-2 border-red-300 text-red-700 rounded-lg hover:bg-red-100 font-medium whitespace-nowrap">
+                          <input
+                            type="file"
+                            accept="video/*"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file || !editingCourse) return;
+                              const publicUrl = await handleUploadImage(file, `video-${editingCourse.id}`);
+                              if (publicUrl) {
+                                setEditingCourse({
+                                  ...editingCourse,
+                                  watchOverview: {
+                                    ...editingCourse.watchOverview,
+                                    videoUrl: publicUrl,
+                                  },
+                                });
+                              }
+                            }}
+                            className="hidden"
+                          />
+                          <span>🎥 Upload Video</span>
+                        </label>
+                        <p className="text-xs text-gray-500">
+                          Supported: MP4, WebM files or YouTube/Vimeo URLs
+                        </p>
                       </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Video Description
+                      </label>
+                      <textarea
+                        value={editingCourse.watchOverview?.description || ''}
+                        onChange={(e) =>
+                          setEditingCourse({
+                            ...editingCourse,
+                            watchOverview: {
+                              ...editingCourse.watchOverview,
+                              description: e.target.value,
+                            },
+                          })
+                        }
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+                        placeholder="Brief description of the video"
+                        rows={3}
+                      />
                     </div>
                   </div>
                 )}

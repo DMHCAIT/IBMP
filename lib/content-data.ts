@@ -16,6 +16,7 @@ export interface HeroContent {
     value: string;
     label: string;
   }[];
+  image?: string;
 }
 
 export interface WhatWeDoContent {
@@ -229,6 +230,10 @@ export interface Course {
     whatsapp?: string;
     buttonText: string;
   };
+  watchOverview?: {
+    videoUrl?: string;
+    description?: string;
+  };
   isActive: boolean;
 }
 
@@ -294,6 +299,7 @@ export const defaultContent: SiteContent = {
       { value: "120+", label: "Countries" },
       { value: "5+", label: "Years" },
     ],
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90",
   },
   whatWeDo: {
     title: "Who We Are &",

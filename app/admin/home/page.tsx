@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useContent } from '@/lib/content-context';
 import { defaultContent } from '@/lib/content-data';
 import EditorLayout, { SectionCard, InputField, ArrayEditor } from '@/components/admin/EditorLayout';
+import { supabase } from '@/lib/supabase';
 
 export default function HomeEditorPage() {
   const { content, updateContent, saveContent } = useContent();
@@ -98,6 +99,42 @@ export default function HomeEditorPage() {
           }
           type="textarea"
         />
+        <div className="pt-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Hero Image</label>
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              value={localContent.hero.image || ''}
+              onChange={(e) => setLocalContent({ ...localContent, hero: { ...localContent.hero, image: e.target.value } })}
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg"
+              placeholder="Image URL"
+            />
+            <label className="inline-flex items-center gap-2 cursor-pointer px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const ext = file.name.split('.').pop();
+                    const filename = `hero-${Date.now()}.${ext}`;
+                    const path = `public/${filename}`;
+                    const { error: uploadErr } = await supabase.storage.from('public').upload(path, file, { upsert: true });
+                    if (uploadErr) throw uploadErr;
+                    const { data } = supabase.storage.from('public').getPublicUrl(path);
+                    setLocalContent({ ...localContent, hero: { ...localContent.hero, image: data?.publicUrl } });
+                  } catch (err) {
+                    console.error('Hero image upload failed', err);
+                    alert('Upload failed. See console for details.');
+                  }
+                }}
+                className="hidden"
+              />
+              Upload
+            </label>
+          </div>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <InputField
             label="Primary Button Text"
