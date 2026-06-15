@@ -12,6 +12,36 @@ Run the SQL migration in your Supabase dashboard:
 2. Copy and paste the contents of `migrations/001_create_site_content_table.sql`
 3. Click "Run"
 
+**Or use this SQL directly:**
+
+```sql
+CREATE TABLE IF NOT EXISTS site_content (
+  id TEXT PRIMARY KEY DEFAULT 'main',
+  content JSONB NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_site_content_id ON site_content(id);
+
+ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow service role to manage content"
+  ON site_content
+  FOR ALL
+  USING (true)
+  WITH CHECK (true)
+  TO authenticated;
+
+CREATE POLICY "Allow public to read content"
+  ON site_content
+  FOR SELECT
+  USING (true)
+  TO anon;
+
+COMMENT ON TABLE site_content IS 'Stores website content editable via admin panel. Single record (id=main) contains all site content.';
+```
+
 Alternatively, you can use the Supabase CLI:
 ```bash
 supabase db push
