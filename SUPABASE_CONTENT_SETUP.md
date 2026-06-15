@@ -37,51 +37,19 @@ COMMENT ON TABLE site_content IS 'Stores website content editable via admin pane
 
 ### 2. Setup Storage Bucket RLS Policies
 
-For image uploads to work, set up storage bucket permissions:
+For image uploads to work, set up storage bucket permissions.
+
+**Recommended: Use Supabase Storage UI (no SQL required)**
+
+See [STORAGE_BUCKET_UI_SETUP.md](STORAGE_BUCKET_UI_SETUP.md) for step-by-step UI instructions.
+
+**Alternative: SQL Migration (requires owner permissions on system tables)**
 
 1. Go to https://app.supabase.com/project/[your-project-id]/sql/new
 2. Copy and paste the contents of `migrations/002_setup_storage_bucket_rls.sql`
 3. Click "Run"
 
-**Or use this SQL directly:**
-
-```sql
--- Enable RLS on storage.objects if not already enabled
-ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
-
--- Allow authenticated users to upload to public bucket
-CREATE POLICY "Allow authenticated users to upload to public bucket"
-  ON storage.objects
-  FOR INSERT
-  WITH CHECK (
-    bucket_id = 'public' 
-    AND auth.role() = 'authenticated'
-  );
-
--- Allow authenticated users to update their own uploads in public bucket
-CREATE POLICY "Allow authenticated users to update public bucket files"
-  ON storage.objects
-  FOR UPDATE
-  WITH CHECK (
-    bucket_id = 'public' 
-    AND auth.role() = 'authenticated'
-  );
-
--- Allow authenticated users to delete their own uploads in public bucket
-CREATE POLICY "Allow authenticated users to delete public bucket files"
-  ON storage.objects
-  FOR DELETE
-  USING (
-    bucket_id = 'public' 
-    AND auth.role() = 'authenticated'
-  );
-
--- Allow anyone to read from public bucket (public read)
-CREATE POLICY "Allow public read access to public bucket"
-  ON storage.objects
-  FOR SELECT
-  USING (bucket_id = 'public');
-```
+Note: This SQL approach may fail if your Supabase account doesn't have owner permissions on the `storage.objects` system table. If you see "must be owner of table objects", use the UI approach instead.
 
 ### 3. Verify Environment Variables
 
