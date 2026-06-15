@@ -1,18 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { getSupabaseServiceClient } from '@/lib/supabase';
 import { defaultContent, SiteContent } from '@/lib/content-data';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const CONTENT_FILE_PATH = path.join(process.cwd(), 'data', 'content.json');
-const DATA_DIR = path.join(process.cwd(), 'data');
+const TABLE_NAME = 'site_content';
+const RECORD_ID = 'main'; // single record to store all content
 
-// In-memory cache: avoids hitting disk on every request
+// In-memory cache: avoids hitting database on every request
 let memCache: SiteContent | null = null;
+let lastCacheTime = 0;
+const CACHE_TTL_MS = 60000; // 1 minute cache
 
-function invalidateCache() { memCache = null; }
+function invalidateCache() { 
+  memCache = null; 
+  lastCacheTime = 0;
+}
+
+function isCacheValid(): boolean {
+  return memCache !== null && Date.now() - lastCacheTime < CACHE_TTL_MS;
+}
 
 type JsonPrimitive = string | number | boolean | null;
 type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
@@ -32,62 +40,81 @@ function sanitizeForJSON(obj: unknown): JsonValue {
   return cleaned;
 }
 
-// Ensure the data directory exists (only needed on writes)
-async function ensureDataDirectory() {
-  try { 
-    await fs.access(DATA_DIR); 
-  } catch { 
-    try {
-      await fs.mkdir(DATA_DIR, { recursive: true });
-      console.log(`Created data directory: ${DATA_DIR}`);
-    } catch (mkdirError) {
-      console.error('Failed to create data directory:', mkdirError);
-      throw new Error(`Cannot create data directory at ${DATA_DIR}: ${mkdirError}`);
-    }
+// Read content from Supabase with caching
+async function readContentFromDatabase(): Promise<SiteContent> {
+  if (isCacheValid() && memCache) {
+    console.log('Serving content from cache');
+    return memCache as SiteContent;
   }
-}
 
-// Read content — serve from memory cache if available
-async function readContentFromFile(): Promise<SiteContent> {
-  if (memCache) return memCache as SiteContent;
   try {
-    console.log(`Reading content from: ${CONTENT_FILE_PATH}`);
-    const data = await fs.readFile(CONTENT_FILE_PATH, 'utf-8');
-    const parsed = JSON.parse(data);
+    const supabase = getSupabaseServiceClient();
+    console.log(`Reading content from Supabase table: ${TABLE_NAME}`);
+    
+    const { data, error } = await supabase
+      .from(TABLE_NAME)
+      .select('content')
+      .eq('id', RECORD_ID)
+      .single();
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // Record doesn't exist, return defaults
+        console.log('Content record not found, using defaults');
+        memCache = defaultContent;
+        lastCacheTime = Date.now();
+        return defaultContent;
+      }
+      throw error;
+    }
+
+    const parsed = data?.content || defaultContent;
     memCache = { ...defaultContent, ...parsed };
+    lastCacheTime = Date.now();
+    console.log('Content loaded from Supabase and cached');
     return memCache as SiteContent;
   } catch (error) {
-    console.warn(`Failed to read content file: ${error}. Using defaults.`);
+    console.warn(`Failed to read content from Supabase: ${error}. Using defaults.`);
     return defaultContent;
   }
 }
 
-// Write content to file and invalidate cache
-async function writeContentToFile(content: SiteContent): Promise<void> {
+// Write content to Supabase
+async function writeContentToDatabase(content: SiteContent): Promise<void> {
   invalidateCache();
-  await ensureDataDirectory();
-  
+
   try {
-    // Sanitize the content to ensure it's JSON serializable
+    const supabase = getSupabaseServiceClient();
     const sanitized = sanitizeForJSON(content);
-    const jsonString = JSON.stringify(sanitized, null, 2);
     
-    console.log(`Writing content to: ${CONTENT_FILE_PATH}`);
-    console.log(`Content size: ${jsonString.length} bytes`);
-    
-    await fs.writeFile(CONTENT_FILE_PATH, jsonString, 'utf-8');
-    memCache = content; // repopulate cache with what was just written
-    console.log('Content written successfully');
+    console.log(`Writing content to Supabase table: ${TABLE_NAME}`);
+    console.log(`Content size: ${JSON.stringify(sanitized).length} bytes`);
+
+    const { error: upsertError } = await supabase
+      .from(TABLE_NAME)
+      .upsert(
+        { id: RECORD_ID, content: sanitized, updated_at: new Date() },
+        { onConflict: 'id' }
+      );
+
+    if (upsertError) {
+      throw upsertError;
+    }
+
+    memCache = content;
+    lastCacheTime = Date.now();
+    console.log('Content written to Supabase successfully');
   } catch (error) {
-    console.error(`Failed to write content file at ${CONTENT_FILE_PATH}:`, error);
-    throw new Error(`Cannot write content file: ${error instanceof Error ? error.message : String(error)}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`Failed to write content to Supabase:`, error);
+    throw new Error(`Cannot write content to database: ${errorMessage}`);
   }
 }
 
-// GET - Retrieve all content (served from memory cache after first load)
+// GET - Retrieve all content (served from cache after first load)
 export async function GET() {
   try {
-    const content = await readContentFromFile();
+    const content = await readContentFromDatabase();
     return NextResponse.json(
       { success: true, data: content },
       { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' } }
@@ -95,9 +122,6 @@ export async function GET() {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error('Error reading content:', errorMessage);
-    if (error instanceof Error && error.stack) {
-      console.error('Error stack:', error.stack);
-    }
     return NextResponse.json(
       { success: false, error: 'Failed to read content', details: errorMessage },
       { status: 500 }
@@ -118,7 +142,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Merge with existing content to preserve any fields not included
-    const existingContent = await readContentFromFile();
+    const existingContent = await readContentFromDatabase();
     const mergedContent = { ...existingContent, ...body.content };
     
     // Validate that content can be serialized to JSON
@@ -137,7 +161,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    await writeContentToFile(mergedContent);
+    await writeContentToDatabase(mergedContent);
     
     return NextResponse.json({ 
       success: true, 
@@ -147,9 +171,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error('Error saving content:', errorMessage);
-    if (error instanceof Error && error.stack) {
-      console.error('Error stack:', error.stack);
-    }
     return NextResponse.json(
       { 
         success: false, 
@@ -164,7 +185,7 @@ export async function POST(request: NextRequest) {
 // DELETE - Reset content to defaults
 export async function DELETE() {
   try {
-    await writeContentToFile(defaultContent);
+    await writeContentToDatabase(defaultContent);
     return NextResponse.json({ 
       success: true, 
       message: 'Content reset to defaults',
@@ -173,9 +194,6 @@ export async function DELETE() {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error('Error resetting content:', errorMessage);
-    if (error instanceof Error && error.stack) {
-      console.error('Error stack:', error.stack);
-    }
     return NextResponse.json(
       { success: false, error: 'Failed to reset content', details: errorMessage },
       { status: 500 }
