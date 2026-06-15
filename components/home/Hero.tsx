@@ -124,8 +124,8 @@ export default function Hero() {
           >
             <div className="rounded-xl shadow-lg overflow-hidden">
               <Image
-                src={content.image || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90'}
-                alt={content.heading?.line1 || 'Hero image'}
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90"
+                alt="Medical Professional Healthcare Learning"
                 width={520}
                 height={900}
                 className="object-cover"
