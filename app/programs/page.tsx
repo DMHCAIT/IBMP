@@ -7,6 +7,10 @@ import FellowshipCategories from '@/components/programs/FellowshipCategories';
 import EligibilityProcess from '@/components/programs/EligibilityProcess';
 import ProgramsCTA from '@/components/programs/ProgramsCTA';
 
+// Always fetch fresh content so admin course updates are reflected immediately
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'IBMP Medical Fellowship Program | Advanced Healthcare Training',
   description: 'IBMP offers a wide range of medical fellowship programs and advanced healthcare training courses designed for doctors and healthcare professionals seeking specialized medical expertise and global recognition.',

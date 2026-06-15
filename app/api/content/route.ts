@@ -46,7 +46,7 @@ export async function GET() {
     const content = await readContentFromFile();
     return NextResponse.json(
       { success: true, data: content },
-      { headers: { 'Cache-Control': 'private, max-age=5, stale-while-revalidate=10' } }
+      { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' } }
     );
   } catch (error) {
     console.error('Error reading content:', error);

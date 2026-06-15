@@ -150,14 +150,20 @@ export default function CoursesAdminPage() {
         .replace(/(^-|-$)/g, '');
     }
 
-    const newCoursesData = isAddingNew
-      ? { ...content.courses, [activeCategory]: [...courses, editingCourse] }
-      : { ...content.courses, [activeCategory]: courses.map((c) => c.id === editingCourse.id ? editingCourse : c) };
+    try {
+      const newCoursesData = isAddingNew
+        ? { ...content.courses, [activeCategory]: [...courses, editingCourse] }
+        : { ...content.courses, [activeCategory]: courses.map((c) => c.id === editingCourse.id ? editingCourse : c) };
 
-    updateContent('courses', newCoursesData);
-    await saveContent({ courses: newCoursesData });
-    setEditingCourse(null);
-    setIsAddingNew(false);
+      updateContent('courses', newCoursesData);
+      await saveContent({ courses: newCoursesData });
+      alert('Course saved successfully! Changes will appear on the website immediately.');
+      setEditingCourse(null);
+      setIsAddingNew(false);
+    } catch (error) {
+      console.error('Error saving course:', error);
+      alert('Error saving course. Please try again.');
+    }
   };
 
   const handleUploadImage = async (file: File, courseId?: string) => {

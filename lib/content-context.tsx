@@ -100,6 +100,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content: contentToSave }),
+        cache: 'no-store',
       });
 
       if (!response.ok) {
@@ -110,7 +111,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       latestContentRef.current = contentToSave;
       setContent(contentToSave);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(contentToSave));
-      // Reset cooldown so next visibility change fetches fresh content
+      // Immediately invalidate cache so next fetch gets fresh data
       lastFetchTime.current = 0;
     } catch (error) {
       console.error('Error saving content to API:', error);

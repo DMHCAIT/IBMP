@@ -2,6 +2,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MedicalSpecialtiesListNew from '@/components/programs/MedicalSpecialtiesListNew';
 
+// Always fetch fresh content so admin course updates are reflected immediately
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Fellowship in Medical Specialties - IBMP',
   description: 'Explore IBMP Fellowship programs in core medical specialties including internal medicine, surgery, pediatrics, and more.',
