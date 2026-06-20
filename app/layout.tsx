@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: "IBMP - International Board of Medical Practitioners",
   description: "Providing high-quality accreditation services for medical education providers and medical learning programs worldwide. Globally recognized medical accreditation authority.",
   keywords: "medical accreditation, healthcare certification, medical education, IBMP, medical practitioners, global accreditation",
+  icons: {
+    icon: [
+      { url: "/title.png", type: "image/png", sizes: "192x192" },
+      { url: "/title.png", type: "image/png", sizes: "any" }
+    ],
+    apple: "/title.png",
+    shortcut: "/title.png",
+  },
 };
 
 export default function RootLayout({

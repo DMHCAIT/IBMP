@@ -24,8 +24,8 @@ export default function Hero() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(11, 30, 59) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
 
-      <div className="container-custom relative z-10 py-0 sm:py-2 md:py-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+      <div className="container-custom relative z-10 py-6 sm:py-8 md:py-10 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Content */}
           <motion.div
@@ -164,14 +164,14 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex items-center justify-center"
+            className="hidden lg:flex items-end justify-center pb-32"
           >
-            <div className="rounded-xl shadow-lg overflow-hidden">
+            <div className="rounded-2xl shadow-2xl overflow-hidden w-fit translate-y-8">
               <Image
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90"
+                src="/heroimage.png"
                 alt="Medical Professional Healthcare Learning"
-                width={520}
-                height={900}
+                width={380}
+                height={480}
                 className="object-cover"
                 priority
               />

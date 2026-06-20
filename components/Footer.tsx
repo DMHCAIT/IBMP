@@ -10,8 +10,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+      <div className="container-custom py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-6">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-6">
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200">
+        <div className="pt-6 border-t border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-600 text-sm">
               © {currentYear} International Board of Medical Practitioners. All rights reserved.

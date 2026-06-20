@@ -20,7 +20,7 @@ export default function StatsSection() {
   const content = useSectionContent('stats');
 
   return (
-    <section ref={ref} className="py-24 bg-white">
+    <section ref={ref} className="py-8 bg-white">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
@@ -29,13 +29,13 @@ export default function StatsSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-4 py-2 bg-primary-50 text-primary font-semibold text-sm rounded-full mb-4">
+            <div className="inline-block px-3 py-1.5 bg-primary-50 text-primary font-semibold text-sm rounded-full mb-3">
               {content.tag}
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            <h2 className="text-4xl font-bold text-primary mb-4">
               {content.title}
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">
               {content.description}
             </p>
             <Link
@@ -48,7 +48,7 @@ export default function StatsSection() {
           </motion.div>
 
           {/* Right Stats Grid */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
             {content.stats.map((stat, index) => {
               const IconComponent = iconMap[stat.icon] || Users;
               return (
@@ -57,21 +57,21 @@ export default function StatsSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-white border-2 border-gray-200 rounded-3xl p-8 hover:shadow-2xl hover:border-transparent transition-all duration-500 overflow-hidden"
+                  className="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:shadow-lg hover:border-transparent transition-all duration-300 overflow-hidden"
                 >
                   {/* Gradient Background on Hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                   
                   {/* Icon */}
-                  <div className={`relative w-14 h-14 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                    <IconComponent className="w-7 h-7 text-white" />
+                  <div className={`relative w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                    <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   
                   {/* Value */}
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent mb-2 relative">{stat.value}</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent mb-1 relative">{stat.value}</div>
                   
                   {/* Label */}
-                  <div className="text-gray-600 font-semibold relative">{stat.label}</div>
+                  <div className="text-gray-600 font-medium relative">{stat.label}</div>
 
                   {/* Decorative Corner */}
                   <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 blur-3xl transition-all duration-500`} />

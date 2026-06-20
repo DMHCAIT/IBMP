@@ -20,7 +20,7 @@ export default function MissionVisionSection() {
   const content = useSectionContent('missionVision');
 
   return (
-    <section id="mission" ref={ref} className="relative py-32 overflow-hidden">
+    <section id="mission" ref={ref} className="relative py-12 overflow-hidden">
       {/* Background Design */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50/50 to-white" />
       <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(30, 140, 122) 1px, transparent 0)', backgroundSize: '50px 50px' }} />
@@ -31,31 +31,31 @@ export default function MissionVisionSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-4xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-12"
         >
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-3 mb-6"
+            className="flex items-center justify-center gap-3 mb-3"
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-secondary to-transparent" />
             <span className="text-secondary font-bold uppercase tracking-wider text-sm">{content.sectionTag}</span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-secondary to-transparent" />
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary mb-6 tracking-tight">
+          <h2 className="text-4xl font-black text-primary mb-3 tracking-tight">
             {content.title}{' '}
             <span className="bg-gradient-to-r from-secondary to-secondary-600 bg-clip-text text-transparent">
               {content.subtitle}
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             Guided by our core principles to advance medical education globally
           </p>
         </motion.div>
 
         {/* Content Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {content.items.map((item, index) => {
             const IconComponent = iconMap[iconKeys[index]] || Target;
             return (
@@ -64,7 +64,7 @@ export default function MissionVisionSection() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group relative bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-secondary/50 hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Gradient Background on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
@@ -72,24 +72,24 @@ export default function MissionVisionSection() {
                 
                 {/* Icon */}
                 <motion.div 
-                  className={`relative w-20 h-20 bg-gradient-to-br ${item.color} rounded-3xl flex items-center justify-center mb-8 shadow-xl`}
+                  className={`relative w-14 h-14 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center mb-4 shadow-md`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="absolute inset-0 bg-white/20 rounded-3xl" />
-                  <IconComponent className="w-10 h-10 text-white relative z-10" />
+                  <IconComponent className="w-8 h-8 text-white relative z-10" />
                 </motion.div>
 
                 {/* Content */}
-                <div className="relative space-y-4">
+                <div className="relative space-y-3">
                   <div>
-                    <h3 className="text-3xl font-black text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
+                    <h3 className="text-2xl font-black text-primary mb-1 group-hover:text-secondary transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <div className={`h-1 w-16 bg-gradient-to-r ${item.color} rounded-full`} />
+                      <div className={`h-1 w-12 bg-gradient-to-r ${item.color} rounded-full`} />
                   </div>
-                  <p className="text-sm font-bold text-secondary uppercase tracking-wide">{item.tagline}</p>
-                  <p className="text-gray-600 leading-relaxed text-lg">{item.description}</p>
+                    <p className="text-xs font-semibold text-secondary uppercase tracking-wide">{item.tagline}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
                 </div>
 
                 {/* Decorative Bottom Line */}

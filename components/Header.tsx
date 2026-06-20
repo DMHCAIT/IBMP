@@ -16,12 +16,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-48 h-20 overflow-hidden">
+            <div className="relative w-48 h-20 overflow-hidden flex items-start">
               <Image
                 src="/ibmp-01.png"
                 alt="IBMP Logo"
                 fill
-                className="object-contain"
+                className="object-contain object-top"
                 priority
               />
             </div>
