@@ -1,16 +1,17 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { ArrowRight, PlayCircle, X } from 'lucide-react';
 import { useSectionContent } from '@/lib/content-context';
 
 export default function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const content = useSectionContent('hero');
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   return (
     <section ref={ref} className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden bg-white">
@@ -35,7 +36,7 @@ export default function Hero() {
           >
             {/* Heading */}
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-primary leading-[0.9] tracking-tight text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-primary leading-[0.9] tracking-tight text-left">
                 {content.heading?.line1 || 'International'}<br />
                 <span className="relative inline-block">
                   <span className="relative z-10">{content.heading?.line2 || 'Board of'}</span>
@@ -61,30 +62,73 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5"
+              className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 flex-wrap"
             >
+              {/* Button 1: Summary of Accreditation */}
               <Link 
-                href={content.ctaButtons?.primary?.href || '/accreditation'}
-                className="group relative w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-primary text-white font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
+                href="/accreditation"
+                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-3">
-                  {content.ctaButtons?.primary?.text || 'Apply for Accreditation'}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                  Summary of Accreditation
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </Link>
 
+              {/* Button 2: Apply for Accreditation */}
               <Link 
-                href={content.ctaButtons?.secondary?.href || '#overview'}
-                className="group relative w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-white border-2 border-gray-300 text-primary font-bold rounded-2xl overflow-hidden transition-all duration-300 hover:border-secondary hover:shadow-xl"
+                href="/contact"
+                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-primary text-primary font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-3">
-                  <PlayCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  {content.ctaButtons?.secondary?.text || 'Watch Overview'}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                  Apply for Accreditation
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </Link>
+
+              {/* Button 3: Watch Overview */}
+              <button 
+                onClick={() => setShowVideoModal(true)}
+                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary-600 to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                  <PlayCircle className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  Watch Overview
+                </span>
+              </button>
             </motion.div>
+
+            {/* Video Modal */}
+            {showVideoModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
+                >
+                  <button
+                    onClick={() => setShowVideoModal(false)}
+                    className="absolute top-4 right-4 z-10 p-2 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                  >
+                    <X className="w-6 h-6 text-white" />
+                  </button>
+                  <video
+                    width="100%"
+                    height="auto"
+                    controls
+                    autoPlay
+                    className="w-full"
+                  >
+                    <source src="/Overviewvideo.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </motion.div>
+              </div>
+            )}
 
             {/* Trust Stats */}
             <motion.div 
