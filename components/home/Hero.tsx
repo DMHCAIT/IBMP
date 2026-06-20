@@ -14,7 +14,7 @@ export default function Hero() {
   const [showVideoModal, setShowVideoModal] = useState(false);
 
   return (
-    <section ref={ref} className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden bg-white">
+    <section ref={ref} className="relative min-h-[600px] flex items-center overflow-hidden bg-white">
       {/* Advanced Background Design */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-secondary/5" />
@@ -62,15 +62,15 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 flex-wrap"
+              className="flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-3 w-full md:w-auto"
             >
               {/* Button 1: Summary of Accreditation */}
               <Link 
                 href="/accreditation"
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+                className="group relative flex-1 md:flex-none px-4 md:px-6 py-2 md:py-3 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 whitespace-nowrap"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                <span className="relative flex items-center justify-center gap-2 text-xs md:text-sm">
                   Summary of Accreditation
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
@@ -79,10 +79,10 @@ export default function Hero() {
               {/* Button 2: Apply for Accreditation */}
               <Link 
                 href="/contact"
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-primary text-primary font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                className="group relative flex-1 md:flex-none px-4 md:px-6 py-2 md:py-3 bg-white border-2 border-primary text-primary font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                <span className="relative flex items-center justify-center gap-2 text-xs md:text-sm">
                   Apply for Accreditation
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
@@ -91,10 +91,10 @@ export default function Hero() {
               {/* Button 3: Watch Overview */}
               <button 
                 onClick={() => setShowVideoModal(true)}
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30"
+                className="group relative flex-1 md:flex-none px-4 md:px-6 py-2 md:py-3 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30 whitespace-nowrap"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary-600 to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-2 text-sm sm:text-base">
+                <span className="relative flex items-center justify-center gap-2 text-xs md:text-sm">
                   <PlayCircle className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                   Watch Overview
                 </span>
