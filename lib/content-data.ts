@@ -17,6 +17,7 @@ export interface HeroContent {
     label: string;
   }[];
   image?: string;
+  videoUrl?: string;
 }
 
 export interface WhatWeDoContent {
@@ -300,6 +301,7 @@ export const defaultContent: SiteContent = {
       { value: "5+", label: "Years" },
     ],
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90",
+    videoUrl: "",
   },
   whatWeDo: {
     title: "Who We Are &",

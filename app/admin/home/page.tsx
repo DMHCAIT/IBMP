@@ -135,6 +135,52 @@ export default function HomeEditorPage() {
             </label>
           </div>
         </div>
+        <div className="pt-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Overview Video (Supabase)</label>
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              value={localContent.hero.videoUrl || ''}
+              onChange={(e) => setLocalContent({ ...localContent, hero: { ...localContent.hero, videoUrl: e.target.value } })}
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg"
+              placeholder="Video URL from Supabase"
+              readOnly
+            />
+            <label className="inline-flex items-center gap-2 cursor-pointer px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100">
+              <input
+                type="file"
+                accept="video/mp4,video/webm,video/ogg"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  if (file.size > 500 * 1024 * 1024) {
+                    alert('Video file too large. Maximum size is 500MB.');
+                    return;
+                  }
+                  try {
+                    const filename = `hero-video-${Date.now()}.mp4`;
+                    const path = `videos/${filename}`;
+                    const { error: uploadErr } = await supabase.storage.from('public').upload(path, file, { upsert: true });
+                    if (uploadErr) throw uploadErr;
+                    const { data } = supabase.storage.from('public').getPublicUrl(path);
+                    setLocalContent({ ...localContent, hero: { ...localContent.hero, videoUrl: data?.publicUrl } });
+                    alert('Video uploaded successfully!');
+                  } catch (err) {
+                    console.error('Video upload failed', err);
+                    alert('Video upload failed. See console for details.');
+                  }
+                }}
+                className="hidden"
+              />
+              Upload Video
+            </label>
+          </div>
+          {localContent.hero.videoUrl && (
+            <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-sm text-green-700">✓ Video uploaded: {localContent.hero.videoUrl.split('/').pop()}</p>
+            </div>
+          )}
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <InputField
             label="Primary Button Text"

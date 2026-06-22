@@ -116,16 +116,28 @@ export default function Hero() {
                   >
                     <X className="w-6 h-6 text-white" />
                   </button>
-                  <video
-                    width="100%"
-                    height="auto"
-                    controls
-                    autoPlay
-                    className="w-full"
-                  >
-                    <source src="/overviewvideo.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  
+                  {/* Video Player - Using Supabase Video URL */}
+                  {content.videoUrl ? (
+                    <video
+                      width="100%"
+                      height="auto"
+                      controls
+                      autoPlay
+                      className="w-full bg-black"
+                      controlsList="nodownload"
+                    >
+                      <source src={content.videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
+                      <div className="text-center">
+                        <p className="text-white text-lg font-semibold mb-2">No video available</p>
+                        <p className="text-gray-400">Please upload a video in the admin panel</p>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               </div>
             )}
