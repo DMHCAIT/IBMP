@@ -158,16 +158,64 @@ export default function HomeEditorPage() {
                     return;
                   }
                   try {
-                    const filename = `hero-video-${Date.now()}.mp4`;
-                    const path = `videos/${filename}`;
-                    const { error: uploadErr } = await supabase.storage.from('public').upload(path, file, { upsert: true });
-                    if (uploadErr) throw uploadErr;
-                    const { data } = supabase.storage.from('public').getPublicUrl(path);
-                    setLocalContent({ ...localContent, hero: { ...localContent.hero, videoUrl: data?.publicUrl } });
-                    alert('Video uploaded successfully!');
+                    // Show uploading state
+                    const originalText = (e.target as HTMLInputElement).parentElement?.textContent;
+                    if (e.target.parentElement) {
+                      e.target.parentElement.textContent = 'Uploading...';
+                    }
+
+                    // Read file as base64
+                    const reader = new FileReader();
+                    reader.onload = async (event) => {
+                      try {
+                        const base64String = (event.target?.result as string).split(',')[1];
+                        const filename = `hero-video-${Date.now()}.mp4`;
+                        const filePath = `videos/${filename}`;
+
+                        // Upload using API endpoint (bypasses RLS)
+                        const response = await fetch('/api/upload-file', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                            fileData: base64String,
+                            fileName: filename,
+                            filePath: filePath,
+                            bucketName: 'public',
+                            mimeType: 'video/mp4',
+                          }),
+                        });
+
+                        if (!response.ok) {
+                          const error = await response.json();
+                          throw new Error(error.error || 'Upload failed');
+                        }
+
+                        const result = await response.json();
+                        if (result.publicUrl) {
+                          setLocalContent({
+                            ...localContent,
+                            hero: { ...localContent.hero, videoUrl: result.publicUrl },
+                          });
+                          alert('Video uploaded successfully!');
+                        } else {
+                          throw new Error('No URL returned from upload');
+                        }
+                      } catch (err) {
+                        console.error('Video upload failed', err);
+                        alert(`Video upload failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
+                      } finally {
+                        // Restore button text
+                        if (e.target.parentElement) {
+                          e.target.parentElement.textContent = originalText || 'Upload Video';
+                        }
+                      }
+                    };
+                    reader.readAsDataURL(file);
                   } catch (err) {
-                    console.error('Video upload failed', err);
-                    alert('Video upload failed. See console for details.');
+                    console.error('Video processing failed', err);
+                    alert('Video processing failed. See console for details.');
                   }
                 }}
                 className="hidden"
