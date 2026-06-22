@@ -187,12 +187,26 @@ export default function HomeEditorPage() {
                           }),
                         });
 
+                        const text = await response.text();
+                        
                         if (!response.ok) {
-                          const error = await response.json();
-                          throw new Error(error.error || 'Upload failed');
+                          let errorMsg = 'Upload failed';
+                          try {
+                            const error = JSON.parse(text);
+                            errorMsg = error.error || error.message || 'Upload failed';
+                          } catch (e) {
+                            errorMsg = `Server error (${response.status}): ${text.substring(0, 100)}`;
+                          }
+                          throw new Error(errorMsg);
                         }
 
-                        const result = await response.json();
+                        let result;
+                        try {
+                          result = JSON.parse(text);
+                        } catch (e) {
+                          throw new Error(`Invalid response from server: ${text.substring(0, 100)}`);
+                        }
+
                         if (result.publicUrl) {
                           setLocalContent({
                             ...localContent,
@@ -200,7 +214,7 @@ export default function HomeEditorPage() {
                           });
                           alert('Video uploaded successfully!');
                         } else {
-                          throw new Error('No URL returned from upload');
+                          throw new Error(result.error || 'No URL returned from upload');
                         }
                       } catch (err) {
                         console.error('Video upload failed', err);

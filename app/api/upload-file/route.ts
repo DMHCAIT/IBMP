@@ -2,166 +2,125 @@ import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
+  console.log('=== VIDEO UPLOAD REQUEST ===');
+  
   try {
     const contentType = request.headers.get('content-type') || '';
+    console.log('Content-Type:', contentType);
     
-    let fileBuffer: Buffer | null = null;
-    let bucketName = 'public';
-    let filePath = '';
-    let mimeType = 'application/octet-stream';
-
-    // Handle FormData
-    if (contentType.includes('multipart/form-data')) {
-      const formData = await request.formData();
-      const file = formData.get('file') as File;
-      bucketName = (formData.get('bucketName') as string) || 'public';
-      filePath = formData.get('filePath') as string;
-      mimeType = file?.type || 'application/octet-stream';
-      
-      if (file) {
-        fileBuffer = Buffer.from(await file.arrayBuffer());
-      }
-    } else if (contentType.includes('application/json')) {
-      // Handle JSON with base64 encoded file
-      const body = await request.json();
-      const { fileData, fileName } = body;
-      
-      console.log('Received upload request:', { fileName, fileDataLength: fileData?.length, filePath: body.filePath });
-      
-      if (!fileData || !fileName) {
-        return NextResponse.json(
-          { error: 'fileData and fileName are required' },
-          { status: 400 }
-        );
-      }
-
-      // Convert base64 to buffer
-      try {
-        fileBuffer = Buffer.from(fileData, 'base64');
-        filePath = body.filePath || `public/${fileName}`;
-        bucketName = body.bucketName || 'public';
-        mimeType = body.mimeType || 'application/octet-stream';
-        
-        console.log('Converted to buffer:', { bufferSize: fileBuffer.length, filePath, mimeType });
-      } catch (decodeErr) {
-        console.error('Failed to decode base64:', decodeErr);
-        throw new Error('Invalid base64 data');
-      }
-    }
-
-    if (!fileBuffer) {
+    // Only handle JSON requests
+    if (!contentType.includes('application/json')) {
+      console.error('Invalid content type:', contentType);
       return NextResponse.json(
-        { error: 'No file provided' },
+        { error: 'Content-Type must be application/json' },
         { status: 400 }
       );
     }
 
-    if (!filePath) {
+    // Parse request body
+    let body;
+    try {
+      body = await request.json();
+      console.log('Parsed body keys:', Object.keys(body));
+    } catch (parseErr) {
+      console.error('Failed to parse JSON:', parseErr);
       return NextResponse.json(
-        { error: 'No file path provided' },
+        { error: 'Invalid JSON in request body' },
         { status: 400 }
       );
     }
 
+    const { fileData, fileName, filePath, bucketName = 'public', mimeType = 'video/mp4' } = body;
+
+    // Validate required fields
+    if (!fileData || !fileName) {
+      console.error('Missing required fields:', { fileData: !!fileData, fileName: !!fileName });
+      return NextResponse.json(
+        { error: 'fileData and fileName are required' },
+        { status: 400 }
+      );
+    }
+
+    // Convert base64 to buffer
+    let fileBuffer;
+    try {
+      fileBuffer = Buffer.from(fileData, 'base64');
+      console.log('Decoded base64 to buffer:', { size: fileBuffer.length, fileName });
+    } catch (decodeErr) {
+      console.error('Failed to decode base64:', decodeErr);
+      return NextResponse.json(
+        { error: 'Invalid base64 data' },
+        { status: 400 }
+      );
+    }
+
+    // Get Supabase credentials
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+    console.log('Supabase config:', {
+      urlExists: !!supabaseUrl,
+      keyExists: !!serviceRoleKey,
+    });
+
     if (!supabaseUrl || !serviceRoleKey) {
+      console.error('Missing Supabase configuration');
       return NextResponse.json(
         { error: 'Supabase credentials not configured' },
         { status: 500 }
       );
     }
 
-    // Create Supabase client with service role key for server-side upload
+    // Create Supabase client with service role key
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    console.log('Starting upload:', { filePath, mimeType, bufferSize: fileBuffer.length });
+    const uploadPath = filePath || `videos/${fileName}`;
+    console.log('Uploading to:', { bucket: bucketName, path: uploadPath, size: fileBuffer.length });
 
-    // Upload file with retries to tolerate transient network/DNS issues
-    const maxAttempts = 4;
-    let attempt = 0;
-    let uploadData: unknown = null;
-    let uploadError: unknown = null;
+    // Upload to Supabase
+    const { data, error } = await supabase.storage
+      .from(bucketName)
+      .upload(uploadPath, fileBuffer, {
+        upsert: true,
+        contentType: mimeType,
+      });
 
-    while (attempt < maxAttempts) {
-      attempt += 1;
-      try {
-        const { data, error } = await supabase.storage
-          .from(bucketName)
-          .upload(filePath, fileBuffer, {
-            upsert: true,
-            contentType: mimeType,
-          });
-
-        if (error) {
-          throw error;
-        }
-
-        uploadData = data;
-        console.log(`File uploaded successfully (attempt ${attempt}):`, data);
-        break;
-      } catch (err) {
-        uploadError = err;
-        console.error(`Upload attempt ${attempt} failed:`, err);
-        // exponential backoff
-        if (attempt < maxAttempts) {
-          const waitMs = 500 * Math.pow(2, attempt);
-          await new Promise((res) => setTimeout(res, waitMs));
-        }
-      }
+    if (error) {
+      console.error('Supabase upload error:', error);
+      return NextResponse.json(
+        { error: `Upload failed: ${error.message}` },
+        { status: 500 }
+      );
     }
 
-    if (!uploadData) {
-      console.error('Upload failed after retries:', uploadError);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const msg = (uploadError && typeof uploadError === 'object' && 'message' in (uploadError as Record<string, unknown>)) ? (uploadError as Record<string, any>).message : String(uploadError);
-      throw new Error(msg || 'Upload failed after retries');
-    }
+    console.log('Upload successful:', data);
 
     // Get public URL
-    // Attempt to get public URL, with retry
-    let publicUrl: unknown = null;
-    attempt = 0;
-    let publicErr: unknown = null;
-    while (attempt < maxAttempts) {
-      attempt += 1;
-      try {
-        const result = supabase.storage.from(bucketName).getPublicUrl(filePath);
-        publicUrl = result.data;
-        break;
-      } catch (err) {
-        publicErr = err;
-        console.error(`getPublicUrl attempt ${attempt} failed:`, err);
-        if (attempt < maxAttempts) await new Promise((res) => setTimeout(res, 300 * Math.pow(2, attempt)));
-      }
-    }
+    const { data: publicUrlData } = supabase.storage
+      .from(bucketName)
+      .getPublicUrl(uploadPath);
+
+    const publicUrl = publicUrlData?.publicUrl;
+    console.log('Public URL:', publicUrl);
 
     if (!publicUrl) {
-      console.error('Failed to retrieve public URL after retries:', publicErr);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const msg = (publicErr && typeof publicErr === 'object' && 'message' in (publicErr as Record<string, unknown>)) ? (publicErr as Record<string, any>).message : String(publicErr);
-      throw new Error(msg || 'Failed to retrieve public URL');
+      console.error('Failed to get public URL');
+      return NextResponse.json(
+        { error: 'Failed to get public URL' },
+        { status: 500 }
+      );
     }
 
-    // Narrow types for response
-    const publicUrlObj = publicUrl as { publicUrl?: string };
-    const uploadDataObj = uploadData as { path?: string };
+    console.log('=== UPLOAD COMPLETE ===');
+    return NextResponse.json({ publicUrl });
 
+  } catch (err: unknown) {
+    console.error('=== UPLOAD ERROR ===');
+    console.error('Error:', err);
+    
+    const errorMessage = err instanceof Error ? err.message : String(err);
     return NextResponse.json(
-      {
-        message: 'File uploaded successfully',
-        url: publicUrlObj.publicUrl,
-        path: uploadDataObj.path,
-      },
-      { status: 200 }
-    );
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error('Error in upload API:', errorMessage);
-    console.error('Full error:', error);
-    return NextResponse.json(
-      { error: errorMessage },
+      { error: `Server error: ${errorMessage}` },
       { status: 500 }
     );
   }
