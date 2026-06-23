@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
     }
 
     console.log('=== UPLOAD COMPLETE ===');
-    return NextResponse.json({ publicUrl });
+    return NextResponse.json({ url: publicUrl });
 
   } catch (err: unknown) {
     console.error('=== UPLOAD ERROR ===');
