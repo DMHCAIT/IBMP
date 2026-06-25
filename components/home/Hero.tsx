@@ -150,6 +150,7 @@ export default function Hero() {
                         controls
                         playsInline
                         preload="metadata"
+                        crossOrigin="anonymous"
                         className="w-full h-full object-contain bg-black"
                         controlsList="nodownload"
                         muted={isMuted}
