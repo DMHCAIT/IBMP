@@ -188,33 +188,40 @@ export default function HomeEditorPage() {
                         });
 
                         const text = await response.text();
+                        console.log('Upload response:', { status: response.status, responseLength: text.length, responseStart: text.substring(0, 200) });
                         
                         if (!response.ok) {
-                          let errorMsg = 'Upload failed';
+                          let errorMsg = `Upload failed with status ${response.status}`;
                           try {
                             const error = JSON.parse(text);
-                            errorMsg = error.error || error.message || 'Upload failed';
+                            errorMsg = error.error || error.message || errorMsg;
                           } catch (e) {
-                            errorMsg = `Server error (${response.status}): ${text.substring(0, 100)}`;
+                            errorMsg = `${errorMsg}: ${text.substring(0, 150)}`;
                           }
                           throw new Error(errorMsg);
                         }
 
                         let result;
                         try {
+                          if (!text) {
+                            throw new Error('Empty response from server');
+                          }
                           result = JSON.parse(text);
                         } catch (e) {
-                          throw new Error(`Invalid response from server: ${text.substring(0, 100)}`);
+                          console.error('Failed to parse response:', { text, error: e });
+                          throw new Error(`Invalid JSON response from server: ${text.substring(0, 150)}`);
                         }
 
-                        if (result.publicUrl) {
+                        if (result.url) {
                           setLocalContent({
                             ...localContent,
-                            hero: { ...localContent.hero, videoUrl: result.publicUrl },
+                            hero: { ...localContent.hero, videoUrl: result.url },
                           });
                           alert('Video uploaded successfully!');
+                        } else if (result.error) {
+                          throw new Error(result.error);
                         } else {
-                          throw new Error(result.error || 'No URL returned from upload');
+                          throw new Error('No URL returned from upload');
                         }
                       } catch (err) {
                         console.error('Video upload failed', err);

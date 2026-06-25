@@ -388,6 +388,7 @@ export default function AdmissionPage() {
     "Fellowship in Pulmonary Medicine",
     "Fellowship in Reproductive Medicine",
     "Fellowship in Reproductive Endocrinology",
+    "Fellowship in Rheumatology",
     "Fellowship in Robotic Surgery",
     "Fellowship in Spine Surgery",
     "Fellowship in Trichology",
