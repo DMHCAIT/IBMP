@@ -27,14 +27,16 @@ export default function Hero() {
             });
           }
         }
-      } catch (err) {
+      } catch {
         // ignore
       }
     } else {
       // pause when modal closed
       try {
         videoRef.current?.pause();
-      } catch (_) {}
+      } catch {
+        // ignore
+      }
     }
   }, [showVideoModal]);
 
