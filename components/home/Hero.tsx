@@ -16,13 +16,12 @@ export default function Hero() {
 
   useEffect(() => {
     if (showVideoModal) {
-      // attempt to autoplay muted (browsers allow muted autoplay)
       try {
         if (videoRef.current) {
           videoRef.current.muted = true;
           const p = videoRef.current.play();
           if (p && typeof p.then === 'function') {
-                  className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden max-h-[80vh]"
+            p.catch(() => {
               // autoplay failed, leave for user to click
             });
           }
@@ -31,20 +30,19 @@ export default function Hero() {
         // ignore
       }
     } else {
-      // pause when modal closed
       try {
-                    <div className="w-full aspect-video bg-black">
-                      <video
-                        ref={videoRef}
-                        controls
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-contain bg-black"
-                        controlsList="nodownload"
-                      >
-                        <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
-                      </video>
-                    </div>
+        videoRef.current?.pause();
+      } catch {
+        // ignore
+      }
+    }
+  }, [showVideoModal]);
+
+  return (
+    <section ref={ref} className="relative min-h-[600px] flex items-center overflow-hidden bg-white">
+      {/* Advanced Background Design */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-secondary/5" />
         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-secondary/10 via-transparent to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-primary/5 via-transparent to-transparent rounded-full blur-3xl" />
         {/* Geometric Pattern Overlay */}
@@ -53,7 +51,7 @@ export default function Hero() {
 
       <div className="container-custom relative z-10 py-6 sm:py-8 md:py-10 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -123,7 +121,7 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden"
+                  className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden max-h-[80vh]"
                 >
                   <button
                     onClick={() => setShowVideoModal(false)}
@@ -134,20 +132,18 @@ export default function Hero() {
                   
                   {/* Video Player - Using Supabase Video URL or fallback to static file */}
                   {content.videoUrl || '/overviewvideo.mp4' ? (
-                    <video
-                      ref={videoRef}
-                      width="100%"
-                      height="auto"
-                      controls
-                      // autoplay attempted programmatically (muted) in useEffect
-                      playsInline
-                      preload="metadata"
-                      className="w-full bg-black"
-                      controlsList="nodownload"
-                    >
-                      <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <div className="w-full aspect-video bg-black">
+                      <video
+                        ref={videoRef}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-contain bg-black"
+                        controlsList="nodownload"
+                      >
+                        <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
+                      </video>
+                    </div>
                   ) : (
                     <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
                       <div className="text-center">
