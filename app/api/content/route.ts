@@ -72,7 +72,7 @@ async function readContentFromDatabase(): Promise<SiteContent> {
     // Deep merge: merge each section to preserve defaults
     const merged = Object.keys(defaultContent).reduce((acc, key) => {
       const k = key as keyof SiteContent;
-      acc[k] = { ...defaultContent[k], ...(parsed[k] || {}) } as any;
+      acc[k] = { ...defaultContent[k], ...(parsed[k] || {}) } as SiteContent[keyof SiteContent];
       return acc;
     }, {} as SiteContent);
     memCache = merged;
