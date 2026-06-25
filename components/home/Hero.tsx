@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, PlayCircle, X } from 'lucide-react';
@@ -12,6 +12,31 @@ export default function Hero() {
   const isInView = useInView(ref, { once: true });
   const content = useSectionContent('hero');
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (showVideoModal) {
+      // attempt to autoplay muted (browsers allow muted autoplay)
+      try {
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          const p = videoRef.current.play();
+          if (p && typeof p.then === 'function') {
+            p.catch(() => {
+              // autoplay failed, leave for user to click
+            });
+          }
+        }
+      } catch (err) {
+        // ignore
+      }
+    } else {
+      // pause when modal closed
+      try {
+        videoRef.current?.pause();
+      } catch (_) {}
+    }
+  }, [showVideoModal]);
 
   return (
     <section ref={ref} className="relative min-h-[600px] flex items-center overflow-hidden bg-white">
@@ -108,10 +133,11 @@ export default function Hero() {
                   {/* Video Player - Using Supabase Video URL or fallback to static file */}
                   {content.videoUrl || '/overviewvideo.mp4' ? (
                     <video
+                      ref={videoRef}
                       width="100%"
                       height="auto"
                       controls
-                      autoPlay
+                      // autoplay attempted programmatically (muted) in useEffect
                       playsInline
                       preload="metadata"
                       className="w-full bg-black"
