@@ -22,7 +22,7 @@ export default function Hero() {
           videoRef.current.muted = true;
           const p = videoRef.current.play();
           if (p && typeof p.then === 'function') {
-            p.catch(() => {
+                  className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden max-h-[80vh]"
               // autoplay failed, leave for user to click
             });
           }
@@ -33,18 +33,18 @@ export default function Hero() {
     } else {
       // pause when modal closed
       try {
-        videoRef.current?.pause();
-      } catch {
-        // ignore
-      }
-    }
-  }, [showVideoModal]);
-
-  return (
-    <section ref={ref} className="relative min-h-[600px] flex items-center overflow-hidden bg-white">
-      {/* Advanced Background Design */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-secondary/5" />
+                    <div className="w-full aspect-video bg-black">
+                      <video
+                        ref={videoRef}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-contain bg-black"
+                        controlsList="nodownload"
+                      >
+                        <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
+                      </video>
+                    </div>
         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-br from-secondary/10 via-transparent to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-primary/5 via-transparent to-transparent rounded-full blur-3xl" />
         {/* Geometric Pattern Overlay */}
