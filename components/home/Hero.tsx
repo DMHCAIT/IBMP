@@ -12,22 +12,29 @@ export default function Hero() {
   const isInView = useInView(ref, { once: true });
   const content = useSectionContent('hero');
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (showVideoModal) {
+      // Because opening the modal is a direct user gesture, browsers
+      // should allow play() without muting. Attempt to play with current
+      // mute state and fall back to muted autoplay if blocked.
       try {
         if (videoRef.current) {
-          videoRef.current.muted = true;
-          const p = videoRef.current.play();
-          if (p && typeof p.then === 'function') {
-            p.catch(() => {
-              // autoplay failed, leave for user to click
+          videoRef.current.muted = isMuted;
+          const playPromise = videoRef.current.play();
+          if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.catch(() => {
+              // If playback is blocked (rare after user gesture), ensure controls visible
+              // and keep muted so user can unmute manually.
+              videoRef.current!.muted = true;
+              setIsMuted(true);
             });
           }
         }
       } catch {
-        // ignore
+        // ignore runtime issues
       }
     } else {
       try {
@@ -36,7 +43,7 @@ export default function Hero() {
         // ignore
       }
     }
-  }, [showVideoModal]);
+  }, [showVideoModal, isMuted]);
 
   return (
     <section ref={ref} className="relative min-h-[600px] flex items-center overflow-hidden bg-white">
@@ -132,7 +139,7 @@ export default function Hero() {
                   
                   {/* Video Player - Using Supabase Video URL or fallback to static file */}
                   {content.videoUrl || '/overviewvideo.mp4' ? (
-                    <div className="w-full aspect-video bg-black">
+                    <div className="w-full aspect-video bg-black relative">
                       <video
                         ref={videoRef}
                         controls
@@ -140,9 +147,31 @@ export default function Hero() {
                         preload="metadata"
                         className="w-full h-full object-contain bg-black"
                         controlsList="nodownload"
+                        muted={isMuted}
                       >
                         <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
                       </video>
+
+                      {/* Unmute Button: show when muted to allow user to unmute */}
+                      {isMuted && (
+                        <button
+                          onClick={() => {
+                            try {
+                              if (videoRef.current) {
+                                videoRef.current.muted = false;
+                                setIsMuted(false);
+                                const p = videoRef.current.play();
+                                if (p && typeof p.then === 'function') p.catch(() => {});
+                              }
+                            } catch {
+                              // ignore
+                            }
+                          }}
+                          className="absolute bottom-4 right-4 z-20 bg-white/90 text-black px-3 py-1 rounded-md font-semibold shadow-md"
+                        >
+                          Unmute
+                        </button>
+                      )}
                     </div>
                   ) : (
                     <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
