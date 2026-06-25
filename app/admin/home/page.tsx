@@ -195,7 +195,7 @@ export default function HomeEditorPage() {
                           try {
                             const error = JSON.parse(text);
                             errorMsg = error.error || error.message || errorMsg;
-                          } catch (_e) {
+                          } catch {
                             errorMsg = `${errorMsg}: ${text.substring(0, 150)}`;
                           }
                           throw new Error(errorMsg);
