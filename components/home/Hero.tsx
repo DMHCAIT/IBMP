@@ -14,6 +14,7 @@ export default function Hero() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoState, setVideoState] = useState<{ ready: boolean; error: boolean; src?: string }>({ ready: false, error: false, src: undefined });
 
   useEffect(() => {
     if (showVideoModal) {
@@ -169,6 +170,7 @@ export default function Hero() {
                           } catch {
                             // ignore
                           }
+                          setVideoState(s => ({ ...s, error: true }));
                         }}
                         onLoadedData={() => {
                           // ensure play starts when metadata is ready
@@ -179,6 +181,7 @@ export default function Hero() {
                           } catch {
                             // ignore
                           }
+                          setVideoState({ ready: true, error: false, src: videoRef.current?.currentSrc || videoRef.current?.src });
                         }}
                       >
                         <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
@@ -204,6 +207,13 @@ export default function Hero() {
                           Unmute
                         </button>
                       )}
+
+                      {/* Debug overlay: show current src and state when blank */}
+                      <div className="absolute top-4 left-4 z-30 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                        <div>src: {videoState.src || content.videoUrl || '/overviewvideo.mp4'}</div>
+                        <div>ready: {String(videoState.ready)}</div>
+                        <div>error: {String(videoState.error)}</div>
+                      </div>
                     </div>
                   ) : (
                     <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
