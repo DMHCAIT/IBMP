@@ -110,7 +110,11 @@ export default function Hero() {
 
               {/* Button 2: Watch Overview */}
               <button 
-                onClick={() => setShowVideoModal(true)}
+                onClick={() => {
+                  // Opening the modal is a direct user gesture — prefer unmuted play
+                  setIsMuted(false);
+                  setShowVideoModal(true);
+                }}
                 className="group relative flex-1 md:flex-none px-4 md:px-6 py-2 md:py-3 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary/30 whitespace-nowrap"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary-600 to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -148,6 +152,34 @@ export default function Hero() {
                         className="w-full h-full object-contain bg-black"
                         controlsList="nodownload"
                         muted={isMuted}
+                        onError={() => {
+                          // If remote video fails to load, fallback to shipped static file
+                          try {
+                            if (videoRef.current) {
+                              const currentSrc = videoRef.current.currentSrc || videoRef.current.src;
+                              if (!currentSrc.endsWith('/overviewvideo.mp4')) {
+                                videoRef.current.src = '/overviewvideo.mp4';
+                                videoRef.current.load();
+                                videoRef.current.muted = false;
+                                setIsMuted(false);
+                                const p = videoRef.current.play();
+                                if (p && typeof p.then === 'function') p.catch(() => {});
+                              }
+                            }
+                          } catch {
+                            // ignore
+                          }
+                        }}
+                        onLoadedData={() => {
+                          // ensure play starts when metadata is ready
+                          try {
+                            if (videoRef.current && !videoRef.current.paused) return;
+                            const p = videoRef.current?.play();
+                            if (p && typeof p.then === 'function') p.catch(() => {});
+                          } catch {
+                            // ignore
+                          }
+                        }}
                       >
                         <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
                       </video>
