@@ -112,6 +112,8 @@ export default function Hero() {
                       height="auto"
                       controls
                       autoPlay
+                      playsInline
+                      preload="metadata"
                       className="w-full bg-black"
                       controlsList="nodownload"
                     >
