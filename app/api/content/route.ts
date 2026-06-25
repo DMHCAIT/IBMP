@@ -69,7 +69,15 @@ async function readContentFromDatabase(): Promise<SiteContent> {
     }
 
     const parsed = data?.content || defaultContent;
-    memCache = { ...defaultContent, ...parsed };
+    // Deep merge: merge each section to preserve defaults
+    const merged: SiteContent = {
+      hero: { ...defaultContent.hero, ...(parsed.hero || {}) },
+      whatWeDo: { ...defaultContent.whatWeDo, ...(parsed.whatWeDo || {}) },
+      missionVision: { ...defaultContent.missionVision, ...(parsed.missionVision || {}) },
+      stats: { ...defaultContent.stats, ...(parsed.stats || {}) },
+      cta: { ...defaultContent.cta, ...(parsed.cta || {}) },
+    };
+    memCache = merged;
     lastCacheTime = Date.now();
     console.log('Content loaded from Supabase and cached');
     return memCache as SiteContent;

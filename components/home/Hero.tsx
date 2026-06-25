@@ -105,8 +105,8 @@ export default function Hero() {
                     <X className="w-6 h-6 text-white" />
                   </button>
                   
-                  {/* Video Player - Using Supabase Video URL */}
-                  {content.videoUrl ? (
+                  {/* Video Player - Using Supabase Video URL or fallback to static file */}
+                  {content.videoUrl || '/overviewvideo.mp4' ? (
                     <video
                       width="100%"
                       height="auto"
@@ -117,7 +117,7 @@ export default function Hero() {
                       className="w-full bg-black"
                       controlsList="nodownload"
                     >
-                      <source src={content.videoUrl} type="video/mp4" />
+                      <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : (
