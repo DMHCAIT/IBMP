@@ -14,7 +14,6 @@ export default function Hero() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [videoState, setVideoState] = useState<{ ready: boolean; error: boolean; src?: string }>({ ready: false, error: false, src: undefined });
 
   useEffect(() => {
     if (showVideoModal) {
@@ -171,7 +170,7 @@ export default function Hero() {
                           } catch {
                             // ignore
                           }
-                          setVideoState(s => ({ ...s, error: true }));
+                          // error state handled implicitly
                         }}
                         onLoadedData={() => {
                           // ensure play starts when metadata is ready
@@ -182,7 +181,7 @@ export default function Hero() {
                           } catch {
                             // ignore
                           }
-                          setVideoState({ ready: true, error: false, src: videoRef.current?.currentSrc || videoRef.current?.src });
+                          // ready state handled implicitly
                         }}
                       >
                         <source src={content.videoUrl || '/overviewvideo.mp4'} type="video/mp4" />
