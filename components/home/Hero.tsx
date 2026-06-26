@@ -209,12 +209,7 @@ export default function Hero() {
                         </button>
                       )}
 
-                      {/* Debug overlay: show current src and state when blank */}
-                      <div className="absolute top-4 left-4 z-30 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                        <div>src: {videoState.src || content.videoUrl || '/overviewvideo.mp4'}</div>
-                        <div>ready: {String(videoState.ready)}</div>
-                        <div>error: {String(videoState.error)}</div>
-                      </div>
+                      {/* Debug overlay removed for production */}
                     </div>
                   ) : (
                     <div className="w-full aspect-video bg-gray-900 flex items-center justify-center">
