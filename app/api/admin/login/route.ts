@@ -12,13 +12,14 @@ export async function POST(request: Request) {
     if (password === ADMIN_PASSWORD) {
       const res = NextResponse.json({ success: true });
       // set a secure, httpOnly cookie for authentication
-      res.cookies.set('ibmp_admin', '1', {
+      res.cookies.set('ibmp_admin', 'true', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
         path: '/',
         maxAge: 60 * 60 * 24, // 1 day
       });
+      console.log('[Login] Password matched, cookie set for ibmp_admin');
       return res;
     }
 
