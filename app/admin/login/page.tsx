@@ -92,13 +92,7 @@ export default function AdminLoginPage() {
           </div>
         </div>
 
-        {/* Demo Hint */}
-        <div className="mt-6 text-center">
-          <p className="text-white/50 text-sm">
-            Demo password: <code className="bg-white/20 px-2 py-1 rounded">ibmp2024</code>
-          </p>
-        </div>
       </div>
     </div>
-    {/* Demo password removed from UI for security */}
+  );
 }
