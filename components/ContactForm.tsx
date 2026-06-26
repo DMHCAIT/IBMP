@@ -112,6 +112,19 @@ export default function ContactForm() {
           />
         </div>
         <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Mobile Number <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="tel"
+            placeholder="e.g., +1 555-555-5555"
+            value={form.phone}
+            onChange={(e) => handleChange('phone', e.target.value)}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+          />
+        </div>
+        <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
           <input
             type="text"
