@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, ArrowRight } from 'lucide-react';
 
-const ADMIN_PASSWORD = 'ibmp2024';
+const ADMIN_PASSWORD = 'Rubeena@2026';
 const AUTH_KEY = 'ibmp-admin-auth';
 
 export default function AdminLoginPage() {
@@ -100,5 +100,5 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
-  );
+    {/* Demo password removed from UI for security */}
 }
