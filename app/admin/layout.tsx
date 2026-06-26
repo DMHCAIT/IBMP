@@ -41,7 +41,13 @@ function AdminSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // Call logout API to clear server-side cookie
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Logout API error:', err);
+    }
     localStorage.removeItem(AUTH_KEY);
     router.push('/admin/login');
   };
