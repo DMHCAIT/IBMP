@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, ArrowRight } from 'lucide-react';
 
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'Rubeena@2026';
 const AUTH_KEY = 'ibmp-admin-auth';
 
 export default function AdminLoginPage() {
@@ -18,14 +17,21 @@ export default function AdminLoginPage() {
     setIsLoading(true);
     setError('');
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    if (password === ADMIN_PASSWORD) {
-      localStorage.setItem(AUTH_KEY, 'true');
-      router.push('/admin');
-    } else {
-      setError('Invalid password. Please try again.');
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        localStorage.setItem(AUTH_KEY, 'true');
+        router.push('/admin');
+      } else {
+        setError(data.message || 'Invalid password. Please try again.');
+      }
+    } catch (err) {
+      setError('Login failed. Please try again.');
     }
 
     setIsLoading(false);
