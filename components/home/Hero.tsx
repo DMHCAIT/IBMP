@@ -30,7 +30,7 @@ export default function Hero() {
               // If playback is blocked (rare after user gesture), ensure controls visible
               // and keep muted so user can unmute manually.
               videoRef.current!.muted = true;
-              setIsMuted(true);
+  
             });
           }
         }
