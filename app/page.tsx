@@ -14,7 +14,6 @@ import WhatWeDoSection from '@/components/home/WhatWeDoSection';
 import MissionVisionSection from '@/components/home/MissionVisionSection';
 import StatsSection from '@/components/home/StatsSection';
 import CTASection from '@/components/home/CTASection';
-import OverviewVideo from '@/components/home/OverviewVideo';
 
 export default function Home() {
   return (
@@ -25,7 +24,6 @@ export default function Home() {
         <WhatWeDoSection />
         <MissionVisionSection />
         <StatsSection />
-        <OverviewVideo />
         <CTASection />
       </main>
       <Footer />
