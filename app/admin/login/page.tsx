@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, ArrowRight } from 'lucide-react';
 
-const ADMIN_PASSWORD = 'Rubeena@2026';
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'Rubeena@2026';
 const AUTH_KEY = 'ibmp-admin-auth';
 
 export default function AdminLoginPage() {
