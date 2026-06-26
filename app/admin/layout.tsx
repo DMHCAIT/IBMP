@@ -176,7 +176,7 @@ function AdminLayoutContent({ children }: { children: ReactNode }) {
       try {
         const res = await fetch('/api/admin/check', {
           credentials: 'include',
-        });}
+        });
         if (!mounted) return;
         if (res.ok) {
           setIsAuthenticated(true);
