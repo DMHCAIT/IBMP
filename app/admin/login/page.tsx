@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, ArrowRight } from 'lucide-react';
 
-const AUTH_KEY = 'ibmp-admin-auth';
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
@@ -31,6 +30,7 @@ export default function AdminLoginPage() {
         setError(data.message || 'Invalid password. Please try again.');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Login failed. Please try again.');
     }
 
