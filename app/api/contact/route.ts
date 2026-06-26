@@ -8,10 +8,10 @@ export const dynamic = 'force-dynamic';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, phone, subject, message } = body;
 
     // Validate required fields
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    if (!name?.trim() || !email?.trim() || !message?.trim() || !phone?.trim()) {
       return NextResponse.json(
         { success: false, message: 'Name, email, and message are required.' },
         { status: 400 }
@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
       id: Date.now().toString(),
       name: name.trim(),
       email: email.trim().toLowerCase(),
+      phone: phone.trim(),
       subject: subject?.trim() || null,
       message: message.trim(),
       created_at: new Date().toISOString(),

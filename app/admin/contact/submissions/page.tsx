@@ -7,6 +7,7 @@ interface ContactSubmission {
   id: string;
   name: string;
   email: string;
+  phone?: string;
   subject: string | null;
   message: string;
   created_at: string;
@@ -133,6 +134,9 @@ export default function ContactSubmissionsPage() {
                         <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
                           <Mail className="h-4 w-4" />
                           {submission.email}
+                          {submission.phone && (
+                            <span className="ml-3 text-sm text-gray-500">• {submission.phone}</span>
+                          )}
                         </p>
                       </div>
                       <span className="text-xs text-gray-500 flex items-center gap-1 whitespace-nowrap">
@@ -207,9 +211,9 @@ export default function ContactSubmissionsPage() {
                   {/* Phone */}
                   <div>
                     <label className="text-xs font-semibold text-gray-600 uppercase block mb-2">
-                      Sent On
+                      Phone
                     </label>
-                    <p className="text-gray-900">{formatDate(selectedSubmission.created_at)}</p>
+                    <p className="text-gray-900">{selectedSubmission.phone || '—'}</p>
                   </div>
 
                   {/* Subject */}

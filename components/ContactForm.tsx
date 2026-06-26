@@ -5,6 +5,7 @@ import { useState } from 'react';
 interface FormState {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 }
@@ -13,6 +14,7 @@ export default function ContactForm() {
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -29,7 +31,7 @@ export default function ContactForm() {
     e.preventDefault();
     setError('');
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim() || !form.phone.trim()) {
       setError('Please fill in all required fields.');
       return;
     }
@@ -44,7 +46,7 @@ export default function ContactForm() {
       const data = await res.json();
       if (data.success) {
         setSuccess(true);
-        setForm({ name: '', email: '', subject: '', message: '' });
+        setForm({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
         setError(data.message || 'Something went wrong. Please try again.');
       }
