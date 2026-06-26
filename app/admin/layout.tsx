@@ -170,12 +170,27 @@ function AdminLayoutContent({ children }: { children: ReactNode }) {
   // useLayoutEffect runs before paint — eliminates the spinner flash for authenticated users
   useLayoutEffect(() => {
     if (pathname === '/admin/login') return;
-    const auth = localStorage.getItem(AUTH_KEY);
-    if (auth !== 'true') {
-      router.replace('/admin/login');
-    } else {
-      setIsAuthenticated(true);
+
+    let mounted = true;
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/admin/check');
+        if (!mounted) return;
+        if (res.ok) {
+          setIsAuthenticated(true);
+        } else {
+          router.replace('/admin/login');
+        }
+      } catch (err) {
+        console.error('Auth check failed:', err);
+        router.replace('/admin/login');
+      }
     }
+
+    checkAuth();
+    return () => {
+      mounted = false;
+    };
   }, [router, pathname]);
 
   // Login page: render children directly, no auth needed
