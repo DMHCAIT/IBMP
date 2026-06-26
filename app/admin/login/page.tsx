@@ -25,7 +25,7 @@ export default function AdminLoginPage() {
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        localStorage.setItem(AUTH_KEY, 'true');
+        // Server set httpOnly cookie; proceed to admin
         router.push('/admin');
       } else {
         setError(data.message || 'Invalid password. Please try again.');
