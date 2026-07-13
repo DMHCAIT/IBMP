@@ -41,7 +41,7 @@ async function loadContent(): Promise<SiteContent> {
 
     const parsed = data?.content || defaultContent;
     const merged = { ...defaultContent, ...parsed };
-    console.log(`[CourseDetail] Loaded ${merged.courses?.medicalSpecialties?.length || 0} medical specialties, ${merged.courses?.superSpecialties?.length || 0} super specialties`);
+    console.log(`[CourseDetail] Loaded ${merged.courses?.medicalSpecialties?.length || 0} medical specialties, ${merged.courses?.superSpecialties?.length || 0} super specialties, ${merged.courses?.honoraryFellowship?.length || 0} honorary fellowship courses`);
     return merged;
   } catch (error) {
     console.warn('[CourseDetail] Failed to load content from Supabase. Using default content fallback.', error);
@@ -63,7 +63,7 @@ async function findCourseBySlug(slug: string): Promise<Course | null> {
   console.log(`[CourseDetail] Searching in ${courses.medicalSpecialties.length} medical specialties...`);
   for (const course of courses.medicalSpecialties) {
     if (course.slug === slug) {
-      console.log(`[CourseDetail] Found in medical specialties: ${course.name}`);
+      console.log(`[CourseDetail] Found in medical specialties: ${course.name} (id: ${course.id})`);
       return course;
     }
   }
@@ -71,22 +71,23 @@ async function findCourseBySlug(slug: string): Promise<Course | null> {
   console.log(`[CourseDetail] Searching in ${courses.superSpecialties.length} super specialties...`);
   for (const course of courses.superSpecialties) {
     if (course.slug === slug) {
-      console.log(`[CourseDetail] Found in super specialties: ${course.name}`);
+      console.log(`[CourseDetail] Found in super specialties: ${course.name} (id: ${course.id})`);
       return course;
     }
   }
 
-  console.log(`[CourseDetail] Searching in ${courses.honoraryFellowship.length} honorary fellowship...`);
+  console.log(`[CourseDetail] Searching in ${courses.honoraryFellowship.length} honorary fellowship courses...`);
   for (const course of courses.honoraryFellowship) {
     if (course.slug === slug) {
-      console.log(`[CourseDetail] Found in honorary fellowship: ${course.name}`);
+      console.log(`[CourseDetail] Found in honorary fellowship: ${course.name} (id: ${course.id})`);
       return course;
     }
   }
 
   console.warn(`[CourseDetail] Course not found with slug: ${slug}`);
-  console.log(`[CourseDetail] Available medical specialty slugs:`, courses.medicalSpecialties.map(c => c.slug).slice(0, 3));
-  console.log(`[CourseDetail] Available super specialty slugs:`, courses.superSpecialties.map(c => c.slug).slice(0, 3));
+  console.log(`[CourseDetail] Available medical specialty slugs:`, courses.medicalSpecialties.map(c => ({ name: c.name, slug: c.slug })).slice(0, 3));
+  console.log(`[CourseDetail] Available super specialty slugs:`, courses.superSpecialties.map(c => ({ name: c.name, slug: c.slug })).slice(0, 3));
+  console.log(`[CourseDetail] Available honorary fellowship slugs:`, courses.honoraryFellowship.map(c => ({ name: c.name, slug: c.slug })).slice(0, 3));
   return null;
 }
 

@@ -119,45 +119,93 @@ export default function CoursesAdminPage() {
     setIsAddingNew(false);
   };
 
-  const handleDeleteCourse = (courseId: string) => {
-    if (confirm('Are you sure you want to delete this course?')) {
-      const updatedCourses = courses.filter((c) => c.id !== courseId);
-      updateContent('courses', {
-        ...content.courses,
-        [activeCategory]: updatedCourses,
-      });
+  const handleDeleteCourse = async (courseId: string) => {
+    if (confirm('Are you sure you want to delete this course? This cannot be undone.')) {
+      try {
+        const updatedCourses = courses.filter((c) => c.id !== courseId);
+        const newCoursesData = {
+          ...content.courses,
+          [activeCategory]: updatedCourses,
+        };
+        
+        updateContent('courses', newCoursesData);
+        await saveContent({ courses: newCoursesData });
+        console.log('[CourseDelete] Course deleted successfully from database');
+        alert('Course deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting course:', error);
+        alert('Error deleting course. Please try again.');
+      }
     }
   };
 
-  const handleToggleActive = (courseId: string) => {
-    const updatedCourses = courses.map((c) =>
-      c.id === courseId ? { ...c, isActive: !c.isActive } : c
-    );
-    updateContent('courses', {
-      ...content.courses,
-      [activeCategory]: updatedCourses,
-    });
+  const handleToggleActive = async (courseId: string) => {
+    try {
+      const updatedCourses = courses.map((c) =>
+        c.id === courseId ? { ...c, isActive: !c.isActive } : c
+      );
+      const newCoursesData = {
+        ...content.courses,
+        [activeCategory]: updatedCourses,
+      };
+      
+      updateContent('courses', newCoursesData);
+      await saveContent({ courses: newCoursesData });
+      console.log('[CourseToggle] Course status updated and saved to database');
+    } catch (error) {
+      console.error('Error updating course status:', error);
+      alert('Error updating course status. Please try again.');
+    }
   };
 
   const handleSaveCourse = async () => {
     if (!editingCourse) return;
 
+    // Validate course name
+    if (!editingCourse.name || editingCourse.name.trim() === '') {
+      alert('Course name is required.');
+      return;
+    }
+
     // Generate slug from name if not provided
-    if (!editingCourse.slug) {
+    if (!editingCourse.slug || editingCourse.slug.trim() === '') {
       editingCourse.slug = editingCourse.name
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '');
     }
 
+    // Validate slug was generated successfully
+    if (!editingCourse.slug || editingCourse.slug.trim() === '') {
+      alert('Could not generate a valid slug from the course name. Please use a name with letters or numbers.');
+      return;
+    }
+
+    // Check for duplicate slugs
+    const existingCourse = courses.find(c => c.slug === editingCourse!.slug && c.id !== editingCourse!.id);
+    if (existingCourse) {
+      alert(`A course with slug "${editingCourse.slug}" already exists. Please use a different name.`);
+      return;
+    }
+
     try {
+      console.log('[CourseSave] Saving course:', { 
+        id: editingCourse.id, 
+        name: editingCourse.name, 
+        slug: editingCourse.slug, 
+        category: activeCategory,
+        isNew: isAddingNew 
+      });
+
       const newCoursesData = isAddingNew
         ? { ...content.courses, [activeCategory]: [...courses, editingCourse] }
         : { ...content.courses, [activeCategory]: courses.map((c) => c.id === editingCourse.id ? editingCourse : c) };
 
       updateContent('courses', newCoursesData);
       await saveContent({ courses: newCoursesData });
-      alert('Course saved successfully! Changes will appear on the website immediately.');
+      
+      console.log('[CourseSave] Course saved successfully to database');
+      alert(`Course "${editingCourse.name}" saved successfully! The course will be accessible at /programs/courses/${editingCourse.slug}`);
       setEditingCourse(null);
       setIsAddingNew(false);
     } catch (error) {

@@ -37,6 +37,15 @@ export default function ContactPage() {
               {/* Contact Info */}
               <div className="space-y-8">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
+                  <div className="text-4xl mb-4">📍</div>
+                  <h3 className="text-xl font-bold text-primary mb-2">Our Address</h3>
+                  <div className="text-gray-600 mb-3 space-y-1">
+                    <p>800 N King Street, Suite 304</p>
+                    <p>Wilmington, Delaware 19801</p>
+                    <p>United States</p>
+                  </div>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
                   <div className="text-4xl mb-4">🏛️</div>
                   <h3 className="text-xl font-bold text-primary mb-2">Get your Medical Program Accredited</h3>
                   <p className="text-gray-600 mb-3">Join the ranks of globally recognized medical education providers. Our accreditation ensures your programs meet the highest international standards of quality, credibility, and excellence. </p>

@@ -45,6 +45,14 @@ export default function Footer() {
                   </a>
                 </div>
               )}
+              <div className="flex items-start gap-3">
+                <span className="text-secondary mt-0.5">📍</span>
+                <div className="text-gray-600 text-sm">
+                  <p>800 N King Street, Suite 304</p>
+                  <p>Wilmington, Delaware 19801</p>
+                  <p>United States</p>
+                </div>
+              </div>
             </div>
           </div>
 
