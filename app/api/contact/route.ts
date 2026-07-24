@@ -5,6 +5,102 @@ import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
+// Send lead to TeleCRM API (fire-and-forget)
+async function sendToTeleCRM(data: {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  subject?: string | null;
+}) {
+  const telecrmToken = process.env.TELECRM_SYNC_TOKEN;
+  const telecrmApiUrl = process.env.TELECRM_API_URL;
+  const telecrmEnterpriseId = process.env.TELECRM_ENTERPRISE_ID;
+
+  if (!telecrmToken || !telecrmApiUrl) {
+    console.warn('Skipping TeleCRM - missing configuration');
+    return;
+  }
+
+  try {
+    const cleanedPhone = data.phone.replace(/\D/g, '');
+
+    // Prepare candidate payloads; try multiple formats
+    const candidates = [
+      {
+        // wrapped under 'fields' (accepted by this enterprise)
+        fields: {
+          name: data.name,
+          email: data.email,
+          phone: cleanedPhone,
+          message: data.message,
+          subject: data.subject || undefined,
+        },
+      },
+      {
+        // flat top-level fields
+        name: data.name,
+        email: data.email,
+        phone: cleanedPhone,
+        message: data.message,
+        subject: data.subject || undefined,
+      },
+      {
+        // wrapped under 'lead'
+        lead: {
+          name: data.name,
+          email: data.email,
+          phone: cleanedPhone,
+          message: data.message,
+          subject: data.subject || undefined,
+        },
+      },
+    ];
+
+    const normalizedApiUrl = telecrmApiUrl.replace(/\/$/, '');
+    let baseUrl = normalizedApiUrl;
+    if (/autoupdate\/v2/i.test(normalizedApiUrl) && telecrmEnterpriseId) {
+      baseUrl = `https://next-api.telecrm.in/enterprise/${telecrmEnterpriseId}/autoupdatelead`;
+    } else if (!/autoupdate|autoupdatelead|enterprise/i.test(normalizedApiUrl)) {
+      baseUrl = `${normalizedApiUrl}/leads`;
+    }
+
+    let sent = false;
+    for (const payload of candidates) {
+      try {
+        console.log('[TeleCRM] Attempt URL:', baseUrl);
+        console.log('[TeleCRM] Attempt payload:', payload);
+
+        const res = await fetch(baseUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${telecrmToken}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const text = await res.text();
+        console.log('[TeleCRM] Attempt status:', res.status, 'body:', text);
+
+        if (res.ok) {
+          console.log('[TeleCRM] Lead successfully sent with payload variant');
+          sent = true;
+          break;
+        }
+      } catch (err) {
+        console.error('[TeleCRM] Error sending attempt:', err);
+      }
+    }
+
+    if (!sent) {
+      console.error('[TeleCRM] All payload attempts failed. See logs above for details.');
+    }
+  } catch (err) {
+    console.error('[TeleCRM] Error sending lead:', err);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -63,6 +159,15 @@ export async function POST(request: NextRequest) {
         console.error('[Contact API] File fallback also failed:', fileErr);
       }
     }
+
+    // Fire-and-forget: send lead to TeleCRM (do not block main request)
+    sendToTeleCRM({
+      name: submission.name,
+      email: submission.email,
+      phone: submission.phone,
+      message: submission.message,
+      subject: submission.subject,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {
