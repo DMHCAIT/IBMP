@@ -134,7 +134,6 @@ export async function POST(request: NextRequest) {
       subject: subject?.trim() || null,
       message: message.trim(),
       website_url: 'https://www.ibmpractitioner.us/',
-      created_at: new Date().toISOString(),
     };
 
     let savedToDb = false;
