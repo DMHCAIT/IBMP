@@ -133,24 +133,32 @@ export async function POST(request: NextRequest) {
       phone: phone.trim(),
       subject: subject?.trim() || null,
       message: message.trim(),
-      website_url: 'https://www.ibmpractitioner.us/',
     };
 
     let savedToDb = false;
+    let dbError = null;
 
     // Try Supabase first
     try {
       const db = getSupabaseServiceClient();
-      const { error } = await db.from('contact_submissions').insert(submission);
-      if (!error) savedToDb = true;
-      else console.warn('[Contact API] Supabase insert error:', error.message);
+      console.log('[Contact API] Attempting to save submission to Supabase:', submission);
+      const { error } = await db.from('contact_submissions').insert([submission]);
+      if (!error) {
+        console.log('[Contact API] Successfully saved to Supabase');
+        savedToDb = true;
+      } else {
+        dbError = error;
+        console.error('[Contact API] Supabase insert error:', error.message, error.details);
+      }
     } catch (dbErr) {
-      console.warn('[Contact API] Supabase unavailable:', dbErr);
+      dbError = dbErr;
+      console.error('[Contact API] Supabase exception:', dbErr);
     }
 
-    // Fallback: save to local JSON file when DB table doesn't exist
+    // Fallback: save to local JSON file when DB save fails
     if (!savedToDb) {
       try {
+        console.log('[Contact API] Falling back to local JSON file');
         const filePath = path.join(process.cwd(), 'data', 'contact-submissions.json');
         let existing: typeof submission[] = [];
         try {
@@ -159,12 +167,14 @@ export async function POST(request: NextRequest) {
         } catch { /* file doesn't exist yet */ }
         existing.push(submission);
         await fs.writeFile(filePath, JSON.stringify(existing, null, 2), 'utf-8');
+        console.log('[Contact API] Saved to local JSON file');
       } catch (fileErr) {
         console.error('[Contact API] File fallback also failed:', fileErr);
       }
     }
 
-    // Fire-and-forget: send lead to TeleCRM (do not block main request)
+    // Send to TeleCRM asynchronously with website_url (do not block main request)
+    console.log('[Contact API] Sending to TeleCRM with website URL');
     sendToTeleCRM({
       name: submission.name,
       email: submission.email,
@@ -174,7 +184,11 @@ export async function POST(request: NextRequest) {
       website_url: 'https://www.ibmpractitioner.us/',
     });
 
-    return NextResponse.json({ success: true });
+    // Always return success to user but log what happened server-side
+    return NextResponse.json({ 
+      success: true,
+      message: 'Thank you! Your message has been received and will be processed shortly.'
+    });
   } catch (err) {
     console.error('[Contact API] Unexpected error:', err);
     return NextResponse.json(
