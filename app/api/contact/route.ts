@@ -136,7 +136,6 @@ export async function POST(request: NextRequest) {
     };
 
     let savedToDb = false;
-    let dbError = null;
 
     // Try Supabase first
     try {
@@ -147,11 +146,9 @@ export async function POST(request: NextRequest) {
         console.log('[Contact API] Successfully saved to Supabase');
         savedToDb = true;
       } else {
-        dbError = error;
         console.error('[Contact API] Supabase insert error:', error.message, error.details);
       }
     } catch (dbErr) {
-      dbError = dbErr;
       console.error('[Contact API] Supabase exception:', dbErr);
     }
 
