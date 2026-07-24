@@ -12,6 +12,7 @@ async function sendToTeleCRM(data: {
   phone: string;
   message: string;
   subject?: string | null;
+  website_url?: string;
 }) {
   const telecrmToken = process.env.TELECRM_SYNC_TOKEN;
   const telecrmApiUrl = process.env.TELECRM_API_URL;
@@ -35,6 +36,7 @@ async function sendToTeleCRM(data: {
           phone: cleanedPhone,
           message: data.message,
           subject: data.subject || undefined,
+          website_url: data.website_url || undefined,
         },
       },
       {
@@ -44,6 +46,7 @@ async function sendToTeleCRM(data: {
         phone: cleanedPhone,
         message: data.message,
         subject: data.subject || undefined,
+        website_url: data.website_url || undefined,
       },
       {
         // wrapped under 'lead'
@@ -53,6 +56,7 @@ async function sendToTeleCRM(data: {
           phone: cleanedPhone,
           message: data.message,
           subject: data.subject || undefined,
+          website_url: data.website_url || undefined,
         },
       },
     ];
@@ -167,6 +171,7 @@ export async function POST(request: NextRequest) {
       phone: submission.phone,
       message: submission.message,
       subject: submission.subject,
+      website_url: 'https://www.ibmpractitioner.us/',
     });
 
     return NextResponse.json({ success: true });
