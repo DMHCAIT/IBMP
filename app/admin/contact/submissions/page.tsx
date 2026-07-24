@@ -10,6 +10,7 @@ interface ContactSubmission {
   phone?: string;
   subject: string | null;
   message: string;
+  website_url?: string;
   created_at: string;
 }
 
@@ -223,6 +224,23 @@ export default function ContactSubmissionsPage() {
                         Subject
                       </label>
                       <p className="text-gray-900">{selectedSubmission.subject}</p>
+                    </div>
+                  )}
+
+                  {/* Website URL */}
+                  {selectedSubmission.website_url && (
+                    <div>
+                      <label className="text-xs font-semibold text-gray-600 uppercase block mb-2">
+                        Source Website
+                      </label>
+                      <a
+                        href={selectedSubmission.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline break-words"
+                      >
+                        {selectedSubmission.website_url}
+                      </a>
                     </div>
                   )}
 
