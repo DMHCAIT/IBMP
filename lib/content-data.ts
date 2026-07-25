@@ -2554,6 +2554,375 @@ export const defaultContent: SiteContent = {
           buttonText: 'Talk to Counselor'
         },
         isActive: true
+      },
+      {
+        id: "ss-027",
+        slug: "clinical-embryology",
+        name: "Clinical Embryology",
+        shortDescription: "Study of embryonic development and reproductive biology",
+        fullDescription: "The Fellowship in Clinical Embryology provides specialized training in embryonic development, assisted reproductive technology, and laboratory management of embryos for fertility treatment.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Clinical Embryology)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "Interest in reproductive medicine", "Basic knowledge of biology and embryology"],
+        curriculum: [
+          { module: "Embryonic Development", topics: ["Early Development", "Organogenesis", "Fetal Development", "Congenital Anomalies"] },
+          { module: "ART Laboratory", topics: ["Gamete Handling", "Embryo Culture", "Cryopreservation", "Quality Control"] },
+          { module: "Clinical Applications", topics: ["Infertility Diagnosis", "Treatment Planning", "Outcome Optimization", "Patient Counseling"] }
+        ],
+        learningOutcomes: ["Understand embryonic development", "Manage ART laboratory operations", "Optimize embryo selection", "Provide reproductive counseling"],
+        assessmentMethods: ["Clinical Assessments", "Laboratory Competency Tests", "Case Reviews", "Research Project"],
+        careerOpportunities: ["Embryologist", "Fertility Clinic Director", "Research Scientist", "Academic Embryology"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 308 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-028",
+        slug: "addiction-psychology",
+        name: "Addiction Psychology",
+        shortDescription: "Treatment and management of substance use and behavioral addictions",
+        fullDescription: "The Fellowship in Addiction Psychology provides specialized training in the assessment, diagnosis, and treatment of substance use disorders and behavioral addictions including pharmacotherapy and psychotherapy.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Addiction Psychology)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Valid medical license/registration", "Interest in addiction medicine", "Psychiatry residency preferred"],
+        curriculum: [
+          { module: "Addiction Pathophysiology", topics: ["Neurobiology of Addiction", "Genetic Factors", "Risk Factors", "Co-occurring Disorders"] },
+          { module: "Pharmacotherapy", topics: ["Opioid Medications", "Alcohol Withdrawal", "Psychotropic Medications", "Medication Management"] },
+          { module: "Psychosocial Treatment", topics: ["Cognitive Behavioral Therapy", "Group Therapy", "Family Therapy", "Relapse Prevention"] }
+        ],
+        learningOutcomes: ["Diagnose addiction disorders", "Manage pharmacotherapy", "Provide psychosocial interventions", "Address comorbid conditions"],
+        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Treatment Plan Evaluations"],
+        careerOpportunities: ["Addiction Specialist", "Addiction Psychiatrist", "Treatment Center Director", "Academic Addiction Medicine"],
+        pricing: {
+          amount: 3400,
+          currency: 'USD',
+          displayPrice: '$3,400',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1134 },
+              { months: 6, monthlyAmount: 567 },
+              { months: 12, monthlyAmount: 284 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-029",
+        slug: "reproductive-medicine",
+        name: "Reproductive Medicine",
+        shortDescription: "Diagnosis and treatment of infertility and reproductive conditions",
+        fullDescription: "The Fellowship in Reproductive Medicine provides comprehensive training in the diagnosis and treatment of male and female infertility including assisted reproductive technology and surgical interventions.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Reproductive Medicine)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "OB-GYN or Urology residency", "Valid medical license/registration", "Interest in fertility care"],
+        curriculum: [
+          { module: "Infertility Workup", topics: ["Female Assessment", "Male Assessment", "Diagnostic Procedures", "Imaging Interpretation"] },
+          { module: "ART Procedures", topics: ["IVF Fundamentals", "Embryo Transfer", "Ovulation Induction", "Retrieval Techniques"] },
+          { module: "Surgical Interventions", topics: ["Hysteroscopy", "Laparoscopy", "Sperm Retrieval", "Tubal Surgery"] }
+        ],
+        learningOutcomes: ["Evaluate infertility patients", "Manage ART procedures", "Perform reproductive surgeries", "Counsel patients on fertility options"],
+        assessmentMethods: ["Clinical Assessments", "Procedure Competency", "Case Reviews", "Research Project"],
+        careerOpportunities: ["Reproductive Endocrinologist", "Fertility Specialist", "IVF Clinic Director", "Academic Reproduction"],
+        pricing: {
+          amount: 3800,
+          currency: 'USD',
+          displayPrice: '$3,800',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1267 },
+              { months: 6, monthlyAmount: 634 },
+              { months: 12, monthlyAmount: 317 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-030",
+        slug: "gi-endoscopy",
+        name: "GI Endoscopy",
+        shortDescription: "Minimally invasive diagnostic and therapeutic endoscopic procedures",
+        fullDescription: "The Fellowship in GI Endoscopy provides specialized training in advanced endoscopic procedures including therapeutic interventions, advanced imaging techniques, and complex case management.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (GI Endoscopy)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Internal Medicine or Surgery residency", "Valid medical license/registration", "Gastroenterology experience"],
+        curriculum: [
+          { module: "Advanced Diagnostics", topics: ["High Definition Endoscopy", "NBI Techniques", "Endoscopic Ultrasound", "Capsule Endoscopy"] },
+          { module: "Therapeutic Procedures", topics: ["Polypectomy", "Hemostasis", "Stent Placement", "Stricture Dilation"] },
+          { module: "Complex Cases", topics: ["Barrett's Esophagus", "Achalasia", "GI Bleeds", "Biliary Obstruction"] }
+        ],
+        learningOutcomes: ["Perform advanced endoscopic procedures", "Manage therapeutic interventions", "Interpret endoscopic findings", "Handle complications"],
+        assessmentMethods: ["Procedure Competency Tests", "Clinical Assessments", "Case Reviews", "Research Project"],
+        careerOpportunities: ["Therapeutic Endoscopist", "Advanced Gastroenterologist", "Endoscopy Center Director", "Academic Endoscopy"],
+        pricing: {
+          amount: 3900,
+          currency: 'USD',
+          displayPrice: '$3,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1300 },
+              { months: 6, monthlyAmount: 650 },
+              { months: 12, monthlyAmount: 325 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-031",
+        slug: "abdominal-imaging",
+        name: "Abdominal Imaging",
+        shortDescription: "Advanced imaging of abdominal organs and pathology",
+        fullDescription: "The Fellowship in Abdominal Imaging provides specialized training in CT, MRI, and ultrasound imaging of the abdomen and pelvis for diagnosis of acute and chronic pathology.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Abdominal Imaging)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Radiology residency or equivalent", "Valid medical license/registration", "Interest in abdominal imaging"],
+        curriculum: [
+          { module: "Imaging Modalities", topics: ["CT Abdomen/Pelvis", "MRI Abdomen", "Ultrasound Abdomen", "Interventional Imaging"] },
+          { module: "Organ Pathology", topics: ["Hepatic Pathology", "Pancreatic Disease", "GI Pathology", "Renal Pathology"] },
+          { module: "Interventional Procedures", topics: ["Image-Guided Biopsy", "Drainage Procedures", "Ablation", "Vascular Intervention"] }
+        ],
+        learningOutcomes: ["Interpret complex abdominal imaging", "Recognize pathology patterns", "Perform image-guided procedures", "Provide clinical guidance"],
+        assessmentMethods: ["Image Interpretation Exams", "Procedure Competency", "Case Reviews", "Research Project"],
+        careerOpportunities: ["Abdominal Radiologist", "Interventional Radiologist", "Imaging Center Director", "Academic Radiology"],
+        pricing: {
+          amount: 3600,
+          currency: 'USD',
+          displayPrice: '$3,600',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1200 },
+              { months: 6, monthlyAmount: 600 },
+              { months: 12, monthlyAmount: 300 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-032",
+        slug: "musculoskeletal-ultrasound",
+        name: "Musculoskeletal Ultrasound",
+        shortDescription: "Ultrasound imaging and intervention for musculoskeletal conditions",
+        fullDescription: "The Fellowship in Musculoskeletal Ultrasound provides specialized training in high-frequency ultrasound for diagnosis and image-guided intervention in musculoskeletal pathology.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (MSK Ultrasound)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Radiology or Orthopedics background", "Valid medical license/registration", "Interest in ultrasound"],
+        curriculum: [
+          { module: "Ultrasound Physics", topics: ["Machine Operation", "Image Optimization", "Artifacts", "Doppler Techniques"] },
+          { module: "MSK Anatomy", topics: ["Shoulder", "Elbow", "Wrist/Hand", "Hip/Knee/Ankle"] },
+          { module: "Interventions", topics: ["Joint Injections", "Tendon Procedures", "Nerve Blocks", "Biopsy Guidance"] }
+        ],
+        learningOutcomes: ["Perform MSK ultrasound exams", "Guide interventional procedures", "Recognize pathology", "Manage complications"],
+        assessmentMethods: ["Practical Ultrasound Exams", "Procedure Competency", "Image Interpretation", "Clinical Assessment"],
+        careerOpportunities: ["MSK Radiologist", "Sports Medicine Sonographer", "Interventional Ultrasound Specialist", "Academic Ultrasound"],
+        pricing: {
+          amount: 3500,
+          currency: 'USD',
+          displayPrice: '$3,500',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1167 },
+              { months: 6, monthlyAmount: 584 },
+              { months: 12, monthlyAmount: 292 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-033",
+        slug: "medical-oncology",
+        name: "Medical Oncology",
+        shortDescription: "Systemic cancer treatment including chemotherapy and immunotherapy",
+        fullDescription: "The Fellowship in Medical Oncology provides comprehensive training in the medical management of cancer including chemotherapy, immunotherapy, hormone therapy, and targeted therapy.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Medical Oncology)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Internal Medicine residency", "Valid medical license/registration", "Commitment to oncology"],
+        curriculum: [
+          { module: "Cancer Biology", topics: ["Oncogenic Pathways", "Tumor Immunology", "Drug Mechanisms", "Resistance Mechanisms"] },
+          { module: "Treatment Modalities", topics: ["Chemotherapy", "Immunotherapy", "Targeted Therapy", "Hormone Therapy"] },
+          { module: "Cancer Management", topics: ["Treatment Planning", "Toxicity Management", "Supportive Care", "Follow-up"] }
+        ],
+        learningOutcomes: ["Diagnose and stage cancers", "Design treatment protocols", "Manage therapy complications", "Provide supportive care"],
+        assessmentMethods: ["Case Presentations", "Treatment Plan Reviews", "Written Exams", "Research Project"],
+        careerOpportunities: ["Medical Oncologist", "Cancer Center Director", "Clinical Research Oncologist", "Academic Oncology"],
+        pricing: {
+          amount: 4000,
+          currency: 'USD',
+          displayPrice: '$4,000',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1334 },
+              { months: 6, monthlyAmount: 667 },
+              { months: 12, monthlyAmount: 334 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-034",
+        slug: "women's-imaging",
+        name: "Women's Imaging",
+        shortDescription: "Imaging of breast and gynecologic pathology",
+        fullDescription: "The Fellowship in Women's Imaging provides specialized training in mammography, breast ultrasound, MRI, and imaging of gynecologic pathology including intervention.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Women's Imaging)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Radiology residency", "Valid medical license/registration", "Interest in breast/GYN imaging"],
+        curriculum: [
+          { module: "Breast Imaging", topics: ["Mammography", "Breast Ultrasound", "Breast MRI", "Breast Pathology"] },
+          { module: "Gynecologic Imaging", topics: ["Uterine Pathology", "Ovarian Masses", "Pelvic MRI", "Pregnancy Imaging"] },
+          { module: "Interventions", topics: ["Breast Biopsy", "Cyst Aspiration", "Drain Placement", "Guided Procedures"] }
+        ],
+        learningOutcomes: ["Interpret breast imaging", "Recognize GYN pathology", "Perform image-guided interventions", "Communicate findings clinically"],
+        assessmentMethods: ["Image Interpretation Exams", "Procedure Competency", "Case Reviews", "Research Project"],
+        careerOpportunities: ["Breast Radiologist", "Women's Imaging Specialist", "Imaging Center Director", "Academic Radiology"],
+        pricing: {
+          amount: 3700,
+          currency: 'USD',
+          displayPrice: '$3,700',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1234 },
+              { months: 6, monthlyAmount: 617 },
+              { months: 12, monthlyAmount: 308 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
+      },
+      {
+        id: "ss-035",
+        slug: "cardio-oncology",
+        name: "Cardio-Oncology",
+        shortDescription: "Cardiovascular complications of cancer and cancer therapy",
+        fullDescription: "The Fellowship in Cardio-Oncology provides specialized training in the prevention, diagnosis, and management of cardiovascular complications associated with cancer treatment and malignancy.",
+        category: "super-specialties",
+        duration: "12 Months",
+        credential: "FIBMP (Cardio-Oncology)",
+        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+        eligibility: ["MD/MBBS or equivalent medical degree", "Cardiology or Oncology residency", "Valid medical license/registration", "Interest in cardio-oncology"],
+        curriculum: [
+          { module: "Cardiotoxicity", topics: ["Chemotherapy-Induced Cardiomyopathy", "Tyrosine Kinase Inhibitors", "Radiation Cardiopathy", "Arrhythmias"] },
+          { module: "Cancer and Cardiac Disease", topics: ["Thromboembolism", "Pericardial Disease", "Myocarditis", "Coronary Disease"] },
+          { module: "Management Strategies", topics: ["Cardioprotection", "Biomarkers", "Imaging Follow-up", "Treatment Modifications"] }
+        ],
+        learningOutcomes: ["Recognize cardiotoxicity", "Manage cardiac complications", "Implement cardioprotection", "Coordinate oncology-cardiology care"],
+        assessmentMethods: ["Clinical Assessments", "Case Reviews", "Written Exams", "Research Project"],
+        careerOpportunities: ["Cardio-Oncologist", "Cancer Center Consultant", "Research Cardiologist", "Academic Cardio-Oncology"],
+        pricing: {
+          amount: 3900,
+          currency: 'USD',
+          displayPrice: '$3,900',
+          installments: {
+            available: true,
+            plans: [
+              { months: 3, monthlyAmount: 1300 },
+              { months: 6, monthlyAmount: 650 },
+              { months: 12, monthlyAmount: 325 }
+            ]
+          }
+        },
+        counselorContact: {
+          enabled: true,
+          phone: '+1 3023020293',
+          email: 'info@ibmpractitioner.us',
+          whatsapp: '+1 3023020293',
+          buttonText: 'Talk to Counselor'
+        },
+        isActive: true
       }
     ],
     honoraryFellowship: [

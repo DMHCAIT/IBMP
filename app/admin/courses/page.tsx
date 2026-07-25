@@ -158,6 +158,27 @@ export default function CoursesAdminPage() {
     }
   };
 
+  // Helper function to generate clean slug
+  const generateSlug = (name: string): string => {
+    return name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
+
+  const handleNameChange = (newName: string) => {
+    if (!editingCourse) return;
+    
+    // Always auto-generate slug from name
+    const newSlug = generateSlug(newName);
+    setEditingCourse({ 
+      ...editingCourse, 
+      name: newName,
+      slug: newSlug || editingCourse.slug // Use generated slug or keep existing
+    });
+  };
+
   const handleSaveCourse = async () => {
     if (!editingCourse) return;
 
@@ -169,10 +190,10 @@ export default function CoursesAdminPage() {
 
     // Generate slug from name if not provided
     if (!editingCourse.slug || editingCourse.slug.trim() === '') {
-      editingCourse.slug = editingCourse.name
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
+      editingCourse.slug = generateSlug(editingCourse.name);
+    } else {
+      // Always clean the slug
+      editingCourse.slug = editingCourse.slug.trim();
     }
 
     // Validate slug was generated successfully
@@ -613,26 +634,26 @@ export default function CoursesAdminPage() {
                         <input
                           type="text"
                           value={editingCourse.name}
-                          onChange={(e) =>
-                            setEditingCourse({ ...editingCourse, name: e.target.value })
-                          }
+                          onChange={(e) => handleNameChange(e.target.value)}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                           placeholder="e.g., Internal Medicine"
                         />
+                        <p className="text-xs text-gray-500 mt-1">Slug will auto-generate from name</p>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                          URL Slug (auto-generated if empty)
+                          URL Slug (auto-generated from name, can edit)
                         </label>
                         <input
                           type="text"
                           value={editingCourse.slug}
                           onChange={(e) =>
-                            setEditingCourse({ ...editingCourse, slug: e.target.value })
+                            setEditingCourse({ ...editingCourse, slug: e.target.value.trim() })
                           }
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                           placeholder="e.g., internal-medicine"
                         />
+                        <p className="text-xs text-gray-500 mt-1">Auto-generated from course name. Edit to customize.</p>
                       </div>
                     </div>
 
@@ -697,7 +718,7 @@ export default function CoursesAdminPage() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Image URL or Upload
+                          Image URL
                         </label>
                         <div className="space-y-2">
                           <input
@@ -707,7 +728,8 @@ export default function CoursesAdminPage() {
                               setEditingCourse({ ...editingCourse, image: e.target.value })
                             }
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                            placeholder="Paste image URL or upload below"
+                            placeholder="Image URL will appear here after upload"
+                            readOnly
                           />
                           <label className="inline-flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-50 border-2 border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 font-medium whitespace-nowrap">
                             <input
@@ -723,6 +745,16 @@ export default function CoursesAdminPage() {
                             />
                             <span>📤 Upload Image</span>
                           </label>
+                          {editingCourse.image && (
+                            <div className="mt-2">
+                              <p className="text-xs text-gray-500 mb-1">Current Image:</p>
+                              <img 
+                                src={editingCourse.image} 
+                                alt="Course" 
+                                className="h-32 w-32 object-cover rounded-lg border border-gray-200"
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
