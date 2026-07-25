@@ -14,21 +14,21 @@ const categories = [
   {
     id: 'medical-specialties',
     title: 'Fellowship in Medical Specialties',
-    description: 'Core medical specialties including internal medicine, surgery, pediatrics, and 24 more specialty areas.',
+    description: 'Core medical specialties including internal medicine, surgery, pediatrics, and 22 more specialty areas.',
     icon: Stethoscope,
     gradient: 'from-blue-500 to-blue-600',
     bgGradient: 'from-blue-50 to-blue-100',
-    count: 27,
+    count: 25,
     href: '/programs/medical-specialties'
   },
   {
     id: 'super-specialties',
     title: 'Fellowship in Super-Specialties',
-    description: 'Advanced subspecialties like cardiology, gastroenterology, oncology, and 24 more specialized fields.',
+    description: 'Advanced subspecialties like cardiology, gastroenterology, oncology, and 35 more specialized fields.',
     icon: Microscope,
     gradient: 'from-secondary to-secondary-600',
     bgGradient: 'from-teal-50 to-teal-100',
-    count: 27,
+    count: 36,
     href: '/programs/super-specialties'
   },
   {

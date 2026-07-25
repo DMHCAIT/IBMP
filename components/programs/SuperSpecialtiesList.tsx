@@ -75,7 +75,7 @@ export default function SuperSpecialtiesList() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-md text-white font-bold text-sm rounded-full mb-6 border border-white/30"
             >
               <Microscope className="w-4 h-4" />
-              <span>27 Super-Specialties Available</span>
+              <span>36 Super-Specialties Available</span>
             </motion.div>
 
             <motion.h1

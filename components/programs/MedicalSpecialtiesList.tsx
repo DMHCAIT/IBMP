@@ -75,7 +75,7 @@ export default function MedicalSpecialtiesList() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-md text-white font-bold text-sm rounded-full mb-6 border border-white/30"
             >
               <Stethoscope className="w-4 h-4" />
-              <span>27 Specialties Available</span>
+              <span>25 Specialties Available</span>
             </motion.div>
 
             <motion.h1
