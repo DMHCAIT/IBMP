@@ -103,7 +103,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative flex items-center justify-center gap-2 text-xs md:text-sm">
-                  Apply for Accreditation
+                  Get in touch
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </Link>
