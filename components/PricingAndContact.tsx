@@ -1,8 +1,7 @@
 'use client';
 
 import { useContent } from '@/lib/content-context';
-import { Phone, Mail, MessageCircle, DollarSign, CreditCard, Clock, ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
+import { Phone, Mail, MessageCircle, DollarSign, ShoppingCart } from 'lucide-react';
 import { Course } from '@/lib/content-data';
 
 interface PricingDisplayProps {
@@ -34,7 +33,7 @@ interface CounselorContactProps {
 
 export function PricingDisplay({ price, courseName, className = '' }: PricingDisplayProps) {
   const { content } = useContent();
-  const [showInstallments, setShowInstallments] = useState(false);
+  
 
   // Use global settings if no specific price provided
   const shouldShowPrices = content.globalSettings.pricing.showPricesGlobally;
@@ -66,7 +65,7 @@ export function PricingDisplay({ price, courseName, className = '' }: PricingDis
 
   const finalPrice = price || defaultPrice;
   const displayPrice = finalPrice.displayPrice;
-  const hasInstallments = finalPrice.installments?.available && finalPrice.installments?.plans.length > 0;
+  
 
   return (
     <div className={`bg-white rounded-2xl border border-gray-200 p-6 ${className}`}>

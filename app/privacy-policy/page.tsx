@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
 
                     <div id="changes" className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-[#0b3d91]">
                       <h3 className="text-xl font-semibold mb-2">10. Changes</h3>
-                      <p className="text-gray-700">We may update this policy; the "Last Updated" date will reflect changes.</p>
+                      <p className="text-gray-700">We may update this policy; the &quot;Last Updated&quot; date will reflect changes.</p>
                     </div>
 
                     <div id="contact" className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-[#0b3d91]">
@@ -119,7 +119,7 @@ export default function PrivacyPolicyPage() {
 
                 <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow">
                   <h4 className="font-semibold text-lg mb-2">Need help?</h4>
-                  <p className="text-sm text-gray-700 mb-4">Email our data privacy team and we'll respond within 3 business days.</p>
+                  <p className="text-sm text-gray-700 mb-4">Email our data privacy team and we&apos;ll respond within 3 business days.</p>
                   <a href="/contact" className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg">Contact Support</a>
                 </div>
               </div>
