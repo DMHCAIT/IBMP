@@ -53,13 +53,13 @@ export default function CourseCard({ course, index }: CourseCardProps) {
             </p>
             
             {/* Features */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-col gap-2 mb-4">
               {course.eligibility.slice(0, 2).map((item, idx) => (
                 <span 
                   key={idx}
-                  className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full"
+                  className="w-full text-left text-xs px-3 py-1 bg-gray-100 text-gray-600 rounded-full"
                 >
-                  {item.length > 30 ? item.substring(0, 30) + '...' : item}
+                  {item.length > 80 ? item.substring(0, 80) + '...' : item}
                 </span>
               ))}
             </div>

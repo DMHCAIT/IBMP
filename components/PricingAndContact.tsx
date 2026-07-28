@@ -85,46 +85,15 @@ export function PricingDisplay({ price, courseName, className = '' }: PricingDis
           )}
         </div>
 
-        {/* Pay Now Button */}
+        {/* Apply Now Button */}
         {finalPrice.amount > 0 && (
           <button
             onClick={handlePayNow}
             className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
           >
             <ShoppingCart className="w-5 h-5" />
-            Pay Online Now
+            Apply Now
           </button>
-        )}
-
-        {hasInstallments && (
-          <div>
-            <button
-              onClick={() => setShowInstallments(!showInstallments)}
-              className="flex items-center gap-2 text-secondary font-semibold hover:underline"
-            >
-              <CreditCard className="w-4 h-4" />
-              View Payment Plans
-            </button>
-            
-            {showInstallments && (
-              <div className="mt-3 space-y-2">
-                {finalPrice.installments?.plans.map((plan, index) => (
-                  <div key={index} className="flex justify-between items-center py-2 px-3 bg-gray-50 rounded">
-                    <span className="flex items-center gap-2 text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      {plan.months} months
-                    </span>
-                    <span className="font-semibold text-primary">
-                      ${plan.monthlyAmount}/month
-                    </span>
-                  </div>
-                ))}
-                <p className="text-xs text-gray-500 mt-2">
-                  Payment plans available upon enrollment. Contact us for more details.
-                </p>
-              </div>
-            )}
-          </div>
         )}
       </div>
     </div>
