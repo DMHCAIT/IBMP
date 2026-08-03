@@ -35,16 +35,24 @@ export default function AdminAccreditationApplications() {
   async function fetchApplications() {
     setLoading(true);
     try {
+      console.log('[AdminAccreditation] Fetching applications...');
       const response = await fetch('/api/accreditation/applications');
       const result = await response.json();
       
-      if (response.ok) {
-        setApplications(result.data || []);
+      console.log('[AdminAccreditation] Response status:', response.status);
+      console.log('[AdminAccreditation] Response data:', result);
+      
+      if (response.ok || response.status === 200) {
+        const apps = result.data || [];
+        console.log('[AdminAccreditation] Setting applications, count:', apps.length);
+        setApplications(apps);
       } else {
-        console.error('Error fetching applications:', result.error);
+        console.error('[AdminAccreditation] Error fetching applications:', result.error);
+        setApplications([]);
       }
     } catch (err) {
-      console.error('Fetch error:', err);
+      console.error('[AdminAccreditation] Fetch error:', err);
+      setApplications([]);
     } finally {
       setLoading(false);
     }
