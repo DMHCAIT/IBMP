@@ -39,7 +39,7 @@ export default function CertificationSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-white">
+    <section ref={ref} className="py-12 bg-white">
       <div className="container-custom">
         {/* Certification Programs */}
         <motion.div

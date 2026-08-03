@@ -42,7 +42,7 @@ export default function EligibilityProcess() {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-white">
+    <section ref={ref} className="py-12 bg-white">
       <div className="container-custom">
         {/* Eligibility Requirements */}
         <motion.div

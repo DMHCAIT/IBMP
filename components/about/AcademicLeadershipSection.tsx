@@ -6,23 +6,17 @@ import { useRef } from 'react';
 import { GraduationCap, Users2 } from 'lucide-react';
 
 const academicLeaders = [
-  { name: 'Dr. Dany Bhugon', image: '/academic-leadership/image1.jpeg' },
-  { name: 'Dr. Karim Mahmoud', image: '/academic-leadership/image2.png' },
-  { name: 'Dr. Emil Shehata', image: '/academic-leadership/image3.png' },
-  { name: 'Dr. Rajeev Gupta', image: '/academic-leadership/image4.png' },
-  { name: 'Dr. Arsheed Hakeem', image: '/academic-leadership/image5.png' },
-  { name: 'Dr. Md. Jaweed', image: '/academic-leadership/image6.jpeg' },
-  { name: 'Dr. Mohit Mann', image: '/academic-leadership/image7.jpeg' },
-  { name: 'Dr. Soumya Banerjee', image: '/academic-leadership/image8.jpeg' },
-  { name: 'Dr. Supriya Chauhan', image: '/academic-leadership/image9.jpeg' },
-  { name: 'Dr. Shankar Naik', image: '/academic-leadership/image10.jpeg' },
-  { name: 'Dr. Salma Muhammad', image: '/academic-leadership/image11.jpeg' },
-  { name: 'Dr. Ayush Panday', image: '/academic-leadership/image12-fixed.jpeg' },
-  { name: 'Dr. Girija Mohanty', image: '/academic-leadership/image13.jpeg' },
-  { name: 'Dr. Piranitha', image: '/academic-leadership/image14.jpeg' },
-  { name: 'Dr. Supriya Kumari', image: '/academic-leadership/image15.jpeg' },
-  { name: 'Dr. Gopambuj', image: '/academic-leadership/image16.jpeg' },
-  { name: 'Dr. Nadezhda Magdeeva', image: '/academic-leadership/image17.jpeg' },
+  { name: 'Dr. Dany Bhugon', image: '/IBMP Doctors images/Dr. Dany Bhugon.jpg' },
+  { name: 'Dr. Karim Mahmoud', image: '/IBMP Doctors images/Dr. Karim Mahmoud.jpg' },
+  { name: 'Dr. Emil Shehata', image: '/IBMP Doctors images/Dr. Emil Shehata.jpg' },
+  { name: 'Dr. Md. Jaweed', image: '/IBMP Doctors images/Dr. Md.Jaweed.jpg' },
+  { name: 'Dr. Mohit Mann', image: '/IBMP Doctors images/Dr. Mohit Mann.jpg' },
+  { name: 'Dr. Gopambuj', image: '/IBMP Doctors images/Dr. Gopambuj.jpg' },
+  { name: 'Dr. Piranitha', image: '/IBMP Doctors images/Dr. Piranitha.jpg' },
+  { name: 'Dr. Nadezhda Magdeeva', image: '/IBMP Doctors images/Dr. Nadezhda Magdeeva.jpg' },
+  { name: 'Dr. Rohit Walwaikar', image: '/IBMP Doctors images/Dr Rohit walwaikar.jpg' },
+  { name: 'Dr. Sarika Gautam', image: '/IBMP Doctors images/Dr Sarika Gautam.jpg' },
+  { name: 'Dr. Rishabh', image: '/IBMP Doctors images/Dr. Rishabh.jpg' },
 ];
 
 const scrollingLeaders = [...academicLeaders, ...academicLeaders];
@@ -32,19 +26,26 @@ export default function AcademicLeadershipSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="bg-gradient-to-br from-slate-50 via-white to-secondary-50/30 py-24">
-      <div className="container-custom">
+    <section ref={ref} className="bg-gradient-to-b from-primary-50 via-white to-primary-50 py-20 md:py-28 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-secondary/15 rounded-full blur-3xl -mr-48" />
+        <div className="absolute top-0 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl -mt-40" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/8 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-4xl text-center mb-24"
         >
-          <div className="mb-4 inline-flex rounded-full bg-secondary-50 px-4 py-2 text-sm font-semibold text-secondary">
+          <div className="mb-8 -mt-6 inline-flex rounded-full bg-gradient-to-r from-secondary-100 to-secondary-50 px-7 py-3 text-sm font-bold text-secondary-700 shadow-md border-2 border-secondary-200">
             Academic Leadership
           </div>
-          <h2 className="text-4xl font-bold text-primary md:text-5xl">Guided By Distinguished Medical Educators</h2>
-          <p className="mt-5 text-lg leading-relaxed text-gray-600 md:text-xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary leading-tight mb-6 sm:mb-8 bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent px-2 sm:px-0">Guided By Distinguished Medical Educators</h2>
+          <p className="mt-0 text-sm sm:text-base md:text-lg leading-relaxed text-gray-700 font-medium max-w-3xl mx-auto px-4 sm:px-0">
             IBMP is supported by an academic leadership network of experienced physicians, educators, and clinical mentors who strengthen the board&apos;s global training, research, and professional development mission.
           </p>
         </motion.div>
@@ -53,57 +54,65 @@ export default function AcademicLeadershipSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-12 space-y-6"
+          className="mt-20 space-y-8"
         >
-          <div className="rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm md:p-10">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/15">
-                <GraduationCap className="h-7 w-7" />
+          <div className="rounded-3xl border border-gray-200 bg-white p-10 md:p-16 shadow-lg hover:shadow-2xl transition-shadow overflow-hidden group">
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            
+            <div className="relative z-10">
+              <div className="flex items-center gap-6 mb-8">
+                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-primary to-secondary text-white shadow-xl shadow-primary/30 flex-shrink-0">
+                  <GraduationCap className="h-10 w-10" />
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-secondary">Leadership Network</p>
+                  <h3 className="mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl font-black text-primary leading-tight">Academic Excellence In Practice</h3>
+                </div>
               </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Leadership Network</p>
-                <h3 className="mt-1 text-2xl font-bold text-primary">Academic Excellence In Practice</h3>
-              </div>
-            </div>
 
-            <p className="mt-6 text-base leading-8 text-gray-600 md:text-lg">
-              This leadership group reflects the depth of IBMP&apos;s academic community, bringing together expertise across medical education, specialty practice, mentorship, assessment, and institutional collaboration.
-            </p>
+              <p className="text-lg leading-8 text-gray-700 font-medium mb-12">
+                This leadership group reflects the depth of IBMP&apos;s academic community, bringing together expertise across medical education, specialty practice, mentorship, assessment, and institutional collaboration.
+              </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-3xl border border-gray-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Listed Leaders</p>
-                <p className="mt-2 text-3xl font-black text-primary">17</p>
-                <p className="mt-2 text-sm leading-6 text-gray-600">Academic leaders included from the shared roster document.</p>
-              </div>
-              <div className="rounded-3xl border border-gray-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Focus Areas</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary ring-1 ring-gray-200">Education</span>
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary ring-1 ring-gray-200">Research</span>
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary ring-1 ring-gray-200">Mentorship</span>
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary ring-1 ring-gray-200">Clinical Leadership</span>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="rounded-3xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 hover:border-primary/40 transition-all">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-primary">Listed Leaders</p>
+                  <p className="mt-4 text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">11</p>
+                  <p className="mt-4 text-sm leading-6 text-gray-600 font-medium">Accomplished medical professionals in our leadership roster.</p>
+                </div>
+                <div className="rounded-3xl border-2 border-secondary/20 bg-gradient-to-br from-secondary/5 to-accent/5 p-8 hover:border-secondary/40 transition-all">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-secondary">Focus Areas</p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <span className="rounded-full bg-white px-4 py-2 text-xs font-bold text-primary ring-2 ring-primary/30 hover:ring-primary/50 transition-all">Education</span>
+                    <span className="rounded-full bg-white px-4 py-2 text-xs font-bold text-primary ring-2 ring-primary/30 hover:ring-primary/50 transition-all">Research</span>
+                    <span className="rounded-full bg-white px-4 py-2 text-xs font-bold text-primary ring-2 ring-primary/30 hover:ring-primary/50 transition-all">Mentorship</span>
+                    <span className="rounded-full bg-white px-4 py-2 text-xs font-bold text-primary ring-2 ring-primary/30 hover:ring-primary/50 transition-all">Clinical Leadership</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm md:p-8">
-            <div className="mb-6 flex items-center justify-between gap-4">
+          <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-lg hover:shadow-2xl transition-shadow md:p-10 overflow-hidden group">
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            
+            <div className="mb-8 flex items-center justify-between gap-4 relative z-10">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Roster</p>
-                <h3 className="mt-1 text-2xl font-bold text-primary">Academic Leadership Members</h3>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-secondary">Roster</p>
+                <h3 className="mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl font-black text-primary">Academic Leadership Members</h3>
               </div>
-              <div className="hidden h-12 w-12 items-center justify-center rounded-2xl bg-secondary/10 text-secondary md:flex">
-                <Users2 className="h-6 w-6" />
+              <div className="hidden h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary to-secondary-600 text-white md:flex shadow-lg">
+                <Users2 className="h-8 w-8" />
               </div>
             </div>
 
-            <div className="overflow-hidden pb-2">
+            <div className="overflow-hidden pb-2 relative z-10">
               <motion.div
-                className="flex w-max gap-4"
+                className="flex w-max gap-6"
                 animate={{ x: ['0%', '-50%'] }}
-                transition={{ duration: 36, ease: 'linear', repeat: Infinity }}
+                transition={{ duration: 40, ease: 'linear', repeat: Infinity }}
               >
               {scrollingLeaders.map((leader, index) => (
                 <motion.div
@@ -111,22 +120,23 @@ export default function AcademicLeadershipSection() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.45, delay: 0.2 + index * 0.03 }}
-                  className="group w-[72vw] max-w-[280px] shrink-0 overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-white to-slate-50 transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lg sm:w-[42vw] lg:w-[26vw] xl:w-[22%]"
+                  className="group w-[70vw] sm:w-[55vw] md:w-[45vw] lg:w-[200px] max-w-[200px] shrink-0 overflow-hidden rounded-3xl border-2 border-gray-200 bg-white transition-all duration-300 hover:-translate-y-3 hover:border-secondary hover:shadow-2xl shadow-md"
                 >
-                  <div className="relative aspect-[4/4.35] overflow-hidden bg-slate-100">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-slate-100">
                     <Image
                       src={leader.image}
                       alt={leader.name}
                       fill
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover object-center"
+                      quality={95}
+                      priority={index < 4}
                       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/25 to-transparent" />
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 bg-white">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-400">Member {String(index + 1).padStart(2, '0')}</p>
-                      <h4 className="mt-1 text-base font-bold leading-6 text-primary">{leader.name}</h4>
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">Member {String(index + 1).padStart(2, '0')}</p>
+                      <h4 className="mt-2 text-sm font-bold leading-5 text-primary">{leader.name}</h4>
                     </div>
                   </div>
                 </motion.div>

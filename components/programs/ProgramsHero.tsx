@@ -11,7 +11,7 @@ export default function ProgramsHero() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="relative py-24 bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-hidden">
+    <section ref={ref} className="relative py-12 bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-hidden">
       {/* Background Medical Imagery */}
       <div className="absolute inset-0 opacity-10">
         <Image

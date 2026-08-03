@@ -10,7 +10,7 @@ export default function ProgramsCTA() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section ref={ref} className="py-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

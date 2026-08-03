@@ -48,7 +48,7 @@ export default function FellowshipCategories() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="fellowship-categories" ref={ref} className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="fellowship-categories" ref={ref} className="py-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

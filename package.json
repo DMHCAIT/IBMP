@@ -10,17 +10,20 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
+    "date-fns": "^4.4.0",
     "dotenv": "^17.4.2",
     "framer-motion": "^12.23.25",
     "lottie-react": "^2.3.0",
     "lucide-react": "^0.556.0",
     "next": "14.2.33",
     "pg": "^8.22.0",
+    "postgres": "^3.4.9",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pg": "^8.20.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

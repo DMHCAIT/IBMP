@@ -36,7 +36,7 @@ export default function ApplicationCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={content.primaryButton.href}
+                href="/accreditation/application"
                 className="group px-8 py-4 bg-primary text-white font-semibold text-lg rounded-lg hover:bg-primary-600 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
               >
                 {content.primaryButton.text}

@@ -28,6 +28,7 @@ const sidebarItems = [
   { name: 'Home Page', href: '/admin/home', icon: Home },
   { name: 'About Page', href: '/admin/about', icon: Info },
   { name: 'Accreditation', href: '/admin/accreditation', icon: Award },
+  { name: 'Accreditation Applications', href: '/admin/accreditation-applications', icon: FileText },
   { name: 'Programs', href: '/admin/programs', icon: BookOpen },
   { name: 'Courses', href: '/admin/courses', icon: GraduationCap },
   { name: 'Verification', href: '/admin/verification', icon: Shield },
