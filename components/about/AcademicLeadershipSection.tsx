@@ -6,17 +6,17 @@ import { useRef } from 'react';
 import { GraduationCap, Users2 } from 'lucide-react';
 
 const academicLeaders = [
-  { name: 'Dr. Dany Bhugon', image: '/IBMP Doctors images/Dr. Dany Bhugon.jpg' },
-  { name: 'Dr. Karim Mahmoud', image: '/IBMP Doctors images/Dr. Karim Mahmoud.jpg' },
-  { name: 'Dr. Emil Shehata', image: '/IBMP Doctors images/Dr. Emil Shehata.jpg' },
-  { name: 'Dr. Md. Jaweed', image: '/IBMP Doctors images/Dr. Md.Jaweed.jpg' },
-  { name: 'Dr. Mohit Mann', image: '/IBMP Doctors images/Dr. Mohit Mann.jpg' },
-  { name: 'Dr. Gopambuj', image: '/IBMP Doctors images/Dr. Gopambuj.jpg' },
-  { name: 'Dr. Piranitha', image: '/IBMP Doctors images/Dr. Piranitha.jpg' },
-  { name: 'Dr. Nadezhda Magdeeva', image: '/IBMP Doctors images/Dr. Nadezhda Magdeeva.jpg' },
-  { name: 'Dr. Rohit Walwaikar', image: '/IBMP Doctors images/Dr Rohit walwaikar.jpg' },
-  { name: 'Dr. Sarika Gautam', image: '/IBMP Doctors images/Dr Sarika Gautam.jpg' },
-  { name: 'Dr. Rishabh', image: '/IBMP Doctors images/Dr. Rishabh.jpg' },
+  { name: 'Dr. Dany Bhugon', image: '/ibmp-doctors-images/Dr. Dany Bhugon.jpg' },
+  { name: 'Dr. Karim Mahmoud', image: '/ibmp-doctors-images/Dr. Karim Mahmoud.jpg' },
+  { name: 'Dr. Emil Shehata', image: '/ibmp-doctors-images/Dr. Emil Shehata.jpg' },
+  { name: 'Dr. Md. Jaweed', image: '/ibmp-doctors-images/Dr. Md.Jaweed.jpg' },
+  { name: 'Dr. Mohit Mann', image: '/ibmp-doctors-images/Dr. Mohit Mann.jpg' },
+  { name: 'Dr. Gopambuj', image: '/ibmp-doctors-images/Dr. Gopambuj.jpg' },
+  { name: 'Dr. Piranitha', image: '/ibmp-doctors-images/Dr. Piranitha.jpg' },
+  { name: 'Dr. Nadezhda Magdeeva', image: '/ibmp-doctors-images/Dr. Nadezhda Magdeeva.jpg' },
+  { name: 'Dr. Rohit Walwaikar', image: '/ibmp-doctors-images/Dr Rohit walwaikar.jpg' },
+  { name: 'Dr. Sarika Gautam', image: '/ibmp-doctors-images/Dr Sarika Gautam.jpg' },
+  { name: 'Dr. Rishabh', image: '/ibmp-doctors-images/Dr. Rishabh.jpg' },
 ];
 
 const scrollingLeaders = [...academicLeaders, ...academicLeaders];
