@@ -45,7 +45,7 @@ export default function ProgramsCTA() {
                 href="/contact"
                 className="group px-8 py-4 bg-secondary text-white font-semibold text-lg rounded-lg hover:bg-secondary-600 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
               >
-                Enrol Now
+                Enroll Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

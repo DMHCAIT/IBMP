@@ -1,7 +1,7 @@
 'use client';
 
 import { useContent } from '@/lib/content-context';
-import { Phone, Mail, MessageCircle, DollarSign, ShoppingCart } from 'lucide-react';
+import { Phone, Mail, DollarSign, ShoppingCart, MessageCircle } from 'lucide-react';
 import { Course } from '@/lib/content-data';
 
 interface PricingDisplayProps {
@@ -142,14 +142,16 @@ export function CounselorContact({ counselor, courseName, className = '', varian
   if (variant === 'floating') {
     return (
       <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           {content.globalSettings.counselor.contactMethods.includes('whatsapp') && (
             <button
               onClick={() => handleContact('whatsapp')}
               className="p-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors"
               title="Chat on WhatsApp"
             >
-              <MessageCircle className="w-6 h-6" />
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 .01 5.373.01 12 0 13.99.467 15.9 1.36 17.62L0 24l6.55-1.36A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.8c-1.6 0-3.17-.42-4.53-1.21l-.32-.18-3.89.81.83-3.79-.21-.33A9.8 9.8 0 012.2 12c0-5.43 4.41-9.84 9.84-9.84 2.63 0 5.1 1.03 6.96 2.9A9.8 9.8 0 0121.8 12c0 5.43-4.41 9.8-9.8 9.8zm5.36-7.04c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.16-.2.31-.77 1.02-.95 1.22-.18.2-.36.22-.65.08-.28-.14-1.19-.43-2.29-1.37-.83-.74-1.39-1.66-1.55-1.95-.16-.29-.02-.45.12-.59.13-.13.3-.34.45-.51.15-.17.2-.29.3-.48.1-.19.05-.36-.03-.5-.08-.14-.72-1.74-1-2.39-.27-.62-.55-.54-.75-.55-.2-.01-.38-.01-.58-.01-.19 0-.5.07-.76.36-.26.29-1.01 1-1.01 2.43 0 1.42 1.01 2.8 1.15 3 .14.2 2 3.05 4.84 4.28.68.29 1.23.46 1.65.59.69.22 1.32.19 1.82.11.55-.08 1.7-.69 1.94-1.36.23-.67.23-1.25.16-1.37-.08-.13-.29-.21-.59-.36z" />
+              </svg>
             </button>
           )}
           
@@ -178,7 +180,11 @@ export function CounselorContact({ counselor, courseName, className = '', varian
           >
             {method === 'phone' && <Phone className="w-4 h-4" />}
             {method === 'email' && <Mail className="w-4 h-4" />}
-            {method === 'whatsapp' && <MessageCircle className="w-4 h-4" />}
+            {method === 'whatsapp' && (
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 .01 5.373.01 12 0 13.99.467 15.9 1.36 17.62L0 24l6.55-1.36A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.8c-1.6 0-3.17-.42-4.53-1.21l-.32-.18-3.89.81.83-3.79-.21-.33A9.8 9.8 0 012.2 12c0-5.43 4.41-9.84 9.84-9.84 2.63 0 5.1 1.03 6.96 2.9A9.8 9.8 0 0121.8 12c0 5.43-4.41 9.8-9.8 9.8zm5.36-7.04c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.16-.2.31-.77 1.02-.95 1.22-.18.2-.36.22-.65.08-.28-.14-1.19-.43-2.29-1.37-.83-.74-1.39-1.66-1.55-1.95-.16-.29-.02-.45.12-.59.13-.13.3-.34.45-.51.15-.17.2-.29.3-.48.1-.19.05-.36-.03-.5-.08-.14-.72-1.74-1-2.39-.27-.62-.55-.54-.75-.55-.2-.01-.38-.01-.58-.01-.19 0-.5.07-.76.36-.26.29-1.01 1-1.01 2.43 0 1.42 1.01 2.8 1.15 3 .14.2 2 3.05 4.84 4.28.68.29 1.23.46 1.65.59.69.22 1.32.19 1.82.11.55-.08 1.7-.69 1.94-1.36.23-.67.23-1.25.16-1.37-.08-.13-.29-.21-.59-.36z" />
+              </svg>
+            )}
             {settings.buttonText || globalSettings.defaultButtonText}
           </button>
         ))}

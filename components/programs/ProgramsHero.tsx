@@ -81,7 +81,7 @@ export default function ProgramsHero() {
               href="/contact"
               className="group px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white font-bold text-lg rounded-xl hover:bg-white/20 transition-all flex items-center gap-2"
             >
-              Enrol Now
+              Enroll Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { 
   Stethoscope, 
   ArrowLeft, 
@@ -42,6 +43,23 @@ const medicalSpecialties = [
 export default function MedicalSpecialtiesList() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const searchParams = useSearchParams();
+  const urlSearchQuery = searchParams.get('search') || '';
+  const [localSearchQuery, setLocalSearchQuery] = useState(urlSearchQuery);
+
+  // Use local search query for real-time filtering
+  const searchQuery = localSearchQuery;
+
+  // Filter specialties based on search query
+  const filteredSpecialties = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return medicalSpecialties;
+    }
+    return medicalSpecialties.filter(specialty =>
+      specialty.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      specialty.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
 
   return (
     <>
@@ -131,6 +149,40 @@ export default function MedicalSpecialtiesList() {
       {/* Specialties Grid */}
       <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container-custom">
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto mb-12"
+          >
+            <div className="relative">
+              <input
+                type="text"
+                value={localSearchQuery}
+                onChange={(e) => setLocalSearchQuery(e.target.value)}
+                placeholder="Search specialties..."
+                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-200 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-lg transition-all shadow-sm"
+              />
+              <svg
+                className="absolute left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              {localSearchQuery && (
+                <button
+                  onClick={() => setLocalSearchQuery('')}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -143,31 +195,54 @@ export default function MedicalSpecialtiesList() {
             <p className="text-lg text-gray-600">
               Select a specialty to learn more about the Fellowship program requirements and curriculum.
             </p>
+            {searchQuery && (
+              <div className="mt-4 inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">
+                Showing {filteredSpecialties.length} of {medicalSpecialties.length} results for &quot;{searchQuery}&quot;
+              </div>
+            )}
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {medicalSpecialties.map((specialty, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.03 * index }}
-                className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+          {filteredSpecialties.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center py-12 max-w-3xl mx-auto"
+            >
+              <p className="text-lg text-gray-600 mb-4">No specialties found matching &quot;{searchQuery}&quot;</p>
+              <Link 
+                href="/programs/medical-specialties"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+                <ArrowLeft className="w-4 h-4" />
+                View All Specialties
+              </Link>
+            </motion.div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {filteredSpecialties.map((specialty, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.03 * index }}
+                  className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
+                      <CheckCircle className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-blue-600 transition-colors">
+                        {specialty.name}
+                      </h3>
+                      <p className="text-sm text-gray-500">{specialty.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-blue-600 transition-colors">
-                      {specialty.name}
-                    </h3>
-                    <p className="text-sm text-gray-500">{specialty.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

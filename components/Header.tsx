@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSectionContent } from '@/lib/content-context';
+import HeaderSearch from './HeaderSearch';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ export default function Header() {
                 src="/ibmp-01.png"
                 alt="IBMP Logo"
                 fill
+                sizes="(max-width: 768px) 120px, 192px"
                 className="object-contain object-top"
                 priority
               />
@@ -45,6 +47,9 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* Header Search */}
+            <HeaderSearch />
+
             {(() => {
               const applyNowHref = 'https://lms.ibmpractitioner.com/login';
               const isApplyNow = (content.ctaText || '').toLowerCase().includes('apply');

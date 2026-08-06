@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { 
   Stethoscope, 
   ArrowLeft, 
@@ -19,13 +20,27 @@ export default function MedicalSpecialtiesList() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const { content, isLoading } = useContent();
+  const searchParams = useSearchParams();
+  const urlSearchQuery = searchParams.get('search') || '';
+  const [localSearchQuery, setLocalSearchQuery] = useState(urlSearchQuery);
 
-  const courses = content.courses.medicalSpecialties.filter(c => c.isActive);
+  const allCourses = content.courses.medicalSpecialties.filter(c => c.isActive);
+
+  // Filter courses based on search query
+  const courses = useMemo(() => {
+    if (!localSearchQuery.trim()) {
+      return allCourses;
+    }
+    return allCourses.filter(course =>
+      course.name.toLowerCase().includes(localSearchQuery.toLowerCase()) ||
+      course.fullDescription?.toLowerCase().includes(localSearchQuery.toLowerCase())
+    );
+  }, [localSearchQuery, allCourses]);
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-primary overflow-hidden">
+      <section className="relative py-8 bg-gradient-to-br from-blue-600 via-blue-700 to-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80"
@@ -101,6 +116,40 @@ export default function MedicalSpecialtiesList() {
       {/* Courses Grid */}
       <section className="py-20 bg-gray-50" ref={ref}>
         <div className="container-custom">
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto mb-12"
+          >
+            <div className="relative">
+              <input
+                type="text"
+                value={localSearchQuery}
+                onChange={(e) => setLocalSearchQuery(e.target.value)}
+                placeholder="Search medical specialties..."
+                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-lg transition-all shadow-md"
+              />
+              <svg
+                className="absolute left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              {localSearchQuery && (
+                <button
+                  onClick={() => setLocalSearchQuery('')}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors text-xl"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -127,9 +176,23 @@ export default function MedicalSpecialtiesList() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">
-                No medical specialty programs are currently available. Please check back later.
-              </p>
+              {localSearchQuery ? (
+                <>
+                  <p className="text-gray-500 text-lg mb-4">
+                    No medical specialties found matching &quot;{localSearchQuery}&quot;
+                  </p>
+                  <button
+                    onClick={() => setLocalSearchQuery('')}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Clear search
+                  </button>
+                </>
+              ) : (
+                <p className="text-gray-500 text-lg">
+                  No medical specialty programs are currently available. Please check back later.
+                </p>
+              )}
             </div>
           )}
         </div>
