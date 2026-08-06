@@ -39,7 +39,7 @@ export default function CourseDetail({ course }: CourseDetailProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${course.image})` }}
@@ -52,7 +52,7 @@ export default function CourseDetail({ course }: CourseDetailProps) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="mb-6"
           >
             <Link 
               href={categoryLinks[course.category]}
@@ -63,22 +63,22 @@ export default function CourseDetail({ course }: CourseDetailProps) {
             </Link>
           </motion.div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">
                 {categoryLabels[course.category]}
               </span>
               
-              <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
                 {course.name}
               </h1>
               
-              <p className="text-xl text-white/90 mb-8">
+              <p className="text-lg text-white/90 mb-6">
                 {course.shortDescription}
               </p>
               
