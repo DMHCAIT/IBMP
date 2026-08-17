@@ -248,11 +248,11 @@ export default function AccreditationApplicationForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700">Name of Proprietor / Coordinator / Head of Institute</label>
+                <label className="block text-sm font-semibold text-gray-700">Name of coordinator</label>
                 <input value={form.proprietorName} onChange={(e) => update('proprietorName', e.target.value)} className="mt-2 block w-full border border-gray-200 rounded-lg p-3 shadow-sm" placeholder="Full name" required />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700">Proprietor Address</label>
+                <label className="block text-sm font-semibold text-gray-700">Office Address</label>
                 <input value={form.proprietorAddress} onChange={(e) => update('proprietorAddress', e.target.value)} className="mt-2 block w-full border border-gray-200 rounded-lg p-3 shadow-sm" placeholder="Postal address" required />
               </div>
 
@@ -319,7 +319,7 @@ export default function AccreditationApplicationForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700">Proprietor Photo</label>
+                <label className="block text-sm font-semibold text-gray-700">Authorized Representative photo</label>
                 <div className="mt-2">
                   <label className="block px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-accent transition">
                     <input 
@@ -336,7 +336,7 @@ export default function AccreditationApplicationForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700">Detail of Infrastructure (upload)</label>
+              <label className="block text-sm font-semibold text-gray-700">Facility & Infrastructure Documentation</label>
               <div className="mt-2">
                 <label className="block px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-accent transition">
                   <input 
