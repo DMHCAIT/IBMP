@@ -365,6 +365,7 @@ export default function AdmissionPage() {
     "Fellowship in Head And Neck Oncology",
     "Fellowship in Hematology",
     "Fellowship in High Risk Pregnancy",
+    "Fellowship in Infertility Management",
     "Fellowship in Internal Medicine",
     "Fellowship in Intensive Care",
     "Fellowship in Interventional Cardiology",
