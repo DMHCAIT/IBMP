@@ -1,0 +1,2573 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "ibmp-pain-medicine-set-a",
+  "version": 1,
+  "title": "IBMP Pain Medicine — Set A",
+  "status": "draft",
+  "facultyApprovedAt": null,
+  "settingsApprovedAt": null,
+  "opensAt": null,
+  "closesAt": null,
+  "durationMinutes": 120,
+  "durationIsProposed": true,
+  "unitsPerMark": 2,
+  "maxUnits": 160,
+  "negativeMarking": false,
+  "maxAttempts": 1,
+  "shuffleMcqQuestions": false,
+  "shuffleMcqOptions": false,
+  "passThresholdMarks": null,
+  "separateComponents": [
+    "viva",
+    "project"
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "title": "Foundations of Pain Medicine"
+    },
+    {
+      "id": 2,
+      "title": "Pharmacologic Pain Management"
+    },
+    {
+      "id": 3,
+      "title": "Interventional Pain Procedures - Spine"
+    },
+    {
+      "id": 4,
+      "title": "Interventional Pain Procedures - Non-Spine"
+    },
+    {
+      "id": 5,
+      "title": "Cancer Pain and Palliative Care"
+    },
+    {
+      "id": 6,
+      "title": "Chronic Pain Syndromes and Rehabilitation"
+    },
+    {
+      "id": 7,
+      "title": "Neuromodulation and Advanced Therapies"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "number": 1,
+      "moduleId": 1,
+      "topic": "Pain physiology",
+      "type": "mcq",
+      "stem": "After a pinprick, a patient perceives an immediate, well-localised sharp pain before a slower burning sensation. Which fibres primarily carry the first sensation?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "aa3b3844-a52f-50d0-b64f-94f190324a3e",
+          "text": "Preganglionic autonomic B fibres"
+        },
+        {
+          "id": "9e79b002-5f0d-5e2f-b3bd-5c2da4560a1b",
+          "text": "Unmyelinated C fibres"
+        },
+        {
+          "id": "7951b5b5-b278-54df-8712-8b18295b44e1",
+          "text": "Thinly myelinated A-delta fibres"
+        },
+        {
+          "id": "3c96b43b-ac92-5722-aa69-43e66423f712",
+          "text": "Large myelinated A-alpha motor fibres"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "7951b5b5-b278-54df-8712-8b18295b44e1",
+        "paperAnswerLetter": "C",
+        "explanation": "A-delta fibres carry fast, localised nociceptive signals; C fibres carry slower signals.",
+        "referenceIds": [
+          "S02"
+        ]
+      }
+    },
+    {
+      "id": "Q02",
+      "number": 2,
+      "moduleId": 1,
+      "topic": "Neurobiology",
+      "type": "mcq",
+      "stem": "Repeated nociceptive input increases the responsiveness of neurons within the dorsal horn, including responses to previously subthreshold input. What process does this describe?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "5852bace-20d3-5457-9a62-616e83183324",
+          "text": "Central sensitisation"
+        },
+        {
+          "id": "4461b643-0291-5f43-88ac-5379a0e0dcc2",
+          "text": "Wallerian degeneration"
+        },
+        {
+          "id": "545fdd27-830a-5203-a0f9-f2eac72e5437",
+          "text": "Peripheral nerve conduction block"
+        },
+        {
+          "id": "02d965d1-1f8b-5d71-9d38-98c309560641",
+          "text": "Descending inhibition"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "5852bace-20d3-5457-9a62-616e83183324",
+        "paperAnswerLetter": "A",
+        "explanation": "The defining change is increased responsiveness within the central nervous system.",
+        "referenceIds": [
+          "S01"
+        ]
+      }
+    },
+    {
+      "id": "Q03",
+      "number": 3,
+      "moduleId": 1,
+      "topic": "Pain classification",
+      "type": "mcq",
+      "stem": "Light clothing brushing a painful area produces pain, although the same contact is comfortable elsewhere. What is this finding called?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "ea0d2ff9-73e7-532d-96b8-49d2977bc721",
+          "text": "Hyperalgesia"
+        },
+        {
+          "id": "f05641d9-a003-5d9d-afac-6baf8273f5db",
+          "text": "Paresthesia"
+        },
+        {
+          "id": "29166d92-48a0-5a2c-bea6-632c8680b9c0",
+          "text": "Hypoesthesia"
+        },
+        {
+          "id": "af569136-5ed8-51b3-8a2e-f712ef89ee39",
+          "text": "Allodynia"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "af569136-5ed8-51b3-8a2e-f712ef89ee39",
+        "paperAnswerLetter": "D",
+        "explanation": "Allodynia refers to pain provoked by ordinarily non-painful stimulation.",
+        "referenceIds": [
+          "S01"
+        ]
+      }
+    },
+    {
+      "id": "Q04",
+      "number": 4,
+      "moduleId": 1,
+      "topic": "Assessment tools",
+      "type": "mcq",
+      "stem": "A clinician records a patient's pain intensity as 7/10. Which additional assessment is most useful for judging the wider impact of persistent pain?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "5becad18-0989-5689-81db-98a3855fd992",
+          "text": "The number of analgesic brands previously prescribed"
+        },
+        {
+          "id": "cf749bcf-019c-5dc0-ac61-b775a7740069",
+          "text": "The number of abnormalities in an imaging report alone"
+        },
+        {
+          "id": "d012dfc3-8316-512d-81e1-bcc322c6a9ee",
+          "text": "The patient's height and dominant hand alone"
+        },
+        {
+          "id": "0446643c-de60-55b8-8bee-2b85f705cd9b",
+          "text": "Interference with sleep, activity and participation"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "0446643c-de60-55b8-8bee-2b85f705cd9b",
+        "paperAnswerLetter": "D",
+        "explanation": "Intensity should be supplemented by functional and psychosocial assessment.",
+        "referenceIds": [
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "Q05",
+      "number": 5,
+      "moduleId": 1,
+      "topic": "Psychosocial aspects",
+      "type": "mcq",
+      "stem": "A patient with chronic primary pain avoids all movement because they believe any discomfort means new injury. Which approach best addresses this barrier?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "b110febf-137a-5521-9123-783235d1fc7e",
+          "text": "Recommend indefinite rest while repeating unchanged investigations"
+        },
+        {
+          "id": "acc1cbe6-56ca-5a2a-9c6d-aa242e6a9161",
+          "text": "Explore the belief and agree a paced, graded return to meaningful activity"
+        },
+        {
+          "id": "f2e1eaea-f674-588a-9715-1db7019fe4e6",
+          "text": "Delay rehabilitation until every pain sensation has disappeared"
+        },
+        {
+          "id": "6f30b66d-5c77-5afa-b40a-af9e3bddc15c",
+          "text": "Confirm that all pain during movement represents tissue injury"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "acc1cbe6-56ca-5a2a-9c6d-aa242e6a9161",
+        "paperAnswerLetter": "B",
+        "explanation": "A collaborative plan can address fear and support safe participation.",
+        "referenceIds": [
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "Q06",
+      "number": 6,
+      "moduleId": 1,
+      "topic": "Ethics and consent",
+      "type": "mcq",
+      "stem": "An adult with decision-making capacity declines an elective pain procedure after discussing its benefits, risks and alternatives. What is the most appropriate response?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "e7158033-3df4-58ae-b948-be44b867da76",
+          "text": "Respect the decision, document it and discuss acceptable alternatives"
+        },
+        {
+          "id": "aa6721a4-530a-5388-8885-1c4b4033b8e1",
+          "text": "Withhold all further pain care until the patient agrees"
+        },
+        {
+          "id": "cec4107e-636b-5805-8593-b8a59bda1b6c",
+          "text": "Treat the refusal as evidence of impaired capacity"
+        },
+        {
+          "id": "1b16a33a-1e8b-5ed8-bb77-ba1c0203bb77",
+          "text": "Proceed if a relative signs the consent form instead"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "e7158033-3df4-58ae-b948-be44b867da76",
+        "paperAnswerLetter": "A",
+        "explanation": "A capacitated patient may decline an elective intervention; consent is an informed dialogue.",
+        "referenceIds": [
+          "S04"
+        ]
+      }
+    },
+    {
+      "id": "Q07",
+      "number": 7,
+      "moduleId": 1,
+      "topic": "Communication",
+      "type": "mcq",
+      "stem": "After explaining a new analgesic plan, which action best checks whether the clinician has communicated clearly?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "7025b37f-7417-5899-b8f9-d4af218b7bfb",
+          "text": "Assume understanding if the patient has previously used pain medicines"
+        },
+        {
+          "id": "b81c797e-0617-58fe-8a73-707dc56588ad",
+          "text": "Ask the patient to explain the plan and key precautions in their own words"
+        },
+        {
+          "id": "0e16deca-3f76-5395-b34f-3e1cd7037a1e",
+          "text": "Ask the patient to memorise the medicine leaflet verbatim"
+        },
+        {
+          "id": "f5f9b0e3-056f-548b-a130-4121be04c543",
+          "text": "Ask only whether the patient understands the prescription"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "b81c797e-0617-58fe-8a73-707dc56588ad",
+        "paperAnswerLetter": "B",
+        "explanation": "Teach-back checks understanding through the patient's own explanation.",
+        "referenceIds": [
+          "S05"
+        ]
+      }
+    },
+    {
+      "id": "Q08",
+      "number": 8,
+      "moduleId": 2,
+      "topic": "Non-opioid analgesics",
+      "type": "mcq",
+      "stem": "A patient with chronic kidney disease and recent dehydration requests oral ibuprofen. Which adverse effect is of particular concern?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "fe1b428a-ab04-560b-8e83-d40d199652a5",
+          "text": "Further renal impairment from reduced renal prostaglandin activity"
+        },
+        {
+          "id": "d07e90e1-fcb9-55ca-bacf-e0575fe7d7c0",
+          "text": "Permanent suppression of pancreatic insulin release"
+        },
+        {
+          "id": "41a1ab3a-6cbb-525f-ae30-b907aa696ff6",
+          "text": "Direct irreversible blockade of skeletal neuromuscular transmission"
+        },
+        {
+          "id": "e7cfbbac-13f3-5f3b-bb19-c2f067f03894",
+          "text": "Acute opioid withdrawal from mu-receptor antagonism"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "fe1b428a-ab04-560b-8e83-d40d199652a5",
+        "paperAnswerLetter": "A",
+        "explanation": "Renal prostaglandin inhibition can compromise kidney function in susceptible patients.",
+        "referenceIds": [
+          "S06"
+        ]
+      }
+    },
+    {
+      "id": "Q09",
+      "number": 9,
+      "moduleId": 2,
+      "topic": "Paracetamol safety",
+      "type": "mcq",
+      "stem": "A patient takes paracetamol tablets and an over-the-counter cold preparation that also contains paracetamol. What is the key medication-safety concern?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "0753b0f7-31de-5ff3-9e82-f1c7013527b8",
+          "text": "The second preparation reliably protects against liver toxicity"
+        },
+        {
+          "id": "1bb8c61e-5569-58c2-a890-bfd5531c2453",
+          "text": "Unrecognised duplication can produce a hepatotoxic total dose"
+        },
+        {
+          "id": "f19dc592-63d2-5e9a-b661-82607773e309",
+          "text": "Combination products prevent paracetamol absorption completely"
+        },
+        {
+          "id": "a0d578fb-a4c0-5882-b1d1-b1ed53838c43",
+          "text": "Only prescription paracetamol contributes to the daily total"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "1bb8c61e-5569-58c2-a890-bfd5531c2453",
+        "paperAnswerLetter": "B",
+        "explanation": "All paracetamol-containing products contribute to cumulative exposure and overdose risk.",
+        "referenceIds": [
+          "S07"
+        ]
+      }
+    },
+    {
+      "id": "Q10",
+      "number": 10,
+      "moduleId": 2,
+      "topic": "Adjuvant pharmacology",
+      "type": "mcq",
+      "stem": "Before initiating gabapentin in an older patient with neuropathic pain, which factor is especially important when selecting the dose and dosing interval?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "ab176f59-019b-5f76-9ead-7f5d1fab6191",
+          "text": "Hepatic enzyme induction alone"
+        },
+        {
+          "id": "b7d21136-4671-52af-b233-f1166a2573ef",
+          "text": "Serum albumin alone"
+        },
+        {
+          "id": "f9246ad7-2437-5c08-91da-5da26c0b4154",
+          "text": "Renal function"
+        },
+        {
+          "id": "563b4580-18bc-5bd7-b56a-98b95cad611a",
+          "text": "Body weight without renal assessment"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "f9246ad7-2437-5c08-91da-5da26c0b4154",
+        "paperAnswerLetter": "C",
+        "explanation": "Gabapentin is renally cleared, so impaired renal function requires dose adjustment.",
+        "referenceIds": [
+          "S08"
+        ]
+      }
+    },
+    {
+      "id": "Q11",
+      "number": 11,
+      "moduleId": 2,
+      "topic": "Neuropathic pain treatment",
+      "type": "mcq",
+      "stem": "An adult has painful diabetic peripheral neuropathy and no contraindication to the options listed. Which medicine is an established initial treatment option?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "277d55ff-655d-5d4c-9f78-58b72bdf5007",
+          "text": "Codeine"
+        },
+        {
+          "id": "1cfc0ace-bb84-5c30-8709-a4cac8af4cc2",
+          "text": "Prednisolone"
+        },
+        {
+          "id": "eaa18939-f059-5e34-96e1-cd9b97d95286",
+          "text": "Diazepam"
+        },
+        {
+          "id": "08205696-ddfd-586c-9382-03c66a4a80cc",
+          "text": "Duloxetine"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "08205696-ddfd-586c-9382-03c66a4a80cc",
+        "paperAnswerLetter": "D",
+        "explanation": "Duloxetine is one guideline-supported initial option for this neuropathic pain context.",
+        "referenceIds": [
+          "S09"
+        ]
+      }
+    },
+    {
+      "id": "Q12",
+      "number": 12,
+      "moduleId": 2,
+      "topic": "Opioid interactions",
+      "type": "mcq",
+      "stem": "A patient receiving an opioid is also taking a benzodiazepine. Which combined adverse effect requires particular attention?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "76c4979d-674b-5eef-af7d-dc568ce3365e",
+          "text": "Loss of all opioid analgesic effect through receptor blockade"
+        },
+        {
+          "id": "ac50cfbe-0f48-50a0-beaf-ad3fb2acccd9",
+          "text": "Sedation and respiratory depression"
+        },
+        {
+          "id": "b2fc6fb1-180a-556f-88d4-c1930ea4684b",
+          "text": "Reliable reversal of opioid-related constipation"
+        },
+        {
+          "id": "cf34907c-206d-5f9f-ac40-bef128091f88",
+          "text": "Reduced risk of falls through improved coordination"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "ac50cfbe-0f48-50a0-beaf-ad3fb2acccd9",
+        "paperAnswerLetter": "B",
+        "explanation": "Concurrent central nervous system depressants increase overdose and respiratory risk.",
+        "referenceIds": [
+          "S10"
+        ]
+      }
+    },
+    {
+      "id": "Q13",
+      "number": 13,
+      "moduleId": 2,
+      "topic": "Opioid stewardship",
+      "type": "mcq",
+      "stem": "A stable patient receiving long-term opioids for chronic non-cancer pain has no immediate life-threatening toxicity. A review finds that risks now outweigh benefits. What is the preferred approach?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "eb01eb1c-ca29-5fd5-b550-48ac3ec36874",
+          "text": "Agree an individualised, supported reduction plan and optimise other care"
+        },
+        {
+          "id": "c2dab5c6-fab5-5de9-9a07-c25ee450c2e2",
+          "text": "Increase the dose automatically to prevent any future discomfort"
+        },
+        {
+          "id": "5c21b184-0bea-57c4-ac97-0dafccd67312",
+          "text": "Stop treatment abruptly without discussing withdrawal or follow-up"
+        },
+        {
+          "id": "e923839a-a231-5bb4-bef5-d7f88dc8f0c2",
+          "text": "Discharge the patient solely because a taper may be needed"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "eb01eb1c-ca29-5fd5-b550-48ac3ec36874",
+        "paperAnswerLetter": "A",
+        "explanation": "Absent an urgent safety threat, avoid abrupt cessation and use a collaborative taper.",
+        "referenceIds": [
+          "S10"
+        ]
+      }
+    },
+    {
+      "id": "Q14",
+      "number": 14,
+      "moduleId": 2,
+      "topic": "Risk mitigation",
+      "type": "mcq",
+      "stem": "Before starting an opioid for chronic non-cancer pain, which plan best supports responsible prescribing?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "3a7ace41-9ab4-5afe-bd5a-d8a43b74c13a",
+          "text": "Use a signed agreement instead of clinical assessment and monitoring"
+        },
+        {
+          "id": "471690fd-28ec-5881-adaa-dfa4208209f2",
+          "text": "Promise indefinite continuation regardless of function or harms"
+        },
+        {
+          "id": "784ac4ec-ad8d-5ad6-aa29-b34cb193cd1e",
+          "text": "Agree measurable goals, assess risks, explain precautions and arrange review"
+        },
+        {
+          "id": "83cf10cc-20f3-56a1-8a6e-0cbba873de65",
+          "text": "Use pain intensity as the only follow-up measure and omit adverse-effect review"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "784ac4ec-ad8d-5ad6-aa29-b34cb193cd1e",
+        "paperAnswerLetter": "C",
+        "explanation": "Opioid care requires goals, risk assessment and ongoing benefit-harm review.",
+        "referenceIds": [
+          "S10"
+        ]
+      }
+    },
+    {
+      "id": "Q15",
+      "number": 15,
+      "moduleId": 3,
+      "topic": "Epidural steroid injections",
+      "type": "mcq",
+      "stem": "Which presentation is the best match for considering an epidural injection of local anaesthetic and steroid under NICE NG59?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "756dc215-2541-5bea-8534-2d1392addfd3",
+          "text": "Neurogenic claudication due to central canal stenosis"
+        },
+        {
+          "id": "770d8d3d-6fab-55a3-bf0b-79bd2bd4a40b",
+          "text": "Acute, severe sciatica after clinical assessment"
+        },
+        {
+          "id": "a13befd9-bf4d-50f6-a3c3-d610ca6aff5f",
+          "text": "Chronic non-specific axial back pain without sciatica"
+        },
+        {
+          "id": "c906688c-fd05-526d-8ceb-c47a84119913",
+          "text": "Asymptomatic lumbar degenerative findings on MRI"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "770d8d3d-6fab-55a3-bf0b-79bd2bd4a40b",
+        "paperAnswerLetter": "B",
+        "explanation": "NICE identifies acute severe sciatica as a context in which an epidural may be considered.",
+        "referenceIds": [
+          "S11"
+        ]
+      }
+    },
+    {
+      "id": "Q16",
+      "number": 16,
+      "moduleId": 3,
+      "topic": "Medial branch blocks",
+      "type": "mcq",
+      "stem": "A patient is being assessed for radiofrequency treatment of suspected lumbar facet-mediated pain. Which finding most directly supports proceeding with a medial branch pathway?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "25ddc796-a416-59a9-85c7-e6c9c4e77e1b",
+          "text": "A positive screening questionnaire without examination"
+        },
+        {
+          "id": "a30ecdfb-0403-5f57-a11d-d5a81574a850",
+          "text": "Facet degeneration on imaging without a matching clinical assessment"
+        },
+        {
+          "id": "7d7c858f-c33f-5f3a-975d-3f7d57f6632c",
+          "text": "Relief after an unrelated peripheral joint injection"
+        },
+        {
+          "id": "923aa32a-9259-59c6-8761-2b283ce32582",
+          "text": "A clinically meaningful response to a properly performed diagnostic medial branch block"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "923aa32a-9259-59c6-8761-2b283ce32582",
+        "paperAnswerLetter": "D",
+        "explanation": "Diagnostic medial branch response is used to inform selection; imaging alone is insufficient.",
+        "referenceIds": [
+          "S11",
+          "S12"
+        ]
+      }
+    },
+    {
+      "id": "Q17",
+      "number": 17,
+      "moduleId": 3,
+      "topic": "Radiofrequency ablation",
+      "type": "mcq",
+      "stem": "Conventional thermal radiofrequency treatment for lumbar facet-mediated pain is intended primarily to affect which structure?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "b7664a7e-75a1-5546-b924-fdab1d82dc58",
+          "text": "Medial branches carrying sensation from the facet joints"
+        },
+        {
+          "id": "ef42197b-e923-5e80-beb8-a569dc79102b",
+          "text": "The spinal cord itself"
+        },
+        {
+          "id": "819be1cc-6905-5c64-ae33-08bcf8dbf777",
+          "text": "The main femoral nerve within the pelvis"
+        },
+        {
+          "id": "0849dc18-3d5f-511d-ba02-f221701955b5",
+          "text": "The nucleus pulposus of every lumbar disc"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "b7664a7e-75a1-5546-b924-fdab1d82dc58",
+        "paperAnswerLetter": "A",
+        "explanation": "Lumbar facet radiofrequency targets the relevant medial branch innervation.",
+        "referenceIds": [
+          "S12"
+        ]
+      }
+    },
+    {
+      "id": "Q18",
+      "number": 18,
+      "moduleId": 3,
+      "topic": "Discogenic pain interventions",
+      "type": "mcq",
+      "stem": "A patient asks for an intradiscal procedure because an MRI reports disc degeneration. What is the most appropriate next step?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "f853ce77-1f4a-50b2-bf9f-74bb8f156f7b",
+          "text": "Promise restoration of normal disc anatomy after any intradiscal treatment"
+        },
+        {
+          "id": "2cc9a1df-ec5a-5018-9a03-ddb464e89cc1",
+          "text": "Select a procedure solely according to the darkest disc on the scan"
+        },
+        {
+          "id": "11fd6bca-b582-548d-853b-4398395747a4",
+          "text": "Offer the procedure because degeneration proves the disc is the pain generator"
+        },
+        {
+          "id": "76e1699c-2498-5df2-9ef5-0ef4990fb0b8",
+          "text": "Correlate symptoms and examination, review alternatives and explain procedure-specific evidence"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "76e1699c-2498-5df2-9ef5-0ef4990fb0b8",
+        "paperAnswerLetter": "D",
+        "explanation": "Degenerative imaging does not by itself establish the source of pain or justify an invasive treatment.",
+        "referenceIds": [
+          "S11",
+          "S13"
+        ]
+      }
+    },
+    {
+      "id": "Q19",
+      "number": 19,
+      "moduleId": 3,
+      "topic": "Image-guided spine safety",
+      "type": "mcq",
+      "stem": "Which statement is most accurate when counselling a patient about image-guided epidural steroid injection?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "2fb471cb-1524-5bd0-a2e5-325e40af5883",
+          "text": "Fluoroscopy makes vascular or neurological injury impossible"
+        },
+        {
+          "id": "e540144d-4a51-5ee2-b509-4f23c2a0e6d0",
+          "text": "Image guidance assists targeting but does not eliminate serious complications"
+        },
+        {
+          "id": "bc5d063b-4080-5932-8628-55ad869835db",
+          "text": "A normal prior MRI removes the need for procedure-specific consent"
+        },
+        {
+          "id": "00687639-86a0-5da6-91f1-4ec45f9507a1",
+          "text": "Image guidance eliminates the need to check medicines and infection risk"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "e540144d-4a51-5ee2-b509-4f23c2a0e6d0",
+        "paperAnswerLetter": "B",
+        "explanation": "Serious neurological events have been reported even with fluoroscopic guidance.",
+        "referenceIds": [
+          "S14"
+        ]
+      }
+    },
+    {
+      "id": "Q20",
+      "number": 20,
+      "moduleId": 3,
+      "topic": "Post-procedure complication",
+      "type": "mcq",
+      "stem": "A patient develops rapidly progressive leg weakness and new urinary retention after a spinal pain intervention. What is the most appropriate response?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "3776bb5f-94dd-51e8-8dfc-7adc496b5bc0",
+          "text": "Advise increasing sedating medicines and waiting at home"
+        },
+        {
+          "id": "08b9bc16-a78e-53c5-bfb7-e1ce88a36d93",
+          "text": "Schedule routine review after the next course of physiotherapy"
+        },
+        {
+          "id": "0c5fb793-8d72-5f2b-a4da-06474a498b83",
+          "text": "Arrange immediate emergency assessment for a possible compressive neurological complication"
+        },
+        {
+          "id": "b5b2f2f2-a337-566b-a80d-e2863c3acfd2",
+          "text": "Reassure the patient that this is an expected long-term effect"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "0c5fb793-8d72-5f2b-a4da-06474a498b83",
+        "paperAnswerLetter": "C",
+        "explanation": "New progressive neurological or sphincter symptoms require urgent assessment, not routine follow-up.",
+        "referenceIds": [
+          "S13"
+        ]
+      }
+    },
+    {
+      "id": "Q21",
+      "number": 21,
+      "moduleId": 4,
+      "topic": "Peripheral nerve blocks",
+      "type": "mcq",
+      "stem": "Local anaesthetics produce peripheral nerve blockade mainly through which mechanism?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "0b065ebe-c72e-5f46-a941-59c0793dafd2",
+          "text": "Inhibition of voltage-gated sodium channels"
+        },
+        {
+          "id": "75c2de5e-e59c-5444-a9c1-16c7dd0202a7",
+          "text": "Destruction of acetylcholine receptors at every neuromuscular junction"
+        },
+        {
+          "id": "3a3ada81-c0f3-55f7-8510-0621ed194254",
+          "text": "Inhibition of cyclo-oxygenase in the liver"
+        },
+        {
+          "id": "1ef08c0d-3a12-54bf-ab92-3854acf952df",
+          "text": "Activation of mu-opioid receptors"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "0b065ebe-c72e-5f46-a941-59c0793dafd2",
+        "paperAnswerLetter": "A",
+        "explanation": "Sodium-channel inhibition interrupts propagation of nerve impulses.",
+        "referenceIds": [
+          "S15"
+        ]
+      }
+    },
+    {
+      "id": "Q22",
+      "number": 22,
+      "moduleId": 4,
+      "topic": "Joint injection safety",
+      "type": "mcq",
+      "stem": "A patient attending for an elective knee steroid injection has a hot swollen knee and fever. What is the best immediate decision?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "aa3b42b8-2c5f-5fee-bfe8-b040c643ea04",
+          "text": "Inject steroid first and investigate only if the swelling remains"
+        },
+        {
+          "id": "b3d2306e-54ab-58c7-a8da-64914a3e25ec",
+          "text": "Give a larger steroid dose because fever indicates severe inflammation"
+        },
+        {
+          "id": "c6a2bd75-126e-5be9-b9c0-3485dedd0cae",
+          "text": "Defer the steroid injection and urgently assess for joint infection"
+        },
+        {
+          "id": "ca748f3e-793a-5c94-af6c-f6127a2b55d5",
+          "text": "Proceed if the patient signs an additional consent form"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "c6a2bd75-126e-5be9-b9c0-3485dedd0cae",
+        "paperAnswerLetter": "C",
+        "explanation": "Possible septic arthritis requires urgent investigation; therapeutic steroid injection should be deferred.",
+        "referenceIds": [
+          "S16"
+        ]
+      }
+    },
+    {
+      "id": "Q23",
+      "number": 23,
+      "moduleId": 4,
+      "topic": "Sympathetic blocks",
+      "type": "mcq",
+      "stem": "Which intervention may be considered as an adjunct for selected patients with refractory upper abdominal visceral pain from pancreatic cancer?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "d7fee9ce-7a34-5471-8525-0022b4758b44",
+          "text": "Occipital nerve block"
+        },
+        {
+          "id": "97e5a88f-6cf3-5a35-9792-f78c8ef64294",
+          "text": "Celiac plexus block or neurolysis"
+        },
+        {
+          "id": "a17da265-9fee-5b93-9e46-f1a89a5dc38d",
+          "text": "Suprascapular nerve block"
+        },
+        {
+          "id": "b9342056-88f7-5311-8895-a54119e2b1ba",
+          "text": "Lumbar facet medial branch block"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "97e5a88f-6cf3-5a35-9792-f78c8ef64294",
+        "paperAnswerLetter": "B",
+        "explanation": "The celiac plexus carries visceral pain pathways from upper abdominal organs.",
+        "referenceIds": [
+          "S17"
+        ]
+      }
+    },
+    {
+      "id": "Q24",
+      "number": 24,
+      "moduleId": 4,
+      "topic": "Myofascial pain",
+      "type": "mcq",
+      "stem": "Which examination finding most strongly supports an active myofascial trigger point?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "5150645c-3747-5917-a386-177f6229d5c3",
+          "text": "A tender spot within a taut muscle band that reproduces the patient's familiar pain"
+        },
+        {
+          "id": "25e48732-7bcc-541e-844a-3020130e46b2",
+          "text": "Painless joint crepitus with preserved movement"
+        },
+        {
+          "id": "71073397-b337-58cd-9c3c-4248713ce72a",
+          "text": "An isolated absent ankle reflex without local muscle tenderness"
+        },
+        {
+          "id": "fa365678-fed7-5e16-a36f-7f25f311924b",
+          "text": "A dermatomal sensory deficit without a palpable muscle finding"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "5150645c-3747-5917-a386-177f6229d5c3",
+        "paperAnswerLetter": "A",
+        "explanation": "Reproduction of familiar local or referred pain from a tender taut band supports the diagnosis.",
+        "referenceIds": [
+          "S18"
+        ]
+      }
+    },
+    {
+      "id": "Q25",
+      "number": 25,
+      "moduleId": 4,
+      "topic": "Ultrasound guidance",
+      "type": "mcq",
+      "stem": "During an ultrasound-guided peripheral intervention, which practice best supports safety?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "de5ac764-a640-54dc-99f7-3c327d2c7f0a",
+          "text": "Treat ultrasound guidance as a replacement for monitoring and asepsis"
+        },
+        {
+          "id": "b4bc9752-289e-56fe-83f8-240534cbbc1a",
+          "text": "Advance whenever the needle shaft is visible even if the tip is not located"
+        },
+        {
+          "id": "97093e12-7828-5ffd-8f4a-71439372d5cc",
+          "text": "Identify relevant vessels and maintain awareness of the needle tip throughout advancement"
+        },
+        {
+          "id": "192c6f8c-8a3f-5147-8fad-8a600fa3d0cb",
+          "text": "Assume that a dark circular structure cannot be vascular"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "97093e12-7828-5ffd-8f4a-71439372d5cc",
+        "paperAnswerLetter": "C",
+        "explanation": "Ultrasound helps identify anatomy; tip localisation and vascular awareness remain essential.",
+        "referenceIds": [
+          "S19"
+        ]
+      }
+    },
+    {
+      "id": "Q26",
+      "number": 26,
+      "moduleId": 5,
+      "topic": "Cancer pain assessment",
+      "type": "mcq",
+      "stem": "A patient with advanced cancer reports pain worsened by fear, financial worries and isolation. Which assessment best reflects a comprehensive palliative approach?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "35114899-93c0-58af-8945-5b6f9cfed10c",
+          "text": "Physical symptoms together with psychological, social and spiritual concerns"
+        },
+        {
+          "id": "c2be1205-2a31-5fe1-a737-68b354f823f7",
+          "text": "The latest pain score without contextual questions"
+        },
+        {
+          "id": "d0661ab6-4f06-5e5a-b6ba-9dc5f5f7614c",
+          "text": "Analgesic dose alone as a substitute for patient assessment"
+        },
+        {
+          "id": "b0bf0ca8-17df-5e45-bca0-e0dee3687085",
+          "text": "Tumour measurements alone"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "35114899-93c0-58af-8945-5b6f9cfed10c",
+        "paperAnswerLetter": "A",
+        "explanation": "Comprehensive cancer pain care addresses multiple interacting dimensions of distress.",
+        "referenceIds": [
+          "S20"
+        ]
+      }
+    },
+    {
+      "id": "Q27",
+      "number": 27,
+      "moduleId": 5,
+      "topic": "WHO analgesic approach",
+      "type": "mcq",
+      "stem": "A patient presents with severe cancer pain. Which interpretation of the WHO analgesic approach is most appropriate?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "13104213-7b08-5bac-aca0-1a85b6630fdc",
+          "text": "Use exactly the same medicine and schedule for every patient"
+        },
+        {
+          "id": "1c11f524-a23c-56fc-ba95-b09b4a5267eb",
+          "text": "Require a prolonged trial of paracetamol alone before considering stronger analgesia"
+        },
+        {
+          "id": "4995f0df-c3f0-5aa5-89b8-99a3b469b4b9",
+          "text": "Select analgesia appropriate to severity, including an opioid when indicated, with reassessment"
+        },
+        {
+          "id": "a10fe8d3-eb26-516b-844e-78d5fe29e20f",
+          "text": "Avoid opioids in all cancer pain because dependence is possible"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "4995f0df-c3f0-5aa5-89b8-99a3b469b4b9",
+        "paperAnswerLetter": "C",
+        "explanation": "Treatment should match pain severity; severe pain need not pass through a prolonged mild-analgesic-only stage.",
+        "referenceIds": [
+          "S21"
+        ]
+      }
+    },
+    {
+      "id": "Q28",
+      "number": 28,
+      "moduleId": 5,
+      "topic": "Intrathecal drug delivery",
+      "type": "mcq",
+      "stem": "Which patient is the most appropriate candidate for specialist assessment of intrathecal analgesic therapy?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "b9ff4822-bf78-5155-89aa-7b41966160e9",
+          "text": "A patient seeking a guarantee that an implanted device has no complications"
+        },
+        {
+          "id": "2c961601-4508-573a-b915-b213fd89f313",
+          "text": "Any patient with a single abnormal blood test but no pain"
+        },
+        {
+          "id": "e73cd988-d3f1-53f8-83c3-ff0a1988ba43",
+          "text": "A patient with mild pain controlled by simple treatment who wants no follow-up"
+        },
+        {
+          "id": "7a657238-3703-50da-95e9-4a2002d49b1c",
+          "text": "A patient with refractory cancer pain or intolerable systemic adverse effects despite optimised care"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "7a657238-3703-50da-95e9-4a2002d49b1c",
+        "paperAnswerLetter": "D",
+        "explanation": "Selected refractory cases may benefit, but specialist assessment and follow-up are necessary.",
+        "referenceIds": [
+          "S22"
+        ]
+      }
+    },
+    {
+      "id": "Q29",
+      "number": 29,
+      "moduleId": 5,
+      "topic": "End-of-life pain management",
+      "type": "mcq",
+      "stem": "For a dying patient with pain, what is the most appropriate guiding principle for analgesic adjustment?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "d5bd90e6-a6dd-5202-a8b1-9cb6ff53d328",
+          "text": "Escalation solely to achieve unconsciousness regardless of symptoms or goals"
+        },
+        {
+          "id": "53e34255-d073-5392-8714-01914fc2b005",
+          "text": "Withholding all analgesia because respiratory adverse effects are possible"
+        },
+        {
+          "id": "317ba4b0-0600-5e47-9daf-34325cb73cf3",
+          "text": "Continuation of an ineffective regimen to avoid any discussion with the family"
+        },
+        {
+          "id": "2da74aca-59ce-5e7d-b3a0-3b4d1c5d1b9e",
+          "text": "Proportionate symptom relief consistent with the patient's goals, with appropriate reassessment"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "2da74aca-59ce-5e7d-b3a0-3b4d1c5d1b9e",
+        "paperAnswerLetter": "D",
+        "explanation": "The therapeutic aim is appropriate symptom relief, not an unexamined fixed regimen.",
+        "referenceIds": [
+          "S20",
+          "S21"
+        ]
+      }
+    },
+    {
+      "id": "Q30",
+      "number": 30,
+      "moduleId": 5,
+      "topic": "Multidisciplinary palliative care",
+      "type": "mcq",
+      "stem": "When may specialist palliative care appropriately be integrated into cancer treatment?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "3f43fa20-fa3d-53f4-8508-9d3a7ec06e48",
+          "text": "Only after all anticancer therapy has stopped"
+        },
+        {
+          "id": "d723e05c-6832-5ed0-bd9a-28c9bb5416c5",
+          "text": "Alongside active cancer treatment when symptom or support needs warrant it"
+        },
+        {
+          "id": "cbf9ffbc-9d80-5017-83ff-b170cfc8aa12",
+          "text": "Only during the final 24 hours of life"
+        },
+        {
+          "id": "883a41d4-542a-5551-a0e7-308013be1eca",
+          "text": "Only when the patient no longer wishes to speak with the oncology team"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "d723e05c-6832-5ed0-bd9a-28c9bb5416c5",
+        "paperAnswerLetter": "B",
+        "explanation": "Palliative input can accompany disease-directed treatment and is based on needs.",
+        "referenceIds": [
+          "S20"
+        ]
+      }
+    },
+    {
+      "id": "Q31",
+      "number": 31,
+      "moduleId": 6,
+      "topic": "Low back pain red flags",
+      "type": "mcq",
+      "stem": "Which new symptom in a patient with low back pain most strongly requires urgent evaluation for cauda equina syndrome?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "797308e1-16c5-54d2-ba0a-524edbe52e23",
+          "text": "Pain that improves with a comfortable position"
+        },
+        {
+          "id": "14d1b170-a864-5607-a0b8-968678515cc9",
+          "text": "Intermittent muscle ache after unfamiliar exercise"
+        },
+        {
+          "id": "d7657e07-d329-57e7-ad3c-5e0ab60b60f0",
+          "text": "Urinary retention with saddle sensory change"
+        },
+        {
+          "id": "8ad19aab-0709-5b0b-910a-23eeb22da6a7",
+          "text": "Mild stiffness after prolonged sitting"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "d7657e07-d329-57e7-ad3c-5e0ab60b60f0",
+        "paperAnswerLetter": "C",
+        "explanation": "Sphincter disturbance with saddle sensory change is a neurological red flag.",
+        "referenceIds": [
+          "S13"
+        ]
+      }
+    },
+    {
+      "id": "Q32",
+      "number": 32,
+      "moduleId": 6,
+      "topic": "Neuropathic pain syndromes",
+      "type": "mcq",
+      "stem": "Persistent burning pain with sensory change in a healed herpes-zoster distribution is best classified as which type of pain?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "75928c28-cc0f-5f10-82fe-d56d65268f97",
+          "text": "Pain from an acutely inflamed joint"
+        },
+        {
+          "id": "a2b7418a-0d96-5146-8681-2389aa216068",
+          "text": "Neuropathic pain"
+        },
+        {
+          "id": "3cdd416e-7fea-5e13-82dc-559295d8baea",
+          "text": "Purely visceral nociceptive pain"
+        },
+        {
+          "id": "8a847d5b-c465-56c6-8434-1833d3877700",
+          "text": "Pain defined solely by psychosocial factors"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "a2b7418a-0d96-5146-8681-2389aa216068",
+        "paperAnswerLetter": "B",
+        "explanation": "Postherpetic neuralgia involves injury or disease of the somatosensory system.",
+        "referenceIds": [
+          "S01"
+        ]
+      }
+    },
+    {
+      "id": "Q33",
+      "number": 33,
+      "moduleId": 6,
+      "topic": "Complex regional pain syndrome",
+      "type": "mcq",
+      "stem": "Which statement about diagnosing complex regional pain syndrome is most accurate?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "5a2ba38a-a7b6-5f87-8978-6a48bb2bc141",
+          "text": "A normal radiograph excludes the syndrome"
+        },
+        {
+          "id": "a6a98ef9-b7b2-5bf3-9b6a-ae3428619f69",
+          "text": "Use clinical criteria incorporating symptoms, examination signs and exclusion of a better explanation"
+        },
+        {
+          "id": "6f594237-4ff3-57e3-a301-ede2fe6470c3",
+          "text": "Pain after any fracture is sufficient without other features"
+        },
+        {
+          "id": "54c3e23b-7041-5982-8e96-5b040f0cc8ea",
+          "text": "A single positive bone scan establishes the diagnosis in every patient"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "a6a98ef9-b7b2-5bf3-9b6a-ae3428619f69",
+        "paperAnswerLetter": "B",
+        "explanation": "CRPS is a clinical diagnosis; tests may help investigate alternatives but are not a stand-alone confirmation.",
+        "referenceIds": [
+          "S23"
+        ]
+      }
+    },
+    {
+      "id": "Q34",
+      "number": 34,
+      "moduleId": 6,
+      "topic": "Fibromyalgia and centralised pain",
+      "type": "mcq",
+      "stem": "A patient has widespread persistent pain, fatigue and unrefreshing sleep, with no identified lesion or active tissue disease adequately explaining the symptoms. Which pain mechanism is most consistent with a fibromyalgia presentation?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "ae0999f9-97fb-58c3-a710-eb9944b93ded",
+          "text": "Pain caused only by acute tissue inflammation"
+        },
+        {
+          "id": "674a8c28-fdff-5d27-848c-4de5e3944edd",
+          "text": "Pain caused only by a single transected peripheral nerve"
+        },
+        {
+          "id": "8e34295b-09ca-5726-93e6-c58b3935b516",
+          "text": "Pain that cannot exist unless imaging is abnormal"
+        },
+        {
+          "id": "132d945c-bd59-5abe-8bd8-8f216e762cf8",
+          "text": "Nociplastic pain"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "132d945c-bd59-5abe-8bd8-8f216e762cf8",
+        "paperAnswerLetter": "D",
+        "explanation": "Nociplastic mechanisms can underlie widespread pain without a sufficient tissue or nerve-lesion explanation.",
+        "referenceIds": [
+          "S01"
+        ]
+      }
+    },
+    {
+      "id": "Q35",
+      "number": 35,
+      "moduleId": 6,
+      "topic": "Rehabilitation",
+      "type": "mcq",
+      "stem": "Which outcome best represents a useful rehabilitation goal for a patient with chronic primary pain?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "75a754a7-5c4c-5d2e-8558-eeb32e984427",
+          "text": "Progressively increasing an agreed meaningful activity while monitoring tolerability"
+        },
+        {
+          "id": "f22574ca-99d4-5ac4-894f-644aa419afdf",
+          "text": "Eliminating all movement that produces any temporary discomfort"
+        },
+        {
+          "id": "95c141a7-01b4-5b44-9f8d-284e10d0e970",
+          "text": "Increasing treatment visits regardless of function"
+        },
+        {
+          "id": "462ba668-e75b-556d-85d7-387d870e3aaa",
+          "text": "Complete bed rest until the pain score has remained zero for a month"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "75a754a7-5c4c-5d2e-8558-eeb32e984427",
+        "paperAnswerLetter": "A",
+        "explanation": "Rehabilitation emphasises individualised participation and function, not inactivity until pain vanishes.",
+        "referenceIds": [
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "Q36",
+      "number": 36,
+      "moduleId": 6,
+      "topic": "Trigeminal neuralgia",
+      "type": "mcq",
+      "stem": "An adult has a clinical diagnosis of trigeminal neuralgia and no contraindication to the medicines listed. Which drug is recommended as initial treatment in NICE CG173?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "23aec066-cac1-5937-bfa3-30431fcdc008",
+          "text": "Morphine"
+        },
+        {
+          "id": "6f76d935-5356-5921-8e97-3684fc32e57c",
+          "text": "Pregabalin"
+        },
+        {
+          "id": "62399908-e1b4-5416-a833-574c40843c20",
+          "text": "Duloxetine"
+        },
+        {
+          "id": "409a6140-a09b-5186-b28f-c282f53a70b0",
+          "text": "Carbamazepine"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "409a6140-a09b-5186-b28f-c282f53a70b0",
+        "paperAnswerLetter": "D",
+        "explanation": "Trigeminal neuralgia has a distinct first-line recommendation: carbamazepine.",
+        "referenceIds": [
+          "S09"
+        ]
+      }
+    },
+    {
+      "id": "Q37",
+      "number": 37,
+      "moduleId": 7,
+      "topic": "Spinal cord stimulation",
+      "type": "mcq",
+      "stem": "Before permanent spinal cord stimulation for an appropriate chronic neuropathic pain indication, which pathway is most suitable?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "18b0da99-8a81-554d-8fee-2cfe3aeb2813",
+          "text": "Selection solely by the number of prior prescriptions"
+        },
+        {
+          "id": "3beddaba-d6df-5edc-b568-62e3b152bc30",
+          "text": "Implantation based only on pain duration without assessing expectations"
+        },
+        {
+          "id": "036796ad-3129-52ac-bdf4-d703ed34e800",
+          "text": "Multidisciplinary selection, psychosocial assessment and an appropriate stimulation trial"
+        },
+        {
+          "id": "6d5d6bca-0247-5e54-b458-9491b0d601cc",
+          "text": "Implantation without discussing maintenance or possible device complications"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "036796ad-3129-52ac-bdf4-d703ed34e800",
+        "paperAnswerLetter": "C",
+        "explanation": "Selection includes psychosocial assessment and usually a trial for these indications.",
+        "referenceIds": [
+          "S24"
+        ]
+      }
+    },
+    {
+      "id": "Q38",
+      "number": 38,
+      "moduleId": 7,
+      "topic": "Intrathecal pumps",
+      "type": "mcq",
+      "stem": "A patient with an intrathecal opioid pump reports a device alarm and sudden loss of analgesia. What is the most appropriate advice?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "5fefb450-01dd-5e20-a415-5c7021c31528",
+          "text": "Seek urgent assessment by the responsible specialist or emergency service"
+        },
+        {
+          "id": "30cb0267-8b50-518c-b837-c0fe8621c200",
+          "text": "Wait until the next routine refill regardless of symptoms"
+        },
+        {
+          "id": "0069be47-0c2f-577d-97d0-670c6a8305ab",
+          "text": "Assume the alarm is unrelated because the wound looks normal"
+        },
+        {
+          "id": "2af76f0c-0ddc-5985-a576-5d1a03ce4db3",
+          "text": "Try to refill or reprogramme the pump at home"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "5fefb450-01dd-5e20-a415-5c7021c31528",
+        "paperAnswerLetter": "A",
+        "explanation": "Pump interruption or malfunction may cause withdrawal, loss of analgesia or other serious complications.",
+        "referenceIds": [
+          "S25"
+        ]
+      }
+    },
+    {
+      "id": "Q39",
+      "number": 39,
+      "moduleId": 7,
+      "topic": "Regenerative medicine",
+      "type": "mcq",
+      "stem": "A clinic advertises an injected cell-based product as a guaranteed cure for degenerative back pain. What is the most appropriate professional response?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "27be7a1c-2790-5d12-a502-a37746695093",
+          "text": "Accept the claim if the clinic displays patient testimonials"
+        },
+        {
+          "id": "80a4c3c3-65be-5019-94e3-c885ffdef184",
+          "text": "Treat a trial-registry listing as proof of efficacy and marketing approval"
+        },
+        {
+          "id": "a1e47ebb-5dc0-5aff-b67f-e29ac11ef27b",
+          "text": "Evaluate product-specific evidence, regulatory status, risks and uncertainty before counselling"
+        },
+        {
+          "id": "ac8dcd03-c71d-5cf2-a133-9441dc7e23a4",
+          "text": "Assume that autologous products are risk-free and exempt from oversight"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "a1e47ebb-5dc0-5aff-b67f-e29ac11ef27b",
+        "paperAnswerLetter": "C",
+        "explanation": "Unproven regenerative claims require critical review; registration or marketing is not evidence of benefit.",
+        "referenceIds": [
+          "S26"
+        ]
+      }
+    },
+    {
+      "id": "Q40",
+      "number": 40,
+      "moduleId": 7,
+      "topic": "Emerging therapies",
+      "type": "mcq",
+      "stem": "Which evidence would most strengthen confidence that a new pain therapy offers a clinically useful benefit?",
+      "maxUnits": 2,
+      "options": [
+        {
+          "id": "3f9c44b0-e9de-5d83-a147-62007a36abb1",
+          "text": "A laboratory mechanism without patient outcome data"
+        },
+        {
+          "id": "805559ff-2860-5cc6-8714-8a514c68be16",
+          "text": "A clinic's claim that its method cannot be evaluated by comparison"
+        },
+        {
+          "id": "aa1b446b-28d8-5ec9-9d1c-3a9a1b46f5e2",
+          "text": "A promotional video showing only selected satisfied patients"
+        },
+        {
+          "id": "b08f45d1-2b2a-552b-a40b-81ebf7fbf353",
+          "text": "Independent, well-conducted comparative trials reporting function, pain, harms and durability"
+        }
+      ],
+      "scoring": {
+        "correctOptionId": "b08f45d1-2b2a-552b-a40b-81ebf7fbf353",
+        "paperAnswerLetter": "D",
+        "explanation": "Credible assessment needs relevant clinical outcomes, appropriate comparison and transparent harms reporting.",
+        "referenceIds": [
+          "S26"
+        ]
+      }
+    },
+    {
+      "id": "Q41",
+      "number": 41,
+      "moduleId": 1,
+      "topic": "Pain assessment",
+      "type": "image",
+      "stem": "A patient selects the marked position on the scale below during an assessment of persistent pain.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-01",
+        "file": "assets/figure_01.png",
+        "kind": "teaching_schematic",
+        "title": "Pain assessment",
+        "alt": "Figure 1: Pain assessment teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Record the patient's pain intensity score."
+        },
+        {
+          "id": "b",
+          "prompt": "Name one important dimension of pain impact not measured by this scale alone."
+        },
+        {
+          "id": "c",
+          "prompt": "Write one focused question that would assess the dimension you named."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q41.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "7/10."
+          },
+          {
+            "id": "Q41.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "One of: functional interference, sleep interference, mood/emotional impact, or participation/social impact."
+          },
+          {
+            "id": "Q41.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "A relevant question, for example: \"How does pain affect your walking or usual daily activities?\" Match the dimension in part (b)."
+          }
+        ],
+        "markerNote": "Do not require a universal mild/moderate/severe cut-off. Part (c) may earn credit independently if clinically relevant.",
+        "referenceIds": [
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "Q42",
+      "number": 42,
+      "moduleId": 2,
+      "topic": "Analgesic safety observation chart",
+      "type": "image",
+      "stem": "An adult becomes increasingly difficult to rouse after an opioid dose. No other sedative has been given. The respiratory observations are shown below.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-02",
+        "file": "assets/figure_02.png",
+        "kind": "teaching_schematic",
+        "title": "Analgesic safety observation chart",
+        "alt": "Figure 2: Analgesic safety observation chart teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Identify the most concerning opioid-related complication."
+        },
+        {
+          "id": "b",
+          "prompt": "State the immediate clinical priority; do not give a drug dose."
+        },
+        {
+          "id": "c",
+          "prompt": "Name the opioid antagonist that may be required according to the emergency protocol."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q42.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Opioid-induced respiratory depression / opioid toxicity with hypoventilation."
+          },
+          {
+            "id": "Q42.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Activate emergency help and promptly assess/support airway and ventilation; do not delay respiratory support while awaiting a medicine."
+          },
+          {
+            "id": "Q42.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Naloxone."
+          }
+        ],
+        "markerNote": "For (b), award 1 mark for prompt airway/ventilation support with urgent escalation. Merely arranging a routine review is not sufficient.",
+        "referenceIds": [
+          "S10",
+          "S27"
+        ]
+      }
+    },
+    {
+      "id": "Q43",
+      "number": 43,
+      "moduleId": 3,
+      "topic": "Lumbar anatomy and clinical correlation",
+      "type": "image",
+      "stem": "An adult has right-sided radiating leg pain. The original axial teaching schematic represents the L4-L5 disc level; X marks an abnormality contacting the right traversing root. Patient right is shown on the left of the image.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-03",
+        "file": "assets/figure_03.png",
+        "kind": "teaching_schematic",
+        "title": "Lumbar anatomy and clinical correlation",
+        "alt": "Figure 3: Lumbar anatomy and clinical correlation teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Identify the abnormality marked X."
+        },
+        {
+          "id": "b",
+          "prompt": "Name the nerve root most likely affected at this location."
+        },
+        {
+          "id": "c",
+          "prompt": "State one new bladder or saddle-region symptom that would require urgent assessment."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q43.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Right paracentral/posterolateral L4-L5 disc herniation."
+          },
+          {
+            "id": "Q43.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Right L5 nerve root (the traversing root)."
+          },
+          {
+            "id": "Q43.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "New urinary retention/incontinence or new saddle/perineal sensory loss."
+          }
+        ],
+        "markerNote": "Accept disc protrusion/herniation; no morphological subtype beyond the schematic is required. This is not a patient MRI.",
+        "referenceIds": [
+          "S13"
+        ]
+      }
+    },
+    {
+      "id": "Q44",
+      "number": 44,
+      "moduleId": 3,
+      "topic": "Posterior spinal pain structures",
+      "type": "image",
+      "stem": "This simplified side-view schematic shows a posterior articulation between adjacent lumbar vertebrae. The articulation is marked X.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-04",
+        "file": "assets/figure_04.png",
+        "kind": "teaching_schematic",
+        "title": "Posterior spinal pain structures",
+        "alt": "Figure 4: Posterior spinal pain structures teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Name the articulation marked X."
+        },
+        {
+          "id": "b",
+          "prompt": "Name the nerve branches that provide its relevant sensory innervation."
+        },
+        {
+          "id": "c",
+          "prompt": "Name the diagnostic/prognostic block commonly used before considering radiofrequency treatment of those branches."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q44.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Lumbar facet / zygapophyseal joint."
+          },
+          {
+            "id": "Q44.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Medial branches of the dorsal rami (posterior primary rami)."
+          },
+          {
+            "id": "Q44.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Diagnostic lumbar medial branch block."
+          }
+        ],
+        "markerNote": "Do not ask students to infer exact vertebral levels, needle positions or treatment parameters from this simplified figure.",
+        "referenceIds": [
+          "S12"
+        ]
+      }
+    },
+    {
+      "id": "Q45",
+      "number": 45,
+      "moduleId": 4,
+      "topic": "Ultrasound pattern recognition",
+      "type": "image",
+      "stem": "The teaching schematic below depicts a superficial peripheral nerve and a nearby pulsatile vessel in short axis. Structure A has multiple small internal fascicles; structure B is pulsatile.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-05",
+        "file": "assets/figure_05.png",
+        "kind": "teaching_schematic",
+        "title": "Ultrasound pattern recognition",
+        "alt": "Figure 5: Ultrasound pattern recognition teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Identify structure A."
+        },
+        {
+          "id": "b",
+          "prompt": "Identify structure B and name one ultrasound mode that can help confirm blood flow."
+        },
+        {
+          "id": "c",
+          "prompt": "State one needle-visualisation safety principle for an ultrasound-guided intervention."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q45.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Peripheral nerve."
+          },
+          {
+            "id": "Q45.b.artery",
+            "partId": "b",
+            "maxUnits": 1,
+            "allowedUnits": [
+              0,
+              1
+            ],
+            "answer": "Artery."
+          },
+          {
+            "id": "Q45.b.doppler",
+            "partId": "b",
+            "maxUnits": 1,
+            "allowedUnits": [
+              0,
+              1
+            ],
+            "answer": "Colour or power Doppler."
+          },
+          {
+            "id": "Q45.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Keep the needle tip located during advancement; stop advancing if its position is uncertain."
+          }
+        ],
+        "markerNote": "The figure is a stylised ultrasound schematic, not a scan. Do not award the safety mark for visualising only the needle shaft.",
+        "referenceIds": [
+          "S19"
+        ]
+      }
+    },
+    {
+      "id": "Q46",
+      "number": 46,
+      "moduleId": 4,
+      "topic": "Joint assessment before injection",
+      "type": "image",
+      "stem": "A patient has a hot swollen knee and fever. This schematic longitudinal view shows the suprapatellar region; X marks the fluid-containing recess.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-06",
+        "file": "assets/figure_06.png",
+        "kind": "teaching_schematic",
+        "title": "Joint assessment before injection",
+        "alt": "Figure 6: Joint assessment before injection teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Name the finding represented by the distended recess at X."
+        },
+        {
+          "id": "b",
+          "prompt": "Name the serious diagnosis that must be considered before an elective steroid injection."
+        },
+        {
+          "id": "c",
+          "prompt": "State the appropriate next investigation/action to address that concern."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q46.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Knee joint effusion / suprapatellar effusion."
+          },
+          {
+            "id": "Q46.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Septic arthritis / joint infection."
+          },
+          {
+            "id": "Q46.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Urgent clinical assessment and diagnostic joint aspiration for synovial analysis and culture; defer steroid injection."
+          }
+        ],
+        "markerNote": "An effusion is not specific for infection. For (c), urgent aspiration/infection assessment earns the mark; in systemic sepsis, treatment must not be delayed.",
+        "referenceIds": [
+          "S16"
+        ]
+      }
+    },
+    {
+      "id": "Q47",
+      "number": 47,
+      "moduleId": 5,
+      "topic": "Cancer pain pattern",
+      "type": "image",
+      "stem": "A patient with cancer reports adequate background pain control on a stable regimen. The chart shows brief episodes of severe pain with return to the usual background level.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-07",
+        "file": "assets/figure_07.png",
+        "kind": "teaching_schematic",
+        "title": "Cancer pain pattern",
+        "alt": "Figure 7: Cancer pain pattern teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Name the pain pattern illustrated by the peaks."
+        },
+        {
+          "id": "b",
+          "prompt": "State the general medication strategy for an episode; do not specify a dose."
+        },
+        {
+          "id": "c",
+          "prompt": "If episodes become frequent, state one aspect of the overall plan that should be reassessed."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q47.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Breakthrough cancer pain."
+          },
+          {
+            "id": "Q47.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "An individually prescribed rescue analgesic, commonly an appropriate immediate-release opioid, matched to the patient and existing regimen."
+          },
+          {
+            "id": "Q47.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Reassess the underlying cause/triggers or adequacy of background analgesia, adherence, adverse effects, or overall regimen."
+          }
+        ],
+        "markerNote": "Do not award a medicine-strategy mark for slow-release opioid alone as immediate rescue. No fixed rescue dose is required.",
+        "referenceIds": [
+          "S21"
+        ]
+      }
+    },
+    {
+      "id": "Q48",
+      "number": 48,
+      "moduleId": 6,
+      "topic": "Pain distribution",
+      "type": "image",
+      "stem": "An adult with diabetes describes burning pain in the shaded areas shown below. Examination confirms bilaterally reduced distal pinprick sensation in the same distribution.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-08",
+        "file": "assets/figure_08.png",
+        "kind": "teaching_schematic",
+        "title": "Pain distribution",
+        "alt": "Figure 8: Pain distribution teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Name the most likely neuropathic pain syndrome."
+        },
+        {
+          "id": "b",
+          "prompt": "Describe the distribution using a standard clinical term."
+        },
+        {
+          "id": "c",
+          "prompt": "Name one guideline-supported initial medicine for this condition, assuming no contraindication."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q48.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Painful diabetic distal symmetric polyneuropathy / painful diabetic peripheral neuropathy."
+          },
+          {
+            "id": "Q48.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Symmetrical distal stocking distribution."
+          },
+          {
+            "id": "Q48.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "One of: duloxetine, amitriptyline, gabapentin or pregabalin."
+          }
+        ],
+        "markerNote": "Award credit for an appropriate equivalent description of a length-dependent distal symmetrical distribution.",
+        "referenceIds": [
+          "S09",
+          "S28"
+        ]
+      }
+    },
+    {
+      "id": "Q49",
+      "number": 49,
+      "moduleId": 6,
+      "topic": "Regional pain after injury",
+      "type": "image",
+      "stem": "Eight weeks after a wrist fracture, a patient reports disproportionate regional pain, touch sensitivity, colour/temperature changes, sweating change and reduced movement. Examination confirms the illustrated findings and restricted movement; no alternative diagnosis better explains them.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-09",
+        "file": "assets/figure_09.png",
+        "kind": "teaching_schematic",
+        "title": "Regional pain after injury",
+        "alt": "Figure 9: Regional pain after injury teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Name the syndrome most strongly suggested."
+        },
+        {
+          "id": "b",
+          "prompt": "Which Budapest diagnostic category includes the illustrated temperature and colour asymmetry?"
+        },
+        {
+          "id": "c",
+          "prompt": "State one core non-pharmacological component of management."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q49.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Complex regional pain syndrome (CRPS); type I is acceptable if no major nerve injury is established."
+          },
+          {
+            "id": "Q49.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Vasomotor category."
+          },
+          {
+            "id": "Q49.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Graded functional restoration/physiotherapy or occupational therapy, with desensitisation and appropriate education."
+          }
+        ],
+        "markerNote": "The stem supplies history and examination context. The drawing or a temperature difference alone does not diagnose CRPS.",
+        "referenceIds": [
+          "S23"
+        ]
+      }
+    },
+    {
+      "id": "Q50",
+      "number": 50,
+      "moduleId": 7,
+      "topic": "Implanted pain therapy",
+      "type": "image",
+      "stem": "This original schematic shows an implanted generator connected to electrical contacts behind the spinal cord. It is not a surgical-placement guide.",
+      "maxUnits": 6,
+      "asset": {
+        "id": "figure-10",
+        "file": "assets/figure_10.png",
+        "kind": "teaching_schematic",
+        "title": "Implanted pain therapy",
+        "alt": "Figure 10: Implanted pain therapy teaching schematic."
+      },
+      "parts": [
+        {
+          "id": "a",
+          "prompt": "Identify the treatment modality."
+        },
+        {
+          "id": "b",
+          "prompt": "Name the anatomical compartment in which the illustrated spinal contacts lie."
+        },
+        {
+          "id": "c",
+          "prompt": "Name one important assessment domain before permanent implantation, other than the pain score."
+        }
+      ],
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q50.a",
+            "partId": "a",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Spinal cord stimulation (SCS)."
+          },
+          {
+            "id": "Q50.b",
+            "partId": "b",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Epidural space."
+          },
+          {
+            "id": "Q50.c",
+            "partId": "c",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Psychosocial assessment (including mood), realistic expectations, functional goals, capacity to manage the device, or suitability/response during an appropriate trial."
+          }
+        ],
+        "markerNote": "Accept one clinically valid selection domain. Do not infer a specific vertebral level or surgical technique.",
+        "referenceIds": [
+          "S24",
+          "S29"
+        ]
+      }
+    },
+    {
+      "id": "Q51",
+      "number": 51,
+      "moduleId": 1,
+      "topic": "Classification",
+      "type": "short",
+      "stem": "State the usual duration threshold used to define chronic pain.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q51.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Pain persisting or recurring for longer than 3 months; accept at least 3 months where used by the specified classification."
+          }
+        ],
+        "referenceIds": [
+          "S30"
+        ]
+      }
+    },
+    {
+      "id": "Q52",
+      "number": 52,
+      "moduleId": 1,
+      "topic": "Consent",
+      "type": "short",
+      "stem": "Name one material risk that should be discussed before a proposed spinal pain procedure.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q52.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "One procedure-relevant material risk, e.g. bleeding/haematoma, infection, nerve injury, dural puncture/headache or a serious drug reaction."
+          }
+        ],
+        "referenceIds": [
+          "S04",
+          "S14"
+        ]
+      }
+    },
+    {
+      "id": "Q53",
+      "number": 53,
+      "moduleId": 2,
+      "topic": "Non-opioid pharmacology",
+      "type": "short",
+      "stem": "Name the enzyme family inhibited by non-steroidal anti-inflammatory drugs.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q53.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Cyclo-oxygenase / COX (COX-1 and/or COX-2)."
+          }
+        ],
+        "referenceIds": [
+          "S06"
+        ]
+      }
+    },
+    {
+      "id": "Q54",
+      "number": 54,
+      "moduleId": 2,
+      "topic": "Opioid risk mitigation",
+      "type": "short",
+      "stem": "Name one overdose-risk mitigation measure for a higher-risk patient prescribed an opioid.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q54.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "One of: offer naloxone with education, review/avoid risky sedative combinations where feasible, assess overdose risks, or arrange closer monitoring and follow-up. Accept safe storage education if explicitly linked to preventing accidental overdose."
+          }
+        ],
+        "referenceIds": [
+          "S10"
+        ]
+      }
+    },
+    {
+      "id": "Q55",
+      "number": 55,
+      "moduleId": 3,
+      "topic": "Procedure safety",
+      "type": "short",
+      "stem": "Name one medication class that must be specifically reviewed for bleeding risk before a neuraxial pain procedure.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q55.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Anticoagulants or antiplatelet medicines. A correct example such as warfarin, apixaban or clopidogrel is acceptable."
+          }
+        ],
+        "referenceIds": [
+          "S31"
+        ]
+      }
+    },
+    {
+      "id": "Q56",
+      "number": 56,
+      "moduleId": 4,
+      "topic": "Local anaesthetic toxicity",
+      "type": "short",
+      "stem": "During a local anaesthetic injection, a patient develops circumoral numbness, tinnitus and a seizure. Name the suspected complication.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q56.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Local anaesthetic systemic toxicity (LAST)."
+          }
+        ],
+        "referenceIds": [
+          "S15",
+          "S32"
+        ]
+      }
+    },
+    {
+      "id": "Q57",
+      "number": 57,
+      "moduleId": 5,
+      "topic": "Cancer pain",
+      "type": "short",
+      "stem": "Name one non-analgesic-drug treatment used specifically to relieve pain from bone metastases.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q57.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Palliative radiotherapy. Accept appropriate surgical stabilisation for a painful unstable/pathological fracture if specified."
+          }
+        ],
+        "referenceIds": [
+          "S21"
+        ]
+      }
+    },
+    {
+      "id": "Q58",
+      "number": 58,
+      "moduleId": 6,
+      "topic": "Assessment of low back pain",
+      "type": "short",
+      "stem": "Name one validated questionnaire used to measure disability associated with low back pain.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q58.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Oswestry Disability Index (ODI) or Roland-Morris Disability Questionnaire (RMDQ)."
+          }
+        ],
+        "referenceIds": [
+          "S33"
+        ]
+      }
+    },
+    {
+      "id": "Q59",
+      "number": 59,
+      "moduleId": 6,
+      "topic": "Rehabilitation",
+      "type": "short",
+      "stem": "State one way activity pacing can be incorporated into a chronic pain rehabilitation plan.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q59.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Break activity into planned manageable periods with rests and progress gradually toward an agreed goal; avoid a repeated overactivity-and-crash pattern."
+          }
+        ],
+        "referenceIds": [
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "Q60",
+      "number": 60,
+      "moduleId": 7,
+      "topic": "Neuromodulation selection",
+      "type": "short",
+      "stem": "Name one psychological domain that should be assessed before spinal cord stimulation.",
+      "maxUnits": 2,
+      "scoring": {
+        "rubric": [
+          {
+            "id": "Q60.answer",
+            "maxUnits": 2,
+            "allowedUnits": [
+              0,
+              2
+            ],
+            "answer": "Depression/mood, anxiety, coping, expectations, or substance-use problems. Accept one relevant domain; screening should include depression."
+          }
+        ],
+        "referenceIds": [
+          "S24"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "S01",
+      "label": "IASP. Terminology: pain, sensitisation, allodynia, neuropathic and nociplastic pain.",
+      "url": "https://www.iasp-pain.org/resources/terminology/"
+    },
+    {
+      "id": "S02",
+      "label": "StatPearls. Physiology, Pain.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539789/"
+    },
+    {
+      "id": "S03",
+      "label": "NICE NG193. Chronic pain: assessment and management. Recommendations.",
+      "url": "https://www.nice.org.uk/guidance/ng193/chapter/recommendations"
+    },
+    {
+      "id": "S04",
+      "label": "GMC. The seven principles of decision making and consent. General ethical principles; local law must be applied.",
+      "url": "https://www.gmc-uk.org/professional-standards/the-professional-standards/decision-making-and-consent/the-seven-principles-of-decision-making-and-consent"
+    },
+    {
+      "id": "S05",
+      "label": "AHRQ. Tool: Teach-Back.",
+      "url": "https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/teachback.html"
+    },
+    {
+      "id": "S06",
+      "label": "StatPearls. Nonsteroidal Anti-Inflammatory Drugs (NSAIDs).",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK547742/"
+    },
+    {
+      "id": "S07",
+      "label": "FDA. Acetaminophen: avoiding duplicate products and overdose.",
+      "url": "https://www.fda.gov/drugs/safe-use-over-counter-pain-relievers-and-fever-reducers/acetaminophen"
+    },
+    {
+      "id": "S08",
+      "label": "StatPearls. Gabapentin.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK493228/"
+    },
+    {
+      "id": "S09",
+      "label": "NICE CG173. Neuropathic pain in adults: recommendations.",
+      "url": "https://www.nice.org.uk/guidance/cg173/chapter/Recommendations"
+    },
+    {
+      "id": "S10",
+      "label": "CDC. Clinical Practice Guideline for Prescribing Opioids for Pain, 2022. Not applicable to cancer, sickle cell, palliative or end-of-life pain.",
+      "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm"
+    },
+    {
+      "id": "S11",
+      "label": "NICE NG59. Low back pain and sciatica: recommendations.",
+      "url": "https://www.nice.org.uk/guidance/ng59/chapter/recommendations"
+    },
+    {
+      "id": "S12",
+      "label": "Cohen SP et al. Consensus practice guidelines on interventions for lumbar facet joint pain. Regional Anesthesia and Pain Medicine, 2020.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7362874/"
+    },
+    {
+      "id": "S13",
+      "label": "StatPearls. Lumbar Disc Herniation.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560878/"
+    },
+    {
+      "id": "S14",
+      "label": "FDA. Safety communication: serious neurological problems after epidural corticosteroid injections.",
+      "url": "https://www.fda.gov/files/drugs/published/FDA-Drug-Safety-Communication-for-Corticosteroid.pdf"
+    },
+    {
+      "id": "S15",
+      "label": "StatPearls. Local Anesthetic Toxicity: local anaesthetic mechanisms and toxicity.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499964/"
+    },
+    {
+      "id": "S16",
+      "label": "American Family Physician. Joint and Soft Tissue Injection. Therapeutic injection versus diagnostic aspiration.",
+      "url": "https://www.aafp.org/afp/2002/0715/p283"
+    },
+    {
+      "id": "S17",
+      "label": "StatPearls. Celiac Plexus Block.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK531469/"
+    },
+    {
+      "id": "S18",
+      "label": "StatPearls. Myofascial Pain Syndrome.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499882/"
+    },
+    {
+      "id": "S19",
+      "label": "NYSORA. Introduction to Ultrasound-Guided Regional Anesthesia.",
+      "url": "https://nysora.com/regional-anesthesia/topics/equipment/introduction-ultrasound-guided-regional-anesthesia/"
+    },
+    {
+      "id": "S20",
+      "label": "WHO. Palliative care fact sheet.",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/palliative-care"
+    },
+    {
+      "id": "S21",
+      "label": "WHO. Guidelines for the pharmacological and radiotherapeutic management of cancer pain in adults and adolescents: recommendations.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537486/"
+    },
+    {
+      "id": "S22",
+      "label": "StatPearls. Implantable Intrathecal Drug Delivery System.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538237/"
+    },
+    {
+      "id": "S23",
+      "label": "Harden RN et al. Complex Regional Pain Syndrome: Practical Diagnostic and Treatment Guidelines, 5th edition. Pain Medicine, 2022.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9186375/"
+    },
+    {
+      "id": "S24",
+      "label": "Shanthanna H et al. Evidence-based consensus guidelines on patient selection and trial stimulation for spinal cord stimulation, 2023.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10370290/"
+    },
+    {
+      "id": "S25",
+      "label": "Troubleshooting intrathecal pumps in pain management: a clinical review. 2026.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41815933/"
+    },
+    {
+      "id": "S26",
+      "label": "FDA. Important patient and consumer information about regenerative medicine therapies. US regulatory example; local rules differ.",
+      "url": "https://www.fda.gov/vaccines-blood-biologics/consumers-biologics/important-patient-and-consumer-information-about-regenerative-medicine-therapies"
+    },
+    {
+      "id": "S27",
+      "label": "StatPearls. Opioid Toxicity.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470415/"
+    },
+    {
+      "id": "S28",
+      "label": "StatPearls. Diabetic Peripheral Neuropathy.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK442009/"
+    },
+    {
+      "id": "S29",
+      "label": "StatPearls. Spinal Cord Stimulation.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK553154/"
+    },
+    {
+      "id": "S30",
+      "label": "IASP. Definitions of Chronic Pain Syndromes.",
+      "url": "https://www.iasp-pain.org/advocacy/definitions-of-chronic-pain-syndromes/"
+    },
+    {
+      "id": "S31",
+      "label": "Narouze S et al. Interventional spine and pain procedures in patients on antiplatelet and anticoagulant medications, second edition. Regional Anesthesia and Pain Medicine, 2018.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29278603/"
+    },
+    {
+      "id": "S32",
+      "label": "ASRA. Checklist for Treatment of Local Anesthetic Systemic Toxicity (LAST), 2020.",
+      "url": "https://asra.com/news-publications/asra-updates/blog-landing/guidelines/2020/11/01/checklist-for-treatment-of-local-anesthetic-systemic-toxicity"
+    },
+    {
+      "id": "S33",
+      "label": "Shirley Ryan AbilityLab. Rehabilitation Measures Database: Oswestry Disability Index.",
+      "url": "https://www.sralab.org/rehabilitation-measures/oswestry-disability-index"
+    }
+  ],
+  "contentStatus": "Faculty-review draft; teaching schematics are not patient scans.",
+  "sourceCheckedDate": "2026-09-03"
+}

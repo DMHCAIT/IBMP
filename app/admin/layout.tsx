@@ -19,6 +19,7 @@ import {
   GraduationCap,
   FileText,
   Receipt,
+  Clipboard,
 } from 'lucide-react';
 
 const AUTH_KEY = 'ibmp-admin-auth';
@@ -35,6 +36,7 @@ const sidebarItems = [
   { name: 'Contact', href: '/admin/contact', icon: Phone },
   { name: 'Applications', href: '/admin/applications', icon: FileText },
   { name: 'Invoices', href: '/admin/invoices', icon: Receipt },
+  { name: 'Assessment', href: '/admin/assessment', icon: Clipboard },
   { name: 'Header & Footer', href: '/admin/layout', icon: Settings },
 ];
 

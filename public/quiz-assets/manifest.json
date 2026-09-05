@@ -1,0 +1,72 @@
+[
+  {
+    "id": "figure-01",
+    "file": "assets/figure_01.png",
+    "kind": "teaching_schematic",
+    "title": "Pain assessment",
+    "alt": "Figure 1: Pain assessment teaching schematic."
+  },
+  {
+    "id": "figure-02",
+    "file": "assets/figure_02.png",
+    "kind": "teaching_schematic",
+    "title": "Analgesic safety observation chart",
+    "alt": "Figure 2: Analgesic safety observation chart teaching schematic."
+  },
+  {
+    "id": "figure-03",
+    "file": "assets/figure_03.png",
+    "kind": "teaching_schematic",
+    "title": "Lumbar anatomy and clinical correlation",
+    "alt": "Figure 3: Lumbar anatomy and clinical correlation teaching schematic."
+  },
+  {
+    "id": "figure-04",
+    "file": "assets/figure_04.png",
+    "kind": "teaching_schematic",
+    "title": "Posterior spinal pain structures",
+    "alt": "Figure 4: Posterior spinal pain structures teaching schematic."
+  },
+  {
+    "id": "figure-05",
+    "file": "assets/figure_05.png",
+    "kind": "teaching_schematic",
+    "title": "Ultrasound pattern recognition",
+    "alt": "Figure 5: Ultrasound pattern recognition teaching schematic."
+  },
+  {
+    "id": "figure-06",
+    "file": "assets/figure_06.png",
+    "kind": "teaching_schematic",
+    "title": "Joint assessment before injection",
+    "alt": "Figure 6: Joint assessment before injection teaching schematic."
+  },
+  {
+    "id": "figure-07",
+    "file": "assets/figure_07.png",
+    "kind": "teaching_schematic",
+    "title": "Cancer pain pattern",
+    "alt": "Figure 7: Cancer pain pattern teaching schematic."
+  },
+  {
+    "id": "figure-08",
+    "file": "assets/figure_08.png",
+    "kind": "teaching_schematic",
+    "title": "Pain distribution",
+    "alt": "Figure 8: Pain distribution teaching schematic."
+  },
+  {
+    "id": "figure-09",
+    "file": "assets/figure_09.png",
+    "kind": "teaching_schematic",
+    "title": "Regional pain after injury",
+    "alt": "Figure 9: Regional pain after injury teaching schematic."
+  },
+  {
+    "id": "figure-10",
+    "file": "assets/figure_10.png",
+    "kind": "teaching_schematic",
+    "title": "Implanted pain therapy",
+    "alt": "Figure 10: Implanted pain therapy teaching schematic."
+  }
+]
