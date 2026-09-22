@@ -187,7 +187,6 @@ export default function DynamicAssessmentPage() {
         if (response.ok) {
           const data = await response.json();
           if (data.settings) {
-            setSettings(data.settings);
             console.log('Assessment settings loaded from database:', data.settings);
           }
         }
