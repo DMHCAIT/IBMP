@@ -22,11 +22,9 @@ export default function AssessmentPage() {
           router.push(`/assessment-${slug}`);
         } else {
           setError('No assessment papers available');
-          setLoading(false);
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load assessment');
-        setLoading(false);
       }
     };
 
