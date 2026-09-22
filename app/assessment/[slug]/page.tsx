@@ -40,7 +40,7 @@ export default function DynamicAssessmentPage() {
   const [examSeedData, setExamSeedData] = useState<any>(null);
   const [secondsRemaining, setSecondsRemaining] = useState(120 * 60);
   const [loading, setLoading] = useState(true);
-  const [settings, setSettings] = useState<any>({
+  const [_settings, _setSettings] = useState<any>({
     exam_type: 'Assessment',
     duration_minutes: 120,
     total_marks: 80,
