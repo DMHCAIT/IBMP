@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { fullName, enrollmentId, password, email, phone, examType } = body;
+    const { fullName, enrollmentId, password, email, phone, examType, paper_id } = body;
 
     // Validation
     if (!fullName || !enrollmentId || !password) {
@@ -81,6 +81,27 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = getSupabaseServiceClient();
+
+    if (!paper_id) {
+      return NextResponse.json(
+        { success: false, message: 'Paper is required when creating a candidate' },
+        { status: 400 }
+      );
+    }
+
+    const { data: paper, error: paperError } = await supabase
+      .from('assessment_exam_papers')
+      .select('id, name')
+      .eq('id', paper_id)
+      .eq('is_active', true)
+      .maybeSingle();
+
+    if (paperError || !paper) {
+      return NextResponse.json(
+        { success: false, message: 'Selected paper was not found or is inactive' },
+        { status: 400 }
+      );
+    }
 
     // Check if enrollment ID already exists
     const { data: existing } = await supabase
@@ -105,6 +126,7 @@ export async function POST(request: NextRequest) {
         password,
         email,
         phone,
+        paper_id,
         exam_type: examType || 'Pain Medicine (Set A)',
         status: 'active',
       })
@@ -140,7 +162,7 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     const id = request.nextUrl.searchParams.get('id');
-    const { fullName, enrollmentId, password, email, phone, examType, status } = body;
+    const { fullName, enrollmentId, password, email, phone, examType, status, paper_id } = body;
 
     if (!id) {
       return NextResponse.json(
@@ -159,6 +181,22 @@ export async function PUT(request: NextRequest) {
     if (phone) updateData.phone = phone;
     if (examType) updateData.exam_type = examType;
     if (status) updateData.status = status;
+    if (paper_id) {
+      const { data: paper, error: paperError } = await supabase
+        .from('assessment_exam_papers')
+        .select('id')
+        .eq('id', paper_id)
+        .eq('is_active', true)
+        .maybeSingle();
+
+      if (paperError || !paper) {
+        return NextResponse.json(
+          { success: false, message: 'Selected paper was not found or is inactive' },
+          { status: 400 }
+        );
+      }
+      updateData.paper_id = paper_id;
+    }
     updateData.updated_at = new Date().toISOString();
 
     const { data: updated, error } = await supabase

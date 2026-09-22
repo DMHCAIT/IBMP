@@ -3,18 +3,25 @@ import { getSupabaseServiceClient } from '@/lib/supabase';
 
 /**
  * Helper function: Check if candidate answer matches expected answer
- * Matches if ANY single word in expected answer appears in candidate answer (case-insensitive)
+ * Matches if any meaningful word from the expected answer appears in the candidate answer.
  */
 function checkAnswerMatch(candidateAnswer: string, expectedAnswer: string): boolean {
   if (!candidateAnswer || !expectedAnswer) return false;
   
-  const candidateLower = candidateAnswer.toLowerCase().trim();
-  const expectedWords = expectedAnswer
+  const normalize = (value: string) => value
     .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+  const candidateWords = new Set(normalize(candidateAnswer).split(/\s+/));
+  const ignoredWords = new Set([
+    'a', 'an', 'and', 'answer', 'any', 'before', 'by', 'example', 'for',
+    'from', 'give', 'in', 'is', 'name', 'one', 'or', 'state', 'the', 'to',
+    'used', 'way', 'with', 'would',
+  ]);
+  return normalize(expectedAnswer)
     .split(/\s+/)
-    .filter(word => word.length > 0);
-  
-  return expectedWords.some(word => candidateLower.includes(word));
+    .filter(word => word.length >= 3 && !ignoredWords.has(word))
+    .some(word => candidateWords.has(word));
 }
 
 /**

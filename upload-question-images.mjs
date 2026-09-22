@@ -3,6 +3,7 @@
 import { readFileSync } from 'fs';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config({ path: '.env.local' });
 
@@ -13,7 +14,7 @@ const supabase = createClient(
 
 async function uploadQuestionImages() {
   try {
-    console.log('📸 Starting assessment question images upload...');
+    console.log('📸 Starting assessment question images upload (WITH BINARY DATA)...');
 
     // Read exam seed file
     const seedFile = readFileSync('public/exam.seed.json', 'utf-8');
@@ -55,8 +56,39 @@ async function uploadQuestionImages() {
       // Extract filename from path
       const filename = imageFile.split('/').pop(); // figure_01.png
       
-      // Create public URL for the asset
+      // Create public URL for the asset (fallback if database data unavailable)
       const imageUrl = `/quiz-assets/${filename}`;
+      
+      // Read actual image file
+      let imageData = null;
+      let imageDataBase64 = null;
+      let fileSize = 0;
+      let mimeType = 'image/png';
+      
+      try {
+        const imagePath = path.join(process.cwd(), 'public', imageFile);
+        imageData = readFileSync(imagePath);
+        fileSize = imageData.length;
+        
+        // Convert to base64
+        imageDataBase64 = imageData.toString('base64');
+        
+        // Determine MIME type from filename
+        if (filename.toLowerCase().endsWith('.jpg') || filename.toLowerCase().endsWith('.jpeg')) {
+          mimeType = 'image/jpeg';
+        } else if (filename.toLowerCase().endsWith('.png')) {
+          mimeType = 'image/png';
+        } else if (filename.toLowerCase().endsWith('.gif')) {
+          mimeType = 'image/gif';
+        } else if (filename.toLowerCase().endsWith('.webp')) {
+          mimeType = 'image/webp';
+        }
+        
+        console.log(`  📷 Read image file: ${filename} (${fileSize} bytes)`);
+      } catch (fileError) {
+        console.warn(`  ⚠️  Could not read image file ${imagePath}:`, fileError.message);
+        // Continue anyway - we'll just not have the binary data
+      }
       
       // Get question ID from database
       const { data: questionData, error: queryError } = await supabase
@@ -75,7 +107,7 @@ async function uploadQuestionImages() {
         continue;
       }
 
-      // Insert image record
+      // Insert image record with binary data
       const { error: insertError } = await supabase
         .from('assessment_question_images')
         .insert({
@@ -83,26 +115,30 @@ async function uploadQuestionImages() {
           image_url: imageUrl,
           image_path: imageFile,
           image_title: imageTitle,
-          file_size: 0, // We'll get this from the actual file
-          mime_type: 'image/png',
+          file_size: fileSize,
+          mime_type: mimeType,
           description: imageAlt,
           sort_order: 0,
           is_active: true,
+          image_data_base64: imageDataBase64, // Store base64 encoded data
         });
 
       if (insertError) {
         console.error(`❌ Failed to insert image for ${questionNumber}:`, insertError.message);
       } else {
-        console.log(`✅ Uploaded image for ${questionNumber}: ${filename}`);
+        const dataStatus = imageDataBase64 ? '✅' : '⚠️ (URL only)';
+        console.log(`${dataStatus} Uploaded image for ${questionNumber}: ${filename}`);
         uploadedCount++;
       }
     }
 
     console.log(`\n📊 Image Upload Summary:`);
-    console.log(`   ✓ Total images linked: ${uploadedCount}`);
+    console.log(`   ✓ Total images uploaded: ${uploadedCount}`);
     console.log(`   ✓ Images: figure_01.png through figure_10.png`);
-    console.log(`   ✓ Asset path: /quiz-assets/`);
-    console.log(`\n✨ Image linking complete! Images are now available in the assessment.`);
+    console.log(`   ✓ Storage: Database (image_data_base64 column)`);
+    console.log(`   ✓ Fallback: /quiz-assets/ URL (if data unavailable)`);
+    console.log(`   ✓ Location: assessment_question_images table`);
+    console.log(`\n✨ Images stored in database! Ready to serve from database or fallback to URLs.`);
     
   } catch (error) {
     console.error('❌ Error uploading images:', error);

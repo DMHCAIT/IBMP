@@ -19,6 +19,7 @@ export async function GET(request: NextRequest) {
         `
         id,
         candidate_id,
+        paper_id,
         enrollment_id,
         started_at,
         submitted_at,
@@ -50,6 +51,7 @@ export async function GET(request: NextRequest) {
     }
 
     let responses = [];
+    let paper = null;
     if (includeResponses && attemptId) {
       const { data: respData, error: respError } = await supabase
         .from('assessment_responses')
@@ -64,11 +66,21 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    if (attempts?.[0]?.paper_id) {
+      const { data: paperData } = await supabase
+        .from('assessment_exam_papers')
+        .select('id, total_questions, total_marks')
+        .eq('id', attempts[0].paper_id)
+        .maybeSingle();
+      paper = paperData;
+    }
+
     return NextResponse.json(
       {
         success: true,
         attempts: attempts || [],
         responses: responses,
+        paper,
       },
       { status: 200 }
     );

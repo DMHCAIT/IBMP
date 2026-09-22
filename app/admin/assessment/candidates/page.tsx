@@ -13,11 +13,20 @@ interface Candidate {
   phone: string;
   exam_type: string;
   status: string;
+  paper_id: string;
   created_at: string;
+}
+
+interface Paper {
+  id: string;
+  name: string;
+  slug: string;
+  is_active: boolean;
 }
 
 export default function AssessmentCandidatesPage() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [papers, setPapers] = useState<Paper[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -28,13 +37,25 @@ export default function AssessmentCandidatesPage() {
     email: '',
     phone: '',
     examType: 'Pain Medicine (Set A)',
+    paperId: '',
   });
   const [submitting, setSubmitting] = useState(false);
 
-  // Load candidates
+  // Load candidates and papers
   useEffect(() => {
     loadCandidates();
+    loadPapers();
   }, []);
+
+  const loadPapers = async () => {
+    try {
+      const res = await fetch('/api/admin/assessment/papers');
+      const data = await res.json();
+      setPapers(data.papers || []);
+    } catch (err) {
+      console.error('Error loading papers:', err);
+    }
+  };
 
   const loadCandidates = async () => {
     try {
@@ -60,11 +81,20 @@ export default function AssessmentCandidatesPage() {
     setSubmitting(true);
     setError('');
 
+    if (!formData.paperId) {
+      setError('Please select an exam paper');
+      setSubmitting(false);
+      return;
+    }
+
     try {
       const res = await fetch('/api/admin/assessment/candidates', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          paper_id: formData.paperId,
+        }),
       });
 
       const data = await res.json();
@@ -78,6 +108,7 @@ export default function AssessmentCandidatesPage() {
           email: '',
           phone: '',
           examType: 'Pain Medicine (Set A)',
+          paperId: '',
         });
         setShowAddForm(false);
       } else {
@@ -213,6 +244,25 @@ export default function AssessmentCandidatesPage() {
 
               <div>
                 <label className="block text-xs font-bold text-primary uppercase tracking-wider mb-2">
+                  Exam Paper *
+                </label>
+                <select
+                  value={formData.paperId}
+                  onChange={(e) => setFormData({ ...formData, paperId: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                  required
+                >
+                  <option value="">-- Select Paper --</option>
+                  {papers.filter(p => p.is_active).map((paper) => (
+                    <option key={paper.id} value={paper.id}>
+                      {paper.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-primary uppercase tracking-wider mb-2">
                   Exam Type
                 </label>
                 <select
@@ -264,43 +314,52 @@ export default function AssessmentCandidatesPage() {
                 <tr>
                   <th className="px-6 py-3 text-left font-bold text-primary uppercase text-xs tracking-wider">Name</th>
                   <th className="px-6 py-3 text-left font-bold text-primary uppercase text-xs tracking-wider">Enrollment ID</th>
+                  <th className="px-6 py-3 text-left font-bold text-primary uppercase text-xs tracking-wider">Exam Paper</th>
                   <th className="px-6 py-3 text-left font-bold text-primary uppercase text-xs tracking-wider">Email</th>
                   <th className="px-6 py-3 text-left font-bold text-primary uppercase text-xs tracking-wider">Status</th>
                   <th className="px-6 py-3 text-center font-bold text-primary uppercase text-xs tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {candidates.map((candidate) => (
-                  <tr key={candidate.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-primary">{candidate.full_name}</td>
-                    <td className="px-6 py-4 text-slate-600 font-mono text-xs">{candidate.enrollment_id}</td>
-                    <td className="px-6 py-4 text-slate-600">{candidate.email || '—'}</td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {candidate.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-center gap-2">
-                        <Link
-                          href={`/admin/assessment/candidates/${candidate.id}`}
-                          className="p-2 hover:bg-blue-50 text-blue-600 rounded-lg transition-all"
-                          title="View Details"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(candidate.id)}
-                          className="p-2 hover:bg-red-50 text-red-600 rounded-lg transition-all"
-                          title="Delete"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {candidates.map((candidate) => {
+                  const candidatePaper = papers.find(p => p.id === candidate.paper_id);
+                  return (
+                    <tr key={candidate.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4 font-semibold text-primary">{candidate.full_name}</td>
+                      <td className="px-6 py-4 text-slate-600 font-mono text-xs">{candidate.enrollment_id}</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">
+                          {candidatePaper?.name || 'Not Assigned'}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-slate-600">{candidate.email || '—'}</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          {candidate.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-center gap-2">
+                          <Link
+                            href={`/admin/assessment/candidates/${candidate.id}`}
+                            className="p-2 hover:bg-blue-50 text-blue-600 rounded-lg transition-all"
+                            title="View Details"
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(candidate.id)}
+                            className="p-2 hover:bg-red-50 text-red-600 rounded-lg transition-all"
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

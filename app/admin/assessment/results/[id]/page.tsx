@@ -28,7 +28,7 @@ export default function ResultDetailPage() {
       const attData = await attRes.json();
 
       if (attData.success && attData.attempts && attData.attempts.length > 0) {
-        setAttempt(attData.attempts[0]);
+        setAttempt({ ...attData.attempts[0], paper: attData.paper });
       } else {
         setError('Result not found');
         setLoading(false);
@@ -82,14 +82,22 @@ export default function ResultDetailPage() {
   const endTime = attempt.submitted_at ? new Date(attempt.submitted_at) : null;
   const durationMins = endTime ? Math.round((endTime.getTime() - startTime.getTime()) / 1000 / 60) : null;
 
-  // Calculate total marks
-  const totalMaxMarks = responses.reduce((sum, r) => sum + (r.max_marks || 0), 0);
-  const totalObtained = responses.reduce((sum, r) => sum + (r.marks_obtained || 0), 0);
+  // Image questions have one response row per part. Repeated submissions can
+  // also create duplicate rows, so use the latest row for each logical item.
+  const uniqueResponses: Record<string, any>[] = Array.from(
+    responses.reduce((map, response) => {
+      map.set(response.question_id, response);
+      return map;
+    }, new Map<string, Record<string, any>>()).values()
+  );
+  const totalMaxMarks = Number(attempt.paper?.total_marks || 80);
+  const totalObtained = uniqueResponses.reduce((sum, r) => sum + (r.marks_obtained || 0), 0);
+  const totalQuestions = Number(attempt.paper?.total_questions || 60);
 
   // Group responses by question type
-  const mcqResponses = responses.filter(r => r.question_type === 'mcq');
-  const imageResponses = responses.filter(r => r.question_type === 'image');
-  const shortResponses = responses.filter(r => r.question_type === 'short');
+  const mcqResponses = uniqueResponses.filter(r => r.question_type === 'mcq');
+  const imageResponses = uniqueResponses.filter(r => r.question_type === 'image');
+  const shortResponses = uniqueResponses.filter(r => r.question_type === 'short');
 
   return (
     <div className="space-y-6">
@@ -160,7 +168,7 @@ export default function ResultDetailPage() {
 
               <div>
                 <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Total Responses</p>
-                <p className="text-lg font-semibold text-slate-700">{responses.length} / 60</p>
+                <p className="text-lg font-semibold text-slate-700">{Math.min(totalQuestions, new Set(uniqueResponses.map(r => r.question_id.split('.')[0])).size)} / {totalQuestions}</p>
               </div>
             </div>
           </div>
@@ -187,13 +195,19 @@ export default function ResultDetailPage() {
               <div key={response.id} className="border border-slate-200 rounded-lg p-4 hover:border-primary/30 transition">
                 <div className="flex items-start justify-between mb-2">
                   <p className="font-semibold text-primary text-lg">{response.question_id}</p>
-                  <span className={`text-sm font-semibold px-3 py-1 rounded-full ${
-                    response.is_correct 
+                  {!(response.response_text || response.response_json?.selectedOptionText) ? (
+                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700">
+                      Unanswered (0/{response.max_marks})
+                    </span>
+                  ) : (
+                    <span className={`text-sm font-semibold px-3 py-1 rounded-full ${
+                    response.is_correct
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-red-100 text-red-800'
                   }`}>
                     {response.is_correct ? '✓ Correct' : '✗ Incorrect'} ({response.marks_obtained || 0}/{response.max_marks})
-                  </span>
+                    </span>
+                  )}
                 </div>
                 <div className="space-y-3">
                   <div className="p-3 bg-slate-50 rounded border border-slate-200">
@@ -292,7 +306,7 @@ export default function ResultDetailPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white rounded-lg p-4 border border-slate-200">
             <p className="text-xs font-bold text-slate-600 uppercase mb-1">Total Responses Submitted</p>
-            <p className="text-2xl font-bold text-primary">{responses.length}/60</p>
+            <p className="text-2xl font-bold text-primary">{Math.min(totalQuestions, new Set(uniqueResponses.map(r => r.question_id.split('.')[0])).size)}/{totalQuestions}</p>
           </div>
           <div className="bg-white rounded-lg p-4 border border-slate-200">
             <p className="text-xs font-bold text-slate-600 uppercase mb-1">Overall Score</p>

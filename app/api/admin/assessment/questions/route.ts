@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
       image_url,
       description,
       question_data,
+      paper_id,
     } = body;
 
     // Validate required fields
@@ -77,12 +78,13 @@ export async function POST(request: NextRequest) {
           module: module || 'Module 1',
           stem,
           marks: marks || 1,
-          options: options && options.length > 0 ? JSON.stringify(options) : null,
+          options: options && options.length > 0 ? options : null,
           correct_answer: correct_answer || null,
           image_url: image_url || null,
           description: description || null,
           question_data: question_data || null,
           sort_order: parseInt(question_number.replace(/\D/g, '')) || 0,
+          paper_id: paper_id || null,
         },
       ])
       .select();
@@ -114,11 +116,6 @@ export async function PUT(request: NextRequest) {
         { error: 'Question ID is required' },
         { status: 400 }
       );
-    }
-
-    // Ensure options are stored as JSON string
-    if (updateData.options && Array.isArray(updateData.options)) {
-      updateData.options = JSON.stringify(updateData.options);
     }
 
     // Handle question_data - keep as is (should be object/JSONB)

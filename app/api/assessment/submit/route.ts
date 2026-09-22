@@ -3,19 +3,26 @@ import { getSupabaseServiceClient } from '@/lib/supabase';
 
 /**
  * Helper function: Check if candidate answer matches expected answer
- * Matches if ANY single word in expected answer appears in candidate answer (case-insensitive)
+ * Matches if any meaningful word from the expected answer appears in the candidate answer.
  */
 function checkAnswerMatch(candidateAnswer: string, expectedAnswer: string): boolean {
   if (!candidateAnswer || !expectedAnswer) return false;
   
-  const candidateLower = candidateAnswer.toLowerCase().trim();
-  const expectedWords = expectedAnswer
+  const normalize = (value: string) => value
     .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+  const candidateWords = new Set(normalize(candidateAnswer).split(/\s+/));
+  const ignoredWords = new Set([
+    'a', 'an', 'and', 'answer', 'any', 'before', 'by', 'example', 'for',
+    'from', 'give', 'in', 'is', 'name', 'one', 'or', 'state', 'the', 'to',
+    'used', 'way', 'with', 'would',
+  ]);
+  const expectedWords = normalize(expectedAnswer)
     .split(/\s+/)
-    .filter(word => word.length > 0);
-  
-  // Check if any word from expected answer appears in candidate answer
-  return expectedWords.some(word => candidateLower.includes(word));
+    .filter(word => word.length >= 3 && !ignoredWords.has(word));
+
+  return expectedWords.some(word => candidateWords.has(word));
 }
 
 /**
@@ -37,7 +44,7 @@ export async function POST(request: NextRequest) {
       body = JSON.parse(text);
     }
     
-    const { attemptId, candidateId, mcqAnswers, textAnswers, flaggedQuestions, examData } = body;
+    const { attemptId, candidateId, mcqAnswers = {}, textAnswers = {}, flaggedQuestions = {} } = body;
 
     if (!attemptId || !candidateId) {
       return NextResponse.json(
@@ -48,25 +55,62 @@ export async function POST(request: NextRequest) {
 
     const supabase = getSupabaseServiceClient();
 
-    // Step 1: Mark attempt as completed
-    const { error: updateAttemptError } = await supabase
+    // Always score against the questions belonging to this attempt's paper.
+    // Client-provided exam data is only a display concern and must not select
+    // another paper's answer key.
+    const { data: attempt, error: attemptLookupError } = await supabase
       .from('assessment_attempts')
-      .update({
-        status: 'completed',
-        submitted_at: new Date().toISOString(),
-      })
-      .eq('id', attemptId);
+      .select('id, candidate_id, paper_id, status')
+      .eq('id', attemptId)
+      .eq('candidate_id', candidateId)
+      .single();
 
-    if (updateAttemptError) {
-      console.error('Error updating attempt:', updateAttemptError);
+    if (attemptLookupError || !attempt?.paper_id) {
       return NextResponse.json(
-        { success: false, message: 'Failed to submit assessment' },
-        { status: 500 }
+        { success: false, message: 'Assessment attempt or paper not found' },
+        { status: 404 }
       );
     }
 
-    // Step 2: Store all responses with auto-scoring for Q41-Q60
-    const questions = examData?.questions || [];
+    if (attempt.status === 'completed' || attempt.status === 'submitted') {
+      return NextResponse.json(
+        { success: false, message: 'This assessment has already been submitted' },
+        { status: 409 }
+      );
+    }
+
+    const { data: paperQuestions, error: questionsError } = await supabase
+      .from('assessment_questions')
+      .select('question_number, type, stem, marks, options, correct_answer, question_data, image_url, parts')
+      .eq('paper_id', attempt.paper_id)
+      .order('sort_order', { ascending: true });
+
+    if (questionsError || !paperQuestions?.length) {
+      return NextResponse.json(
+        { success: false, message: 'No questions configured for this paper' },
+        { status: 422 }
+      );
+    }
+
+    // Store all responses with auto-scoring for this paper.
+    const questions = paperQuestions.map((question: Record<string, any>) => {
+      const data = question.question_data || {};
+      return {
+        ...data,
+        id: data.id || question.question_number,
+        number: data.number || parseInt(String(question.question_number).replace(/\D/g, ''), 10),
+        type: question.type || data.type,
+        stem: question.stem || data.stem,
+        marks: question.marks || data.marks || data.maxUnits || 1,
+        maxUnits: question.marks || data.maxUnits || data.marks || 1,
+        options: question.options || data.options || [],
+        correctOptionId: data.scoring?.correctOptionId,
+        correctOption: question.correct_answer || data.correctOption,
+        correct_answer: question.correct_answer,
+        parts: data.parts || question.parts || [],
+        scoring: data.scoring || { marks: question.marks || 1 },
+      };
+    });
     let totalScore = 0;
     let totalMarks = 0;
 
@@ -74,13 +118,14 @@ export async function POST(request: NextRequest) {
 
     questions.forEach((question: Record<string, any>) => {
       const qId = question.id;
-      const qNum = question.number;
+      const _qNum = question.number;
       
-      // Calculate maxMarks based on question number
-      let maxMarks = 1; // Default for Q1-Q40, Q51-Q60
-      if (qNum >= 41 && qNum <= 50) {
-        maxMarks = 3; // Q41-Q50 have 3 marks (3 parts x 1 mark each)
-      }
+      // Use the paper's stored marks and rubric instead of a global question
+      // number convention, since every paper can define its own structure.
+      const rubric = question.scoring?.rubric || [];
+      const maxMarks = question.type === 'image' && rubric.length > 0
+        ? rubric.reduce((sum: number, item: Record<string, any>) => sum + (item.maxUnits || 0), 0)
+        : question.marks || question.maxUnits || 1;
       
       totalMarks += maxMarks;
 
@@ -88,8 +133,20 @@ export async function POST(request: NextRequest) {
         // MCQ response - find option text for display
         const selectedOptionId = mcqAnswers[qId];
         // Use correctOptionId if available (from question_data), fallback to correctOption
-        const correctId = question.correctOptionId || question.correctOption;
-        const isCorrect = selectedOptionId === correctId;
+        const correctId = question.correctOptionId || question.scoring?.correctOptionId || question.correctOption;
+        const selectedOption = question.options?.find((option: any) =>
+          (typeof option === 'object' && option.id === selectedOptionId) || option === selectedOptionId
+        );
+        const selectedText = typeof selectedOption === 'object'
+          ? selectedOption.text || selectedOption.label || ''
+          : selectedOption || selectedOptionId;
+        const correctText = question.options?.find((option: any) =>
+          typeof option === 'object' && option.id === question.correctOptionId
+        )?.text || question.correct_answer;
+        const hasSelectedAnswer = typeof selectedOptionId === 'string' && selectedOptionId.trim().length > 0;
+        const isCorrect = hasSelectedAnswer && (
+          selectedOptionId === correctId || selectedText === correctText
+        );
         const marksObtained = isCorrect ? maxMarks : 0;
         totalScore += marksObtained;
 
@@ -189,6 +246,21 @@ export async function POST(request: NextRequest) {
       }
     });
 
+    // A resumed attempt may have partial rows from an interrupted request.
+    // Replace them so retrying submission cannot duplicate the result.
+    const { error: clearResponsesError } = await supabase
+      .from('assessment_responses')
+      .delete()
+      .eq('attempt_id', attemptId);
+
+    if (clearResponsesError) {
+      console.error('Error clearing previous responses:', clearResponsesError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to prepare assessment submission' },
+        { status: 500 }
+      );
+    }
+
     // Insert all responses
     if (responsesToInsert.length > 0) {
       const { error: insertError } = await supabase
@@ -214,6 +286,29 @@ export async function POST(request: NextRequest) {
 
     if (scoreError) {
       console.error('Error updating score:', scoreError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to save assessment score' },
+        { status: 500 }
+      );
+    }
+
+    // Complete the attempt only after responses and score are persisted. This
+    // leaves interrupted submissions resumable instead of falsely completed.
+    const { error: updateAttemptError } = await supabase
+      .from('assessment_attempts')
+      .update({
+        status: 'completed',
+        submitted_at: new Date().toISOString(),
+      })
+      .eq('id', attemptId)
+      .eq('status', 'in-progress');
+
+    if (updateAttemptError) {
+      console.error('Error completing attempt:', updateAttemptError);
+      return NextResponse.json(
+        { success: false, message: 'Failed to complete assessment attempt' },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json(

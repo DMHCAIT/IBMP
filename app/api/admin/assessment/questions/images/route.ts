@@ -6,17 +6,34 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+const IMAGE_BUCKET = 'public';
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const questionId = formData.get('questionId') as string;
     const imageTitle = formData.get('imageTitle') as string;
+    const paperId = formData.get('paperId') as string;
 
-    if (!file || !questionId) {
+    if (!file || !questionId || !paperId) {
       return NextResponse.json(
         { error: 'File and question ID are required' },
         { status: 400 }
+      );
+    }
+
+    const { data: question, error: questionError } = await supabase
+      .from('assessment_questions')
+      .select('id, question_number, question_data')
+      .eq('id', questionId)
+      .eq('paper_id', paperId)
+      .maybeSingle();
+
+    if (questionError || !question) {
+      return NextResponse.json(
+        { error: 'Question was not found in this paper. Reload the page and try again.' },
+        { status: 404 }
       );
     }
 
@@ -28,7 +45,7 @@ export async function POST(request: NextRequest) {
     const buffer = await file.arrayBuffer();
 
     const { error: uploadError, data: _uploadData } = await supabase.storage
-      .from('uploads')
+      .from(IMAGE_BUCKET)
       .upload(filePath, buffer, {
         contentType: file.type,
         upsert: false,
@@ -43,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     // Get public URL
     const { data: publicUrlData } = supabase.storage
-      .from('uploads')
+      .from(IMAGE_BUCKET)
       .getPublicUrl(filePath);
 
     const imageUrl = publicUrlData.publicUrl;
@@ -65,19 +82,36 @@ export async function POST(request: NextRequest) {
 
     if (dbError) {
       // Delete uploaded file if DB insert fails
-      await supabase.storage.from('uploads').remove([filePath]);
+      await supabase.storage.from(IMAGE_BUCKET).remove([filePath]);
       return NextResponse.json(
         { error: dbError.message },
         { status: 500 }
       );
     }
 
-    // Update question with image URL if it's the first image
-    await supabase
+    const { error: questionUpdateError } = await supabase
       .from('assessment_questions')
-      .update({ image_url: imageUrl })
+      .update({
+        image_url: imageUrl,
+        question_data: {
+          ...(question.question_data || {}),
+          asset: {
+            ...(question.question_data?.asset || {}),
+            file: imageUrl,
+          },
+        },
+      })
       .eq('id', questionId)
-      .is('image_url', null);
+      .eq('paper_id', paperId);
+
+    if (questionUpdateError) {
+      await supabase.from('assessment_question_images').delete().eq('id', imageRecord[0].id);
+      await supabase.storage.from(IMAGE_BUCKET).remove([filePath]);
+      return NextResponse.json(
+        { error: `Failed to attach image to question: ${questionUpdateError.message}` },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(imageRecord[0], { status: 201 });
   } catch (error) {

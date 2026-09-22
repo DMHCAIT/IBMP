@@ -1,10 +1,17 @@
 'use client';
 
-import { Users, FileText, BarChart3, Settings } from 'lucide-react';
+import { Users, FileText, BarChart3, Settings, BookMarked } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AssessmentAdminPage() {
   const features = [
+    {
+      title: 'Manage Papers',
+      description: 'Create and manage different exam papers with unique content',
+      icon: BookMarked,
+      href: '/admin/assessment/papers',
+      color: 'from-indigo-500 to-indigo-600',
+    },
     {
       title: 'Manage Candidates',
       description: 'Add, edit, and manage candidate credentials and access',
@@ -64,7 +71,7 @@ export default function AssessmentAdminPage() {
       </div>
 
       {/* Feature Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature) => {
           const Icon = feature.icon;
           return (
