@@ -39,7 +39,7 @@ export default function HonoraryFellowshipContentNew() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-8 bg-gradient-to-br from-yellow-600 via-amber-700 to-primary overflow-hidden">
+      <section className="relative py-8 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80"
@@ -49,7 +49,7 @@ export default function HonoraryFellowshipContentNew() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/80 via-amber-700/90 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-600/80 via-teal-700/90 to-teal-800/80" />
 
         <div className="container-custom relative z-10">
           <Link 
@@ -77,7 +77,7 @@ export default function HonoraryFellowshipContentNew() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
             >
-              <span className="text-yellow-200">Honorary</span> Fellowship
+              <span className="text-teal-200">Honorary</span> Fellowship
             </motion.h1>
 
             <motion.p
@@ -97,15 +97,15 @@ export default function HonoraryFellowshipContentNew() {
             className="mt-8 flex flex-wrap gap-6"
           >
             <div className="flex items-center gap-2 text-white">
-              <Award className="w-5 h-5 text-yellow-200" />
+              <Award className="w-5 h-5 text-teal-200" />
               <span>Lifetime Recognition</span>
             </div>
             <div className="flex items-center gap-2 text-white">
-              <Star className="w-5 h-5 text-yellow-200" />
+              <Star className="w-5 h-5 text-teal-200" />
               <span>Hon. FIBMP Credential</span>
             </div>
             <div className="flex items-center gap-2 text-white">
-              <Globe className="w-5 h-5 text-yellow-200" />
+              <Globe className="w-5 h-5 text-teal-200" />
               <span>International Prestige</span>
             </div>
           </motion.div>
@@ -128,7 +128,7 @@ export default function HonoraryFellowshipContentNew() {
                 value={localSearchQuery}
                 onChange={(e) => setLocalSearchQuery(e.target.value)}
                 placeholder="Search honorary fellowships..."
-                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-100 text-lg transition-all shadow-md"
+                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100 text-lg transition-all shadow-md"
               />
               <svg
                 className="absolute left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -231,9 +231,9 @@ export default function HonoraryFellowshipContentNew() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-start gap-3 p-4 bg-amber-50 rounded-xl"
+                  className="flex items-start gap-3 p-4 bg-teal-50 rounded-xl"
                 >
-                  <CheckCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-6 h-6 text-teal-600 flex-shrink-0 mt-0.5" />
                   <span className="text-gray-700">{item}</span>
                 </motion.div>
               ))}

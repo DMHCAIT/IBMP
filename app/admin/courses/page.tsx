@@ -222,8 +222,11 @@ export default function CoursesAdminPage() {
         ? { ...content.courses, [activeCategory]: [...courses, editingCourse] }
         : { ...content.courses, [activeCategory]: courses.map((c) => c.id === editingCourse.id ? editingCourse : c) };
 
-      updateContent('courses', newCoursesData);
+      // Save to API first
       await saveContent({ courses: newCoursesData });
+      
+      // Then update state to ensure it's synchronized with the saved data
+      updateContent('courses', newCoursesData);
       
       console.log('[CourseSave] Course saved successfully to database');
       alert(`Course "${editingCourse.name}" saved successfully! The course will be accessible at /programs/courses/${editingCourse.slug}`);

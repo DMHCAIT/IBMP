@@ -64,7 +64,7 @@ export default function MedicalSpecialtiesList() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-primary overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80"
@@ -74,7 +74,7 @@ export default function MedicalSpecialtiesList() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-blue-700/90 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-600/80 via-teal-700/90 to-teal-800/80" />
 
         <div className="container-custom relative z-10">
           <Link 
@@ -102,7 +102,7 @@ export default function MedicalSpecialtiesList() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
             >
-              Fellowship in <span className="text-blue-200">Medical Specialties</span>
+              Fellowship in <span className="text-teal-200">Medical Specialties</span>
             </motion.h1>
 
             <motion.p
@@ -133,8 +133,8 @@ export default function MedicalSpecialtiesList() {
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl"
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-teal-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">{item.label}</p>
@@ -162,7 +162,7 @@ export default function MedicalSpecialtiesList() {
                 value={localSearchQuery}
                 onChange={(e) => setLocalSearchQuery(e.target.value)}
                 placeholder="Search specialties..."
-                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-200 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-lg transition-all shadow-sm"
+                className="w-full px-6 py-4 pl-14 bg-white rounded-full border-2 border-gray-200 focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 text-lg transition-all shadow-sm"
               />
               <svg
                 className="absolute left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -196,7 +196,7 @@ export default function MedicalSpecialtiesList() {
               Select a specialty to learn more about the Fellowship program requirements and curriculum.
             </p>
             {searchQuery && (
-              <div className="mt-4 inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">
+              <div className="mt-4 inline-block px-4 py-2 bg-teal-50 text-teal-700 rounded-lg text-sm font-medium">
                 Showing {filteredSpecialties.length} of {medicalSpecialties.length} results for &quot;{searchQuery}&quot;
               </div>
             )}
@@ -226,14 +226,14 @@ export default function MedicalSpecialtiesList() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.03 * index }}
-                  className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+                  className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-teal-500 hover:shadow-lg transition-all cursor-pointer"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
-                      <CheckCircle className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+                    <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-teal-500 transition-colors">
+                      <CheckCircle className="w-5 h-5 text-teal-600 group-hover:text-white transition-colors" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-teal-600 transition-colors">
                         {specialty.name}
                       </h3>
                       <p className="text-sm text-gray-500">{specialty.description}</p>
@@ -247,7 +247,7 @@ export default function MedicalSpecialtiesList() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-primary">
+      <section className="py-16 bg-gradient-to-r from-teal-600 to-teal-800">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -259,7 +259,7 @@ export default function MedicalSpecialtiesList() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
+                className="px-8 py-4 bg-white text-teal-600 font-bold rounded-xl hover:bg-teal-50 transition-colors shadow-lg"
               >
                 Apply Now
               </Link>

@@ -16,8 +16,8 @@ const categories = [
     title: 'Fellowship in Medical Specialties',
     description: 'Core medical specialties including internal medicine, surgery, pediatrics, and 22 more specialty areas.',
     icon: Stethoscope,
-    gradient: 'from-blue-500 to-blue-600',
-    bgGradient: 'from-blue-50 to-blue-100',
+    gradient: 'from-teal-500 to-teal-600',
+    bgGradient: 'from-teal-50 to-teal-100',
     count: 25,
     href: '/programs/medical-specialties'
   },
@@ -36,8 +36,8 @@ const categories = [
     title: 'Honorary Fellowship',
     description: 'Prestigious recognition awarded for exceptional contributions to medicine, healthcare leadership, and medical education.',
     icon: Award,
-    gradient: 'from-amber-500 to-amber-600',
-    bgGradient: 'from-amber-50 to-amber-100',
+    gradient: 'from-teal-500 to-teal-600',
+    bgGradient: 'from-teal-50 to-teal-100',
     count: null,
     href: '/programs/honorary-fellowship'
   }
@@ -99,7 +99,7 @@ export default function FellowshipCategories() {
                         {category.count} Specialties
                       </span>
                     ) : (
-                      <span className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-semibold text-amber-600 shadow-sm">
+                      <span className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-semibold text-black shadow-sm">
                         By Nomination
                       </span>
                     )}

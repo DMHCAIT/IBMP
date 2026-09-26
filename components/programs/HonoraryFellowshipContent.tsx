@@ -55,7 +55,7 @@ export default function HonoraryFellowshipContent() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-amber-500 via-amber-600 to-primary overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-800 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&q=80"
@@ -65,7 +65,7 @@ export default function HonoraryFellowshipContent() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/80 via-amber-600/90 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/80 via-teal-600/90 to-teal-800/80" />
 
         <div className="container-custom relative z-10">
           <Link 
@@ -93,7 +93,7 @@ export default function HonoraryFellowshipContent() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
             >
-              Honorary <span className="text-amber-200">Fellowship</span>
+              Honorary <span className="text-teal-200">Fellowship</span>
             </motion.h1>
 
             <motion.p
@@ -117,11 +117,11 @@ export default function HonoraryFellowshipContent() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-block px-4 py-2 bg-amber-50 text-amber-600 font-semibold text-sm rounded-full mb-4">
+              <div className="inline-block px-4 py-2 bg-teal-50 text-teal-600 font-semibold text-sm rounded-full mb-4">
                 About Honorary Fellowship
               </div>
               <h2 className="text-4xl font-bold text-primary mb-6">
-                A Symbol of <span className="text-amber-500">Distinguished Achievement</span>
+                A Symbol of <span className="text-teal-500">Distinguished Achievement</span>
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
                 The Honorary Fellowship (Hon. FIBMP) is awarded to recognize lifetime achievements and extraordinary contributions to the advancement of medicine and healthcare. This prestigious credential is not earned through examination but through demonstrated excellence over a distinguished career.
@@ -137,9 +137,9 @@ export default function HonoraryFellowshipContent() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-3xl p-8">
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-3xl p-8">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center">
                     <Star className="w-8 h-8 text-white" />
                   </div>
                   <div>
@@ -149,15 +149,15 @@ export default function HonoraryFellowshipContent() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-gray-700">
-                    <Heart className="w-5 h-5 text-amber-500" />
+                    <Heart className="w-5 h-5 text-teal-500" />
                     <span>Awarded for exceptional contributions to medicine</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
-                    <Globe className="w-5 h-5 text-amber-500" />
+                    <Globe className="w-5 h-5 text-teal-500" />
                     <span>Globally recognized distinction</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
-                    <Users className="w-5 h-5 text-amber-500" />
+                    <Users className="w-5 h-5 text-teal-500" />
                     <span>By nomination and board approval</span>
                   </div>
                 </div>
@@ -194,10 +194,10 @@ export default function HonoraryFellowshipContent() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.1 * index }}
-                className="flex items-start gap-4 bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-amber-500 transition-colors"
+                className="flex items-start gap-4 bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-teal-500 transition-colors"
               >
-                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-teal-600" />
                 </div>
                 <p className="text-gray-700">{criteria}</p>
               </motion.div>

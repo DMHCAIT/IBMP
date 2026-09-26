@@ -40,7 +40,7 @@ export default function MedicalSpecialtiesList() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-8 bg-gradient-to-br from-blue-600 via-blue-700 to-primary overflow-hidden">
+      <section className="relative py-8 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80"
@@ -50,7 +50,7 @@ export default function MedicalSpecialtiesList() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-blue-700/90 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-600/80 via-teal-700/90 to-teal-800/80" />
 
         <div className="container-custom relative z-10">
           <Link 
