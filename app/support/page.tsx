@@ -211,7 +211,7 @@ export default function SupportPage() {
                         </div>
                         <div>
                           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Institutional Office</p>
-                          <p className="mt-2 text-lg font-bold leading-snug text-primary md:text-xl">International Boards of Medical Practitioners</p>
+                          <p className="mt-2 text-lg font-bold leading-snug text-primary md:text-xl">International Board of Medical Practitioners</p>
                         </div>
                       </div>
                       <p className="max-w-sm text-sm leading-6 text-gray-600 md:text-right">

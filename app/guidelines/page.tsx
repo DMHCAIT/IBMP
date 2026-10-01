@@ -23,7 +23,7 @@ export default function GuidelinesPage() {
                 IBMP Professional Recognition Guidelines
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                International Boards of Medical Practitioners (IBMP)
+                International Board of Medical Practitioners (IBMP)
               </p>
             </div>
 

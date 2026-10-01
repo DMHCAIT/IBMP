@@ -481,7 +481,7 @@ export const defaultContent: SiteContent = {
   verification: {
     tag: "Verification Portal",
     title: "IBMP Accreditation & Fellowship Verification",
-    description: "Welcome to the official verification portal of the International Boards of Medical Practitioners (IBMP). This service enables healthcare institutions, regulatory authorities, employers, and the public to verify the accreditation and fellowship status of medical practitioners recognized by IBMP. All information provided through this portal is sourced from the official IBMP registry and reflects the most current status of records maintained by the Board.",
+    description: "Welcome to the official verification portal of the International Board of Medical Practitioners (IBMP). This service enables healthcare institutions, regulatory authorities, employers, and the public to verify the accreditation and fellowship status of medical practitioners recognized by IBMP. All information provided through this portal is sourced from the official IBMP registry and reflects the most current status of records maintained by the Board.",
     formTitle: "Accreditation & Fellowship Verification",
     formDescription: "Enter IBMP Accreditation Number, Fellowship Number, or Full Name to verify status",
     inputLabel: "Search Credentials",

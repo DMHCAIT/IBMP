@@ -22,7 +22,7 @@ export default function VerificationPage() {
                 IBMP Accreditation & Fellowship Verification
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Welcome to the official verification portal of the International Boards of Medical Practitioners (IBMP). This service enables healthcare institutions, regulatory authorities, employers, and the public to verify the accreditation and fellowship status of medical practitioners recognized by IBMP.
+                Welcome to the official verification portal of the International Board of Medical Practitioners (IBMP). This service enables healthcare institutions, regulatory authorities, employers, and the public to verify the accreditation and fellowship status of medical practitioners recognized by IBMP.
               </p>
               <p className="text-sm text-gray-500 mt-4">
                 All information provided through this portal is sourced from the official IBMP registry and reflects the most current status of records maintained by the Board.
@@ -89,7 +89,7 @@ export default function VerificationPage() {
                 <p className="text-sm text-gray-700">
                   For verification assistance, please contact:<br/>
                   <strong>Email:</strong> <a href="mailto:verification@ibmpractitioner.us" className="text-secondary hover:underline">verification@ibmpractitioner.us</a><br/>
-                  <strong>Office:</strong> International Boards of Medical Practitioners
+                  <strong>Office:</strong> International Board of Medical Practitioners
                 </p>
               </div>
 

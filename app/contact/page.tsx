@@ -55,7 +55,7 @@ export default function ContactPage() {
                 </div>
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-lg transition-all">
                   <div className="text-4xl mb-4">🎓</div>
-                  <h3 className="text-xl font-bold text-primary mb-2">Certified Your Practice Globally</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Certify Your Practice Globally</h3>
                   <p className="text-gray-600 mb-3">Join our Fellow Program and achieve international recognition for your medical expertise and professional excellence.</p>
                   <a href="mailto:fellow@ibmpractitioner.us" className="text-secondary font-semibold hover:underline">
                     fellow@ibmpractitioner.us
